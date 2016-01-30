@@ -7,6 +7,9 @@ import com.vengeful.sloths.Models.Stats.BaseStats;
  */
 public abstract class Occupation {
 
+    public Occupation() {
+
+    }
 
     public BaseStats levelUp() {
 
