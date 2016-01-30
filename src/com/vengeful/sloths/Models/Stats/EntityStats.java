@@ -24,6 +24,10 @@ public class EntityStats extends Stats {
     protected int defensiveRating;
     protected int armorRating;
 
+    protected int[] requiredLevelXP = {0, 10, 20, 40, 80, 160, 320, 640, 1280, 2560};
+    protected int currentHealth;
+
+
     public EntityStats() {
         super();
 
@@ -34,6 +38,8 @@ public class EntityStats extends Stats {
         this.livesLeft = 1;
 
         this.life = 10;
+
+        this.currentHealth = life;
 
         updateStats();
     }
@@ -91,6 +97,31 @@ public class EntityStats extends Stats {
 
         updateStats();
     }
+
+    public void updateXP(int xp){
+        this.experience += xp;
+    }
+
+    public int getXP(){
+        return this.experience;
+    }
+
+    public int getRequiredLevelXP(){
+        return requiredLevelXP[this.level];
+    }
+
+    public void setCurrentHealth(int health){
+        this.currentHealth += health;
+
+        if(this.currentHealth > life)
+            this.currentHealth = life;
+    }
+
+    public int getCurrentHealth(){
+        return this.currentHealth;
+    }
+
+
 
     public String toString() {
         return this.strength + " " + this.agility + " " + this.intellect + " " + this.hardiness + " " + this.movement;

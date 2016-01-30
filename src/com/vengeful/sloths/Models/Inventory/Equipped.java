@@ -11,7 +11,6 @@ public class Equipped {
     private Hat hat = null;
     private Sword sword = null;
 
-
     public Equipped(){
 
     }

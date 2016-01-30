@@ -17,5 +17,4 @@ public class BaseStats extends Stats {
         this.hardiness = hardi;
         this.movement = move;
     }
-
 }

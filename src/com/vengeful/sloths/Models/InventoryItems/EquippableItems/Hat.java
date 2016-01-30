@@ -15,5 +15,4 @@ public class Hat extends EquippableItems {
         b.setStats(0, 0, 0, 10, 0); //Once equipped, increase avatar stats by these factors
     }
 
-
 }
