@@ -1,3 +1,4 @@
+package com.vengeful.sloths.View.AreaView;
 
 public class Centered32PixelCoordinateStrategy extends CoordinateStrategy {
 	private int xOffset;
