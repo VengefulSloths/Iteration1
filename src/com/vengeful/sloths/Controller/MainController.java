@@ -5,6 +5,7 @@ import com.vengeful.sloths.Controller.ControllerStates.InventoryState;
 import com.vengeful.sloths.Controller.ControllerStates.MainControllerState;
 import com.vengeful.sloths.Controller.ControllerStates.MenuState;
 import com.vengeful.sloths.Models.Entity.Avatar;
+import com.vengeful.sloths.Models.TimeModel.TimeController;
 
 import java.awt.event.KeyEvent;
 

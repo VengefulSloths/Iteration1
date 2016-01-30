@@ -2,8 +2,10 @@ package com.vengeful.sloths.Models.Map;
 
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,11 +15,27 @@ public class Tile {
 
     private Entity entity;
     private boolean canBeMovedOn;
-    private List<MapItem> mapItems;
-    private List<AreaEffect> areaEffect;
-    private List<Decal> decals;
+    private ArrayList<MapItem> mapItems;
+    private ArrayList<AreaEffect> areaEffect;
+    private ArrayList<Decal> decals;
     private Terrain terrain;
 
+
+    public Tile(){
+        canBeMovedOn = true;
+        mapItems = new ArrayList<MapItem>();
+        areaEffect = new ArrayList<AreaEffect>();
+        decals = new ArrayList<Decal>();
+        terrain = new Grass();
+    }
+
+    public Tile(Terrain terrain){
+        canBeMovedOn = true;
+        mapItems = new ArrayList<MapItem>();
+        areaEffect = new ArrayList<AreaEffect>();
+        decals = new ArrayList<Decal>();
+        this.terrain = terrain;
+    }
 
     public void execute(){
 
