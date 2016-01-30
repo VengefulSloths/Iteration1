@@ -58,7 +58,6 @@ public class AreaView extends JPanel{
 		Iterator<ViewObject> iter= manager.iterator();
 		while (iter.hasNext()) {
 			ViewObject current = iter.next();
-			System.out.println(current.getClass());
 			current.paintComponent(g2d);
 		}
 
