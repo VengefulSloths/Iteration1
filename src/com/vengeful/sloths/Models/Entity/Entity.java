@@ -11,7 +11,7 @@ import com.vengeful.sloths.Utility.Coord;
  * Created by zach on 1/30/16.
  */
 public abstract class Entity {
-    private Coord loc;
+    private Coord location;
     protected Occupation occupation;
     protected EntityStats entityStats;
 
@@ -37,12 +37,12 @@ public abstract class Entity {
 
     }
 
-    public Coord getLoc() {
-        return loc;
+    public Coord getLocation() {
+        return location;
     }
 
-    public void setLoc(Coord coord) {
-        loc = coord;
+    public void setLocation(Coord coord) {
+        location = coord;
     }
 
 

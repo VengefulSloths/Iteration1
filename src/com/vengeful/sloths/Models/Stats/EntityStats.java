@@ -50,32 +50,32 @@ public class EntityStats extends Stats {
 
     }
 
-    public int calculateLife() {
+    private int calculateLife() {
         double factor = hardiness / 50.0;
         double levelFactor = level / 50.0;
         return life + ((int)(life * factor)) + ((int)(life * levelFactor));
     }
 
-    public int calculateMana() {
+    private int calculateMana() {
         double factor = intellect / 50.0;
         double levelFactor = level / 50.0;
         return mana + ((int)(mana * factor)) + ((int)(mana * levelFactor));
     }
 
-    public int calculateOffensiveRating() {
+    private int calculateOffensiveRating() {
         double factor = strength / 50.0;
         double levelFactor = level / 50.0;
         // FACTOR IN EQUIPPED ARMOR!
         return offensiveRating + ((int)(offensiveRating * factor)) + ((int)(offensiveRating * levelFactor));
     }
 
-    public int calculateDefensiveRating() {
+    private int calculateDefensiveRating() {
         double factor = agility / 50.0;
         double levelFactor = level / 50.0;
         return defensiveRating + ((int)(defensiveRating * factor)) + ((int)(defensiveRating * levelFactor));
     }
 
-    public int calculateArmorRating() {
+    private int calculateArmorRating() {
         double factor = hardiness / 50.0;
         double levelFactor = level / 50.0;
         // FACTOR IN EQUIPPED ARMOR!

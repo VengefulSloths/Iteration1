@@ -32,7 +32,6 @@ public class Avatar extends Entity {
 
         occupation.levelUp(entityStats);
 
-
         System.out.println("Stats were: " + entityStats.toString());
     }
 
