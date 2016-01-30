@@ -1,5 +1,6 @@
-package com.vengeful.sloths.Models.InventoryItems;
+package com.vengeful.sloths.Models.InventoryItems.EquippableItems;
 
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Stats.BaseStats;
 
 /**
