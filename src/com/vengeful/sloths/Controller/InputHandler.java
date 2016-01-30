@@ -8,11 +8,17 @@ import java.awt.event.KeyListener;
  */
 public class InputHandler implements KeyListener{
 
+    private MainController mainController;
+
+    public InputHandler(MainController mainController){
+        this.mainController = mainController;
+    }
 
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        System.out.println("got me fucked up");
+        mainController.dispatchKey(e.getKeyCode());
     }
 
     @Override

@@ -1,10 +1,18 @@
 package com.vengeful.sloths.Controller.ControllerStates;
 
+import com.vengeful.sloths.Controller.MainController;
+
 /**
  * Created by John on 1/30/2016.
  */
 public abstract class MainControllerState {
 
+
+    protected MainController mainController;
+
+    public MainControllerState(MainController m) {
+        this.mainController = m;
+    }
     //add TimeController
 
     public abstract boolean handleIKey();
