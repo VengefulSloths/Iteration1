@@ -1,0 +1,81 @@
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class driver extends JFrame implements Runnable{
+
+	public driver() {
+    	av = new AreaView();
+        initUI();
+    }
+
+    private AreaView av;
+    
+    private void initUI() {
+
+        add(av);
+
+        setTitle("A game");
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public void run() {
+    	int count = 0;
+    	av.player = new EntityMapViewObject(150,150, 
+				"resources/avatar_up.png",
+				"resources/avatar_left.png",
+				"resources/avatar_down.png",
+				"resources/avatar_right.png");
+        while(true) {
+        	long lastTime = System.currentTimeMillis();
+        	
+        	//Actual Code goes here
+        	
+        	av.repaint();
+        	EntityObserver eo = (EntityObserver)av.player;
+
+        	if ( count%20 == 4 ) {
+                System.out.println("changing direction");
+            	eo.alertDirectionChange(Direction.RIGHT);
+        	} else if ( count%20 == 8) {
+        		eo.alertDirectionChange(Direction.UP);
+        	} else if ( count%20 == 12) {
+        		eo.alertDirectionChange(Direction.LEFT);
+        	} else if ( count%20 == 16) {
+        		eo.alertDirectionChange(Direction.DOWN);
+        	}
+        	
+        	//End of actual code
+        	
+        	long delta = System.currentTimeMillis() - lastTime;
+        	if (delta < 250) {
+        		try {
+        			Thread.sleep((250 - delta));
+        		} catch (Exception e) {
+        			//dont care
+        		}
+        		
+        	}
+        	System.out.println(count++);
+        }
+    }
+    public void start() {
+    	new Thread(this).start();
+    }
+    public static void main(String[] args) {
+
+
+        driver ex = new driver();
+        ex.setVisible(true);
+    	
+        ex.start();
+        
+
+        
+    }
+}
