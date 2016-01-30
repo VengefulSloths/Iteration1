@@ -1,30 +1,34 @@
 package com.vengeful.sloths.Models.Inventory;
 
-import com.vengeful.sloths.Models.InventoryItems.EquippableItems;
-import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 
-import java.util.ArrayList;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
 
 /**
  * Created by qianwen on 1/30/16.
  */
 public class Equipped {
-    private ArrayList<EquippableItems> equipped;
+
+    private Hat hat = null;
+    private Sword sword = null;
 
     public Equipped(){
-        equipped = new ArrayList<EquippableItems>();
+
     }
 
-    public InventoryItem getItem(int itemIndex){
-        return equipped.get(itemIndex);
+    public Hat getHat(){
+        return this.hat;
     }
 
-    public boolean addItem(EquippableItems item){
-        return equipped.add(item);
+    public void setHat(Hat h){
+        this.hat = h;
     }
 
-    public boolean removeItem(EquippableItems item){
-        return equipped.remove(item);
+    public Sword getSword(){
+        return this.sword;
+    }
+
+    public void setSword(Sword s){
+        this.sword = s;
     }
 
 }

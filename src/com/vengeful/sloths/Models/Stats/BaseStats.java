@@ -9,4 +9,12 @@ public class BaseStats extends Stats {
 
         super();
     }
+
+    public void setStats(int str, int agil, int intel, int hardi, int move){
+        this.strength = str;
+        this.agility = agil;
+        this.intellect = intel;
+        this.hardiness = hardi;
+        this.movement = move;
+    }
 }
