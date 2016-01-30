@@ -54,12 +54,14 @@ public class driver extends JFrame implements Runnable{
         		}
         		
         	}
-        	System.out.println(count++);
+			count++;
+//        	System.out.println(count++);
         }
     }
     public void start() {
     	new Thread(this).start();
     }
+
     public static void main(String[] args) {
 
 

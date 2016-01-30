@@ -6,6 +6,7 @@ package com.vengeful.sloths.Models.Stats;
 public class BaseStats extends Stats {
 
     public BaseStats() {
+
         super();
     }
 }
