@@ -5,9 +5,9 @@ import com.vengeful.sloths.Controller.MainController;
 /**
  * Created by John on 1/30/2016.
  */
-public class MenuController extends MainControllerState {
+public class MenuState extends MainControllerState {
 
-    public MenuController(MainController m){
+    public MenuState(MainController m){
         super(m);
     }
     @Override

@@ -12,6 +12,7 @@ public class InventoryState extends MainControllerState {
     }
     @Override
     public boolean handleIKey() {
+
         return false;
     }
 

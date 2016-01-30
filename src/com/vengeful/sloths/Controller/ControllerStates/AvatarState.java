@@ -13,22 +13,29 @@ public class AvatarState extends MainControllerState{
 
     @Override
     public boolean handleIKey() {
-        System.out.println("HANDLING THE I KEY !!!!!11!!1!1!!!ONE!!!111!");
-        return false;
+        System.out.println("changing to inventory state");
+        mainController.setInventoryState();
+        return true;
     }
 
     @Override
     public boolean handleEKey() {
-        return false;
+        System.out.println("chaning to equip, which is an inventory state?");
+        mainController.setInventoryState();
+        return true;
     }
 
     @Override
     public boolean handleESCKey() {
-        return false;
+        System.out.println("switch to menu controller");
+        mainController.setMenuState();
+        return true;
     }
 
     @Override
     public boolean handle1Key() {
+        //move SW
+        System.out.println("move SW");
         return false;
     }
 
