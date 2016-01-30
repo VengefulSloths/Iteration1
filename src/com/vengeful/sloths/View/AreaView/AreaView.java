@@ -1,3 +1,5 @@
+package com.vengeful.sloths.View.AreaView;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,8 +24,10 @@ public class AreaView extends JPanel{
 	public MapViewObjectManager manager;
 	
 	//TODO: delete this testing crap
-	public ViewObject player;
-	
+	private ViewObject player;
+	public ViewObject getPlayer() {
+		return player;
+	}
 	private int count=0;
 	
 	public AreaView() {
@@ -37,7 +41,6 @@ public class AreaView extends JPanel{
 				"resources/avatar_right.png");
 		
 		
-		
 		manager.addMapViewObject(player);
 
 		for (int i=0; i<321; i=i+32) {
@@ -49,6 +52,7 @@ public class AreaView extends JPanel{
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 		setDoubleBuffered(true);
+
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -61,7 +65,6 @@ public class AreaView extends JPanel{
 			current.paintComponent(g2d);
 		}
 
-		//player.paintComponent(g2d);
 		
         g2d.drawString("AreaVIEW: " + count++, 50, 50+count);
         

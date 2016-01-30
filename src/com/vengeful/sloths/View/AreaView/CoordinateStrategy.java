@@ -1,5 +1,6 @@
+package com.vengeful.sloths.View.AreaView;
 
-public abstract class CoordinateStrategy { 
+public abstract class CoordinateStrategy {
 	protected CameraView cv;
 	protected abstract int convertToPixelsX(int x);
 	public final int convertX(int x) {

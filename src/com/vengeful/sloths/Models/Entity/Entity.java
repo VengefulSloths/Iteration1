@@ -1,30 +1,23 @@
 package com.vengeful.sloths.Models.Entity;
 
+import com.vengeful.sloths.Utility.Coord;
+
 /**
  * Created by zach on 1/30/16.
  */
 public abstract class Entity {
-    private int xCoord;
-    private int yCoord;
+    private Coord loc;
 
     public Entity() {
 
     }
 
-    public int getxCoord() {
-        return xCoord;
+    public Coord getLoc() {
+        return loc;
     }
 
-    public int getyCoord() {
-        return yCoord;
-    }
-
-    public void setxCoord(int xCoord) {
-        this.xCoord = xCoord;
-    }
-
-    public void setyCoord(int yCoord) {
-        this.yCoord = yCoord;
+    public void setLoc(Coord coord) {
+        loc = coord;
     }
 
 
