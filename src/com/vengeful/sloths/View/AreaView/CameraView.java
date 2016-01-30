@@ -1,3 +1,4 @@
+package com.vengeful.sloths.View.AreaView;
 
 public abstract class CameraView {
 	protected int x;

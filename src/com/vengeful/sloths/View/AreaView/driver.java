@@ -1,8 +1,6 @@
+package com.vengeful.sloths.View.AreaView;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class driver extends JFrame implements Runnable{
 
