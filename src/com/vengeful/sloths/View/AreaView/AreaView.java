@@ -25,6 +25,7 @@ public class AreaView extends JPanel{
 	
 	//TODO: delete this testing crap
 	private ViewObject player;
+	private CameraView currentCameraView;
 	public ViewObject getPlayer() {
 		return player;
 	}
@@ -32,22 +33,25 @@ public class AreaView extends JPanel{
 	
 	public AreaView() {
 		manager = new MapViewObjectManager();
-		
-		
+		currentCameraView = new StaticCameraView(0,0,10,7);
+		currentCameraView.populate(manager);
+
+		CoordinateStrategy centered32converter = new Centered32PixelCoordinateStrategy(currentCameraView, this);
+
 		player = new EntityMapViewObject(150,150, 
 				"resources/avatar_up.png",
 				"resources/avatar_left.png",
 				"resources/avatar_down.png",
 				"resources/avatar_right.png");
-		
-		
-		manager.addMapViewObject(player);
 
-		for (int i=0; i<321; i=i+32) {
-			for (int j=0; j<321; j=j+32) {
-				manager.addMapViewObject(new TerrainMapViewObject(i,j, "resources/grass.png"));
+		for (int i=0; i<10; i++) {
+			for (int j=0; j<7; j++) {
+				manager.addMapViewObject(new TerrainMapViewObject(i,j, "resources/grass.png", centered32converter));
 			}
 		}
+		manager.addMapViewObject(player);
+
+
 		
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
