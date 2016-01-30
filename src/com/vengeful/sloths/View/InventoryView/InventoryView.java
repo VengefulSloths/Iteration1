@@ -1,3 +1,5 @@
+package com.vengeful.sloths.View.InventoryView;
+
 import javax.swing.*;
 
 /**

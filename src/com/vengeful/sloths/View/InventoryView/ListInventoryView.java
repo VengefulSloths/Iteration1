@@ -1,3 +1,7 @@
+package com.vengeful.sloths.View.InventoryView;
+
+import com.vengeful.sloths.View.InventoryView.InventoryView;
+
 import java.awt.*;
 import java.util.Iterator;
 
@@ -35,7 +39,7 @@ public ListInventoryView() {
 
         Iterator<InventoryItemViewObject> iter = manager.iterator();
         while (iter.hasNext()) {
-            ViewObject current = iter.next();
+            InventoryItemViewObject current = iter.next();
             current.paintComponent(g2d);
         }
     }

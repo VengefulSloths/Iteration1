@@ -1,13 +1,16 @@
+package com.vengeful.sloths.View.InventoryView;
+
+import com.vengeful.sloths.View.AreaView.ViewObject;
+
 import javax.swing.*;
-import javax.swing.text.View;
 import java.awt.*;
-import java.util.Iterator;
 
 /**
  * Created by echristiansen on 1/30/2016.
  */
-public class InventoryItemViewObject extends ViewObject {
-
+public class InventoryItemViewObject extends JComponent{
+    protected int x;
+    protected int y;
     private final Image itemImage;
 
     public InventoryItemViewObject(int x, int y, String image) {
@@ -18,8 +21,7 @@ public class InventoryItemViewObject extends ViewObject {
         itemImage = itemIcon.getImage();
     }
 
-    @Override
-    void paintComponent(Graphics2D g) {
-        g.drawImage(itemImage, x, y, this);
+    public void paintComponent(Graphics2D g) {
+        g.drawImage(itemImage, x,y, this);
     }
 }
