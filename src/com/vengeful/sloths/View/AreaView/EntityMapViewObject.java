@@ -66,8 +66,8 @@ public class EntityMapViewObject extends ViewObject
 	
 	void paintComponent(Graphics2D g) {
 		System.out.println("X.x = " + calculatePosition(startX, postX, animationStartTime, animationFinishTime));
-		g.drawImage(testAnimation.getCurrentImage(animationStartTime,animationFinishTime),
-		//g.drawImage(currentImage,
+		//g.drawImage(testAnimation.getCurrentImage(animationStartTime,animationFinishTime),
+		 g.drawImage(currentImage,
 					converter.convertX(calculatePosition(startX, postX, animationStartTime, animationFinishTime)),
 					converter.convertY(calculatePosition(startY, postY, animationStartTime, animationFinishTime)),
 					this);

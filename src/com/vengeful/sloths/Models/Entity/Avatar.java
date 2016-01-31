@@ -8,7 +8,7 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
-import com.vengeful.sloths.View.AreaView.Direction;
+import com.vengeful.sloths.Utility.Direction;
 
 /**
  * Created by zach on 1/30/16.
