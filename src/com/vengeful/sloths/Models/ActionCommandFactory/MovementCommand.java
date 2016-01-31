@@ -2,6 +2,8 @@ package com.vengeful.sloths.Models.ActionCommandFactory;
 
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.TimeModel.Alertable;
+import com.vengeful.sloths.Models.TimeModel.TimeModel;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
 import com.vengeful.sloths.Utility.Direction;
@@ -9,7 +11,7 @@ import com.vengeful.sloths.Utility.Direction;
 /**
  * Created by zach on 1/30/16.
  */
-public abstract class MovementCommand {
+public abstract class MovementCommand implements Alertable {
 
     Map map;
     Coord src;
@@ -24,7 +26,11 @@ public abstract class MovementCommand {
         this.direction = dir;
         this.entity = ent;
 
-        this.execute();
+        //this.execute();
+        //replace this with a alertable command poosibly vary by speed
+
+        TimeModel.getInstance().registerAlertable(this, 0);
+
     }
 
     public abstract void execute();

@@ -17,7 +17,7 @@ public class TimedObject {
     //this is called from time model
     public boolean decrement(){
         --ticks;
-        return (ticks == 0);
+        return (ticks <= 0);
     }
 
     public void execute(){

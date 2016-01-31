@@ -27,18 +27,17 @@ public class Main {
         AreaView av = new AreaView();
         viewEngine.registerView(av);
 
+        //TODO: right now movement is not working via ticks!!!!!, we need to create alertables with a time of 0 for movement!
 
-        //make map factory and make a level to test with to create the map
+        //make map factory and make a level to TimeModel with to create the map
         Map map = new Map(new Coord(10, 10));
 
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
-
         EntityObserver eo = (EntityObserver)av.getPlayer();
-
         Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory, eo);
         map.getTile(avatar.getLocation()).addEntity(avatar);
         MainController controller = new MainController(avatar, viewEngine);
-        
+
 
         //start both threads
         viewEngine.start();

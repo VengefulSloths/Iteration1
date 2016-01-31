@@ -1,24 +1,30 @@
 package com.vengeful.sloths.Models.TimeModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Created by John on 1/30/2016.
+ * Created by John on 1/31/2016.
  */
 public class TimeModel {
 
-    private ArrayList<TimedObject> alertables;
+    private List<TimedObject> alertables;
 
-    public TimeModel(){
-        alertables = new ArrayList<TimedObject>();
+    private static final TimeModel instance = new TimeModel();
+
+    private TimeModel(){
+        alertables = Collections.synchronizedList(new CopyOnWriteArrayList<TimedObject>()); //copy on write for concurrent access of 2 threads
     }
     //decremenets timedobjects and calls alterables execute when ticks == 0
     public void tick(){
-        for (TimedObject timedObject : alertables){
-            if(timedObject.decrement()){
-                timedObject.execute();
-                alertables.remove(timedObject);
+        for (Iterator<TimedObject> iterator = alertables.iterator(); iterator.hasNext();){
+            TimedObject object = iterator.next();
+            if(object.decrement()){
+                object.execute();
+                alertables.remove(object);
             }
         }
     }
@@ -26,5 +32,11 @@ public class TimeModel {
     public void registerAlertable(Alertable alertable, int ticks){
         alertables.add(new TimedObject(alertable, ticks));
     }
+    private static TimeModel ourInstance = new TimeModel();
+
+    public static TimeModel getInstance() {
+        return instance;
+    }
+
 
 }
