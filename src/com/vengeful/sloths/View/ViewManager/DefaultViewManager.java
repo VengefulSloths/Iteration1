@@ -22,15 +22,15 @@ public class DefaultViewManager extends ViewManager {
     //HUDView hudview;
     //StatsView statsview;
     ListInventoryView inventoryView;
-    private static final int viewWidth = 1000;
+    private static final int viewWidth = 1100;
     private static final int viewHeight = 800;
 
-    private static final double areaViewWidthProportion = 0.70;
+    private static final double areaViewWidthProportion = 0.75;
     private static final double areaViewHeightProportion = 1.0;
-    private static final double sidePanelWidthProportion = 0.30;
+    private static final double sidePanelWidthProportion = 0.25;
     private static final double sidePanelHeightProportion = 1.0;
     private static final double inventoryViewWidthProportion = 1.0;
-    private static final double inventoryViewHeightProportion = 0.30; //edit: this will change when StatsView and HUDView are added
+    private static final double inventoryViewHeightProportion = 0.40; //edit: this will change when StatsView and HUDView are added
 
     private static final int areaViewWidth =(int) (areaViewWidthProportion * viewWidth);
     private static final int areaViewHeight = (int) (areaViewHeightProportion * viewHeight);
