@@ -11,14 +11,22 @@ import com.vengeful.sloths.Utility.Coord;
  * Created by zach on 1/30/16.
  */
 public abstract class Entity {
+
     private Coord location;
+
+    protected String name;
     protected Occupation occupation;
     protected EntityStats entityStats;
 
 
-    public Entity(String occupationString, EntityStats entityStats) {
+    public Entity(String name, String occupationString, EntityStats entityStats) {
+        this.name = name;
+
         this.entityStats = entityStats;
+
+        // @TODO: NOT ALL ENTITIES SHOULD TO SPAWN AT 2,2!
         this.location = new Coord(2,2);
+
         switch (occupationString) {
             case "Smasher":
                 this.occupation = new Smasher();

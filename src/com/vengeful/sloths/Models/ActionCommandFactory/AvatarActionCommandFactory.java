@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.ActionCommandFactory;
 
 
+import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Map;
 
@@ -13,8 +14,9 @@ public class AvatarActionCommandFactory extends ActionCommandFactory {
         super(map);
     }
     @Override
-    public MovementCommand createMovementCommand(Coord dst) {
-        MovementCommand mc = new AvatarMovementCommand(map, dst);
+    public MovementCommand createMovementCommand(Coord dst, Entity avatar) {
+        MovementCommand mc = new AvatarMovementCommand(map, dst, avatar);
+
         return mc;
     }
 

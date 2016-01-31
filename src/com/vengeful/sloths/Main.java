@@ -17,7 +17,7 @@ public class Main {
 
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
 
-        Avatar avatar = new Avatar("Smasher", new EntityStats(), avatarActionCommandFactory);
+        Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
 
 
 
