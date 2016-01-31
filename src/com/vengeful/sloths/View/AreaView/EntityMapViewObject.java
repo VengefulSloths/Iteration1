@@ -1,23 +1,24 @@
 package com.vengeful.sloths.View.AreaView;
 
-import com.vengeful.sloths.Utility.AnimatedImage;
-import com.vengeful.sloths.Utility.BoundedAnimation;
 import com.vengeful.sloths.Utility.Direction;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import javax.swing.ImageIcon;
-
 public class EntityMapViewObject extends ViewObject 
 		implements EntityObserver{
-	
-	private final Image entityDown;
-	private final Image entityLeft;
-	private final Image entityRight;
-	private final Image entityUp;
+
+	private AnimatedImage walkingN;
+	private AnimatedImage walkingNE;
+	private AnimatedImage walkingE;
+	private AnimatedImage walkingSE;
+	private AnimatedImage walkingS;
+	private AnimatedImage walkingSW;
+	private AnimatedImage walkingW;
+	private AnimatedImage walkingNW;
+
 	private Image currentImage;
-	private AnimatedImage testAnimation;
+	private AnimatedImage currentAnimation;
 
 	//These are for movement
 	private int startX;
@@ -27,15 +28,48 @@ public class EntityMapViewObject extends ViewObject
 	private long animationStartTime;
 	private long animationFinishTime;
 
+	public void setWalkingN(AnimatedImage walkingN) {
+		this.walkingN = walkingN;
+	}
+
+	public void setWalkingNE(AnimatedImage walkingNE) {
+		this.walkingNE = walkingNE;
+	}
+
+	public void setWalkingE(AnimatedImage walkingE) {
+		this.walkingE = walkingE;
+	}
+
+	public void setWalkingSE(AnimatedImage walkingSE) {
+		this.walkingSE = walkingSE;
+	}
+
+	public void setWalkingS(AnimatedImage walkingS) {
+		this.walkingS = walkingS;
+	}
+
+	public void setWalkingSW(AnimatedImage walkingSW) {
+		this.walkingSW = walkingSW;
+	}
+
+	public void setWalkingW(AnimatedImage walkingW) {
+		this.walkingW = walkingW;
+	}
+
+	public void setWalkingNW(AnimatedImage walkingNW) {
+		this.walkingNW = walkingNW;
+	}
+
 	private float calculatePosition(int startX, int endX, long startTime, long endTime) {
 		long t = System.currentTimeMillis();
 		if (t > endTime) {
 			return endX;
+
 		}
 		else return (float)(endX-startX)/(float)(endTime-startTime)*(float)(t - startTime) + (float)startX;
 	}
 
-	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, String up, String right, String down, String left) {
+	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, AnimatedImage defaultAnimation) {
 		this.x = x;
 		this.y = y;
 		this.startX = x;
@@ -46,30 +80,23 @@ public class EntityMapViewObject extends ViewObject
 		this.animationFinishTime = 0;
 		this.converter = converter;
 
-		testAnimation = new BoundedAnimation("resources/man/man_down", 13);
+		this.currentAnimation = defaultAnimation;
 
-		ImageIcon iiu = new ImageIcon(up);
-		ImageIcon iir = new ImageIcon(right);
-		ImageIcon iid = new ImageIcon(down);
-		ImageIcon iil = new ImageIcon(left);
+		//testAnimation = new BoundedAnimation("resources/man/man_down", 13);
 
 
-		entityUp = iiu.getImage();
-		entityRight = iir.getImage();
-		entityDown = iid.getImage();
-		entityLeft = iil.getImage();
 
-		currentImage = entityDown;
 
 	}
 	
-	void paintComponent(Graphics2D g) {
-		System.out.println("X.x = " + calculatePosition(startX, postX, animationStartTime, animationFinishTime));
-		//g.drawImage(testAnimation.getCurrentImage(animationStartTime,animationFinishTime),
-		 g.drawImage(currentImage,
+	public void paintComponent(Graphics2D g) {
+		if (currentAnimation != null) {
+			g.drawImage(currentAnimation.getCurrentImage(animationStartTime, animationFinishTime),
+					//g.drawImage(currentImage,
 					converter.convertX(calculatePosition(startX, postX, animationStartTime, animationFinishTime)),
 					converter.convertY(calculatePosition(startY, postY, animationStartTime, animationFinishTime)),
 					this);
+		}
 
 	}
 
@@ -77,16 +104,28 @@ public class EntityMapViewObject extends ViewObject
 		System.out.println("New direction " + d);
 		switch (d) {
 			case N:
-				currentImage = entityUp;
+				currentAnimation = walkingN;
+				break;
+			case NW:
+				currentAnimation = walkingNW;
 				break;
 			case W:
-				currentImage = entityLeft;
+				currentAnimation = walkingW;
+				break;
+			case SW:
+				currentAnimation = walkingSW;
 				break;
 			case S:
-				currentImage = entityDown;
+				currentAnimation = walkingS;
+				break;
+			case SE:
+				currentAnimation = walkingSE;
 				break;
 			case E:
-				currentImage = entityRight;
+				currentAnimation = walkingE;
+				break;
+			case NE:
+				currentAnimation = walkingNE;
 				break;
 		}
 			

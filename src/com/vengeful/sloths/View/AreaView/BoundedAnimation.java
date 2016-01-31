@@ -1,4 +1,4 @@
-package com.vengeful.sloths.Utility;
+package com.vengeful.sloths.View.AreaView;
 
 import javax.swing.ImageIcon;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class BoundedAnimation extends AnimatedImage{
     //Animations are stored in the form FILEPREFIX_FRAMENUMBER
     public BoundedAnimation(String filePrefix, int frameCount) {
         images = new ArrayList<Image>();
-        for (int i=0; i<frameCount; i++) {
+        for (int i=1; i<frameCount+1; i++) {
             System.out.println(filePrefix + "_" +  i);
             ImageIcon ii = new ImageIcon(filePrefix + "_" +  i + ".png");
             images.add(ii.getImage());

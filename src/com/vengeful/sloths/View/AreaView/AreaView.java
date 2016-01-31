@@ -1,5 +1,6 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.View.AreaView.EntityMapViewObject;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -24,9 +25,9 @@ public class AreaView extends JPanel{
 	public MapViewObjectManager manager;
 	
 	//TODO: delete this testing crap
-	private ViewObject player;
+	private EntityMapViewObject player;
 	private CameraView currentCameraView;
-	public ViewObject getPlayer() {
+	public EntityMapViewObject getPlayer() {
 		return player;
 	}
 	private int count=0;
@@ -38,11 +39,18 @@ public class AreaView extends JPanel{
 
 		CoordinateStrategy centered32converter = new Centered32PixelCoordinateStrategy(currentCameraView, this);
 
-		player = new EntityMapViewObject(2,2, centered32converter,
-				"resources/avatar_up.png",
-				"resources/avatar_right.png",
-				"resources/avatar_down.png",
-				"resources/avatar_left.png");
+		player = new EntityMapViewObject(2,2, centered32converter, new BoundedAnimation("resources/man2/standing/man_south", 1));
+		player.setWalkingN(new BoundedAnimation("resources/man2/moving/north/man_north", 5));
+		player.setWalkingNE(new BoundedAnimation("resources/man2/moving/northeast/man_northeast", 5));
+		player.setWalkingE(new BoundedAnimation("resources/man2/moving/east/man_east", 5));
+		player.setWalkingSE(new BoundedAnimation("resources/man2/moving/southeast/man_southeast", 5));
+		player.setWalkingS(new BoundedAnimation("resources/man2/moving/south/man_south", 5));
+		player.setWalkingSW(new BoundedAnimation("resources/man2/moving/southwest/man_southwest", 5));
+		player.setWalkingW(new BoundedAnimation("resources/man2/moving/west/man_west", 5));
+		player.setWalkingNW(new BoundedAnimation("resources/man2/moving/northwest/man_northwest", 5));
+
+
+
 
 		for (int i=0; i<7; i++) {
 			for (int j=0; j<7; j++) {

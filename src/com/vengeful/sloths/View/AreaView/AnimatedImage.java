@@ -1,4 +1,4 @@
-package com.vengeful.sloths.Utility;
+package com.vengeful.sloths.View.AreaView;
 
 import java.awt.*;
 
