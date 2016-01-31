@@ -7,7 +7,5 @@ import javax.swing.*;
  */
 public abstract class InventoryView extends JPanel {
 
-    abstract int getAreaWidth();
-    abstract int getAreaHeight();
 
 }

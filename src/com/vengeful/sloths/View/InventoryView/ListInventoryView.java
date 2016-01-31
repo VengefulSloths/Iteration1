@@ -2,6 +2,7 @@ package com.vengeful.sloths.View.InventoryView;
 
 import com.vengeful.sloths.View.InventoryView.InventoryView;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Iterator;
 
@@ -10,9 +11,10 @@ import java.util.Iterator;
  */
 public class ListInventoryView extends InventoryView {
 
-    private int VIEW_HEIGHT = 450;
-    private int VIEW_WIDTH = 450;
+    //private int VIEW_HEIGHT = 450;
+    //private int VIEW_WIDTH = 450;
     public ListInventoryViewObjectManager manager;
+    //private JTextArea inventoryTitle;
 
     //InventoryItemViewObject testItem = new InventoryItemViewObject("Blue Partyhat", 5, 5, "resources/bluePhat.jpg");
     InventoryItemViewObject testItem = new InventoryItemViewObject("GodSword", 5, 5);
@@ -20,22 +22,17 @@ public class ListInventoryView extends InventoryView {
 
     public ListInventoryView() {
 
+    //this.setLayout(new BorderLayout());
+    //inventoryTitle = new JTextArea("Inventory");
+    //this.add(inventoryTitle, BorderLayout.NORTH);
+
+
     manager = new ListInventoryViewObjectManager();
 
-    setBackground(Color.WHITE);
-    setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT));
+    //setBackground(Color.WHITE);
+    //setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT));
 
 }
-
-    @Override
-    int getAreaWidth() {
-        return VIEW_WIDTH;
-    }
-
-    @Override
-    int getAreaHeight() {
-        return VIEW_HEIGHT;
-    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -13,7 +13,7 @@ public class AreaView extends JPanel{
 
 	private final int B_WIDTH = 350;
 	private final int B_HEIGHT = 350;
-	
+
 	public int getAreaWidth() {
 		return B_WIDTH;
 	}
@@ -52,9 +52,6 @@ public class AreaView extends JPanel{
 		manager.addMapViewObject(player);
 
 
-		
-		setBackground(Color.BLACK);
-		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 		setDoubleBuffered(true);
 
 	}
