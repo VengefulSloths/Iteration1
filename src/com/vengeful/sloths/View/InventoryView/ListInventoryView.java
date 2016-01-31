@@ -10,15 +10,20 @@ import java.util.Iterator;
  */
 public class ListInventoryView extends InventoryView {
 
-    private int VIEW_HEIGHT = 250;
-    private int VIEW_WIDTH = 250;
+    private int VIEW_HEIGHT = 450;
+    private int VIEW_WIDTH = 450;
     public ListInventoryViewObjectManager manager;
 
+    //InventoryItemViewObject testItem = new InventoryItemViewObject("Blue Partyhat", 5, 5, "resources/bluePhat.jpg");
+    InventoryItemViewObject testItem = new InventoryItemViewObject("GodSword", 5, 5);
+    InventoryItemViewObject testItem2 = new InventoryItemViewObject("Blue Partyhat", 5, 25);
 
-public ListInventoryView() {
+    public ListInventoryView() {
 
     manager = new ListInventoryViewObjectManager();
 
+    setBackground(Color.WHITE);
+    setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT));
 
 }
 
@@ -37,11 +42,16 @@ public ListInventoryView() {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        Iterator<InventoryItemViewObject> iter = manager.iterator();
-        while (iter.hasNext()) {
-            InventoryItemViewObject current = iter.next();
-            current.paintComponent(g2d);
-        }
+        testItem.paintComponent(g2d);
+        testItem2.paintComponent(g2d);
+
+//        Iterator<InventoryItemViewObject> iter = manager.iterator();
+//        while (iter.hasNext()) {
+//            InventoryItemViewObject current = iter.next();
+//            current.paintComponent(g2d);
+//        }
+
+        Toolkit.getDefaultToolkit().sync(); //purpose?
     }
 
 }

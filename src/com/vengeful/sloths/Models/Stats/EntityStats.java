@@ -1,7 +1,5 @@
 package com.vengeful.sloths.Models.Stats;
 
-import com.vengeful.sloths.Models.Entity.Entity;
-
 /**
  * Created by zach on 1/30/16.
  */
@@ -34,9 +32,7 @@ public class EntityStats extends Stats {
         // Set defaults
         this.experience = 1;
         this.level = 1;
-
         this.livesLeft = 1;
-
         this.life = 10;
 
         this.currentHealth = life;
