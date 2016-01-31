@@ -1,12 +1,14 @@
 package com.vengeful.sloths.Models.Entity;
 
+import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
+import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
 import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
-import com.vengeful.sloths.Models.Occupation.Occupation;
-import com.vengeful.sloths.Models.Occupation.Smasher;
+import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
+import com.vengeful.sloths.View.AreaView.Direction;
 
 /**
  * Created by zach on 1/30/16.
@@ -15,11 +17,51 @@ public class Avatar extends Entity {
 
     private Inventory inventory;
     private Equipped equipped;
+    private ActionCommandFactory commandFactory;
 
-    public Avatar(String occupationString, EntityStats entityStats) {
+    public Avatar(String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
         super(occupationString, entityStats);
         this.inventory = new Inventory();
         this.equipped = new Equipped();
+        this.commandFactory = commandFactory;
+    }
+
+    public void move(Direction dir) {
+        Coord dst = this.getLocation();
+        switch (dir) {
+            case N:
+                dst.setY(dst.getY() - 1);
+                break;
+            case E:
+                dst.setX(dst.getX() + 1);
+                break;
+            case S:
+                dst.setY(dst.getY() + 1);
+                break;
+            case W:
+                dst.setX(dst.getX() - 1);
+                break;
+            case NE:
+                dst.setY(dst.getY() - 1);
+                dst.setX(dst.getX() + 1);
+                break;
+            case NW:
+                dst.setY(dst.getY() - 1);
+                dst.setX(dst.getX() - 1);
+                break;
+            case SE:
+                dst.setY(dst.getY() + 1);
+                dst.setX(dst.getX() + 1);
+                break;
+            case SW:
+                dst.setY(dst.getY() + 1);
+                dst.setX(dst.getX() - 1);
+                break;
+            default:
+                break;
+        }
+
+        this.commandFactory.createMovementCommand(dst);
     }
 
     public boolean equip(int itemIndex) {

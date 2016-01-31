@@ -12,3 +12,4 @@ public class AvatarMovementCommand extends MovementCommand {
         super(map, dst);
     }
 }
+g
