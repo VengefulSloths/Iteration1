@@ -79,33 +79,33 @@ public class MainController {
             case KeyEvent.VK_9 :
                 state.handle9Key();
                 break;
-//            case KeyEvent.VK_NUMPAD1 :
-//                state.handle1Key();
-//                break;
-//            case KeyEvent.VK_NUMPAD2 :
-//                state.handle2Key();
-//                break;
-//            case KeyEvent.VK_NUMPAD3 :
-//                state.handle3Key();
-//                break;
-//            case KeyEvent.VK_NUMPAD4 :
-//                state.handle4Key();
-//                break;
-//            case KeyEvent.VK_NUMPAD5 :
-//                state.handle5Key();
-//                break;
-//            case KeyEvent.VK_NUMPAD6 :
-//                state.handle6Key();
-//                break;
-//            case KeyEvent.VK_NUMPAD7 :
-//                state.handle7Key();
-//                break;
-//            case KeyEvent.VK_NUMPAD8 :
-//                state.handle8Key();
-//                break;
-//            case KeyEvent.VK_NUMPAD9 :
-//                state.handle9Key();
-//                break;
+            case KeyEvent.VK_NUMPAD1 :
+                state.handle1Key();
+                break;
+            case KeyEvent.VK_NUMPAD2 :
+                state.handle2Key();
+                break;
+            case KeyEvent.VK_NUMPAD3 :
+                state.handle3Key();
+                break;
+            case KeyEvent.VK_NUMPAD4 :
+                state.handle4Key();
+                break;
+            case KeyEvent.VK_NUMPAD5 :
+                state.handle5Key();
+                break;
+            case KeyEvent.VK_NUMPAD6 :
+                state.handle6Key();
+                break;
+            case KeyEvent.VK_NUMPAD7 :
+                state.handle7Key();
+                break;
+            case KeyEvent.VK_NUMPAD8 :
+                state.handle8Key();
+                break;
+            case KeyEvent.VK_NUMPAD9 :
+                state.handle9Key();
+                break;
 
             default: System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
         }
