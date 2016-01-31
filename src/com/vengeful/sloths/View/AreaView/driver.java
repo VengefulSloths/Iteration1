@@ -1,5 +1,7 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.Utility.Direction;
+
 import javax.swing.JFrame;
 
 public class driver extends JFrame implements Runnable{
@@ -24,31 +26,41 @@ public class driver extends JFrame implements Runnable{
     
     public void run() {
     	int count = 0;
-
+		int ay=1;
         while(true) {
         	long lastTime = System.currentTimeMillis();
         	
         	//Actual Code goes here
-        	
         	av.repaint();
         	EntityObserver eo = (EntityObserver)av.getPlayer();
 
-        	if ( count%20 == 4 ) {
-            	eo.alertDirectionChange(Direction.RIGHT);
-        	} else if ( count%20 == 8) {
-        		eo.alertDirectionChange(Direction.UP);
-        	} else if ( count%20 == 12) {
-        		eo.alertDirectionChange(Direction.LEFT);
-        	} else if ( count%20 == 16) {
-        		eo.alertDirectionChange(Direction.DOWN);
-        	}
-        	
-        	//End of actual code
+//			int xlist[] = {	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+//							2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,
+//							5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+//							4,4,4,4,3,3,3,3,2,2,2,2,1,1,1,1};
+//			int ylist[] = {	2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,
+//							5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+//							4,4,4,4,3,3,3,3,2,2,2,2,1,1,1,1,
+//							1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,};
+//			if (count%4 == 0) eo.alertMove(xlist[count%64],ylist[count%64],200);
+//        	if ( count%64 == 16 ) {
+//            	eo.alertDirectionChange(Direction.LEFT);
+//        	} else if ( count%64 == 32) {
+//        		eo.alertDirectionChange(Direction.UP);
+//        	} else if ( count%64 == 48) {
+//        		eo.alertDirectionChange(Direction.RIGHT);
+//        	} else if ( count%64 == 0) {
+//        		eo.alertDirectionChange(Direction.DOWN);
+//        	}
+
+			if (count%25 == 0 && count < 125) eo.alertMove(1,ay++,1000);
+
+			//End of actual code
         	
         	long delta = System.currentTimeMillis() - lastTime;
-        	if (delta < 250) {
+        	if (delta < 50) {
         		try {
-        			Thread.sleep((250 - delta));
+        			Thread.sleep((50 - delta));
         		} catch (Exception e) {
         			//dont care
         		}

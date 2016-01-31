@@ -33,18 +33,18 @@ public class AreaView extends JPanel{
 	
 	public AreaView() {
 		manager = new MapViewObjectManager();
-		currentCameraView = new StaticCameraView(0,0,10,7);
+		currentCameraView = new StaticCameraView(0,0,7,7);
 		currentCameraView.populate(manager);
 
 		CoordinateStrategy centered32converter = new Centered32PixelCoordinateStrategy(currentCameraView, this);
 
-		player = new EntityMapViewObject(2,2, centered32converter,
+		player = new EntityMapViewObject(1,1, centered32converter,
 				"resources/avatar_up.png",
 				"resources/avatar_left.png",
 				"resources/avatar_down.png",
 				"resources/avatar_right.png");
 
-		for (int i=0; i<10; i++) {
+		for (int i=0; i<7; i++) {
 			for (int j=0; j<7; j++) {
 				manager.addMapViewObject(new TerrainMapViewObject(i,j, "resources/grass.png", centered32converter));
 			}
