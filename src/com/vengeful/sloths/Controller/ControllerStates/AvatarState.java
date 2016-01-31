@@ -66,6 +66,7 @@ public class AvatarState extends MainControllerState{
 
     @Override
     public boolean handle8Key() {
+        //mainController.getAvatar().move(
         return false;
     }
 

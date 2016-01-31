@@ -98,6 +98,10 @@ public class MainController {
         this.state = menuState;
     }
 
+    public Avatar getAvatar(){
+        return this.player;
+    }
+
 
 
 }
