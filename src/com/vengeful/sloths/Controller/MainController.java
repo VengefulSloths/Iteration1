@@ -34,7 +34,7 @@ public class MainController {
 
         inputHandler = new InputHandler(this);
 
-        Screen screen = new Screen(av);
+        screen = new Screen(av);
         screen.setVisible(true);
         screen.addKeyListener(inputHandler);
         screen.start();
