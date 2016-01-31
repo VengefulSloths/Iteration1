@@ -7,7 +7,9 @@ import com.vengeful.sloths.Controller.ControllerStates.MenuState;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.ViewEngine;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -24,7 +26,7 @@ public class MainController {
     private InventoryState inventoryState;
     private MenuState menuState;
 
-    public MainController(Avatar player, AreaView av){
+    public MainController(Avatar player, JFrame jframe){
 
         this.player = player;
 
@@ -33,11 +35,8 @@ public class MainController {
         menuState = new MenuState(this);
 
         inputHandler = new InputHandler(this);
+        jframe.addKeyListener(inputHandler);
 
-        screen = new Screen(av);
-        screen.setVisible(true);
-        screen.addKeyListener(inputHandler);
-        screen.start();
         this.state = avatarState;
     }
 
