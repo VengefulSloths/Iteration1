@@ -19,8 +19,8 @@ public class Avatar extends Entity {
     private Equipped equipped;
     private ActionCommandFactory commandFactory;
 
-    public Avatar(String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
-        super(occupationString, entityStats);
+    public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
+        super(name, occupationString, entityStats);
         this.inventory = new Inventory();
         this.equipped = new Equipped();
         this.commandFactory = commandFactory;
@@ -61,7 +61,7 @@ public class Avatar extends Entity {
                 break;
         }
 
-        this.commandFactory.createMovementCommand(dst);
+        this.commandFactory.createMovementCommand(dst, this);
     }
 
     public boolean equip(int itemIndex) {
