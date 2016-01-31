@@ -25,4 +25,5 @@ public class Inventory {
     public boolean removeItem(InventoryItem item){
         return inventory.remove(item);
     }
+
 }

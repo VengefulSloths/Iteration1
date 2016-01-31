@@ -24,7 +24,7 @@ public class Avatar extends Entity {
 
     public boolean equip(int itemIndex) {
 
-        try{
+        try {
             InventoryItem i = this.inventory.getItem(itemIndex);
             if(i instanceof Hat){
                 this.equipped.setHat((Hat)i);
@@ -34,7 +34,7 @@ public class Avatar extends Entity {
 
             this.inventory.removeItem(i);
 
-        }catch(Exception e){
+        } catch(Exception e){
             System.out.println(e);
             return false;
         }
@@ -63,11 +63,7 @@ public class Avatar extends Entity {
 
     public void levelUp() {
         // Let occupation know level is increased, then levelUp occ and base stats
-        System.out.println("Stats were: " + entityStats.toString());
-
         occupation.levelUp(entityStats);
-
-        System.out.println("Stats were: " + entityStats.toString());
     }
 
     public void gainXP(int xp) {
