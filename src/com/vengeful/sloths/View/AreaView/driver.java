@@ -56,6 +56,7 @@ public class driver extends JFrame implements Runnable{
 			if (count%25 == 0 && count < 125) eo.alertMove(1,ay++,1000);
 
 			//End of actual code
+
         	
         	long delta = System.currentTimeMillis() - lastTime;
         	if (delta < 50) {
@@ -66,12 +67,14 @@ public class driver extends JFrame implements Runnable{
         		}
         		
         	}
-        	System.out.println(count++);
+			count++;
+//        	System.out.println(count++);
         }
     }
     public void start() {
     	new Thread(this).start();
     }
+
     public static void main(String[] args) {
 
 

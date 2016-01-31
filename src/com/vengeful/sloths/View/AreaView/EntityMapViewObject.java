@@ -75,17 +75,18 @@ public class EntityMapViewObject extends ViewObject
 	}
 
 	public void alertDirectionChange(Direction d) {
+		System.out.println("New direction " + d);
 		switch (d) {
-			case UP: 
+			case N:
 				currentImage = entityUp;
 				break;
-			case LEFT: 
+			case W:
 				currentImage = entityLeft;
 				break;
-			case DOWN: 
+			case S:
 				currentImage = entityDown;
 				break;
-			case RIGHT: 
+			case E:
 				currentImage = entityRight;
 				break;
 		}
