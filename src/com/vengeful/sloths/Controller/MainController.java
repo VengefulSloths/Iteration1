@@ -41,7 +41,7 @@ public class MainController {
     }
 
     public boolean dispatchKey(int key){
-
+        System.out.println(state.getClass());
         switch(key){
             case KeyEvent.VK_I :
                 state.handleIKey();

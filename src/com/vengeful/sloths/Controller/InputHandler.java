@@ -17,7 +17,7 @@ public class InputHandler implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("got me fucked up");
+        System.out.println("Input handled Mother Fucker");
         mainController.dispatchKey(e.getKeyCode());
     }
 
