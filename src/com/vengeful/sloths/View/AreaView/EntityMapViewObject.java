@@ -14,9 +14,10 @@ public class EntityMapViewObject extends ViewObject
 	private final Image entityUp;
 	private Image currentImage;
 	
-	public EntityMapViewObject(int x, int y, String up, String right, String down, String left) {
+	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, String up, String right, String down, String left) {
 		this.x = x;
 		this.y = y;
+		this.converter = converter;
 		
 		ImageIcon iiu = new ImageIcon(up);
 		ImageIcon iir = new ImageIcon(right);
@@ -32,11 +33,12 @@ public class EntityMapViewObject extends ViewObject
 	}
 	
 	void paintComponent(Graphics2D g) {
-		g.drawImage(currentImage, x,y, this);
+		g.drawImage(currentImage, converter.convertX(x),converter.convertY(y), this);
 
 	}
 	
 	public void alertDirectionChange(Direction d) {
+		System.out.println("New direction " + d);
 		switch (d) {
 			case UP: 
 				currentImage = entityUp;

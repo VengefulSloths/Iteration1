@@ -3,6 +3,7 @@ package com.vengeful.sloths.View.AreaView;
 public abstract class CameraView {
 	protected int x;
 	protected int y;
+	protected CoordinateStrategy converter;
 	protected int height;
 	protected int width;
 	public int getX() {
@@ -17,4 +18,6 @@ public abstract class CameraView {
 	public int getWidth() {
 		return width;
 	}
+
+	public abstract void populate(MapViewObjectManager mvom);
 }

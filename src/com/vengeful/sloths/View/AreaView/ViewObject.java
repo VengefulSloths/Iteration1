@@ -7,5 +7,6 @@ import javax.swing.JComponent;
 public abstract class ViewObject extends JComponent{
 	protected int x;
 	protected int y;
+	protected CoordinateStrategy converter;
 	abstract void paintComponent(Graphics2D g);
 }
