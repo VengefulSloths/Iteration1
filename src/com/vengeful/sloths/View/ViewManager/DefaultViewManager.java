@@ -27,7 +27,7 @@ public class DefaultViewManager extends ViewManager {
 
     private static final double areaViewWidthProportion = 0.75;
     private static final double areaViewHeightProportion = 1.0;
-    private static final double sidePanelWidthProportion = 0.25;
+    private static final double sidePanelWidthProportion = 1.0 - areaViewWidthProportion;
     private static final double sidePanelHeightProportion = 1.0;
     private static final double inventoryViewWidthProportion = 1.0;
     private static final double inventoryViewHeightProportion = 0.40; //edit: this will change when StatsView and HUDView are added
