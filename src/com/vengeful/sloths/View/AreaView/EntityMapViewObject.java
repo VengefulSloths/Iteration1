@@ -61,7 +61,6 @@ public class EntityMapViewObject extends ViewObject
 
 		currentImage = entityDown;
 
-
 	}
 	
 	void paintComponent(Graphics2D g) {

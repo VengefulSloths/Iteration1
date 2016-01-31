@@ -6,6 +6,7 @@ import com.vengeful.sloths.Models.Occupation.Sneak;
 import com.vengeful.sloths.Models.Occupation.Summoner;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.Coord;
+import com.vengeful.sloths.View.AreaView.EntityObserver;
 
 /**
  * Created by zach on 1/30/16.
@@ -18,8 +19,10 @@ public abstract class Entity {
     protected Occupation occupation;
     protected EntityStats entityStats;
 
+    public EntityObserver entityObserver;
 
-    public Entity(String name, String occupationString, EntityStats entityStats) {
+
+    public Entity(String name, String occupationString, EntityStats entityStats, EntityObserver entityObserver) {
         this.name = name;
 
         this.entityStats = entityStats;
@@ -43,6 +46,8 @@ public abstract class Entity {
 
         this.occupation.init(entityStats);
 
+        this.entityObserver = entityObserver;
+
     }
 
     public Coord getLocation() {
@@ -53,6 +58,9 @@ public abstract class Entity {
         location = coord;
     }
 
+    public String getName() {
+        return this.name;
+    }
 
 
 

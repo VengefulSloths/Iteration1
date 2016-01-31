@@ -50,6 +50,10 @@ public class Tile {
         this.entity = entity;
     }
 
+    public Entity getEntity() {
+        return this.entity;
+    }
+
     public Entity removeEntity(){
         Entity entity = this.entity;
         this.entity = null;

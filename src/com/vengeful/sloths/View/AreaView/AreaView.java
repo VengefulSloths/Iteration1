@@ -38,11 +38,11 @@ public class AreaView extends JPanel{
 
 		CoordinateStrategy centered32converter = new Centered32PixelCoordinateStrategy(currentCameraView, this);
 
-		player = new EntityMapViewObject(1,1, centered32converter,
+		player = new EntityMapViewObject(2,2, centered32converter,
 				"resources/avatar_up.png",
-				"resources/avatar_left.png",
+				"resources/avatar_right.png",
 				"resources/avatar_down.png",
-				"resources/avatar_right.png");
+				"resources/avatar_left.png");
 
 		for (int i=0; i<7; i++) {
 			for (int j=0; j<7; j++) {

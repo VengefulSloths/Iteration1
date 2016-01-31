@@ -9,6 +9,7 @@ import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.View.AreaView.EntityObserver;
 
 /**
  * Created by zach on 1/30/16.
@@ -19,15 +20,17 @@ public class Avatar extends Entity {
     private Equipped equipped;
     private ActionCommandFactory commandFactory;
 
-    public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
-        super(name, occupationString, entityStats);
+    public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory, EntityObserver entityObserver) {
+        super(name, occupationString, entityStats, entityObserver);
         this.inventory = new Inventory();
         this.equipped = new Equipped();
         this.commandFactory = commandFactory;
     }
 
     public void move(Direction dir) {
-        Coord dst = this.getLocation();
+        System.out.print("Move command started!");
+        System.out.print("Current location: " + this.getLocation());
+        Coord dst = new Coord(this.getLocation().getX(), this.getLocation().getY());
         switch (dir) {
             case N:
                 dst.setY(dst.getY() - 1);
@@ -60,8 +63,9 @@ public class Avatar extends Entity {
             default:
                 break;
         }
+        System.out.println("Attempting to move to: " + dst);
 
-        this.commandFactory.createMovementCommand(dst, this);
+        this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this);
     }
 
     public boolean equip(int itemIndex) {
