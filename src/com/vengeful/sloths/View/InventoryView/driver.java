@@ -1,7 +1,7 @@
 package com.vengeful.sloths.View.InventoryView;
 
 import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.View.AreaView.Direction;
+import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
 
 import javax.swing.*;

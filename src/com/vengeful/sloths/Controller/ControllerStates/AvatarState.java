@@ -1,7 +1,7 @@
 package com.vengeful.sloths.Controller.ControllerStates;
 
 import com.vengeful.sloths.Controller.MainController;
-import com.vengeful.sloths.View.AreaView.Direction;
+import com.vengeful.sloths.Utility.Direction;
 
 /**
  * Created by John on 1/30/2016.
