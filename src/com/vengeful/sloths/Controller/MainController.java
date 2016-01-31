@@ -52,31 +52,31 @@ public class MainController {
             case KeyEvent.VK_ESCAPE :
                 state.handleESCKey();
                 break;
-            case KeyEvent.VK_1 :
+            case KeyEvent.VK_NUMPAD1 :
                 state.handle1Key();
                 break;
-            case KeyEvent.VK_2 :
+            case KeyEvent.VK_NUMPAD2 :
                 state.handle2Key();
                 break;
-            case KeyEvent.VK_3 :
+            case KeyEvent.VK_NUMPAD3 :
                 state.handle3Key();
                 break;
-            case KeyEvent.VK_4 :
+            case KeyEvent.VK_NUMPAD4 :
                 state.handle4Key();
                 break;
-            case KeyEvent.VK_5 :
+            case KeyEvent.VK_NUMPAD5 :
                 state.handle5Key();
                 break;
-            case KeyEvent.VK_6 :
+            case KeyEvent.VK_NUMPAD6 :
                 state.handle6Key();
                 break;
-            case KeyEvent.VK_7 :
+            case KeyEvent.VK_NUMPAD7 :
                 state.handle7Key();
                 break;
-            case KeyEvent.VK_8 :
+            case KeyEvent.VK_NUMPAD8 :
                 state.handle8Key();
                 break;
-            case KeyEvent.VK_9 :
+            case KeyEvent.VK_NUMPAD9 :
                 state.handle9Key();
                 break;
 

@@ -22,8 +22,8 @@ public class MenuState extends MainControllerState {
 
     @Override
     public boolean handleESCKey() {
-        return false;
-    }
+        mainController.setAvatarState();
+        return true;    }
 
     @Override
     public boolean handle1Key() {

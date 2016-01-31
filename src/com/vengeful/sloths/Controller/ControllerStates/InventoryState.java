@@ -12,18 +12,20 @@ public class InventoryState extends MainControllerState {
     }
     @Override
     public boolean handleIKey() {
-
-        return false;
+        mainController.setAvatarState();
+        return true;
     }
 
     @Override
     public boolean handleEKey() {
-        return false;
+        mainController.setAvatarState();
+        return true;
     }
 
     @Override
     public boolean handleESCKey() {
-        return false;
+        mainController.setAvatarState();
+        return true;
     }
 
     @Override
