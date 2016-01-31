@@ -37,49 +37,49 @@ public class AvatarState extends MainControllerState{
     public boolean handle1Key() {
         //move SW
         System.out.println("move SW");
-        mainController.getAvatar().move(SW);
+        mainController.getAvatar().move(Direction.SW);
         return true;
     }
 
     @Override
     public boolean handle2Key() {
-        mainController.getAvatar().move(S);
+        mainController.getAvatar().move(Direction.S);
         return true;
     }
 
     @Override
     public boolean handle3Key() {
-        mainController.getAvatar().move(SE);
+        mainController.getAvatar().move(Direction.SE);
         return true;
     }
 
     @Override
     public boolean handle4Key() {
-        mainController.getAvatar().move(W);
+        mainController.getAvatar().move(Direction.W);
         return true;
     }
 
     @Override
     public boolean handle6Key() {
-        mainController.getAvatar().move(E);
+        mainController.getAvatar().move(Direction.E);
         return true;
     }
 
     @Override
     public boolean handle7Key() {
-        mainController.getAvatar().move(NW);
+        mainController.getAvatar().move(Direction.NW);
         return true;
     }
 
     @Override
     public boolean handle8Key() {
-        mainController.getAvatar().move(N);
+        mainController.getAvatar().move(Direction.N);
         return true;
     }
 
     @Override
     public boolean handle9Key() {
-        mainController.getAvatar().move(NE);
+        mainController.getAvatar().move(Direction.NE);
         return true;
     }
 

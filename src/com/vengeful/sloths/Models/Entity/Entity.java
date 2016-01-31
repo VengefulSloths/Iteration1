@@ -18,7 +18,7 @@ public abstract class Entity {
 
     public Entity(String occupationString, EntityStats entityStats) {
         this.entityStats = entityStats;
-
+        this.location = new Coord(2,2);
         switch (occupationString) {
             case "Smasher":
                 this.occupation = new Smasher();

@@ -34,13 +34,13 @@ public class driver extends JFrame implements Runnable{
         	EntityObserver eo = (EntityObserver)av.getPlayer();
 
         	if ( count%20 == 4 ) {
-            	eo.alertDirectionChange(Direction.RIGHT);
+            	eo.alertDirectionChange(Direction.E);
         	} else if ( count%20 == 8) {
-        		eo.alertDirectionChange(Direction.UP);
+        		eo.alertDirectionChange(Direction.N);
         	} else if ( count%20 == 12) {
-        		eo.alertDirectionChange(Direction.LEFT);
+        		eo.alertDirectionChange(Direction.W);
         	} else if ( count%20 == 16) {
-        		eo.alertDirectionChange(Direction.DOWN);
+        		eo.alertDirectionChange(Direction.S);
         	}
         	
         	//End of actual code

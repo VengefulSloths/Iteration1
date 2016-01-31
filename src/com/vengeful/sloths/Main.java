@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("hello world TEST");
 
+        //make map factory and make a level to test with to create the map
         Map map = new Map();
 
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
