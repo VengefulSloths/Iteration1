@@ -1,8 +1,10 @@
+package com.vengeful.sloths.View.InventoryView;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.AreaView.Direction;
+import com.vengeful.sloths.View.AreaView.EntityObserver;
+
+import javax.swing.*;
 
 public class driver extends JFrame implements Runnable{
 
@@ -26,28 +28,23 @@ public class driver extends JFrame implements Runnable{
     
     public void run() {
     	int count = 0;
-    	av.player = new EntityMapViewObject(150,150, 
-				"resources/avatar_up.png",
-				"resources/avatar_left.png",
-				"resources/avatar_down.png",
-				"resources/avatar_right.png");
+
         while(true) {
         	long lastTime = System.currentTimeMillis();
         	
         	//Actual Code goes here
         	
         	av.repaint();
-        	EntityObserver eo = (EntityObserver)av.player;
+        	EntityObserver eo = (EntityObserver)av.getPlayer();
 
         	if ( count%20 == 4 ) {
-                System.out.println("changing direction");
-            	eo.alertDirectionChange(Direction.RIGHT);
+            	eo.alertDirectionChange(Direction.E);
         	} else if ( count%20 == 8) {
-        		eo.alertDirectionChange(Direction.UP);
+        		eo.alertDirectionChange(Direction.N);
         	} else if ( count%20 == 12) {
-        		eo.alertDirectionChange(Direction.LEFT);
+        		eo.alertDirectionChange(Direction.W);
         	} else if ( count%20 == 16) {
-        		eo.alertDirectionChange(Direction.DOWN);
+        		eo.alertDirectionChange(Direction.S);
         	}
         	
         	//End of actual code

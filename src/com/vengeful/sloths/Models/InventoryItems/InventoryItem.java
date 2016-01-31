@@ -5,7 +5,7 @@ package com.vengeful.sloths.Models.InventoryItems;
  */
 public abstract class InventoryItem {
 
-    public InventoryItem(){
+    public InventoryItem() {
 
     }
 

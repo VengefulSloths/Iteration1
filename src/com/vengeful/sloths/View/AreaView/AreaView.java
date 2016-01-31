@@ -1,3 +1,5 @@
+package com.vengeful.sloths.View.AreaView;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,33 +24,39 @@ public class AreaView extends JPanel{
 	public MapViewObjectManager manager;
 	
 	//TODO: delete this testing crap
-	public ViewObject player;
-	
+	private ViewObject player;
+	private CameraView currentCameraView;
+	public ViewObject getPlayer() {
+		return player;
+	}
 	private int count=0;
 	
 	public AreaView() {
 		manager = new MapViewObjectManager();
-		
-		
-		player = new EntityMapViewObject(150,150, 
+		currentCameraView = new StaticCameraView(0,0,10,7);
+		currentCameraView.populate(manager);
+
+		CoordinateStrategy centered32converter = new Centered32PixelCoordinateStrategy(currentCameraView, this);
+
+		player = new EntityMapViewObject(2,2, centered32converter,
 				"resources/avatar_up.png",
 				"resources/avatar_left.png",
 				"resources/avatar_down.png",
 				"resources/avatar_right.png");
-		
-		
-		
-		manager.addMapViewObject(player);
 
-		for (int i=0; i<321; i=i+32) {
-			for (int j=0; j<321; j=j+32) {
-				manager.addMapViewObject(new TerrainMapViewObject(i,j, "resources/grass.png"));
+		for (int i=0; i<10; i++) {
+			for (int j=0; j<7; j++) {
+				manager.addMapViewObject(new TerrainMapViewObject(i,j, "resources/grass.png", centered32converter));
 			}
 		}
+		manager.addMapViewObject(player);
+
+
 		
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 		setDoubleBuffered(true);
+
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -58,11 +66,9 @@ public class AreaView extends JPanel{
 		Iterator<ViewObject> iter= manager.iterator();
 		while (iter.hasNext()) {
 			ViewObject current = iter.next();
-			System.out.println(current.getClass());
 			current.paintComponent(g2d);
 		}
 
-		//player.paintComponent(g2d);
 		
         g2d.drawString("AreaVIEW: " + count++, 50, 50+count);
         

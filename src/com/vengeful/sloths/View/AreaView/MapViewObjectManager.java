@@ -1,3 +1,5 @@
+package com.vengeful.sloths.View.AreaView;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -12,6 +14,7 @@ public class MapViewObjectManager {
 	}
 	public void addMapViewObject(ViewObject vo) {
 		//We can sort on iterator because it will be called less
+		System.out.println("Adding " + vo.getClass() + " to mapviewmanager");
 		voList.add(vo);
 	}
 	public Iterator<ViewObject> iterator() {
@@ -25,6 +28,7 @@ public class MapViewObjectManager {
 				return viewObjectClassToHeightIndex(left) - viewObjectClassToHeightIndex(right);
 			}
 		});
+
 		return voList.iterator();
 	}
 }

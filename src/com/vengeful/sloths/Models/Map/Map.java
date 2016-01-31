@@ -13,5 +13,4 @@ public class Map {
         Tile tile = tiles[coord.getX()][coord.getY()];
         return tile;
     }
-
 }
