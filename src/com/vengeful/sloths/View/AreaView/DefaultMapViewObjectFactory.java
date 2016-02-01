@@ -31,8 +31,7 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
 
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
-        ProxyEntityObserver peo = new ProxyEntityObserver(emvo);
-        entity.registerObserver(peo);
+        ProxyEntityObserver peo = new ProxyEntityObserver(emvo, entity);
         ObserverManager.instance().addProxyObserver(peo);
 
         return emvo;

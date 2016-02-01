@@ -1,5 +1,7 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.Models.ObserverManager;
+import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Direction;
 
 /**
@@ -9,7 +11,9 @@ public class ProxyEntityObserver extends ProxyObserver
         implements EntityObserver{
 
     private EntityObserver target;
-    public ProxyEntityObserver(EntityObserver entityObserver) {
+    public ProxyEntityObserver(EntityObserver entityObserver, ViewObservable subject) {
+        this.subject = subject;
+        this.subject.registerObserver(this);
         this.target = entityObserver;
     }
 

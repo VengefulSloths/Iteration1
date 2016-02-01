@@ -1,12 +1,15 @@
 package com.vengeful.sloths.Models.Entity;
 
+import com.sun.glass.ui.View;
 import com.vengeful.sloths.Models.Occupation.Occupation;
 import com.vengeful.sloths.Models.Occupation.Smasher;
 import com.vengeful.sloths.Models.Occupation.Sneak;
 import com.vengeful.sloths.Models.Occupation.Summoner;
 import com.vengeful.sloths.Models.Stats.EntityStats;
+import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
+import com.vengeful.sloths.View.AreaView.ModelObserver;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +17,7 @@ import java.util.Iterator;
 /**
  * Created by zach on 1/30/16.
  */
-public abstract class Entity {
+public abstract class Entity implements ViewObservable{
 
     private Coord location;
 
@@ -22,7 +25,7 @@ public abstract class Entity {
     protected Occupation occupation;
     protected EntityStats entityStats;
 
-    private ArrayList<EntityObserver> entityObservers;
+    protected ArrayList<EntityObserver> entityObservers;
 
 
     public Entity(String name, String occupationString, EntityStats entityStats) {
@@ -67,9 +70,11 @@ public abstract class Entity {
         return this.name;
     }
 
-    public void registerObserver(EntityObserver entityObserver) {
-        this.entityObservers.add(entityObserver);
+    public void registerObserver(ModelObserver modelObserver) {
+        this.entityObservers.add((EntityObserver) modelObserver);
     }
+
+    public void deregisterObserver(ModelObserver modelObserver) { this.entityObservers.remove(modelObserver);}
 
 
 
