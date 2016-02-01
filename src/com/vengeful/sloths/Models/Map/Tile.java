@@ -6,6 +6,7 @@ import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -64,13 +65,20 @@ public class Tile {
 
     public Terrain getTerrain() { return this.terrain; }
 
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
+    }
+    public Iterator<MapItem> getMapItemIterator() {
+        return mapItems.iterator();
+    }
+
+    public void addMapItem(MapItem mapItem) {
+        mapItems.add(mapItem);
+    }
     private void cleanUp(){
         //check for one shots to with bool to be removed and remove them
     }
 
-    public void addMapItem(MapItem mi){
-        mapItems.add(mi);
-    }
 
     public void removeMapItem(MapItem item){
         mapItems.remove(item);

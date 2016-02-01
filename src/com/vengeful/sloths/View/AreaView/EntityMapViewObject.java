@@ -101,7 +101,7 @@ public class EntityMapViewObject extends ViewObject
 	}
 
 	public void alertDirectionChange(Direction d) {
-		System.out.println("New direction " + d);
+		//System.out.println("New direction " + d);
 		switch (d) {
 			case N:
 				currentAnimation = walkingN;
