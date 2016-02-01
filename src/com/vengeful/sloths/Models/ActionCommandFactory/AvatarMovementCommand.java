@@ -32,35 +32,35 @@ public class AvatarMovementCommand extends MovementCommand {
 
     @Override
     public void execute() {
-        if (dst.getX() < 0 ||
-                dst.getY() < 0) {
-            // @TODO: OR IF GREATER THAN MAX COORDS
-            System.out.println("ERROR: Attempted to move out of bounds");
-            return;
-        }
 
         Tile sourceTile = map.getTile(this.src);
-        Tile destTile = map.getTile(this.dst);
+        try {
+            Tile destTile = map.getTile(this.dst);
 
-        System.out.println(" source BEFORE: " + sourceTile.getEntity());
-        System.out.println(" dest BEFORE : " +destTile.getEntity());
+            System.out.println(" source BEFORE: " + sourceTile.getEntity());
+            System.out.println(" dest BEFORE : " +destTile.getEntity());
+            if (destTile.canMove()) {
+                sourceTile.removeEntity();
+                destTile.addEntity(entity);
+                entity.setLocation(dst);
 
-        if (destTile.canMove()) {
-            sourceTile.removeEntity();
-            destTile.addEntity(entity);
-            entity.setLocation(dst);
+                Iterator<EntityObserver> iter = this.entity.entityObserverIterator();
+                while (iter.hasNext()) {
+                    EntityObserver eo = iter.next();
+                    eo.alertMove(this.dst.getX(), this.dst.getY(), 200);
+                }
 
+
+            }
+        } catch (Exception e) {
+
+        } finally {
             Iterator<EntityObserver> iter = this.entity.entityObserverIterator();
             while (iter.hasNext()) {
                 EntityObserver eo = iter.next();
                 eo.alertDirectionChange(this.direction);
-                eo.alertMove(this.dst.getX(), this.dst.getY(), 200);
             }
-
-
         }
-        System.out.println(" source AFTER: " + sourceTile.getEntity());
-        System.out.println(" dest AFTER: " +destTile.getEntity());
 
         // Tile t = map.getTile()
         // can Tile t take an entity?
