@@ -52,12 +52,6 @@ public abstract class Entity {
     }
 
     public Iterator<EntityObserver> entityObserverIterator() {
-        //TODO: Fix this hack
-        for (EntityObserver eo: entityObservers) {
-            if (eo == null) {
-                entityObservers.remove(eo);
-            }
-        }
         return entityObservers.iterator();
     }
 

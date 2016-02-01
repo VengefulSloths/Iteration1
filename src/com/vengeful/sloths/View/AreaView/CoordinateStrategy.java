@@ -15,11 +15,11 @@ public abstract class CoordinateStrategy {
 	protected abstract int convertToPixelsY(int y);
 	protected abstract int convertToPixelsY(float y);
 	public final int convertY(int y) {
-		y = y - cv.getX();
+		y = y - cv.getY();
 		return convertToPixelsY(y);
 	}
 	public final int convertY(float y) {
-		y = y - cv.getX();
+		y = y - cv.getY();
 		return convertToPixelsY(y);
 	}
 }

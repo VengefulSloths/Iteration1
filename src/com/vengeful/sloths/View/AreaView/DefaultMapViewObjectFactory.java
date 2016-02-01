@@ -4,6 +4,7 @@ import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
 import com.vengeful.sloths.Models.Map.Tile;
+import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Utility.Coord;
 
 /**
@@ -28,7 +29,11 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
         emvo.setWalkingW(new BoundedAnimation("resources/man2/moving/west/man_west", 5));
         emvo.setWalkingNW(new BoundedAnimation("resources/man2/moving/northwest/man_northwest", 5));
 
-        entity.registerObserver(emvo);
+
+        //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
+        ProxyEntityObserver peo = new ProxyEntityObserver(emvo);
+        entity.registerObserver(peo);
+        ObserverManager.instance().addProxyObserver(peo);
 
         return emvo;
     }

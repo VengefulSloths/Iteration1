@@ -23,6 +23,11 @@ public class AreaView extends JPanel
 	private EntityMapViewObject player;
 	private CameraView currentCameraView;
 	private CameraViewManager cameraViewManager;
+
+	//These are used to change camaras
+	private boolean changeCameraFlag;
+	private int playerX;
+	private int playerY;
 	public EntityMapViewObject getPlayer() {
 		return player;
 	}
@@ -46,7 +51,14 @@ public class AreaView extends JPanel
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D) g;
-		
+
+		if (this.changeCameraFlag) {
+			currentCameraView = cameraViewManager.getCameraView(playerX, playerY);
+			mapViewObjectManager.clear();
+			currentCameraView.populate(mapViewObjectManager);
+			changeCameraFlag = false;
+
+		}
 		Iterator<ViewObject> iter= mapViewObjectManager.iterator();
 		while (iter.hasNext()) {
 			ViewObject current = iter.next();
@@ -67,10 +79,9 @@ public class AreaView extends JPanel
 	@Override
 	public void alertMove(int x, int y, long timeMicro) {
 		if (!currentCameraView.contains(x,y)) {
-			currentCameraView = cameraViewManager.getCameraView(x,y);
-			mapViewObjectManager.clear();
-			currentCameraView.populate(mapViewObjectManager);
-
+			this.changeCameraFlag = true;
+			this.playerX = x;
+			this.playerY = y;
 		}
 	}
 }
