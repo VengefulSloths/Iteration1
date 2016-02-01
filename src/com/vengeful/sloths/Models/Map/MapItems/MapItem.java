@@ -8,10 +8,15 @@ import com.vengeful.sloths.Models.Entity.Entity;
 public abstract class MapItem {
 
     protected boolean destroy = false;
+    protected String itemName;
 
     public abstract void interact(Entity entity);
 
     public boolean canMove(){
         return true;
+    }
+
+    public String getItemName(){
+        return this.itemName;
     }
 }

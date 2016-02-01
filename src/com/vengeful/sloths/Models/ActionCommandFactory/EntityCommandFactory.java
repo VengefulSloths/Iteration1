@@ -1,5 +1,7 @@
 package com.vengeful.sloths.Models.ActionCommandFactory;
 
+import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 
@@ -19,7 +21,7 @@ public abstract class EntityCommandFactory extends ActionCommandFactory {
     }
 
     @Override
-    public DropCommand createDropCommand() {
+    public DropCommand createDropCommand(InventoryItem itemToDrop, Coord dropLoc, Entity entity) {
         return null;
     }
 }

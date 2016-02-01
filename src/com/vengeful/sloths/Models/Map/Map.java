@@ -1,4 +1,6 @@
 package com.vengeful.sloths.Models.Map;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Utility.Coord;
 
 /**
@@ -20,6 +22,10 @@ public class Map {
                 tiles[i][j] = new Tile();
             }
         }
+
+
+
+
     }
 
     public void addTile(Coord coord, Tile t) {

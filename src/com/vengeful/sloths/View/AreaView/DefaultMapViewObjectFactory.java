@@ -1,7 +1,9 @@
 package com.vengeful.sloths.View.AreaView;
 
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
+import com.vengeful.sloths.Models.Map.Terrains.Mountain;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Models.ObserverManager;
@@ -40,11 +42,19 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
     @Override
     public TerrainMapViewObject createTerrainMapViewObject(Terrain terrain, int x, int y) {
         if (terrain.getClass() == Grass.class) {
-            return new TerrainMapViewObject(x,y,"resources/grass.png", coordinateStrategy);
+            return new TerrainMapViewObject(x,y,"resources/Terrain/Grass.png", coordinateStrategy);
+        } else if (terrain.getClass() == Mountain.class) {
+            return new TerrainMapViewObject(x,y,"resources/Terrain/Mountain.png", coordinateStrategy);
+
         }
         else {
             System.out.println("Could not create appropriate terrain class");
             return null;
         }
+    }
+
+    public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
+        ItemMapViewObject itemView = new ItemMapViewObject(x, y, "resources/Items/Barrel/Barrel.png", "resources/Items/Barrel/Barrel.png", 1, 1000, coordinateStrategy);
+        return itemView;
     }
 }

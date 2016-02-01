@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.Entity;
 
-import com.sun.glass.ui.View;
+import com.vengeful.sloths.Models.Inventory.Inventory;
+
 import com.vengeful.sloths.Models.Occupation.Occupation;
 import com.vengeful.sloths.Models.Occupation.Smasher;
 import com.vengeful.sloths.Models.Occupation.Sneak;
@@ -21,17 +22,20 @@ public abstract class Entity implements ViewObservable{
 
     private Coord location;
 
+    protected boolean isMoving = false;
+
     protected String name;
     protected Occupation occupation;
     protected EntityStats entityStats;
+    protected Inventory inventory;
 
     protected ArrayList<EntityObserver> entityObservers;
 
 
-    public Entity(String name, String occupationString, EntityStats entityStats) {
-        this.name = name;
+    public Entity(String name, String occupationString, EntityStats entityStats) {        this.name = name;
         this.entityObservers = new ArrayList<>();
         this.entityStats = entityStats;
+        this.inventory = new Inventory();
 
         // @TODO: NOT ALL ENTITIES SHOULD TO SPAWN AT 2,2!
         this.location = new Coord(2,2);
@@ -77,5 +81,17 @@ public abstract class Entity implements ViewObservable{
     public void deregisterObserver(ModelObserver modelObserver) { this.entityObservers.remove(modelObserver);}
 
 
+    public Inventory getInventory(){
+        return this.inventory;
+    }
+
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
+    }
 
 }
