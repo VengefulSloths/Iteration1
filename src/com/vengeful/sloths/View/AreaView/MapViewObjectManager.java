@@ -21,13 +21,14 @@ public class MapViewObjectManager {
 	}
 	public void addMapViewObject(ViewObject vo) {
 		//We can sort on iterator because it will be called less
-		System.out.println("Adding " + vo.getClass() + " to mapviewmanager");
+		//System.out.println("Adding " + vo.getClass() + " to mapviewmanager");
 		voList.add(vo);
 	}
 	public Iterator<ViewObject> iterator() {
 		voList.sort(new Comparator<ViewObject>() {
 			private int viewObjectClassToHeightIndex(ViewObject vo) {
 				if (vo.getClass() == EntityMapViewObject.class) return 100;
+				else if (vo.getClass() == ItemMapViewObject.class) return 50;
 				else if (vo.getClass() == TerrainMapViewObject.class) return 0;
 				else return 1000;
 			}
