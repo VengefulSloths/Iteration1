@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 public class AreaView extends JPanel
 					implements EntityObserver {
 
+
 	//TODO: change to private
 	public MapViewObjectManager mapViewObjectManager;
 	
@@ -40,7 +41,6 @@ public class AreaView extends JPanel
 		currentCameraView.populate(mapViewObjectManager);
 
 		player.registerObserver(this);
-
 		
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(Config.instance().getAreaViewWidth(), Config.instance().getAreaViewHeight()));

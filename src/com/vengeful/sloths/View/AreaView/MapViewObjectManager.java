@@ -28,6 +28,7 @@ public class MapViewObjectManager {
 		voList.sort(new Comparator<ViewObject>() {
 			private int viewObjectClassToHeightIndex(ViewObject vo) {
 				if (vo.getClass() == EntityMapViewObject.class) return 100;
+				else if (vo.getClass() == ItemMapViewObject.class) return 50;
 				else if (vo.getClass() == TerrainMapViewObject.class) return 0;
 				else return 1000;
 			}

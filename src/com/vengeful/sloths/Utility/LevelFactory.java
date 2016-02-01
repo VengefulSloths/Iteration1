@@ -1,6 +1,8 @@
 package com.vengeful.sloths.Utility;
 
 import com.vengeful.sloths.Models.Map.Map;
+import com.vengeful.sloths.Models.Map.MapItems.Obstacle;
+import com.vengeful.sloths.Models.Map.Terrains.Mountain;
 import com.vengeful.sloths.View.AreaView.CameraView;
 import com.vengeful.sloths.View.AreaView.CameraViewManager;
 import com.vengeful.sloths.View.AreaView.StaticCameraView;
@@ -15,6 +17,12 @@ public class LevelFactory {
 
     private Map generateTestMap() {
         Map map = new Map(new Coord(15,7));
+        for (int i=6; i <15; i++) {
+            map.getTile(new Coord(i,2)).setTerrain(new Mountain());
+        }
+        map.getTile(new Coord(5,5)).addMapItem(new Obstacle());
+        map.getTile(new Coord(1,2)).addMapItem(new Obstacle());
+        map.getTile(new Coord(12,3)).addMapItem(new Obstacle());
         return map;
     }
     private CameraViewManager generateTestCV() {

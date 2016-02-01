@@ -1,6 +1,5 @@
 package com.vengeful.sloths.Models.Entity;
 
-import com.sun.glass.ui.View;
 import com.vengeful.sloths.Models.Occupation.Occupation;
 import com.vengeful.sloths.Models.Occupation.Smasher;
 import com.vengeful.sloths.Models.Occupation.Sneak;
