@@ -4,7 +4,6 @@ import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 /**
@@ -22,22 +21,25 @@ public class DefaultViewManager extends ViewManager {
     //HUDView hudview;
     //StatsView statsview;
     ListInventoryView inventoryView;
-    private static final int viewWidth = 1100;
-    private static final int viewHeight = 800;
+    private static final int VIEW_WIDTH = 1100;
+    private static final int VIEW_HEIGHT = 800;
 
-    private static final double areaViewWidthProportion = 0.75;
-    private static final double areaViewHeightProportion = 1.0;
-    private static final double sidePanelWidthProportion = 0.25;
-    private static final double sidePanelHeightProportion = 1.0;
-    private static final double inventoryViewWidthProportion = 1.0;
-    private static final double inventoryViewHeightProportion = 0.40; //edit: this will change when StatsView and HUDView are added
+    private static final double AREA_VIEW_WIDTH_PROPORTION = 0.75;
+    private static final double AREA_VIEW_HEIGHT_PROPORTION = 1.0;
+    private static final double SIDE_PANEL_WIDTH_PROPORTION = 1.0 - AREA_VIEW_WIDTH_PROPORTION;
+    private static final double SIDE_PANEL_HEIGHT_PROPORTION = 1.0;
+    private static final double INVENTORY_VIEW_WIDTH_PROPORTION = 1.0;
+    private static final double INVENTORY_VIEW_HEIGHT_PROPORTION = 0.40; //edit: this will change when StatsView and HUDView are added
+    //private static final double STATS_VIEW_HEIGHT_PROPORTION = .30;
+    //private static final double HUD_VIEW_HEIGHT_PROPORTION = 1.0 - STATS_VIEW_HEIGHT_PROPORTION - INVENTORY_VIEW_HEIGHT_PROPORTION;
 
-    private static final int areaViewWidth =(int) (areaViewWidthProportion * viewWidth);
-    private static final int areaViewHeight = (int) (areaViewHeightProportion * viewHeight);
-    private static final int sidePanelWidth = (int) (sidePanelWidthProportion * viewWidth);
-    private static final int sidePanelHeight = (int) (sidePanelHeightProportion * viewHeight);
-    private static final int inventoryViewWidth = (int) (inventoryViewWidthProportion * sidePanelWidth); //relative to the sidePanelWidth
-    private static final int inventoryViewHeight = (int) (inventoryViewHeightProportion * sidePanelHeight); //relative to the sidePanelHeight
+
+    private static final int AREA_VIEW_WIDTH =(int) (AREA_VIEW_WIDTH_PROPORTION * VIEW_WIDTH);
+    private static final int AREA_VIEW_HEIGHT = (int) (AREA_VIEW_HEIGHT_PROPORTION * VIEW_HEIGHT);
+    private static final int SIDE_PANEL_WIDTH = (int) (SIDE_PANEL_WIDTH_PROPORTION * VIEW_WIDTH);
+    private static final int SIDE_PANEL_HEIGHT = (int) (SIDE_PANEL_HEIGHT_PROPORTION * VIEW_HEIGHT);
+    private static final int INVENTORY_VIEW_WIDTH = (int) (INVENTORY_VIEW_WIDTH_PROPORTION * SIDE_PANEL_WIDTH); //relative to the
+    private static final int INVENTORY_VIEW_HEIGHT = (int) (INVENTORY_VIEW_HEIGHT_PROPORTION * SIDE_PANEL_HEIGHT); //relative to
 
     /* View getters and setters */
     public AreaView getAreaView() {
@@ -55,17 +57,20 @@ public class DefaultViewManager extends ViewManager {
 
     public DefaultViewManager() {
 
+
         /* Create all of the segments of the overall view */
         //backgroundPanel = new JPanel(new BorderLayout());
         sidePanel = new JPanel();
         areaView = new AreaView();
         inventoryView = new ListInventoryView();
 
+        inventoryView.setViewWidth(INVENTORY_VIEW_WIDTH);
+        inventoryView.setViewHeight(INVENTORY_VIEW_HEIGHT);
 
-        this.setPreferredSize(new Dimension(viewWidth,viewHeight));
-        sidePanel.setPreferredSize(new Dimension(sidePanelWidth, sidePanelHeight));
-        areaView.setPreferredSize(new Dimension(areaViewWidth, areaViewHeight));
-        inventoryView.setPreferredSize(new Dimension(inventoryViewWidth, inventoryViewHeight));
+        this.setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT));
+        sidePanel.setPreferredSize(new Dimension(SIDE_PANEL_WIDTH, SIDE_PANEL_HEIGHT));
+        areaView.setPreferredSize(new Dimension(AREA_VIEW_WIDTH, AREA_VIEW_HEIGHT));
+        inventoryView.setPreferredSize(new Dimension(INVENTORY_VIEW_WIDTH, INVENTORY_VIEW_HEIGHT)); //now handled in ListInventoryView
 
         this.setBackground(Color.BLACK);
         sidePanel.setBackground(Color.BLUE);

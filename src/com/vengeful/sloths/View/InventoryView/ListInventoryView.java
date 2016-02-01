@@ -11,42 +11,66 @@ import java.util.Iterator;
  */
 public class ListInventoryView extends InventoryView {
 
-    //private int VIEW_HEIGHT = 450;
-    //private int VIEW_WIDTH = 450;
     public ListInventoryViewObjectManager manager;
-    //private JTextArea inventoryTitle;
 
-    //InventoryItemViewObject testItem = new InventoryItemViewObject("Blue Partyhat", 5, 5, "resources/bluePhat.jpg");
-    InventoryItemViewObject testItem = new InventoryItemViewObject("GodSword", 5, 5);
-    InventoryItemViewObject testItem2 = new InventoryItemViewObject("Blue Partyhat", 5, 25);
+    //have width and height here?
+    private int viewWidth;
+    private int viewHeight;
+    private int offset;
+
+    public int getViewWidth() {
+        return viewWidth;
+    }
+    public void setViewWidth(int viewWidth) {
+        this.viewWidth = viewWidth;
+    }
+    public int getViewHeight() {
+        return viewHeight;
+    }
+    public void setViewHeight(int viewHeight) {
+        this.viewHeight = viewHeight;
+        //System.out.println("SET THE VIEW HEIGHT. IT IS: " + viewHeight);
+    }
+
+    /*EDIT: for testing purposes. */
+    InventoryItemViewObject testItem = new InventoryItemViewObject("GodSword");
+    InventoryItemViewObject testItem2 = new InventoryItemViewObject("Blue Partyhat");
 
     public ListInventoryView() {
 
-    //this.setLayout(new BorderLayout());
-    //inventoryTitle = new JTextArea("Inventory");
-    //this.add(inventoryTitle, BorderLayout.NORTH);
-
-
+    //this.setPreferredSize(new Dimension(viewWidth, viewHeight));
     manager = new ListInventoryViewObjectManager();
 
-    //setBackground(Color.WHITE);
-    //setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT));
+        /* edit the next two lines/maybe delete them */
+        setLayout(new BorderLayout());
+        this.add(new JLabel("Inventory"), BorderLayout.NORTH);
 
-}
+        manager.addInventoryItemViewObject(testItem2);
+        manager.addInventoryItemViewObject(testItem);
+        manager.addInventoryItemViewObject(testItem2);
+        manager.addInventoryItemViewObject(testItem);
+        manager.addInventoryItemViewObject(testItem);
+        manager.addInventoryItemViewObject(testItem);
+        manager.addInventoryItemViewObject(testItem);
+        manager.addInventoryItemViewObject(testItem);
+        manager.addInventoryItemViewObject(testItem2);
 
-    public void paintComponent(Graphics g) {
+    }
+
+    public void paintComponent(Graphics g) { //change to render(Graphics g, int x, int y) ?
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
 
-        testItem.paintComponent(g2d);
-        testItem2.paintComponent(g2d);
+        Iterator<InventoryItemViewObject> iter = manager.iterator();
+        //offset = iter.next().IMAGE_HEIGHT; //this causes a problem because it skips the first one in the iterator
+        offset = testItem.IMAGE_HEIGHT; //going to need to find a better way to get an offset
 
-//        Iterator<InventoryItemViewObject> iter = manager.iterator();
-//        while (iter.hasNext()) {
-//            InventoryItemViewObject current = iter.next();
-//            current.paintComponent(g2d);
-//        }
+        while (iter.hasNext()) {
+            InventoryItemViewObject current = iter.next();
+            current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
+            offset = offset + current.IMAGE_HEIGHT + 2;
+        }
 
         Toolkit.getDefaultToolkit().sync(); //purpose?
     }
