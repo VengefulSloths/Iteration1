@@ -41,8 +41,6 @@ public class AvatarMovementCommand extends MovementCommand {
                     EntityObserver eo = iter.next();
                     eo.alertMove(this.dst.getX(), this.dst.getY(), 200);
                 }
-
-
             }
         } catch (Exception e) {
 

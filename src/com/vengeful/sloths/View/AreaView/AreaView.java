@@ -42,7 +42,6 @@ public class AreaView extends JPanel
 
 		player.registerObserver(this);
 		
-		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(Config.instance().getAreaViewWidth(), Config.instance().getAreaViewHeight()));
 		setDoubleBuffered(true);
 

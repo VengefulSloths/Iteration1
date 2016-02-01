@@ -16,13 +16,14 @@ import com.vengeful.sloths.View.AreaView.EntityObserver;
  */
 public class Avatar extends Entity {
 
-    private Inventory inventory;
+    //private Inventory inventory;
     private Equipped equipped;
     private ActionCommandFactory commandFactory;
 
+    //passes in AvatarActionCommandFactory
     public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
         super(name, occupationString, entityStats);
-        this.inventory = new Inventory();
+        //this.inventory = new Inventory();
         this.equipped = new Equipped();
         this.commandFactory = commandFactory;
     }
@@ -106,10 +107,23 @@ public class Avatar extends Entity {
     }
 
     public boolean drop(int itemIndex) {
-        //Get Tile from map
-        //Try to drop on tile
-            //Need to create Takeable item
-        return false;
+        /* Drop:
+            - get item from inventory (check if item exists)
+            - get tile from map
+            - create take-able item
+            - drop on tile (add to tile)
+            - delete item from inventory
+         */
+
+        try{
+            InventoryItem itemToDrop = inventory.getItem(itemIndex);
+            this.commandFactory.createDropCommand(itemToDrop, this.getLocation(), this);
+
+        }catch(Exception e){
+            //whatever
+        }
+
+        return true;
     }
 
     public void levelUp() {
