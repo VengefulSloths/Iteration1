@@ -21,6 +21,8 @@ public abstract class Entity implements ViewObservable{
 
     private Coord location;
 
+    protected boolean isMoving = false;
+
     protected String name;
     protected Occupation occupation;
     protected EntityStats entityStats;
@@ -28,8 +30,7 @@ public abstract class Entity implements ViewObservable{
     protected ArrayList<EntityObserver> entityObservers;
 
 
-    public Entity(String name, String occupationString, EntityStats entityStats) {
-        this.name = name;
+    public Entity(String name, String occupationString, EntityStats entityStats) {        this.name = name;
         this.entityObservers = new ArrayList<>();
         this.entityStats = entityStats;
 
@@ -72,6 +73,14 @@ public abstract class Entity implements ViewObservable{
 
     public void registerObserver(ModelObserver modelObserver) {
         this.entityObservers.add((EntityObserver) modelObserver);
+    }
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
     }
 
     public void deregisterObserver(ModelObserver modelObserver) { this.entityObservers.remove(modelObserver);}

@@ -21,7 +21,7 @@ public class MapViewObjectManager {
 	}
 	public void addMapViewObject(ViewObject vo) {
 		//We can sort on iterator because it will be called less
-		System.out.println("Adding " + vo.getClass() + " to mapviewmanager");
+		//System.out.println("Adding " + vo.getClass() + " to mapviewmanager");
 		voList.add(vo);
 	}
 	public Iterator<ViewObject> iterator() {

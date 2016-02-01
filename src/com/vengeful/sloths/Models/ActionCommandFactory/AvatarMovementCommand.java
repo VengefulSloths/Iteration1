@@ -17,28 +17,20 @@ public class AvatarMovementCommand extends MovementCommand {
     public AvatarMovementCommand(Map map, Coord src, Coord dst, Direction dir, Entity avatar) {
         super(map, src, dst, dir, avatar);
 
-        System.out.println("AvatarMovementCommand created!");
-        System.out.println("Map: ");
-        System.out.println(map);
-        System.out.println("Source: ");
-        System.out.println(src);
-        System.out.println("Destination: ");
-        System.out.println(dst);
-        System.out.println("Avatar: ");
-        System.out.println(avatar.getName());
-        System.out.println("DIRECTION IS: " + dir);
+//
 
     }
 
     @Override
     public void execute() {
-
+        //System.out.println(System.currentTimeMillis() + "executing movement command");
         Tile sourceTile = map.getTile(this.src);
+
         try {
             Tile destTile = map.getTile(this.dst);
 
-            System.out.println(" source BEFORE: " + sourceTile.getEntity());
-            System.out.println(" dest BEFORE : " +destTile.getEntity());
+            //System.out.println(" source BEFORE: " + sourceTile.getEntity());
+            //System.out.println(destTile.getEntity());
             if (destTile.canMove()) {
                 sourceTile.removeEntity();
                 destTile.addEntity(entity);
@@ -65,6 +57,7 @@ public class AvatarMovementCommand extends MovementCommand {
         // Tile t = map.getTile()
         // can Tile t take an entity?
         // Move calling entity onto the tile
+        entity.setMoving(false);
     }
 
 

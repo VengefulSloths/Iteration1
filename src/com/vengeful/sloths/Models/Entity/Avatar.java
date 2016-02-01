@@ -28,44 +28,49 @@ public class Avatar extends Entity {
     }
 
     public void move(Direction dir) {
-        System.out.print("Move command started!");
-        System.out.print("Current location: " + this.getLocation());
-        Coord dst = new Coord(this.getLocation().getX(), this.getLocation().getY());
-        switch (dir) {
-            case N:
-                dst.setY(dst.getY() - 1);
-                break;
-            case E:
-                dst.setX(dst.getX() + 1);
-                break;
-            case S:
-                dst.setY(dst.getY() + 1);
-                break;
-            case W:
-                dst.setX(dst.getX() - 1);
-                break;
-            case NE:
-                dst.setY(dst.getY() - 1);
-                dst.setX(dst.getX() + 1);
-                break;
-            case NW:
-                dst.setY(dst.getY() - 1);
-                dst.setX(dst.getX() - 1);
-                break;
-            case SE:
-                dst.setY(dst.getY() + 1);
-                dst.setX(dst.getX() + 1);
-                break;
-            case SW:
-                dst.setY(dst.getY() + 1);
-                dst.setX(dst.getX() - 1);
-                break;
-            default:
-                break;
+        if(!isMoving) {
+            isMoving = true;
+            //System.out.print("Move command started!");
+            //System.out.print("Current location: " + this.getLocation());
+            Coord dst = new Coord(this.getLocation().getX(), this.getLocation().getY());
+            switch (dir) {
+                case N:
+                    dst.setY(dst.getY() - 1);
+                    break;
+                case E:
+                    dst.setX(dst.getX() + 1);
+                    break;
+                case S:
+                    dst.setY(dst.getY() + 1);
+                    break;
+                case W:
+                    dst.setX(dst.getX() - 1);
+                    break;
+                case NE:
+                    dst.setY(dst.getY() - 1);
+                    dst.setX(dst.getX() + 1);
+                    break;
+                case NW:
+                    dst.setY(dst.getY() - 1);
+                    dst.setX(dst.getX() - 1);
+                    break;
+                case SE:
+                    dst.setY(dst.getY() + 1);
+                    dst.setX(dst.getX() + 1);
+                    break;
+                case SW:
+                    dst.setY(dst.getY() + 1);
+                    dst.setX(dst.getX() - 1);
+                    break;
+                default:
+                    //isMoving = false;
+                    break;
+            }
+            //System.out.println("Attempting to move to: " + dst
+            this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this);
+        }else{
+            //System.out.println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");
         }
-        System.out.println("Attempting to move to: " + dst);
-
-        this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this);
     }
 
     public boolean equip(int itemIndex) {

@@ -26,7 +26,7 @@ public class BoundedAnimation extends AnimatedImage{
         if (startTime == t) return images.get(0);
         else if (t >= endTime) return images.get(images.size()-1);
         else {
-            System.out.println("frame: " + (int)((float)(images.size()-1)/(float)(endTime - startTime)*(float)(t - startTime)));
+            //System.out.println("frame: " + (int)((float)(images.size()-1)/(float)(endTime - startTime)*(float)(t - startTime)));
             return images.get((int)((float)(images.size()-1)/(float)(endTime - startTime)*(float)(t - startTime)));
         }
     }
