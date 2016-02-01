@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Mountain;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
+import com.vengeful.sloths.Models.Map.Terrains.Water;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Utility.Coord;
@@ -45,7 +46,8 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
             return new TerrainMapViewObject(x,y,"resources/Terrain/Grass.png", coordinateStrategy);
         } else if (terrain.getClass() == Mountain.class) {
             return new TerrainMapViewObject(x,y,"resources/Terrain/Mountain.png", coordinateStrategy);
-
+        } else if (terrain.getClass() == Water.class) {
+            return new TerrainMapViewObject(x,y, "resources/Terrain/Water.png", coordinateStrategy);
         }
         else {
             System.out.println("Could not create appropriate terrain class");
