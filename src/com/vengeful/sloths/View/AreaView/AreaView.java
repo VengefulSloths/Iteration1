@@ -1,5 +1,8 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Utility.Config;
+import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.EntityMapViewObject;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,59 +13,32 @@ import java.util.Iterator;
 
 import javax.swing.JPanel;
 
-public class AreaView extends JPanel{
+public class AreaView extends JPanel
+					implements EntityObserver {
 
-	private final int B_WIDTH = 350;
-	private final int B_HEIGHT = 350;
-	
-	public int getAreaWidth() {
-		return B_WIDTH;
-	}
-	public int getAreaHeight() {
-		return B_HEIGHT;
-	}
 	//TODO: change to private
-	public MapViewObjectManager manager;
+	public MapViewObjectManager mapViewObjectManager;
 	
 	//TODO: delete this testing crap
 	private EntityMapViewObject player;
 	private CameraView currentCameraView;
+	private CameraViewManager cameraViewManager;
 	public EntityMapViewObject getPlayer() {
 		return player;
 	}
 	private int count=0;
 	
-	public AreaView() {
-		manager = new MapViewObjectManager();
-		currentCameraView = new StaticCameraView(0,0,7,7);
-		currentCameraView.populate(manager);
+	public AreaView(CameraViewManager cvm, Entity player) {
+		mapViewObjectManager = new MapViewObjectManager();
+		this.cameraViewManager  = cvm;
+		this.currentCameraView = cvm.getCameraView(player.getLocation().getX(), player.getLocation().getY());
+		currentCameraView.populate(mapViewObjectManager);
 
-		CoordinateStrategy centered32converter = new Centered32PixelCoordinateStrategy(currentCameraView, this);
-
-		player = new EntityMapViewObject(2,2, centered32converter, new BoundedAnimation("resources/man2/standing/man_south", 1));
-		player.setWalkingN(new BoundedAnimation("resources/man2/moving/north/man_north", 5));
-		player.setWalkingNE(new BoundedAnimation("resources/man2/moving/northeast/man_northeast", 5));
-		player.setWalkingE(new BoundedAnimation("resources/man2/moving/east/man_east", 5));
-		player.setWalkingSE(new BoundedAnimation("resources/man2/moving/southeast/man_southeast", 5));
-		player.setWalkingS(new BoundedAnimation("resources/man2/moving/south/man_south", 5));
-		player.setWalkingSW(new BoundedAnimation("resources/man2/moving/southwest/man_southwest", 5));
-		player.setWalkingW(new BoundedAnimation("resources/man2/moving/west/man_west", 5));
-		player.setWalkingNW(new BoundedAnimation("resources/man2/moving/northwest/man_northwest", 5));
-
-
-
-
-		for (int i=0; i<7; i++) {
-			for (int j=0; j<7; j++) {
-				manager.addMapViewObject(new TerrainMapViewObject(i,j, "resources/grass.png", centered32converter));
-			}
-		}
-		manager.addMapViewObject(player);
-
+		player.registerObserver(this);
 
 		
 		setBackground(Color.BLACK);
-		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+		setPreferredSize(new Dimension(Config.instance().getAreaViewWidth(), Config.instance().getAreaViewHeight()));
 		setDoubleBuffered(true);
 
 	}
@@ -71,7 +47,7 @@ public class AreaView extends JPanel{
 		
 		Graphics2D g2d = (Graphics2D) g;
 		
-		Iterator<ViewObject> iter= manager.iterator();
+		Iterator<ViewObject> iter= mapViewObjectManager.iterator();
 		while (iter.hasNext()) {
 			ViewObject current = iter.next();
 			current.paintComponent(g2d);
@@ -81,5 +57,20 @@ public class AreaView extends JPanel{
         g2d.drawString("AreaVIEW: " + count++, 50, 50+count);
         
         Toolkit.getDefaultToolkit().sync();
+	}
+
+	@Override
+	public void alertDirectionChange(Direction d) {
+		//do nothing
+	}
+
+	@Override
+	public void alertMove(int x, int y, long timeMicro) {
+		if (!currentCameraView.contains(x,y)) {
+			currentCameraView = cameraViewManager.getCameraView(x,y);
+			mapViewObjectManager.clear();
+			currentCameraView.populate(mapViewObjectManager);
+
+		}
 	}
 }

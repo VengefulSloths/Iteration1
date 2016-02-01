@@ -8,6 +8,9 @@ import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * Created by zach on 1/30/16.
  */
@@ -19,12 +22,12 @@ public abstract class Entity {
     protected Occupation occupation;
     protected EntityStats entityStats;
 
-    public EntityObserver entityObserver;
+    private ArrayList<EntityObserver> entityObservers;
 
 
-    public Entity(String name, String occupationString, EntityStats entityStats, EntityObserver entityObserver) {
+    public Entity(String name, String occupationString, EntityStats entityStats) {
         this.name = name;
-
+        this.entityObservers = new ArrayList<>();
         this.entityStats = entityStats;
 
         // @TODO: NOT ALL ENTITIES SHOULD TO SPAWN AT 2,2!
@@ -46,8 +49,16 @@ public abstract class Entity {
 
         this.occupation.init(entityStats);
 
-        this.entityObserver = entityObserver;
+    }
 
+    public Iterator<EntityObserver> entityObserverIterator() {
+        //TODO: Fix this hack
+        for (EntityObserver eo: entityObservers) {
+            if (eo == null) {
+                entityObservers.remove(eo);
+            }
+        }
+        return entityObservers.iterator();
     }
 
     public Coord getLocation() {
@@ -60,6 +71,10 @@ public abstract class Entity {
 
     public String getName() {
         return this.name;
+    }
+
+    public void registerObserver(EntityObserver entityObserver) {
+        this.entityObservers.add(entityObserver);
     }
 
 

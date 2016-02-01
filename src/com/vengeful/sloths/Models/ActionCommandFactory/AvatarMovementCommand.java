@@ -5,6 +5,9 @@ import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.View.AreaView.EntityObserver;
+
+import java.util.Iterator;
 
 /**
  * Created by zach on 1/30/16.
@@ -47,8 +50,13 @@ public class AvatarMovementCommand extends MovementCommand {
             destTile.addEntity(entity);
             entity.setLocation(dst);
 
-            this.entity.entityObserver.alertDirectionChange(this.direction);
-            this.entity.entityObserver.alertMove(this.dst.getX(), this.dst.getY(), 200);
+            Iterator<EntityObserver> iter = this.entity.entityObserverIterator();
+            while (iter.hasNext()) {
+                EntityObserver eo = iter.next();
+                eo.alertDirectionChange(this.direction);
+                eo.alertMove(this.dst.getX(), this.dst.getY(), 200);
+            }
+
 
         }
         System.out.println(" source AFTER: " + sourceTile.getEntity());

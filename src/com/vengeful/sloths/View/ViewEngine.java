@@ -55,7 +55,7 @@ public class ViewEngine extends JFrame implements Runnable{
                 }
 
             }
-            System.out.println("View Tick");
+            //System.out.println("View Tick");
         }
     }
     public void start() {

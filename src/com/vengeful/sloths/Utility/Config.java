@@ -5,6 +5,17 @@ package com.vengeful.sloths.Utility;
  */
 public class Config {
     private final int viewFrameRate = 30;
+
+    public int getAreaViewHeight() {
+        return areaViewHeight;
+    }
+
+    public int getAreaViewWidth() {
+        return areaViewWidth;
+    }
+
+    private final int areaViewWidth = 450;
+    private final int areaViewHeight = 450;
     private static Config instance = null;
     private Config() {
 

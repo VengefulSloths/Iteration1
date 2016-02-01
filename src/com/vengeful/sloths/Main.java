@@ -10,7 +10,9 @@ import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.AreaView.CameraViewManager;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
 import com.vengeful.sloths.View.ViewEngine;
 
@@ -22,22 +24,29 @@ public class Main {
         ViewEngine viewEngine = new ViewEngine();
         ModelEngine modelEngine = new ModelEngine();
 
-        //set up engines
-        viewEngine.setVisible(true);
-        AreaView av = new AreaView();
-        viewEngine.registerView(av);
+
+
+        //Create the level
+        LevelFactory levelFactory = new LevelFactory();
+        levelFactory.initilize("TEST");
+        Map map = levelFactory.getMap();
+        CameraViewManager cvm = levelFactory.getCVM();
+
+
 
         //TODO: right now movement is not working via ticks!!!!!, we need to create alertables with a time of 0 for movement!
 
         //make map factory and make a level to TimeModel with to create the map
-        Map map = new Map(new Coord(10, 10));
 
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
-        EntityObserver eo = (EntityObserver)av.getPlayer();
-        Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory, eo);
+        Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
         map.getTile(avatar.getLocation()).addEntity(avatar);
         MainController controller = new MainController(avatar, viewEngine);
 
+        //set up engines
+        viewEngine.setVisible(true);
+        AreaView av = new AreaView(cvm, avatar);
+        viewEngine.registerView(av);
 
         //start both threads
         viewEngine.start();

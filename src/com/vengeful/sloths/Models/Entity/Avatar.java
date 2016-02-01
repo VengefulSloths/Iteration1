@@ -20,8 +20,8 @@ public class Avatar extends Entity {
     private Equipped equipped;
     private ActionCommandFactory commandFactory;
 
-    public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory, EntityObserver entityObserver) {
-        super(name, occupationString, entityStats, entityObserver);
+    public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
+        super(name, occupationString, entityStats);
         this.inventory = new Inventory();
         this.equipped = new Equipped();
         this.commandFactory = commandFactory;
