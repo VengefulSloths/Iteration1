@@ -21,6 +21,7 @@ public class InventoryItemViewObject extends JComponent{
     private String itemName;
     public String imageFileName;
     public JPanel itemPanel;
+
     //private Item item; //the connected Item object
 
     public String getItemName() {
