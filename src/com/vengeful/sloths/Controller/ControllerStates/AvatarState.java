@@ -12,6 +12,7 @@ public class AvatarState extends MainControllerState{
         super(mainController);
     }
 
+
     @Override
     public boolean handleIKey() {
         System.out.println("changing to inventory state");

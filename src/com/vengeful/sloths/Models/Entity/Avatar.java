@@ -16,56 +16,62 @@ import com.vengeful.sloths.View.AreaView.EntityObserver;
  */
 public class Avatar extends Entity {
 
-    private Inventory inventory;
+    //private Inventory inventory;
     private Equipped equipped;
     private ActionCommandFactory commandFactory;
 
+    //passes in AvatarActionCommandFactory
     public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
         super(name, occupationString, entityStats);
-        this.inventory = new Inventory();
+        //this.inventory = new Inventory();
         this.equipped = new Equipped();
         this.commandFactory = commandFactory;
     }
 
     public void move(Direction dir) {
-        System.out.print("Move command started!");
-        System.out.print("Current location: " + this.getLocation());
-        Coord dst = new Coord(this.getLocation().getX(), this.getLocation().getY());
-        switch (dir) {
-            case N:
-                dst.setY(dst.getY() - 1);
-                break;
-            case E:
-                dst.setX(dst.getX() + 1);
-                break;
-            case S:
-                dst.setY(dst.getY() + 1);
-                break;
-            case W:
-                dst.setX(dst.getX() - 1);
-                break;
-            case NE:
-                dst.setY(dst.getY() - 1);
-                dst.setX(dst.getX() + 1);
-                break;
-            case NW:
-                dst.setY(dst.getY() - 1);
-                dst.setX(dst.getX() - 1);
-                break;
-            case SE:
-                dst.setY(dst.getY() + 1);
-                dst.setX(dst.getX() + 1);
-                break;
-            case SW:
-                dst.setY(dst.getY() + 1);
-                dst.setX(dst.getX() - 1);
-                break;
-            default:
-                break;
+        if(!isMoving) {
+            isMoving = true;
+            //System.out.print("Move command started!");
+            //System.out.print("Current location: " + this.getLocation());
+            Coord dst = new Coord(this.getLocation().getX(), this.getLocation().getY());
+            switch (dir) {
+                case N:
+                    dst.setY(dst.getY() - 1);
+                    break;
+                case E:
+                    dst.setX(dst.getX() + 1);
+                    break;
+                case S:
+                    dst.setY(dst.getY() + 1);
+                    break;
+                case W:
+                    dst.setX(dst.getX() - 1);
+                    break;
+                case NE:
+                    dst.setY(dst.getY() - 1);
+                    dst.setX(dst.getX() + 1);
+                    break;
+                case NW:
+                    dst.setY(dst.getY() - 1);
+                    dst.setX(dst.getX() - 1);
+                    break;
+                case SE:
+                    dst.setY(dst.getY() + 1);
+                    dst.setX(dst.getX() + 1);
+                    break;
+                case SW:
+                    dst.setY(dst.getY() + 1);
+                    dst.setX(dst.getX() - 1);
+                    break;
+                default:
+                    //isMoving = false;
+                    break;
+            }
+            //System.out.println("Attempting to move to: " + dst
+            this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this);
+        }else{
+            //System.out.println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");
         }
-        System.out.println("Attempting to move to: " + dst);
-
-        this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this);
     }
 
     public boolean equip(int itemIndex) {
@@ -101,10 +107,23 @@ public class Avatar extends Entity {
     }
 
     public boolean drop(int itemIndex) {
-        //Get Tile from map
-        //Try to drop on tile
-            //Need to create Takeable item
-        return false;
+        /* Drop:
+            - get item from inventory (check if item exists)
+            - get tile from map
+            - create take-able item
+            - drop on tile (add to tile)
+            - delete item from inventory
+         */
+
+        try{
+            InventoryItem itemToDrop = inventory.getItem(itemIndex);
+            this.commandFactory.createDropCommand(itemToDrop, this.getLocation(), this);
+
+        }catch(Exception e){
+            //whatever
+        }
+
+        return true;
     }
 
     public void levelUp() {

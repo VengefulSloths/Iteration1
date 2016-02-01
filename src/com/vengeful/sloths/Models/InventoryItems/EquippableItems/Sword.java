@@ -13,6 +13,7 @@ public class Sword extends EquippableItems {
         //Set BaseStats
 
         b.setStats(10, 0, 0, 0, 0); //Once equipped, increase avatar stats by these factors
+        this.itemName = "SomeSword";
     }
 
 }

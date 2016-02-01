@@ -41,7 +41,7 @@ public class MainController {
     }
 
     public boolean dispatchKey(int key){
-        System.out.println(state.getClass());
+        //System.out.println(state.getClass());
         switch(key){
             case KeyEvent.VK_I :
                 state.handleIKey();
@@ -107,7 +107,7 @@ public class MainController {
                 state.handle9Key();
                 break;
 
-            default: System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
+            default: //System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
         }
 
         return true;

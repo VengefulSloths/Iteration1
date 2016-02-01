@@ -15,6 +15,9 @@ public class Inventory {
     }
 
     public InventoryItem getItem(int index){
+        if(index < 0 || index >= inventory.size())
+            return null;
+
         return inventory.get(index);
     }
 
