@@ -3,7 +3,7 @@ package com.vengeful.sloths.Controller;
 
 import javax.swing.JFrame;
 import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.View.AreaView.Direction;
+import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
 
 import javax.swing.*;
@@ -12,8 +12,8 @@ import javax.swing.*;
 
 public class Screen extends JFrame implements Runnable{
 
-    public Screen() {
-        av = new AreaView();
+    public Screen(AreaView av) {
+        this.av = av;
         initUI();
     }
 
@@ -39,24 +39,24 @@ public class Screen extends JFrame implements Runnable{
             //Actual Code goes here
 
             av.repaint();
-            EntityObserver eo = (EntityObserver)av.getPlayer();
+            //EntityObserver eo = (EntityObserver)av.getPlayer();
 
-            if ( count%20 == 4 ) {
-                eo.alertDirectionChange(Direction.RIGHT);
-            } else if ( count%20 == 8) {
-                eo.alertDirectionChange(Direction.UP);
-            } else if ( count%20 == 12) {
-                eo.alertDirectionChange(Direction.LEFT);
-            } else if ( count%20 == 16) {
-                eo.alertDirectionChange(Direction.DOWN);
-            }
+//            if ( count%20 == 4 ) {
+//                eo.alertDirectionChange(Direction.E);
+//            } else if ( count%20 == 8) {
+//                eo.alertDirectionChange(Direction.N);
+//            } else if ( count%20 == 12) {
+//                eo.alertDirectionChange(Direction.W);
+//            } else if ( count%20 == 16) {
+//                eo.alertDirectionChange(Direction.S);
+//            }
 
             //End of actual code
 
             long delta = System.currentTimeMillis() - lastTime;
-            if (delta < 250) {
+            if (delta < 50) {
                 try {
-                    Thread.sleep((250 - delta));
+                    Thread.sleep((50 - delta));
                 } catch (Exception e) {
                     //dont care
                 }

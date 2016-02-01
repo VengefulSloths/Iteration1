@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Tile {
 
-    private Entity entity;
+    private Entity entity = null;
     private boolean canBeMovedOn;
     private ArrayList<MapItem> mapItems;
     private ArrayList<AreaEffect> areaEffect;
@@ -50,11 +50,19 @@ public class Tile {
         this.entity = entity;
     }
 
+    public boolean hasEntity() { return this.entity != null; }
+
+    public Entity getEntity() {
+        return this.entity;
+    }
+
     public Entity removeEntity(){
         Entity entity = this.entity;
         this.entity = null;
         return entity;
     }
+
+    public Terrain getTerrain() { return this.terrain; }
 
     private void cleanUp(){
         //check for one shots to with bool to be removed and remove them

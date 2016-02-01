@@ -6,7 +6,10 @@ import com.vengeful.sloths.Controller.ControllerStates.MainControllerState;
 import com.vengeful.sloths.Controller.ControllerStates.MenuState;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
+import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.ViewEngine;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -23,7 +26,7 @@ public class MainController {
     private InventoryState inventoryState;
     private MenuState menuState;
 
-    public MainController(Avatar player){
+    public MainController(Avatar player, JFrame jframe){
 
         this.player = player;
 
@@ -32,16 +35,13 @@ public class MainController {
         menuState = new MenuState(this);
 
         inputHandler = new InputHandler(this);
+        jframe.addKeyListener(inputHandler);
 
-        Screen screen = new Screen();
-        screen.setVisible(true);
-        screen.addKeyListener(inputHandler);
-        screen.start();
         this.state = avatarState;
     }
 
     public boolean dispatchKey(int key){
-
+        System.out.println(state.getClass());
         switch(key){
             case KeyEvent.VK_I :
                 state.handleIKey();
@@ -79,6 +79,33 @@ public class MainController {
             case KeyEvent.VK_9 :
                 state.handle9Key();
                 break;
+            case KeyEvent.VK_NUMPAD1 :
+                state.handle1Key();
+                break;
+            case KeyEvent.VK_NUMPAD2 :
+                state.handle2Key();
+                break;
+            case KeyEvent.VK_NUMPAD3 :
+                state.handle3Key();
+                break;
+            case KeyEvent.VK_NUMPAD4 :
+                state.handle4Key();
+                break;
+            case KeyEvent.VK_NUMPAD5 :
+                state.handle5Key();
+                break;
+            case KeyEvent.VK_NUMPAD6 :
+                state.handle6Key();
+                break;
+            case KeyEvent.VK_NUMPAD7 :
+                state.handle7Key();
+                break;
+            case KeyEvent.VK_NUMPAD8 :
+                state.handle8Key();
+                break;
+            case KeyEvent.VK_NUMPAD9 :
+                state.handle9Key();
+                break;
 
             default: System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
         }
@@ -96,6 +123,10 @@ public class MainController {
 
     public void setMenuState(){
         this.state = menuState;
+    }
+
+    public Avatar getAvatar(){
+        return this.player;
     }
 
 

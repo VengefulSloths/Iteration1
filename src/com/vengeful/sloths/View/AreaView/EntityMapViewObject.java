@@ -1,62 +1,145 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.Utility.Direction;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import javax.swing.ImageIcon;
-
 public class EntityMapViewObject extends ViewObject 
 		implements EntityObserver{
-	
-	private final Image entityDown;
-	private final Image entityLeft;
-	private final Image entityRight;
-	private final Image entityUp;
+
+	private AnimatedImage walkingN;
+	private AnimatedImage walkingNE;
+	private AnimatedImage walkingE;
+	private AnimatedImage walkingSE;
+	private AnimatedImage walkingS;
+	private AnimatedImage walkingSW;
+	private AnimatedImage walkingW;
+	private AnimatedImage walkingNW;
+
 	private Image currentImage;
-	
-	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, String up, String right, String down, String left) {
+	private AnimatedImage currentAnimation;
+
+	//These are for movement
+	private int startX;
+	private int startY;
+	private int postX;
+	private int postY;
+	private long animationStartTime;
+	private long animationFinishTime;
+
+	public void setWalkingN(AnimatedImage walkingN) {
+		this.walkingN = walkingN;
+	}
+
+	public void setWalkingNE(AnimatedImage walkingNE) {
+		this.walkingNE = walkingNE;
+	}
+
+	public void setWalkingE(AnimatedImage walkingE) {
+		this.walkingE = walkingE;
+	}
+
+	public void setWalkingSE(AnimatedImage walkingSE) {
+		this.walkingSE = walkingSE;
+	}
+
+	public void setWalkingS(AnimatedImage walkingS) {
+		this.walkingS = walkingS;
+	}
+
+	public void setWalkingSW(AnimatedImage walkingSW) {
+		this.walkingSW = walkingSW;
+	}
+
+	public void setWalkingW(AnimatedImage walkingW) {
+		this.walkingW = walkingW;
+	}
+
+	public void setWalkingNW(AnimatedImage walkingNW) {
+		this.walkingNW = walkingNW;
+	}
+
+	private float calculatePosition(int startX, int endX, long startTime, long endTime) {
+		long t = System.currentTimeMillis();
+		if (t > endTime) {
+			return endX;
+
+		}
+		else return (float)(endX-startX)/(float)(endTime-startTime)*(float)(t - startTime) + (float)startX;
+	}
+
+	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, AnimatedImage defaultAnimation) {
 		this.x = x;
 		this.y = y;
+		this.startX = x;
+		this.startY = y;
+		this.postX = x;
+		this.postY = y;
+		this.animationStartTime = 0;
+		this.animationFinishTime = 0;
 		this.converter = converter;
-		
-		ImageIcon iiu = new ImageIcon(up);
-		ImageIcon iir = new ImageIcon(right);
-		ImageIcon iid = new ImageIcon(down);
-		ImageIcon iil = new ImageIcon(left);
 
-		entityUp = iiu.getImage();
-		entityRight = iir.getImage();
-		entityDown = iid.getImage();
-		entityLeft = iil.getImage();
+		this.currentAnimation = defaultAnimation;
 
-		currentImage = entityDown;
-	}
-	
-	void paintComponent(Graphics2D g) {
-		g.drawImage(currentImage, converter.convertX(x),converter.convertY(y), this);
+		//testAnimation = new BoundedAnimation("resources/man/man_down", 13);
+
+
+
 
 	}
 	
+	public void paintComponent(Graphics2D g) {
+		if (currentAnimation != null) {
+			g.drawImage(currentAnimation.getCurrentImage(animationStartTime, animationFinishTime),
+					//g.drawImage(currentImage,
+					converter.convertX(calculatePosition(startX, postX, animationStartTime, animationFinishTime)),
+					converter.convertY(calculatePosition(startY, postY, animationStartTime, animationFinishTime)),
+					this);
+		}
+
+	}
+
 	public void alertDirectionChange(Direction d) {
 		System.out.println("New direction " + d);
 		switch (d) {
-			case UP: 
-				currentImage = entityUp;
+			case N:
+				currentAnimation = walkingN;
 				break;
-			case LEFT: 
-				currentImage = entityLeft;
+			case NW:
+				currentAnimation = walkingNW;
 				break;
-			case DOWN: 
-				currentImage = entityDown;
+			case W:
+				currentAnimation = walkingW;
 				break;
-			case RIGHT: 
-				currentImage = entityRight;
+			case SW:
+				currentAnimation = walkingSW;
+				break;
+			case S:
+				currentAnimation = walkingS;
+				break;
+			case SE:
+				currentAnimation = walkingSE;
+				break;
+			case E:
+				currentAnimation = walkingE;
+				break;
+			case NE:
+				currentAnimation = walkingNE;
 				break;
 		}
 			
 	}
-	public void alertMove(int x, int y) {
-		
+	public void alertMove(int x, int y, long animationTime) {
+		this.startX = this.x;
+		this.startY = this.y;
+		this.postX = x;
+		this.postY = y;
+		this.x = x;
+		this.y = y;
+
+		this.animationStartTime = System.currentTimeMillis();
+		this.animationFinishTime = System.currentTimeMillis() + animationTime;
 	}
 
 }

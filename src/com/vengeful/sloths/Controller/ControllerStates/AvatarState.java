@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Controller.ControllerStates;
 
 import com.vengeful.sloths.Controller.MainController;
+import com.vengeful.sloths.Utility.Direction;
 
 /**
  * Created by John on 1/30/2016.
@@ -36,42 +37,50 @@ public class AvatarState extends MainControllerState{
     public boolean handle1Key() {
         //move SW
         System.out.println("move SW");
-        return false;
+        mainController.getAvatar().move(Direction.SW);
+        return true;
     }
 
     @Override
     public boolean handle2Key() {
-        return false;
+        mainController.getAvatar().move(Direction.S);
+        return true;
     }
 
     @Override
     public boolean handle3Key() {
-        return false;
+        mainController.getAvatar().move(Direction.SE);
+        return true;
     }
 
     @Override
     public boolean handle4Key() {
-        return false;
+        mainController.getAvatar().move(Direction.W);
+        return true;
     }
 
     @Override
     public boolean handle6Key() {
-        return false;
+        mainController.getAvatar().move(Direction.E);
+        return true;
     }
 
     @Override
     public boolean handle7Key() {
-        return false;
+        mainController.getAvatar().move(Direction.NW);
+        return true;
     }
 
     @Override
     public boolean handle8Key() {
-        return false;
+        mainController.getAvatar().move(Direction.N);
+        return true;
     }
 
     @Override
     public boolean handle9Key() {
-        return false;
+        mainController.getAvatar().move(Direction.NE);
+        return true;
     }
 
     @Override

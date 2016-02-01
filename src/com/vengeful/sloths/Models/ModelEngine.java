@@ -17,8 +17,13 @@ public class ModelEngine implements Runnable {
     @Override
     public void run() {
         while(true) {
+            //System.out.println("Model Tick");
             timeController.tick();
 
         }
+    }
+
+    public void start() {
+        new Thread(this).start();
     }
 }

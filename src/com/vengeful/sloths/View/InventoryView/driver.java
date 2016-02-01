@@ -1,8 +1,9 @@
+
 package com.vengeful.sloths.View.InventoryView;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.View.AreaView.Direction;
+import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 
@@ -11,16 +12,15 @@ import javax.swing.*;
 //public class driver extends JFrame implements Runnable{
 public class driver extends JFrame implements Runnable{
 
-
-		public driver() {
-    	av = new AreaView();
-		iv = new ListInventoryView();
-
-		vm = new DefaultViewManager();
-		vm.setAreaView(av);
-		vm.setInventoryView(iv);
-
-        initUI();
+	public driver() {
+//    	av = new AreaView();
+//		iv = new ListInventoryView();
+//
+//		vm = new DefaultViewManager();
+//		vm.setAreaView(av);
+//		vm.setInventoryView(iv);
+//
+//        initUI();
     }
 
     private AreaView av;
@@ -52,13 +52,13 @@ public class driver extends JFrame implements Runnable{
         	EntityObserver eo = (EntityObserver)av.getPlayer();
 
         	if ( count%20 == 4 ) {
-            	eo.alertDirectionChange(Direction.RIGHT);
+            	eo.alertDirectionChange(Direction.E);
         	} else if ( count%20 == 8) {
-        		eo.alertDirectionChange(Direction.UP);
+        		eo.alertDirectionChange(Direction.N);
         	} else if ( count%20 == 12) {
-        		eo.alertDirectionChange(Direction.LEFT);
+        		eo.alertDirectionChange(Direction.W);
         	} else if ( count%20 == 16) {
-        		eo.alertDirectionChange(Direction.DOWN);
+        		eo.alertDirectionChange(Direction.S);
         	}
         	
         	//End of actual code

@@ -5,7 +5,7 @@ package com.vengeful.sloths.Models.TimeModel;
  */
 public class TimeController {
 
-    private TimeModel timeModel = new TimeModel();
+    private TimeModel timeModel = TimeModel.getInstance();
 
     public void tick(){
         Long startTime = System.currentTimeMillis();

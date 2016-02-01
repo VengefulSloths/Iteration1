@@ -1,8 +1,8 @@
 package com.vengeful.sloths.View.AreaView;
 
-import com.vengeful.sloths.View.AreaView.Direction;
+import com.vengeful.sloths.Utility.Direction;
 
-public interface EntityObserver {
+public interface EntityObserver extends ModelObserver{
 	void alertDirectionChange(Direction d);
-	void alertMove(int x, int y);
+	void alertMove(int x, int y, long animationTime);
 }

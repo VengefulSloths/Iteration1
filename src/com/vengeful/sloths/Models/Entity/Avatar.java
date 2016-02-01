@@ -1,12 +1,15 @@
 package com.vengeful.sloths.Models.Entity;
 
+import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
+import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
 import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
-import com.vengeful.sloths.Models.Occupation.Occupation;
-import com.vengeful.sloths.Models.Occupation.Smasher;
+import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
+import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.View.AreaView.EntityObserver;
 
 /**
  * Created by zach on 1/30/16.
@@ -15,16 +18,59 @@ public class Avatar extends Entity {
 
     private Inventory inventory;
     private Equipped equipped;
+    private ActionCommandFactory commandFactory;
 
-    public Avatar(String occupationString, EntityStats entityStats) {
-        super(occupationString, entityStats);
+    public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
+        super(name, occupationString, entityStats);
         this.inventory = new Inventory();
         this.equipped = new Equipped();
+        this.commandFactory = commandFactory;
+    }
+
+    public void move(Direction dir) {
+        System.out.print("Move command started!");
+        System.out.print("Current location: " + this.getLocation());
+        Coord dst = new Coord(this.getLocation().getX(), this.getLocation().getY());
+        switch (dir) {
+            case N:
+                dst.setY(dst.getY() - 1);
+                break;
+            case E:
+                dst.setX(dst.getX() + 1);
+                break;
+            case S:
+                dst.setY(dst.getY() + 1);
+                break;
+            case W:
+                dst.setX(dst.getX() - 1);
+                break;
+            case NE:
+                dst.setY(dst.getY() - 1);
+                dst.setX(dst.getX() + 1);
+                break;
+            case NW:
+                dst.setY(dst.getY() - 1);
+                dst.setX(dst.getX() - 1);
+                break;
+            case SE:
+                dst.setY(dst.getY() + 1);
+                dst.setX(dst.getX() + 1);
+                break;
+            case SW:
+                dst.setY(dst.getY() + 1);
+                dst.setX(dst.getX() - 1);
+                break;
+            default:
+                break;
+        }
+        System.out.println("Attempting to move to: " + dst);
+
+        this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this);
     }
 
     public boolean equip(int itemIndex) {
 
-        try{
+        try {
             InventoryItem i = this.inventory.getItem(itemIndex);
             if(i instanceof Hat){
                 this.equipped.setHat((Hat)i);
@@ -34,7 +80,7 @@ public class Avatar extends Entity {
 
             this.inventory.removeItem(i);
 
-        }catch(Exception e){
+        } catch(Exception e){
             System.out.println(e);
             return false;
         }
@@ -63,11 +109,7 @@ public class Avatar extends Entity {
 
     public void levelUp() {
         // Let occupation know level is increased, then levelUp occ and base stats
-        System.out.println("Stats were: " + entityStats.toString());
-
         occupation.levelUp(entityStats);
-
-        System.out.println("Stats were: " + entityStats.toString());
     }
 
     public void gainXP(int xp) {

@@ -1,5 +1,7 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.Models.ObserverManager;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -9,7 +11,12 @@ public class MapViewObjectManager {
 	public MapViewObjectManager() {
 		voList = new ArrayList<ViewObject>();
 	}
+
 	public void clear() {
+		for (ViewObject viewObject:
+			 voList) {
+			ObserverManager.instance().flagForDelete(viewObject);
+		}
 		voList.clear();
 	}
 	public void addMapViewObject(ViewObject vo) {
