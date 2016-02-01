@@ -16,9 +16,7 @@ public class driver extends JFrame implements Runnable{
 //    	av = new AreaView();
 //		iv = new ListInventoryView();
 //
-//		vm = new DefaultViewManager();
-//		vm.setAreaView(av);
-//		vm.setInventoryView(iv);
+//		vm = new DefaultViewManager(av, iv);
 //
 //        initUI();
     }
