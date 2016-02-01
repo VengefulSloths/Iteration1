@@ -67,4 +67,22 @@ public class Tile {
     private void cleanUp(){
         //check for one shots to with bool to be removed and remove them
     }
+
+    public void addMapItem(MapItem mi){
+        mapItems.add(mi);
+    }
+
+    public void removeMapItem(MapItem item){
+        mapItems.remove(item);
+    }
+
+    public MapItem getMapItem(int index){
+        if(index < 0 || index >= mapItems.size())
+            return null;
+
+        return mapItems.get(index);
+    }
+
+
+
 }

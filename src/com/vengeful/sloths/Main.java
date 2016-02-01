@@ -14,7 +14,9 @@ import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.CameraViewManager;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
+import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.ViewEngine;
+import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 
 public class Main {
 
@@ -43,10 +45,15 @@ public class Main {
         map.getTile(avatar.getLocation()).addEntity(avatar);
         MainController controller = new MainController(avatar, viewEngine);
 
+        AreaView av = new AreaView(cvm, avatar);
+        ListInventoryView iv = new ListInventoryView();
+        DefaultViewManager vm = new DefaultViewManager(av, iv);
+
+
         //set up engines
         viewEngine.setVisible(true);
-        AreaView av = new AreaView(cvm, avatar);
-        viewEngine.registerView(av);
+        viewEngine.registerView(vm);
+
 
         //start both threads
         viewEngine.start();
