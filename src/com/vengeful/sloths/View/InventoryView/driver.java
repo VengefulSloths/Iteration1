@@ -1,24 +1,35 @@
 
 package com.vengeful.sloths.View.InventoryView;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
+import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 
 import javax.swing.*;
 
+//public class driver extends JFrame implements Runnable{
 public class driver extends JFrame implements Runnable{
 
 	public driver() {
-    	//av = new AreaView();
-        initUI();
+//    	av = new AreaView();
+//		iv = new ListInventoryView();
+//
+//		vm = new DefaultViewManager(av, iv);
+//
+//        initUI();
     }
 
     private AreaView av;
-    
+    private ListInventoryView iv;
+	private DefaultViewManager vm;
+
     private void initUI() {
 
-        add(av);
+        //add(av);
+		//add(iv);
+		add(vm);
 
         setTitle("A game");
         setResizable(false);
@@ -26,7 +37,7 @@ public class driver extends JFrame implements Runnable{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
+
     public void run() {
     	int count = 0;
 

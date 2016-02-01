@@ -14,8 +14,42 @@ public class Config {
         return areaViewWidth;
     }
 
-    private final int areaViewWidth = 450;
-    private final int areaViewHeight = 450;
+    public int getWindowWidth() {
+        return windowWidth;
+    }
+
+    public int getWindowHeight() {
+        return windowHeight;
+    }
+
+    public double getSidePanelWidth() {
+        return sidePanelWidth;
+    }
+
+    public double getSidePanelHeight() {
+        return sidePanelHeight;
+    }
+
+    public double getSidePanelWidthProportion() {
+        return sidePanelWidthProportion;
+    }
+
+    public double getSidePanelHeightProportion() {
+        return sidePanelHeightProportion;
+    }
+
+    private final int windowWidth = 1100;
+    private final int windowHeight = 800;
+
+    private final double sidePanelWidthProportion = 0.25;
+    private final double sidePanelHeightProportion = 1.0;
+
+    private final double sidePanelWidth = sidePanelWidthProportion * windowWidth;
+    private final double sidePanelHeight = sidePanelHeightProportion * windowHeight;
+
+    private final int areaViewWidth = (int) (windowWidth - sidePanelWidth);
+    private final int areaViewHeight = (int) (windowHeight);
+
     private static Config instance = null;
     private Config() {
 
