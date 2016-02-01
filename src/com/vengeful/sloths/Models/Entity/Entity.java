@@ -9,6 +9,7 @@ import com.vengeful.sloths.Models.Occupation.Summoner;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Coord;
+import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.EntityObserver;
 import com.vengeful.sloths.View.AreaView.ModelObserver;
 
@@ -28,14 +29,19 @@ public abstract class Entity implements ViewObservable{
     protected Occupation occupation;
     protected EntityStats entityStats;
     protected Inventory inventory;
+    protected Direction facingDirection;
 
     protected ArrayList<EntityObserver> entityObservers;
 
 
-    public Entity(String name, String occupationString, EntityStats entityStats) {        this.name = name;
+    public Entity(String name, String occupationString, EntityStats entityStats) {
+        this.name = name;
         this.entityObservers = new ArrayList<>();
         this.entityStats = entityStats;
         this.inventory = new Inventory();
+
+        // Default facing South
+        this.facingDirection = Direction.S;
 
         // @TODO: NOT ALL ENTITIES SHOULD TO SPAWN AT 2,2!
         this.location = new Coord(2,2);
@@ -88,6 +94,14 @@ public abstract class Entity implements ViewObservable{
 
     public boolean isMoving() {
         return isMoving;
+    }
+
+    public void setFacingDirection(Direction d) {
+        this.facingDirection = d;
+    }
+
+    public Direction getFacingDirection() {
+        return this.facingDirection;
     }
 
     public void setMoving(boolean moving) {
