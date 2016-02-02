@@ -69,6 +69,15 @@ public class EntityMapViewObject extends ViewObject
 		else return (float)(endX-startX)/(float)(endTime-startTime)*(float)(t - startTime) + (float)startX;
 	}
 
+	public float getFloatX() {
+		return calculatePosition(startX, postX, animationStartTime, animationFinishTime);
+	}
+
+	public float getFloatY() {
+		return 	calculatePosition(startY, postY, animationStartTime, animationFinishTime);
+
+	}
+
 	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, AnimatedImage standingImage) {
 		this.x = x;
 		this.y = y;

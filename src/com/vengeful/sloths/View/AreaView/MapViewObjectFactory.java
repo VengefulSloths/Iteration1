@@ -10,7 +10,16 @@ import com.vengeful.sloths.Models.Map.Tile;
  */
 public abstract class MapViewObjectFactory {
     protected CameraView currentCameraView;
+    protected CoordinateStrategy coordinateStrategy;
     public abstract EntityMapViewObject createEntityMapViewObject(Entity entity);
     public abstract TerrainMapViewObject createTerrainMapViewObject(Terrain terrain, int x, int y);
     public abstract ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y);
+
+    public CoordinateStrategy getCoordinateStrategy() {
+        return coordinateStrategy;
+    }
+
+    public void setCoordinateStrategy(CoordinateStrategy coordinateStrategy) {
+        this.coordinateStrategy = coordinateStrategy;
+    }
 }

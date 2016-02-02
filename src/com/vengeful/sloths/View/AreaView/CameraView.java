@@ -23,6 +23,13 @@ public abstract class CameraView {
 		return width;
 	}
 
+	public CameraView(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.height = height;
+		this.width = width;
+	}
+
 	public boolean contains(int x, int y) {
 		return (this.x <= x &&
 				this.y <= y &&

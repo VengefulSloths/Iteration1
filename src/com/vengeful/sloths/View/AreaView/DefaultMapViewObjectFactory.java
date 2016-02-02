@@ -15,7 +15,6 @@ import com.vengeful.sloths.Utility.Direction;
  * Created by alexs on 1/31/2016.
  */
 public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
-    private CoordinateStrategy coordinateStrategy;
     public DefaultMapViewObjectFactory(CameraView cv) {
         this.currentCameraView = cv;
         coordinateStrategy = new Centered32PixelCoordinateStrategy(this.currentCameraView);

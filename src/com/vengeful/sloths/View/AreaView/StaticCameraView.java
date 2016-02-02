@@ -11,10 +11,7 @@ import java.util.Iterator;
 public class StaticCameraView extends CameraView {
 	private MapViewObjectFactory mvoFactory;
 	public StaticCameraView(int x, int y, int width, int height) {
-		this.x = x;
-		this.y = y;
-		this.height = height;
-		this.width = width;
+		super(x,y,width,height);
 		mvoFactory = new DefaultMapViewObjectFactory(this);
 
 	}
