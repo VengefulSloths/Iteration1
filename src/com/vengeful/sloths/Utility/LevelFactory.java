@@ -3,6 +3,7 @@ package com.vengeful.sloths.Utility;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
 
@@ -34,6 +35,16 @@ public class LevelFactory {
         map.getTile(new Coord(5,5)).addMapItem(new Obstacle());
         map.getTile(new Coord(1,2)).addMapItem(new Obstacle());
         map.getTile(new Coord(12,3)).addMapItem(new Obstacle());
+
+
+        /* Testing pick up item */
+        MapItem mapItem1 = new TakeableItem(new Hat(new BaseStats()));
+        MapItem mapItem2 = new TakeableItem(new Sword(new BaseStats()));
+        map.getTile(new Coord(3,2)).addMapItem(mapItem1);
+        map.getTile(new Coord(3,2)).addMapItem(mapItem2);
+
+        /***********************/
+
 
         return map;
     }

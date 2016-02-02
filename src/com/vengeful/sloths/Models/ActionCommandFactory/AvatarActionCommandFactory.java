@@ -29,4 +29,10 @@ public class AvatarActionCommandFactory extends ActionCommandFactory {
         DropCommand dc = new AvatarDropCommand(map, itemToDrop, dropLoc, entity);
         return dc;
     }
+
+    @Override
+    public PickUpCommand createPickUpCommand(Coord dropLoc, Entity entity) {
+        PickUpCommand pc = new AvatarPickUpCommand(map, dropLoc, entity);
+        return pc;
+    }
 }

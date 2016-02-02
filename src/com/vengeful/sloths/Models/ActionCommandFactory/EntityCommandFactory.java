@@ -24,4 +24,9 @@ public abstract class EntityCommandFactory extends ActionCommandFactory {
     public DropCommand createDropCommand(InventoryItem itemToDrop, Coord dropLoc, Entity entity) {
         return null;
     }
+
+    @Override
+    public PickUpCommand createPickUpCommand(Coord dropLoc, Entity entity) {
+        return null;
+    }
 }
