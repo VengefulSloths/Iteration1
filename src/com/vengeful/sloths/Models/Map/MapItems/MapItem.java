@@ -36,7 +36,7 @@ public abstract class MapItem implements ViewObservable{
 
     @Override
     public void registerObserver(ModelObserver modelObserver) {
-        this.observer = (MapItemObserver) observer;
+        this.observer = (MapItemObserver) modelObserver;
     }
 
     @Override
