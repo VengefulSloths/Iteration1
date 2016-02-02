@@ -1,5 +1,9 @@
 package com.vengeful.sloths.View.InventoryView;
 
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.View.InventoryView.InventoryView;
 
 import javax.swing.*;
@@ -33,8 +37,8 @@ public class ListInventoryView extends InventoryView {
     }
 
     /*EDIT: for testing purposes. */
-    InventoryItemViewObject testItem = new InventoryItemViewObject("GodSword");
-    InventoryItemViewObject testItem2 = new InventoryItemViewObject("Blue Partyhat");
+    InventoryItemViewObject testItem = new InventoryItemViewObject(new Sword("GodSword"));
+    InventoryItemViewObject testItem2 = new InventoryItemViewObject(new Hat("Blue Partyhat"));
 
     public ListInventoryView() {
 
@@ -57,7 +61,7 @@ public class ListInventoryView extends InventoryView {
 
     }
 
-    public void paintComponent(Graphics g) { //change to render(Graphics g, int x, int y) ?
+    public void paintComponent(Graphics g) { //change to render(Graphics g, int x, int y) ? WHERE IS THIS GETTING CALLED? Whenever a listInventoryView is created?
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;

@@ -15,6 +15,7 @@ public abstract class InventoryItem {
 
     }
 
+
     //Will be called in TakeableItem when takeable item is created
     public void setTakeableItem(TakeableItem item){
         this.mapItemRep = item;

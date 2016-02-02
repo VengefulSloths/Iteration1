@@ -1,6 +1,7 @@
 package com.vengeful.sloths.View.InventoryView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -29,8 +30,12 @@ public class EquipmentViewObjectManager { //don't think equip should be here. sh
     public void addEquipment(InventoryItemViewObject item) { //rename populate(InventoryItemViewObject item)?
         //We can sort on iterator because it will be called less
         equipmentList.add(item);
-
     }
+
+    public Iterator<InventoryItemViewObject> iterator() {
+        return equipmentList.iterator();
+    }
+
 
 
 }

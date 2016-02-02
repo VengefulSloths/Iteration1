@@ -1,5 +1,8 @@
 package com.vengeful.sloths.View.InventoryView;
 
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,47 +25,19 @@ public class InventoryItemViewObject extends JComponent{
     public String imageFileName;
     public JPanel itemPanel;
 
-    //private Item item; //the connected Item object
+    private EquippableItems item; //the connected Item object. For this iteration, all items are equippable
 
     public String getItemName() {
         return itemName;
     }
 
 
-    /*
-        //public InventoryItemViewObject(Item item, int x, int y, String image) { //this will be the constructor so can pass in actual items
-        public InventoryItemViewObject(String itemName, int x, int y, String image) {
-        this.x = x;
-        this.y = y;
-        //this.itemName = item.itemName; //get the name directly from the connected item object
-        this.itemName = itemName; //this will be removed and replaced with the above line, to get the name directly from the connected Item object
-        ImageIcon itemIcon = new ImageIcon(image);
-        itemImage = itemIcon.getImage();
-    }
-
-    public InventoryItemViewObject(String itemName, int x, int y) {
-    //public InventoryItemViewObject(Item item, int x, int y) { //this will be the actual method signature. it takes in item and x,y for drawing position
-        this.x = x;
-        this.y = y;
-
-        //this.itemName = item.itemName; //get the name directly from the connected item object
-        this.itemName = itemName; //this will be removed and replaced with the above line, to get the name directly from the connected Item object
-
-       //imageFileName = generateImageFileName(item); //this will be used to generate the imageFileName from the item itself
-        imageFileName = generateImageFileName(itemName);
-        ImageIcon itemIcon = new ImageIcon(imageFileName);
-        itemImage = itemIcon.getImage();
-    }
-    */
-
-    public InventoryItemViewObject(String itemName) {
-        //public InventoryItemViewObject(Item item) { //this will be the actual method signature. it takes in item and x,y for drawing position
+    //public InventoryItemViewObject(String itemName) {
+    public InventoryItemViewObject(EquippableItems item) { //this will be the actual method signature. it takes in item and x,y for drawing position
 
         //itemPanel = new JPanel();
 
-        //this.itemName = item.itemName; //get the name directly from the connected item object
-        this.itemName = itemName; //this will be removed and replaced with the above line, to get the name directly from the connected Item object
-
+        this.itemName = item.getItemName(); //get the name directly from the connected item object
         //imageFileName = generateImageFileName(item); //this will be used to generate the imageFileName from the item itself
         imageFileName = generateImageFileName(itemName);
         ImageIcon itemIcon = new ImageIcon(imageFileName);
@@ -89,7 +64,6 @@ public class InventoryItemViewObject extends JComponent{
     }
 
     public void paintComponent(Graphics2D g, int x, int y, int viewWidth, int viewHeight) {
-
         horizontalOffset = (HORIZONTAL_OFFSET_PROPORTION * viewWidth) - itemName.length();
         g.drawImage(itemImage,x,y, IMAGE_WIDTH, IMAGE_HEIGHT,this);
         g.drawString(itemName, x+ (int) horizontalOffset, y + IMAGE_HEIGHT); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.

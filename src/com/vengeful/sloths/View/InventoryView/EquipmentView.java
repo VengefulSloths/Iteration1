@@ -1,5 +1,8 @@
 package com.vengeful.sloths.View.InventoryView;
 
+import java.awt.*;
+import java.util.Iterator;
+
 /**
  * Created by echristiansen on 2/1/2016.
  */
@@ -8,8 +11,6 @@ package com.vengeful.sloths.View.InventoryView;
 
         public EquipmentViewObjectManager manager;
         public InventoryItemViewObject headGear;
-        public InventoryItemViewObject bodyGear;
-        public InventoryItemViewObject legGear;
         public InventoryItemViewObject weapon;
 
     public enum Slots {
@@ -22,22 +23,6 @@ package com.vengeful.sloths.View.InventoryView;
 
         public void setHeadGear(InventoryItemViewObject headGear) {
             this.headGear = headGear;
-        }
-
-        public InventoryItemViewObject getBodyGear() {
-            return bodyGear;
-        }
-
-        public void setBodyGear(InventoryItemViewObject bodyGear) {
-            this.bodyGear = bodyGear;
-        }
-
-        public InventoryItemViewObject getLegGear() {
-            return legGear;
-        }
-
-        public void setLegGear(InventoryItemViewObject legGear) {
-            this.legGear = legGear;
         }
 
         public InventoryItemViewObject getWeapon() {
@@ -55,6 +40,25 @@ package com.vengeful.sloths.View.InventoryView;
             manager.addEquipment(headGear);
 
         }
+
+/*
+    public void paintComponent(Graphics g) { //change to render(Graphics g, int x, int y) ?
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        Iterator<InventoryItemViewObject> iter = manager.iterator();
+        //offset = iter.next().IMAGE_HEIGHT; //this causes a problem because it skips the first one in the iterator
+        offset = testItem.IMAGE_HEIGHT; //going to need to find a better way to get an offset
+
+        while (iter.hasNext()) {
+            InventoryItemViewObject current = iter.next();
+            current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
+            offset = offset + current.IMAGE_HEIGHT + 2;
+        }
+
+        Toolkit.getDefaultToolkit().sync(); //purpose?
+    } */
     }
 
 

@@ -8,12 +8,15 @@ import com.vengeful.sloths.Models.Stats.BaseStats;
  */
 public class Sword extends EquippableItems {
 
-    public Sword(BaseStats b){
-        super(b);
-        //Set BaseStats
+    public Sword(String swordName, BaseStats b) {
+        super(swordName, b);
+    }
 
-        b.setStats(10, 0, 0, 0, 0); //Once equipped, increase avatar stats by these factors
-        this.itemName = "SomeSword";
+    public Sword(String swordName){
+        super(swordName);
+        //this.itemStats.setStats(10,0,0,0,0); //currently causes error
+        this.itemStats = new BaseStats(0,0,0,10,0);
+
     }
 
 }

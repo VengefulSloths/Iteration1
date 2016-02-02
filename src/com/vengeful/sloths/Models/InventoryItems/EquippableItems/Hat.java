@@ -8,12 +8,15 @@ import com.vengeful.sloths.Models.Stats.BaseStats;
  */
 public class Hat extends EquippableItems {
 
-    public Hat(BaseStats b){
-        super(b);
-
-        //Set BaseStats
-        b.setStats(0, 0, 0, 10, 0); //Once equipped, increase avatar stats by these factors
-        this.itemName = "SomeHat";
+    public Hat(String hatName, BaseStats b){
+        super(hatName, b);
     }
+
+    public Hat(String hatName){
+        super(hatName);
+        //this.itemStats.setStats(0, 0, 0, 10, 0); //Once equipped, increase avatar stats by these factors. Currently causes error so used line below.
+        this.itemStats = new BaseStats(0,0,0,10,0);
+    }
+
 
 }
