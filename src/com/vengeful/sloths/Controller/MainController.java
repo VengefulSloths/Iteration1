@@ -5,6 +5,7 @@ import com.vengeful.sloths.Controller.ControllerStates.InventoryState;
 import com.vengeful.sloths.Controller.ControllerStates.MainControllerState;
 import com.vengeful.sloths.Controller.ControllerStates.MenuState;
 import com.vengeful.sloths.Models.Entity.Avatar;
+import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.ViewEngine;
@@ -18,6 +19,7 @@ import java.awt.event.KeyEvent;
 public class MainController {
 
     private Avatar player;
+    private Inventory inventory;
     private MainControllerState state;
     private InputHandler inputHandler;
     private Screen screen;
@@ -29,6 +31,7 @@ public class MainController {
     public MainController(Avatar player, JFrame jframe){
 
         this.player = player;
+        this.inventory = player.getInventory();
 
         avatarState = new AvatarState(this);
         inventoryState = new InventoryState(this);
@@ -38,6 +41,10 @@ public class MainController {
         jframe.addKeyListener(inputHandler);
 
         this.state = avatarState;
+    }
+
+    public MainControllerState getState() {
+        return this.state;
     }
 
     public boolean dispatchKey(int key){
@@ -128,6 +135,10 @@ public class MainController {
     public Avatar getAvatar(){
         return this.player;
     }
+
+    public Inventory getInventory() { return this.inventory; }
+
+
 
 
 

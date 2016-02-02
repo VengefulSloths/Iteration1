@@ -5,7 +5,12 @@ import com.vengeful.sloths.Controller.MainController;
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
 import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
 import com.vengeful.sloths.Models.Entity.Avatar;
+import com.vengeful.sloths.Models.Inventory.Inventory;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ModelEngine;
+import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
@@ -47,7 +52,15 @@ public class Main {
 
 
         AreaView av = new AreaView(cvm, avatar);
-        ListInventoryView iv = new ListInventoryView();
+
+
+        // Create inventory, add it to avatar and ListInventoryView
+        Inventory inventory = new Inventory();
+        avatar.setInventory(inventory);
+        avatar.addItem(new Hat("BlueHat"));
+        avatar.addItem(new Hat("BlueHat"));
+
+        ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
 
 
@@ -59,6 +72,17 @@ public class Main {
         //start both threads
         viewEngine.start();
         modelEngine.start();
+
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        avatar.addItem(new Sword("Excal"));
+                        // your code here
+                    }
+                },
+                2000
+        );
 
     }
 }
