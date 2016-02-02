@@ -33,12 +33,15 @@ public abstract class Entity implements ViewObservable{
 
     protected ArrayList<EntityObserver> entityObservers;
 
+    public void setInventory(Inventory inv) {
+        this.inventory = inv;
+    }
 
     public Entity(String name, String occupationString, EntityStats entityStats) {
         this.name = name;
         this.entityObservers = new ArrayList<>();
         this.entityStats = entityStats;
-        this.inventory = new Inventory();
+//        this.inventory = new Inventory();
 
         // Default facing South
         this.facingDirection = Direction.S;

@@ -1,5 +1,10 @@
 package com.vengeful.sloths.View.InventoryView;
 
+import com.vengeful.sloths.Models.Inventory.Inventory;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -11,8 +16,12 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
 
     private ArrayList<InventoryItemViewObject> itemList;
 
+    InventoryItemViewObject GodSwordItemViewObject = new InventoryItemViewObject(new Sword("GodSword"));
+    InventoryItemViewObject PartyHatItemViewObject = new InventoryItemViewObject(new Hat("Blue Partyhat"));
+
     public ListInventoryViewObjectManager() {
         itemList = new ArrayList<InventoryItemViewObject>();
+
 
     }
 
@@ -21,6 +30,16 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
         itemList.add(item);
     }
 
+    public void initWithInventory(Inventory inventory) {
+        for (int i = 0; i < inventory.getSize(); i++) {
+            InventoryItem item = inventory.getItem(i);
+            if (item instanceof Hat) {
+                this.addInventoryItemViewObject(PartyHatItemViewObject);
+            } else if (item instanceof Sword) {
+                this.addInventoryItemViewObject(GodSwordItemViewObject);
+            }
+        }
+    }
 
     public int getItemListSize() {
         return itemList.size();

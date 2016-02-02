@@ -21,10 +21,16 @@ public class InputHandler implements KeyListener{
     public void keyPressed(KeyEvent e) {
         //System.out.println("Input handled Mother Fucker");
         //System.out.println(System.currentTimeMillis() + "keypressed");
-        if(thread == null){
-            System.out.println("blooop");
-            thread = new Thread(new inputRunnable(e));
-            thread.start();
+
+        // Only spin a inputRunnable Thread on AvatarState
+        if (mainController.getState().toString() == "AvatarState") {
+            if (thread == null) {
+                System.out.println("blooop");
+                thread = new Thread(new inputRunnable(e));
+                thread.start();
+            }
+        } else {
+            mainController.dispatchKey(e.getKeyCode());
         }
     }
     @Override
