@@ -23,6 +23,10 @@ public class TakeableItem extends MapItem {
         //maybe alert user he cannot move here
     }
 
+    public InventoryItem getInvItemRep(){
+        return this.invItemRep;
+    }
+
 
     //For testing purpose
     public String toString(){

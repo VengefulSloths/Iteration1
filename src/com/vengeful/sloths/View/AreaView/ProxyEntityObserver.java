@@ -19,7 +19,7 @@ public class ProxyEntityObserver extends ProxyObserver
 
     @Override
     public ModelObserver getModelObserver() {
-        return (ModelObserver) target;
+        return target;
     }
     @Override
     public void alertDirectionChange(Direction d) {

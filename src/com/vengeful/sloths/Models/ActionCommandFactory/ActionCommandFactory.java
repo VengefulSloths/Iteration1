@@ -22,4 +22,5 @@ public abstract class ActionCommandFactory {
 
     public abstract MovementCommand createMovementCommand(Coord src, Coord dst, Direction dir, Entity entity);
     public abstract DropCommand createDropCommand(InventoryItem itemToDrop, Coord dropLoc, Entity entity);
+    public abstract PickUpCommand createPickUpCommand(Coord dropLoc, Entity entity);
 }

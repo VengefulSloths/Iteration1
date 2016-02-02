@@ -15,4 +15,5 @@ public class Obstacle extends MapItem{
     public void interact(Entity entity){
         //maybe alert user he cannot move here
     }
+
 }
