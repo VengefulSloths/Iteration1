@@ -130,6 +130,14 @@ public class Avatar extends Entity {
         return true;
     }
 
+    public boolean pickup(){
+        //Pick up item
+        this.commandFactory.createPickUpCommand(this.getLocation(), this);
+        return true;
+    }
+
+
+
     public void levelUp() {
         // Let occupation know level is increased, then levelUp occ and base stats
         occupation.levelUp(entityStats);
