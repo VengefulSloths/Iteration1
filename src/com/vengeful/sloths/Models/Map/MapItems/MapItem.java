@@ -13,6 +13,7 @@ public abstract class MapItem implements ViewObservable{
     protected MapItemObserver observer;
     protected boolean destroy = false;
     protected String itemName;
+    protected String graphicFolder;
 
     public abstract void interact(Entity entity);
 
@@ -24,6 +25,14 @@ public abstract class MapItem implements ViewObservable{
         return this.itemName;
     }
 
+    public boolean destroyFlag()
+    {
+        return destroy;
+    }
+
+    public void destroy() {
+        observer.alertDestroyed();
+    }
 
     @Override
     public void registerObserver(ModelObserver modelObserver) {
@@ -33,5 +42,6 @@ public abstract class MapItem implements ViewObservable{
     @Override
     public void deregisterObserver(ModelObserver modelObserver) {
         this.observer = null;
+
     }
 }

@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.ActionCommandFactory;
 
+import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
@@ -25,10 +26,8 @@ public class AvatarMovementCommand extends MovementCommand {
     public void execute() {
         //System.out.println(System.currentTimeMillis() + "executing movement command");
         Tile sourceTile = map.getTile(this.src);
-
         try {
             Tile destTile = map.getTile(this.dst);
-
             //System.out.println(" source BEFORE: " + sourceTile.getEntity());
             //System.out.println(destTile.getEntity());
             if (destTile.canMove()) {
@@ -41,6 +40,16 @@ public class AvatarMovementCommand extends MovementCommand {
                     EntityObserver eo = iter.next();
                     eo.alertMove(this.dst.getX(), this.dst.getY(), 200);
                 }
+
+                System.out.println("My location: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
+
+
+                if(destTile.getMapItemIterator().hasNext()){
+                    //if there is takeable item on the tile, let entity pick it up
+                    System.out.println("Calling pick up!!!!");
+                    ((Avatar)entity).pickup();
+                }
+
             }
         } catch (Exception e) {
 
@@ -55,6 +64,7 @@ public class AvatarMovementCommand extends MovementCommand {
         // Tile t = map.getTile()
         // can Tile t take an entity?
         // Move calling entity onto the tile
+        map.getTile(this.entity.getLocation()).interact(entity);
         entity.setMoving(false);
     }
 

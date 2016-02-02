@@ -8,6 +8,7 @@ import com.vengeful.sloths.Models.Map.Terrains.Terrain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by John on 1/30/2016.
@@ -20,6 +21,7 @@ public class Tile {
     private ArrayList<AreaEffect> areaEffect;
     private ArrayList<Decal> decals;
     private Terrain terrain;
+    private boolean cleaningup = false;
 
 
     public Tile(){
@@ -28,6 +30,7 @@ public class Tile {
         areaEffect = new ArrayList<AreaEffect>();
         decals = new ArrayList<Decal>();
         terrain = new Grass();
+        this.cleaningup = false;
     }
 
     public Tile(Terrain terrain){
@@ -36,6 +39,7 @@ public class Tile {
         areaEffect = new ArrayList<AreaEffect>();
         decals = new ArrayList<Decal>();
         this.terrain = terrain;
+        this.cleaningup = false;
     }
 
     public void execute(){
@@ -54,6 +58,15 @@ public class Tile {
             }
             return (canMove && terrain.canMove());
         }
+    }
+
+    public void interact(Entity entity)
+    {
+        for (Iterator<MapItem> iter = mapItems.iterator(); iter.hasNext();) {
+            MapItem item = iter.next();
+            item.interact(entity);
+        }
+        cleanUp();
     }
 
     public void addEntity(Entity entity){
@@ -86,7 +99,19 @@ public class Tile {
         mapItems.add(mapItem);
     }
     private void cleanUp(){
-        //check for one shots to with bool to be removed and remove them
+            //cleaningup = true;
+            ArrayList<MapItem> toDestroy = new ArrayList<MapItem>();
+            for (Iterator<MapItem> iter = mapItems.iterator(); iter.hasNext();) {
+                MapItem item = iter.next();
+                if(item.destroyFlag()){
+                    toDestroy.add(item);
+                }
+            }
+            for (MapItem td : toDestroy) {
+                //td.destroy();
+                mapItems.remove(td);
+            }
+
     }
 
 

@@ -45,6 +45,7 @@ public class Main {
         map.getTile(avatar.getLocation()).addEntity(avatar);
         MainController controller = new MainController(avatar, viewEngine);
 
+
         AreaView av = new AreaView(cvm, avatar);
         ListInventoryView iv = new ListInventoryView();
         DefaultViewManager vm = new DefaultViewManager(av, iv);
