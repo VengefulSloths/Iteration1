@@ -25,10 +25,8 @@ public class AvatarMovementCommand extends MovementCommand {
     public void execute() {
         //System.out.println(System.currentTimeMillis() + "executing movement command");
         Tile sourceTile = map.getTile(this.src);
-
         try {
             Tile destTile = map.getTile(this.dst);
-
             //System.out.println(" source BEFORE: " + sourceTile.getEntity());
             //System.out.println(destTile.getEntity());
             if (destTile.canMove()) {
@@ -55,6 +53,7 @@ public class AvatarMovementCommand extends MovementCommand {
         // Tile t = map.getTile()
         // can Tile t take an entity?
         // Move calling entity onto the tile
+        map.getTile(this.entity.getLocation()).interact(entity);
         entity.setMoving(false);
     }
 

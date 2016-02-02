@@ -39,6 +39,7 @@ public class LevelFactory {
         map.getTile(new Coord(5,5)).addMapItem(new Obstacle());
         map.getTile(new Coord(1,2)).addMapItem(new Obstacle());
         map.getTile(new Coord(12,3)).addMapItem(new Obstacle());
+        map.getTile(new Coord(2,3)).addMapItem(new OneShotTest());
 
         return map;
     }

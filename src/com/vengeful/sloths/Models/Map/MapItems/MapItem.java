@@ -9,6 +9,7 @@ public abstract class MapItem {
 
     protected boolean destroy = false;
     protected String itemName;
+    protected String graphicFolder;
 
     public abstract void interact(Entity entity);
 
@@ -18,5 +19,15 @@ public abstract class MapItem {
 
     public String getItemName(){
         return this.itemName;
+    }
+
+    public boolean destroyFlag()
+    {
+        return destroy;
+    }
+
+    public void destroy(){
+        //add later
+        //notify observe
     }
 }
