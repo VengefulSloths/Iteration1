@@ -69,7 +69,7 @@ public class EntityMapViewObject extends ViewObject
 		else return (float)(endX-startX)/(float)(endTime-startTime)*(float)(t - startTime) + (float)startX;
 	}
 
-	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, AnimatedImage defaultAnimation) {
+	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, AnimatedImage standingImage) {
 		this.x = x;
 		this.y = y;
 		this.startX = x;
@@ -80,7 +80,7 @@ public class EntityMapViewObject extends ViewObject
 		this.animationFinishTime = 0;
 		this.converter = converter;
 
-		this.currentAnimation = defaultAnimation;
+		this.currentAnimation = standingImage;
 
 		//testAnimation = new BoundedAnimation("resources/man/man_down", 13);
 
@@ -102,6 +102,7 @@ public class EntityMapViewObject extends ViewObject
 
 	public void alertDirectionChange(Direction d) {
 		//System.out.println("New direction " + d);
+		System.out.println("Drection is now " + d);
 		switch (d) {
 			case N:
 				currentAnimation = walkingN;

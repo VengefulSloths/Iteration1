@@ -108,7 +108,7 @@ public class Tile {
                 }
             }
             for (MapItem td : toDestroy) {
-                td.destroy();
+                //td.destroy();
                 mapItems.remove(td);
             }
 

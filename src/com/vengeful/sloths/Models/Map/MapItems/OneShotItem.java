@@ -10,4 +10,5 @@ public class OneShotItem extends MapItem {
     public void interact(Entity entity){
         //build effect command
     }
+
 }
