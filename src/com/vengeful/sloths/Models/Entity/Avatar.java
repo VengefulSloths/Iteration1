@@ -16,14 +16,15 @@ import com.vengeful.sloths.View.AreaView.EntityObserver;
  */
 public class Avatar extends Entity {
 
-    //private Inventory inventory;
+    // Superclass
+    //  private Inventory inventory;
     private Equipped equipped;
     private ActionCommandFactory commandFactory;
 
     //passes in AvatarActionCommandFactory
     public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
         super(name, occupationString, entityStats);
-        //this.inventory = new Inventory();
+
         this.equipped = new Equipped();
         this.commandFactory = commandFactory;
     }
@@ -161,5 +162,10 @@ public class Avatar extends Entity {
     // @TODO: Don't have Item object yet
     //  public void updateStats(Item item) {}
 
+    /* FOR TESTING ONLY, MOST LIKELY WILL BE REMOVED! */
+    public boolean addItem(InventoryItem item) {
+        inventory.addItem(item);
+        return true;
+    }
 
 }
