@@ -48,9 +48,11 @@ public class DynamicCameraView extends CameraView
                 while (itemIter.hasNext()) {
                     mapViewObjectManager.addMapViewObject(mvoFactory.createItemMapViewObject(itemIter.next(), i, j));
                 }
-
-                mapViewObjectManager.addMapViewObject(mvoFactory.createTerrainMapViewObject(tile.getTerrain(), i, j));
             }
+        }
+        Iterator<TerrainMapViewObject> iter = mvoFactory.createPrettyTerrain(map,x,y,width,height);
+        while (iter.hasNext()) {
+            mapViewObjectManager.addMapViewObject(iter.next());
         }
 
     }

@@ -6,6 +6,7 @@ import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.View.AreaView.CameraView;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class StaticCameraView extends CameraView {
@@ -31,8 +32,11 @@ public class StaticCameraView extends CameraView {
 					mvop.addMapViewObject(mvoFactory.createItemMapViewObject(itemIter.next(), i, j));
 				}
 
-				mvop.addMapViewObject(mvoFactory.createTerrainMapViewObject(tile.getTerrain(), i, j));
 			}
+		}
+		Iterator<TerrainMapViewObject> iter = mvoFactory.createPrettyTerrain(map,x,y,width,height);
+		while (iter.hasNext()) {
+			mvop.addMapViewObject(iter.next());
 		}
 	}
 }
