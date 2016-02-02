@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.ActionCommandFactory;
 
+import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
@@ -39,6 +40,16 @@ public class AvatarMovementCommand extends MovementCommand {
                     EntityObserver eo = iter.next();
                     eo.alertMove(this.dst.getX(), this.dst.getY(), 200);
                 }
+
+                System.out.println("My location: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
+
+
+                if(destTile.getMapItemIterator().hasNext()){
+                    //if there is takeable item on the tile, let entity pick it up
+                    System.out.println("Calling pick up!!!!");
+                    ((Avatar)entity).pickup();
+                }
+
             }
         } catch (Exception e) {
 
