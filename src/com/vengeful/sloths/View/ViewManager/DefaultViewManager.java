@@ -65,16 +65,26 @@ public class DefaultViewManager extends ViewManager {
         this.areaView.setPreferredSize(new Dimension(AREA_VIEW_WIDTH, AREA_VIEW_HEIGHT));
         this.inventoryView.setPreferredSize(new Dimension(INVENTORY_VIEW_WIDTH, INVENTORY_VIEW_HEIGHT)); //now handled in ListInventoryView
 
+        /* //original color scheme
         this.setBackground(Color.BLACK);
         this.sidePanel.setBackground(Color.BLUE);
-        this.areaView.setBackground(Color.WHITE);
+        this.areaView.setBackground(Color.BLACK);
         this.inventoryView.setBackground(Color.RED);
+        */
+
+        //color scheme with some opacity specifications
+        this.setBackground(Color.BLACK);
+        this.sidePanel.setBackground(new Color(0,0,255,155));
+        this.areaView.setBackground(Color.BLACK);
+        this.inventoryView.setBackground( new Color(255, 0, 0, 155) );
+
 
         this.setLayout(new BorderLayout()); //set the layout of the DefaultViewManager to BorderLayout
         this.sidePanel.setLayout(new BorderLayout()); //set the layout of the sidePanel to BorderLayout
         //inventoryView.setLayout(new BorderLayout());//set layout of inventoryView....maybe this isn't appropriate in this class?
 
-        this.sidePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 7));
+        //this.sidePanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 7));
+        this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
 
 
         //sidePanel.add(inventoryView, BorderLayout.CENTER); //eventually, will add StatsView and HUDView to sidePanel

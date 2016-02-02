@@ -30,6 +30,9 @@ public class Avatar extends Entity {
 
     public void move(Direction dir) {
         if(!isMoving) {
+
+            this.setFacingDirection(dir);
+
             isMoving = true;
             //System.out.print("Move command started!");
             //System.out.print("Current location: " + this.getLocation());

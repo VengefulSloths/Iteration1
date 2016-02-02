@@ -43,7 +43,17 @@ public class Tile {
     }
 
     public boolean canMove(){
-        return terrain.canMove();
+        if(mapItems.size() <= 0) {
+            return terrain.canMove();
+        }else{
+            boolean canMove = true;
+
+            for (Iterator<MapItem> iter = mapItems.iterator(); iter.hasNext();) {
+                MapItem item = iter.next();
+                canMove = canMove && item.canMove();
+            }
+            return (canMove && terrain.canMove());
+        }
     }
 
     public void addEntity(Entity entity){
