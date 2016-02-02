@@ -91,7 +91,11 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
     }
 
     public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
-        ItemMapViewObject itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Barrel/Barrel.png", 1, 1000, coordinateStrategy);
+
+        ItemMapViewObject itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Box/Destroyed/temp", 1, 1000, coordinateStrategy);
+        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
+        ObserverManager.instance().addProxyObserver(pmio);
+
         return itemView;
     }
 }
