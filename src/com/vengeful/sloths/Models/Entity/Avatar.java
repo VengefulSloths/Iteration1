@@ -1,7 +1,9 @@
 package com.vengeful.sloths.Models.Entity;
 
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
+import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
 import com.vengeful.sloths.Models.Inventory.Equipped;
+import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
 import com.vengeful.sloths.Utility.Coord;
@@ -107,7 +109,7 @@ public class Avatar extends Entity {
         return true;
     }
 
-    public boolean drop(int itemIndex) {
+    public boolean drop(InventoryItem item) {
         /* Drop:
             - get item from inventory (check if item exists)
             - get tile from map
@@ -116,17 +118,19 @@ public class Avatar extends Entity {
             - delete item from inventory
          */
 
-        if(this.inventory.getSize() == 0)
-            return false;
+        System.out.println("BEFORE DROP: " + inventory.getItem(0) + inventory.getItem(1) + inventory.getItem(2));
 
         try{
-            InventoryItem itemToDrop = inventory.getItem(itemIndex);
-            this.commandFactory.createDropCommand(itemToDrop, this.getLocation(), this);
+//            InventoryItem itemToDrop = inventory.getItem(itemIndex);
+            this.commandFactory.createDropCommand(item, this.getLocation(), this);
 
         }catch(Exception e){
             //whatever
 
         }
+
+        System.out.println("AFTER DROP: " + inventory.getItem(0) + inventory.getItem(1) + inventory.getItem(2));
+
 
         return true;
     }

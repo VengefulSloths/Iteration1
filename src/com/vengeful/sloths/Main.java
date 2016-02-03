@@ -7,7 +7,6 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
-import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
@@ -48,10 +47,8 @@ public class Main {
         map.getTile(avatar.getLocation()).addEntity(avatar);
 
 
-        AreaView av = new AreaView(cvm, avatar);
-
-
         // Create inventory, add it to avatar and ListInventoryView
+        // avatar.setInventory() needs to be above MainController or else it doesn't have a reference to the inventory
         Inventory inventory = new Inventory();
         avatar.setInventory(inventory);
 
@@ -70,12 +67,17 @@ public class Main {
 
 
 
+
+
+        AreaView av = new AreaView(cvm, avatar);
+
         ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
-        
 
-        //make controller
+
         MainController controller = new MainController(avatar, viewEngine, vm);
+
+
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);

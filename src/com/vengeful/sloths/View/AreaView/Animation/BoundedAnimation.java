@@ -1,7 +1,5 @@
 package com.vengeful.sloths.View.AreaView.Animation;
 
-import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
-
 import javax.swing.ImageIcon;
 import java.awt.*;
 import java.util.ArrayList;

@@ -7,6 +7,7 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.View.AreaView.Observers.InventoryObserver;
 import com.vengeful.sloths.View.AreaView.Observers.ProxyInventoryObserver;
+import com.vengeful.sloths.View.AreaView.Observers.ProxyObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,12 +49,14 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         // pass in self
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
-        ProxyInventoryObserver pio = new ProxyInventoryObserver(this, inventory);
+        ProxyObserver pio = new ProxyInventoryObserver(this, inventory);
         ObserverManager.instance().addProxyObserver(pio);
 
         //this.setPreferredSize(new Dimension(viewWidth, viewHeight));
         manager = new ListInventoryViewObjectManager();
-        manager.initWithInventory(inventory);
+
+
+//        manager.initWithInventory(avatar);
 
         /* edit the next two lines/maybe delete them */
         setLayout(new BorderLayout());

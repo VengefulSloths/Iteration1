@@ -9,6 +9,7 @@ import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.ViewEngine;
+import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 import com.vengeful.sloths.View.ViewManager.ViewManager;
 
 import javax.swing.*;
@@ -26,6 +27,8 @@ public class MainController {
     private Screen screen;
     private ViewManager viewManager;
 
+    private DefaultViewManager dvm;
+
     private AvatarState avatarState;
     private InventoryState inventoryState;
     private MenuState menuState;
@@ -33,6 +36,10 @@ public class MainController {
     public MainController(Avatar player, JFrame jframe, ViewManager vm){
 
         this.player = player;
+        System.out.println("in the maincontroller");
+
+        this.dvm = dvm;
+
         this.inventory = player.getInventory();
         this.viewManager = vm;
         avatarState = new AvatarState(this);
@@ -43,6 +50,10 @@ public class MainController {
         jframe.addKeyListener(inputHandler);
 
         this.setAvatarState();
+    }
+
+    public DefaultViewManager getDefaultViewManager() {
+        return this.dvm;
     }
 
     public MainControllerState getState() {
@@ -57,6 +68,9 @@ public class MainController {
                 break;
             case KeyEvent.VK_E :
                 state.handleEKey();
+                break;
+            case KeyEvent.VK_D :
+                state.handleDKey();
                 break;
             case KeyEvent.VK_ESCAPE :
                 state.handleESCKey();

@@ -21,13 +21,16 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
 
     public ListInventoryViewObjectManager() {
         itemList = new ArrayList<InventoryItemViewObject>();
-
-
     }
 
     public void addInventoryItemViewObject(InventoryItemViewObject item) { //rename populate(InventoryItemViewObject item)?
         //We can sort on iterator because it will be called less
         itemList.add(item);
+    }
+
+    public InventoryItemViewObject removeInventoryItemViewObject(int itemIndex) { //rename populate(InventoryItemViewObject item)?
+        //We can sort on iterator because it will be called less
+        return itemList.remove(itemIndex);
     }
 
     public void initWithInventory(Inventory inventory) {
