@@ -84,5 +84,9 @@ public class AreaView extends JPanel
 			this.playerY = y;
 		}
 	}
-	
+
+	@Override
+	public void alertDrop(int x, int y, MapItem itemToDrop) {
+
+	}
 }

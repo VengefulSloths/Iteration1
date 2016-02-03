@@ -153,4 +153,8 @@ public class EntityMapViewObject extends ViewObject
 		this.animationFinishTime = System.currentTimeMillis() + animationTime;
 	}
 
+	@Override
+	public void alertDrop(int x, int y, MapItem itemToDrop) {
+		//do nothing
+	}
 }

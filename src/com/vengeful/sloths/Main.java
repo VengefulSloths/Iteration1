@@ -9,6 +9,8 @@ import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
 import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Stats.EntityStats;
@@ -48,7 +50,7 @@ public class Main {
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
         Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
         map.getTile(avatar.getLocation()).addEntity(avatar);
-        MainController controller = new MainController(avatar, viewEngine);
+        //MainController controller = new MainController(avatar, viewEngine);
 
 
         AreaView av = new AreaView(cvm, avatar);
@@ -57,11 +59,24 @@ public class Main {
         // Create inventory, add it to avatar and ListInventoryView
         Inventory inventory = new Inventory();
         avatar.setInventory(inventory);
-        avatar.addItem(new Hat("BlueHat"));
-        avatar.addItem(new Hat("BlueHat"));
+
+
+        /**** Take-able and InventoryItems need to be paired up when created */
+        MapItem mi1 = new TakeableItem(new Hat("BlueHat", new BaseStats()));
+        MapItem mi2 = new TakeableItem(new Hat("BlueHat", new BaseStats()));
+
+        //avatar.addItem(new Hat("BlueHat"));
+        //avatar.addItem(new Hat("BlueHat"));
+        avatar.addItem(((TakeableItem)mi1).getInvItemRep());
+        avatar.addItem(((TakeableItem)mi2).getInvItemRep());
+        //TODO: a new factory for creating takable item + inventory item?
+
+
 
         ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
+
+        MainController controller = new MainController(avatar, viewEngine);
 
 
         //set up engines

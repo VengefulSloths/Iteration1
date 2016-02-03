@@ -119,7 +119,7 @@ public class Avatar extends Entity {
             - delete item from inventory
          */
 
-        System.out.println("BEFORE DROP: " + inventory.getItem(0) + inventory.getItem(1) + inventory.getItem(2));
+        //TODO: handle if no item in inventory
 
         try{
             InventoryItem itemToDrop = inventory.getItem(itemIndex);
@@ -129,9 +129,6 @@ public class Avatar extends Entity {
             //whatever
 
         }
-
-        System.out.println("AFTER DROP: " + inventory.getItem(0) + inventory.getItem(1) + inventory.getItem(2));
-
 
         return true;
     }

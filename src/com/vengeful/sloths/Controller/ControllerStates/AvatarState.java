@@ -86,14 +86,7 @@ public class AvatarState extends MainControllerState{
 
     @Override
     public boolean handle5Key() {
-        //return false;
-
-        //TODO: change this back after done testing
-        /* Test drop item */
-
-        mainController.getAvatar().drop(0);
-
-        return true;
+        return false;
     }
 
     public String toString(){

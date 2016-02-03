@@ -63,6 +63,7 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
         }
 
         EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, facingImage);
+        emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, facingImage);
         emvo.setWalkingN(new BoundedAnimation("resources/man2/moving/north/man_north", 5));
         emvo.setWalkingNE(new BoundedAnimation("resources/man2/moving/northeast/man_northeast", 5));
         emvo.setWalkingE(new BoundedAnimation("resources/man2/moving/east/man_east", 5));
@@ -142,6 +143,8 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
     }
 
     public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
+        System.out.println("NEW CAMERA");
+        System.out.println("ITEMS! " + mapItem);
 
         ItemMapViewObject itemView = null;
 
@@ -161,6 +164,8 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
 
         ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
         ObserverManager.instance().addProxyObserver(pmio);
+
+
         return itemView;
 
 
