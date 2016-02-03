@@ -28,16 +28,16 @@ public class AvatarDropCommand extends DropCommand{
     @Override
     public void execute() {
 
-        System.out.println("BEFORE DROP: " + entity.getInventory().getItem(0) + entity.getInventory().getItem(1) + entity.getInventory().getItem(2));
+        //System.out.println("BEFORE DROP: " + entity.getInventory().getItem(0) + entity.getInventory().getItem(1) + entity.getInventory().getItem(2));
 
         Tile tile = map.getTile(dropLocation);
         tile.addMapItem(itemToDrop.getMapItemRep());
         entity.getInventory().removeItem(itemToDrop);
 
-        System.out.println("I am DONE dropping!!!");
-        System.out.println("dropped " + itemToDrop.getItemName());
+        //System.out.println("I am DONE dropping!!!");
+        //System.out.println("dropped " + itemToDrop.getItemName());
 
-        System.out.println("AFTER DROP: " + entity.getInventory().getItem(0) + entity.getInventory().getItem(1) + entity.getInventory().getItem(2));
+        //System.out.println("AFTER DROP: " + entity.getInventory().getItem(0) + entity.getInventory().getItem(1) + entity.getInventory().getItem(2));
 
 
         Iterator<EntityObserver> iter = this.entity.entityObserverIterator();

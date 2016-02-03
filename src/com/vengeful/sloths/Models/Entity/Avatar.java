@@ -116,7 +116,8 @@ public class Avatar extends Entity {
             - delete item from inventory
          */
 
-        //TODO: handle if no item in inventory
+        if(this.inventory.getSize() == 0)
+            return false;
 
         try{
             InventoryItem itemToDrop = inventory.getItem(itemIndex);
