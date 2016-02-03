@@ -46,7 +46,6 @@ public class Main {
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
         Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
         map.getTile(avatar.getLocation()).addEntity(avatar);
-        //MainController controller = new MainController(avatar, viewEngine);
 
 
         AreaView av = new AreaView(cvm, avatar);
@@ -73,10 +72,10 @@ public class Main {
 
         ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
+        
 
-        MainController controller = new MainController(avatar, viewEngine);
-
-
+        //make controller
+        MainController controller = new MainController(avatar, viewEngine, vm);
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);
