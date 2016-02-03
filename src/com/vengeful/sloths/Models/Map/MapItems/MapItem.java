@@ -2,8 +2,8 @@ package com.vengeful.sloths.Models.Map.MapItems;
 
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.ViewObservable;
-import com.vengeful.sloths.View.AreaView.MapItemObserver;
-import com.vengeful.sloths.View.AreaView.ModelObserver;
+import com.vengeful.sloths.View.AreaView.Observers.MapItemObserver;
+import com.vengeful.sloths.View.AreaView.Observers.ModelObserver;
 
 /**
  * Created by John on 1/30/2016.
@@ -32,7 +32,9 @@ public abstract class MapItem implements ViewObservable{
 
     public void destroy() {
         observer.alertDestroyed();
+        System.out.println("This is map object, my observer is: " + observer);
     }
+
 
     @Override
     public void registerObserver(ModelObserver modelObserver) {

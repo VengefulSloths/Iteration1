@@ -88,4 +88,8 @@ public class AvatarState extends MainControllerState{
     public boolean handle5Key() {
         return false;
     }
+
+    public String toString(){
+        return "AvatarState";
+    }
 }

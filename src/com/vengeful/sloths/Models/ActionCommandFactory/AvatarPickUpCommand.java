@@ -63,6 +63,7 @@ public class AvatarPickUpCommand extends PickUpCommand {
             tile.removeMapItem(toBeRemoved.get(i));
         }
 
+        System.out.println("Picking UP! ");
         /*
         System.out.println("After I try to pick up the item: ");
         System.out.println("Is there anything in my inventory?: " + entity.getInventory().getItem(0) + " " + entity.getInventory().getItem(1)+ " " + entity.getInventory().getItem(2));

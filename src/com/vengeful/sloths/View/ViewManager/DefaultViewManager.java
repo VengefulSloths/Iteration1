@@ -57,6 +57,9 @@ public class DefaultViewManager extends ViewManager {
         this.areaView = areaView;
         this.inventoryView = inventoryView;
 
+
+
+
         this.inventoryView.setViewWidth(INVENTORY_VIEW_WIDTH);
         this.inventoryView.setViewHeight(INVENTORY_VIEW_HEIGHT);
 

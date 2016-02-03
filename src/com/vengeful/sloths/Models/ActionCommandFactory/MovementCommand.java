@@ -5,7 +5,6 @@ import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.TimeModel.Alertable;
 import com.vengeful.sloths.Models.TimeModel.TimeModel;
 import com.vengeful.sloths.Utility.Coord;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
 import com.vengeful.sloths.Utility.Direction;
 
 /**

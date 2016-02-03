@@ -10,8 +10,8 @@ import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
-import com.vengeful.sloths.View.AreaView.ModelObserver;
+import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.AreaView.Observers.ModelObserver;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,6 +33,9 @@ public abstract class Entity implements ViewObservable{
 
     protected ArrayList<EntityObserver> entityObservers;
 
+    public void setInventory(Inventory inv) {
+        this.inventory = inv;
+    }
 
     public Entity(String name, String occupationString, EntityStats entityStats) {
         this.name = name;

@@ -7,13 +7,11 @@ import com.vengeful.sloths.Models.Map.Terrains.Terrain;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by John on 1/30/2016.
  */
-public class Tile {
+public class Tile{
 
     private Entity entity = null;
     private boolean canBeMovedOn;
@@ -24,6 +22,7 @@ public class Tile {
     private boolean cleaningup = false;
 
 
+
     public Tile(){
         canBeMovedOn = true;
         mapItems = new ArrayList<MapItem>();
@@ -31,6 +30,7 @@ public class Tile {
         decals = new ArrayList<Decal>();
         terrain = new Grass();
         this.cleaningup = false;
+
     }
 
     public Tile(Terrain terrain){
@@ -40,6 +40,7 @@ public class Tile {
         decals = new ArrayList<Decal>();
         this.terrain = terrain;
         this.cleaningup = false;
+
     }
 
     public void execute(){
@@ -95,9 +96,6 @@ public class Tile {
         return mapItems.iterator();
     }
 
-    public void addMapItem(MapItem mapItem) {
-        mapItems.add(mapItem);
-    }
     private void cleanUp(){
             //cleaningup = true;
             ArrayList<MapItem> toDestroy = new ArrayList<MapItem>();
@@ -115,8 +113,13 @@ public class Tile {
     }
 
 
+    public void addMapItem(MapItem mapItem) {
+        mapItems.add(mapItem);
+    }
+
     public void removeMapItem(MapItem item){
         mapItems.remove(item);
+        item.destroy(); //tell observer
     }
 
     public MapItem getMapItem(int index){
@@ -125,7 +128,6 @@ public class Tile {
 
         return mapItems.get(index);
     }
-
 
 
 }

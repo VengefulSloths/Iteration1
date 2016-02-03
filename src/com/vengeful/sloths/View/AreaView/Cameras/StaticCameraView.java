@@ -1,20 +1,19 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Cameras;
 
-import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Utility.Coord;
-import com.vengeful.sloths.View.AreaView.CameraView;
+import com.vengeful.sloths.View.AreaView.DefaultMapViewObjectFactory;
+import com.vengeful.sloths.View.AreaView.MapViewObjectFactory;
+import com.vengeful.sloths.View.AreaView.MapViewObjectManager;
+import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
 
 import java.util.Iterator;
 
 public class StaticCameraView extends CameraView {
 	private MapViewObjectFactory mvoFactory;
 	public StaticCameraView(int x, int y, int width, int height) {
-		this.x = x;
-		this.y = y;
-		this.height = height;
-		this.width = width;
+		super(x,y,width,height);
 		mvoFactory = new DefaultMapViewObjectFactory(this);
 
 	}
@@ -34,8 +33,11 @@ public class StaticCameraView extends CameraView {
 					mvop.addMapViewObject(mvoFactory.createItemMapViewObject(itemIter.next(), i, j));
 				}
 
-				mvop.addMapViewObject(mvoFactory.createTerrainMapViewObject(tile.getTerrain(), i, j));
 			}
+		}
+		Iterator<TerrainMapViewObject> iter = mvoFactory.createPrettyTerrain(map,x,y,width,height);
+		while (iter.hasNext()) {
+			mvop.addMapViewObject(iter.next());
 		}
 	}
 }

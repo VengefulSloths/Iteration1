@@ -69,4 +69,8 @@ public class MenuState extends MainControllerState {
     public boolean handle5Key() {
         return false;
     }
+
+    public String toString() {
+        return "MenuState";
+    }
 }

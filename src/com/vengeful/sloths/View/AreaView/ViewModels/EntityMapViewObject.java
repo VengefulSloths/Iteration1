@@ -1,12 +1,17 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.ViewModels;
 
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.ViewTime;
+import com.vengeful.sloths.Models.Map.MapItems.*;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-public class EntityMapViewObject extends ViewObject 
-		implements EntityObserver{
+public class EntityMapViewObject extends ViewObject
+		implements EntityObserver {
 
 	private AnimatedImage walkingN;
 	private AnimatedImage walkingNE;
@@ -61,12 +66,21 @@ public class EntityMapViewObject extends ViewObject
 	}
 
 	private float calculatePosition(int startX, int endX, long startTime, long endTime) {
-		long t = System.currentTimeMillis();
+		long t = ViewTime.getInstance().getCurrentTimeMilli();
 		if (t > endTime) {
 			return endX;
 
 		}
 		else return (float)(endX-startX)/(float)(endTime-startTime)*(float)(t - startTime) + (float)startX;
+	}
+
+	public float getFloatX() {
+		return calculatePosition(startX, postX, animationStartTime, animationFinishTime);
+	}
+
+	public float getFloatY() {
+		return 	calculatePosition(startY, postY, animationStartTime, animationFinishTime);
+
 	}
 
 	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, AnimatedImage standingImage) {
@@ -139,8 +153,12 @@ public class EntityMapViewObject extends ViewObject
 		this.x = x;
 		this.y = y;
 
-		this.animationStartTime = System.currentTimeMillis();
-		this.animationFinishTime = System.currentTimeMillis() + animationTime;
+		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
+		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + animationTime;
 	}
 
+	@Override
+	public void alertDrop(int x, int y, MapItem itemToDrop) {
+		//do nothing
+	}
 }

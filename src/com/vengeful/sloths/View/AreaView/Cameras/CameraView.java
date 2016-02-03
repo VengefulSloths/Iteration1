@@ -1,7 +1,8 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Cameras;
 
 import com.vengeful.sloths.Models.Map.Map;
-import com.vengeful.sloths.Utility.Coord;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.MapViewObjectManager;
 
 public abstract class CameraView {
 	protected Map map;
@@ -21,6 +22,13 @@ public abstract class CameraView {
 	}
 	public int getWidth() {
 		return width;
+	}
+
+	public CameraView(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.height = height;
+		this.width = width;
 	}
 
 	public boolean contains(int x, int y) {

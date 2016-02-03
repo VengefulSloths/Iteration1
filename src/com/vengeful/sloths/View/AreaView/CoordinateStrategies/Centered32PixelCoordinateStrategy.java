@@ -1,6 +1,7 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.CoordinateStrategies;
 
 import com.vengeful.sloths.Utility.Config;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 
 public class Centered32PixelCoordinateStrategy extends CoordinateStrategy {
 	private int xOffset;
@@ -12,24 +13,24 @@ public class Centered32PixelCoordinateStrategy extends CoordinateStrategy {
 		System.out.println(xOffset + " " + yOffset);
 	}
 	@Override
-	public int convertToPixelsX(int x) {
-		return xOffset+x*32;
+	public int convertX(int x) {
+		return xOffset+(x - cv.getX())*32;
 	}
 
 	@Override
-	public int convertToPixelsX(float x) {
-		return xOffset+(int)(x*32);
+	public int convertX(float x) {
+		return xOffset+(int)((x - (float)cv.getX())*32);
 	}
 
 
 
 	@Override
-	public int convertToPixelsY(int y) {
-		return yOffset+y*32;
+	public int convertY(int y) {
+		return yOffset+(y - cv.getY())*32;
 	}
 	@Override
-	public int convertToPixelsY(float y) {
-		return yOffset+(int)(y*32);
+	public int convertY(float y) {
+		return yOffset+(int)((y - (float)cv.getY())*32);
 	}
 
 }

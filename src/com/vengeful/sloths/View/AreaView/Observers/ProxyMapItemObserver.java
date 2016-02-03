@@ -1,4 +1,4 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Observers;
 
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 
