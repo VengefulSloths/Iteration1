@@ -46,7 +46,6 @@ public class Main {
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
         Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
         map.getTile(avatar.getLocation()).addEntity(avatar);
-        //MainController controller = new MainController(avatar, viewEngine);
 
 
         AreaView av = new AreaView(cvm, avatar);
@@ -58,23 +57,25 @@ public class Main {
 
 
         /**** Take-able and InventoryItems need to be paired up when created */
-        MapItem mi1 = new TakeableItem(new Hat("BlueHat", new BaseStats()));
-        MapItem mi2 = new TakeableItem(new Hat("BlueHat", new BaseStats()));
+        MapItem mi1 = new TakeableItem(new Hat("BlueHat"));
+        MapItem mi2 = new TakeableItem(new Hat("BlueHat"));
+        MapItem mi3 = new TakeableItem(new Sword("GodSword"));
 
         //avatar.addItem(new Hat("BlueHat"));
         //avatar.addItem(new Hat("BlueHat"));
         avatar.addItem(((TakeableItem)mi1).getInvItemRep());
         avatar.addItem(((TakeableItem)mi2).getInvItemRep());
+        avatar.addItem(((TakeableItem)mi3).getInvItemRep());
         //TODO: a new factory for creating takable item + inventory item?
 
 
 
         ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
+        
 
-        MainController controller = new MainController(avatar, viewEngine);
-
-
+        //make controller
+        MainController controller = new MainController(avatar, viewEngine, vm);
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);
@@ -88,7 +89,7 @@ public class Main {
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        avatar.addItem(new Sword("Excal"));
+                        //avatar.addItem(new Sword("Excal"));
                         // your code here
                     }
                 },

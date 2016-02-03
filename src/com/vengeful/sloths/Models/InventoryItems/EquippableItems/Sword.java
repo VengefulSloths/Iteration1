@@ -8,14 +8,14 @@ import com.vengeful.sloths.Models.Stats.BaseStats;
  */
 public class Sword extends EquippableItems {
 
-    public Sword(String swordName, BaseStats b) {
-        super(swordName, b);
-    }
+    //public Sword(String swordName, BaseStats b) {
+    //    super(swordName, b);
+    //}
 
     public Sword(String swordName){
         super(swordName);
         //this.itemStats.setStats(10,0,0,0,0); //currently causes error
-        this.itemStats = new BaseStats(0,0,0,10,0);
+        this.itemStats.setStats(0,0,0,10,0);
 
     }
 
