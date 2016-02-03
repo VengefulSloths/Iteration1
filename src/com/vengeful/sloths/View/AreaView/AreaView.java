@@ -8,6 +8,7 @@ import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.ViewObject;
+import com.vengeful.sloths.Models.Map.MapItems.*;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -87,5 +88,9 @@ public class AreaView extends JPanel
 			this.playerY = y;
 		}
 	}
-	
+
+	@Override
+	public void alertDrop(int x, int y, MapItem itemToDrop) {
+
+	}
 }

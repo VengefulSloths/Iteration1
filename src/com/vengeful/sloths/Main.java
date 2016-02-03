@@ -7,6 +7,9 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
@@ -16,6 +19,7 @@ import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
+import com.vengeful.sloths.Models.Stats.*;
 
 public class Main {
 
@@ -44,19 +48,29 @@ public class Main {
         map.getTile(avatar.getLocation()).addEntity(avatar);
 
 
-
         AreaView av = new AreaView(cvm, avatar);
 
 
         // Create inventory, add it to avatar and ListInventoryView
         Inventory inventory = new Inventory();
         avatar.setInventory(inventory);
-        avatar.addItem(new Hat("BlueHat"));
-        avatar.addItem(new Hat("BlueHat"));
+
+
+        /**** Take-able and InventoryItems need to be paired up when created */
+        MapItem mi1 = new TakeableItem(new Hat("BlueHat", new BaseStats()));
+        MapItem mi2 = new TakeableItem(new Hat("BlueHat", new BaseStats()));
+
+        //avatar.addItem(new Hat("BlueHat"));
+        //avatar.addItem(new Hat("BlueHat"));
+        avatar.addItem(((TakeableItem)mi1).getInvItemRep());
+        avatar.addItem(((TakeableItem)mi2).getInvItemRep());
+        //TODO: a new factory for creating takable item + inventory item?
+
+
 
         ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
-
+        
 
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);

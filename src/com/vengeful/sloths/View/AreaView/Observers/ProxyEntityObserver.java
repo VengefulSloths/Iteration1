@@ -2,6 +2,7 @@ package com.vengeful.sloths.View.AreaView.Observers;
 
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.Models.Map.MapItems.*;
 
 /**
  * Created by alexs on 1/31/2016.
@@ -34,4 +35,12 @@ public class ProxyEntityObserver extends ProxyObserver
         }
     }
 
+    @Override
+    public void alertDrop(int x, int y, MapItem itemToDrop) {
+        System.out.println("WHO IS MY TARGET?: " + target);
+
+        if (!deleteFlag) {
+            target.alertDrop(x,y,itemToDrop);
+        }
+    }
 }

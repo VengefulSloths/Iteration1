@@ -5,6 +5,7 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
 import com.vengeful.sloths.View.ViewTime;
+import com.vengeful.sloths.Models.Map.MapItems.*;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -156,4 +157,8 @@ public class EntityMapViewObject extends ViewObject
 		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + animationTime;
 	}
 
+	@Override
+	public void alertDrop(int x, int y, MapItem itemToDrop) {
+		//do nothing
+	}
 }

@@ -41,7 +41,7 @@ public abstract class Entity implements ViewObservable{
         this.name = name;
         this.entityObservers = new ArrayList<>();
         this.entityStats = entityStats;
-//        this.inventory = new Inventory();
+        this.inventory = new Inventory();
 
         // Default facing South
         this.facingDirection = Direction.S;

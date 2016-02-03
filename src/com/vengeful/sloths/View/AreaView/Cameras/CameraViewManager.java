@@ -20,6 +20,10 @@ public class CameraViewManager {
                 x< cv.getX() + cv.getWidth() &&
                 x >= cv.getX() &&
                 x< cv.getX() + cv.getWidth()) {
+                //set up proxy observer
+                //register the proxy with player
+                //add the proxy to manager
+                //Make sure CameraView is not registered twice
                 return cv;
             }
         }
