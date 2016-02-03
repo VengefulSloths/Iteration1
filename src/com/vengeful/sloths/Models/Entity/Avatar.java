@@ -119,13 +119,19 @@ public class Avatar extends Entity {
             - delete item from inventory
          */
 
+        System.out.println("BEFORE DROP: " + inventory.getItem(0) + inventory.getItem(1) + inventory.getItem(2));
+
         try{
             InventoryItem itemToDrop = inventory.getItem(itemIndex);
             this.commandFactory.createDropCommand(itemToDrop, this.getLocation(), this);
 
         }catch(Exception e){
             //whatever
+
         }
+
+        System.out.println("AFTER DROP: " + inventory.getItem(0) + inventory.getItem(1) + inventory.getItem(2));
+
 
         return true;
     }

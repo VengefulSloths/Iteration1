@@ -1,5 +1,6 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Direction;
@@ -34,4 +35,5 @@ public class ProxyEntityObserver extends ProxyObserver
             target.alertMove(x,y,animationTime);
         }
     }
+
 }

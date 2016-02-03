@@ -1,6 +1,7 @@
 package com.vengeful.sloths.View.AreaView;
 
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.EntityMapViewObject;
@@ -83,4 +84,5 @@ public class AreaView extends JPanel
 			this.playerY = y;
 		}
 	}
+	
 }

@@ -5,6 +5,9 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Tile;
+import com.vengeful.sloths.View.AreaView.EntityObserver;
+
+import java.util.Iterator;
 
 /**
  * Created by luluding on 2/1/16.
@@ -30,11 +33,18 @@ public class AvatarDropCommand extends DropCommand{
         //System.out.println("I am dropping!!!");
 
         //The logic for droppping goes here
+
+        //System.out.println("MY LOCATION IS:" + dropLocation);
         Tile tile = map.getTile(dropLocation);
+        //System.out.println("MY TILE IS:" + tile);
         tile.addMapItem(itemToDrop.getMapItemRep());
         entity.getInventory().removeItem(itemToDrop);
 
-        //System.out.println("I am DONE dropping!!!");
+        System.out.println("I am DONE dropping!!!");
+        System.out.println("dropped " + itemToDrop.getItemName());
+
+
+
 
         /*
         System.out.println("After dropping");

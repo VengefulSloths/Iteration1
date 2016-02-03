@@ -32,7 +32,9 @@ public abstract class MapItem implements ViewObservable{
 
     public void destroy() {
         observer.alertDestroyed();
+        System.out.println("This is map object, my observer is: " + observer);
     }
+
 
     @Override
     public void registerObserver(ModelObserver modelObserver) {

@@ -3,6 +3,7 @@ package com.vengeful.sloths.View.AreaView;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Mountain;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
@@ -11,6 +12,7 @@ import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -141,10 +143,30 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
 
     public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
 
-        ItemMapViewObject itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Box/Destroyed/temp", 1, 1000, coordinateStrategy);
+        ItemMapViewObject itemView = null;
+
+        //Test pickup/drop item
+        if(mapItem instanceof TakeableItem){
+            if(((TakeableItem) mapItem).getInvItemRep() instanceof Hat){
+                itemView = new ItemMapViewObject(x, y, "resources/Blue Partyhat.jpg", "", 1, 1000, coordinateStrategy);
+            }else if(((TakeableItem) mapItem).getInvItemRep() instanceof Sword){
+                itemView = new ItemMapViewObject(x, y, "resources/GodSword.jpg", "", 1, 1000, coordinateStrategy);
+            }
+
+        }else{
+            itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Box/Destroyed/temp", 1, 1000, coordinateStrategy);
+
+        }
+
+
         ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
         ObserverManager.instance().addProxyObserver(pmio);
-
         return itemView;
+
+
+        /*
+        ItemMapViewObject itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Box/Destroyed/temp", 1, 1000, coordinateStrategy);
+        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
+        ObserverManager.instance().addProxyObserver(pmio);*/
     }
 }
