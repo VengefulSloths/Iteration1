@@ -15,15 +15,16 @@ public abstract class EquippableItems extends InventoryItem {
         return itemStats;
     }
 
-    public EquippableItems(String itemName, BaseStats b){
+    //public EquippableItems(String itemName, BaseStats b){
         //super(); //not needed
-        this.itemName = itemName;
-        this.itemStats = b;
-    }
+    //    this.itemName = itemName;
+    //    this.itemStats = b;
+    //}
 
     public EquippableItems(String itemName){
         //super(); //not needed
         this.itemName = itemName;
+        this.itemStats = new BaseStats(0,0,0,0,0);
     }
 
 

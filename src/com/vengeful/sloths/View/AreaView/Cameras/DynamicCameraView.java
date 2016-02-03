@@ -80,5 +80,6 @@ public class DynamicCameraView extends CameraView
     @Override
     public void alertDrop(int x, int y, MapItem itemToDrop) {
         //mapViewObjectManager.addMapViewObject(mvoFactory.createItemMapViewObject(itemToDrop, x, y));
+        mapViewObjectManager.addMapViewObject(mvoFactory.createItemMapViewObject(itemToDrop, x, y));
     }
 }
