@@ -4,7 +4,7 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.Animation.BoundedAnimation;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
-import com.vengeful.sloths.View.AreaView.Observers.MapItemObserver;
+import com.vengeful.sloths.View.Observers.MapItemObserver;
 
 import javax.swing.*;
 import java.awt.*;

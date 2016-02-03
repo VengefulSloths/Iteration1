@@ -1,10 +1,13 @@
 package com.vengeful.sloths.View.AreaView.Cameras;
 
 import com.vengeful.sloths.Models.Map.Map;
+import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 import com.vengeful.sloths.View.AreaView.MapViewObjectManager;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 
-public abstract class CameraView {
+public abstract class CameraView implements EntityObserver {
 	protected Map map;
 	protected int x;
 	protected int y;
@@ -41,4 +44,5 @@ public abstract class CameraView {
 		this.map = map;
 	}
 	public abstract void populate(MapViewObjectManager mvom);
+
 }

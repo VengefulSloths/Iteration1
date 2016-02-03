@@ -48,6 +48,7 @@ public class InventoryState extends MainControllerState {
 
     @Override
     public boolean handle2Key() {
+        
         // Move down an item
         if (this.inventoryIndex == mainController.getInventory().getSize()) {
             return false;
@@ -110,7 +111,14 @@ public class InventoryState extends MainControllerState {
 
     @Override
     public boolean handle5Key() {
-        return false;
+        //return false;
+
+        //TODO: change this back after done testing
+        /* Test drop item */
+
+        mainController.getAvatar().drop(inventoryIndex);
+
+        return true;
     }
 
     public String toString() {

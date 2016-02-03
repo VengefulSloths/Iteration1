@@ -18,8 +18,8 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.Animation.BoundedAnimation;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.Centered32PixelCoordinateStrategy;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyEntityObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyMapItemObserver;
+import com.vengeful.sloths.View.Observers.ProxyEntityObserver;
+import com.vengeful.sloths.View.Observers.ProxyMapItemObserver;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.ItemMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
@@ -73,6 +73,7 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
         }
 
         EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, facingImage);
+
         AnimatedImageFactory aif = AnimatedImageFactory.instance();
         emvo.setWalkingN( aif.createTimedAnimatedImage("resources/man2/moving/north/man_north"));
         emvo.setWalkingNE(aif.createTimedAnimatedImage("resources/man2/moving/northeast/man_northeast"));
@@ -82,6 +83,7 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
         emvo.setWalkingSW(aif.createTimedAnimatedImage("resources/man2/moving/southwest/man_southwest"));
         emvo.setWalkingW( aif.createTimedAnimatedImage("resources/man2/moving/west/man_west"));
         emvo.setWalkingNW(aif.createTimedAnimatedImage("resources/man2/moving/northwest/man_northwest"));
+
 
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
@@ -153,6 +155,8 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
     }
 
     public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
+        System.out.println("NEW CAMERA");
+        System.out.println("ITEMS! " + mapItem);
 
         ItemMapViewObject itemView = null;
 
@@ -172,6 +176,8 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
 
         ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
         ObserverManager.instance().addProxyObserver(pmio);
+
+
         return itemView;
 
 
