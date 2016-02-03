@@ -56,7 +56,7 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         manager = new ListInventoryViewObjectManager();
 
 
-//        manager.initWithInventory(avatar);
+        manager.initWithInventory(inventory);
 
         /* edit the next two lines/maybe delete them */
         setLayout(new BorderLayout());
@@ -104,12 +104,12 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         System.out.println("Item: " + item.getItemName() + " Added!");
 
         if (item instanceof Hat) {
+            PartyHatItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(PartyHatItemViewObject);
         } else if (item instanceof Sword) {
+            GodSwordItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(GodSwordItemViewObject);
         }
-
-
 
     }
 

@@ -27,8 +27,6 @@ public class MainController {
     private Screen screen;
     private ViewManager viewManager;
 
-    private DefaultViewManager dvm;
-
     private AvatarState avatarState;
     private InventoryState inventoryState;
     private MenuState menuState;
@@ -37,8 +35,6 @@ public class MainController {
 
         this.player = player;
         System.out.println("in the maincontroller");
-
-        this.dvm = dvm;
 
         this.inventory = player.getInventory();
         this.viewManager = vm;
@@ -53,7 +49,7 @@ public class MainController {
     }
 
     public DefaultViewManager getDefaultViewManager() {
-        return this.dvm;
+        return (DefaultViewManager)this.viewManager;
     }
 
     public MainControllerState getState() {

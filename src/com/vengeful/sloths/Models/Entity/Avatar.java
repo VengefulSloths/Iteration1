@@ -118,8 +118,15 @@ public class Avatar extends Entity {
             - delete item from inventory
          */
 
-        System.out.println("BEFORE DROP: " + inventory.getItem(0) + inventory.getItem(1) + inventory.getItem(2));
-
+        System.out.println("BEFORE DROP: ");
+        for (int i = 0; i < inventory.getSize(); i++) {
+            System.out.print(inventory.getItem(i).getItemName()+"\t ");
+        }
+        System.out.println();
+        System.out.println("Inventory Item being dropped: :");
+        System.out.println(item.getItemName());
+        System.out.println("MapItemRep:");
+        System.out.println(item.getMapItemRep());
         try{
 //            InventoryItem itemToDrop = inventory.getItem(itemIndex);
             this.commandFactory.createDropCommand(item, this.getLocation(), this);
@@ -129,8 +136,10 @@ public class Avatar extends Entity {
 
         }
 
-        System.out.println("AFTER DROP: " + inventory.getItem(0) + inventory.getItem(1) + inventory.getItem(2));
-
+        System.out.println("AFTER DROP: ");
+        for (int i = 0; i < inventory.getSize(); i++) {
+            System.out.print(inventory.getItem(i).getItemName()+"\t ");
+        }
 
         return true;
     }

@@ -30,6 +30,8 @@ public class AvatarDropCommand extends DropCommand{
 
         //System.out.println("BEFORE DROP: " + entity.getInventory().getItem(0) + entity.getInventory().getItem(1) + entity.getInventory().getItem(2));
 
+        System.out.println(" I am the execute() of AvatarDropCommand");
+        System.out.println("I am dropping item: " + itemToDrop.getItemName());
         Tile tile = map.getTile(dropLocation);
         tile.addMapItem(itemToDrop.getMapItemRep());
         entity.getInventory().removeItem(itemToDrop);

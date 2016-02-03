@@ -29,6 +29,7 @@ public class ProxyInventoryObserver extends ProxyObserver
 
         System.out.println("PROXY OBSERVER");
         System.out.println("Item: " + item.getItemName() + " Added!");
+
         target.alertItemAdded(item);
     }
 

@@ -7,6 +7,7 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
@@ -53,10 +54,22 @@ public class Main {
         avatar.setInventory(inventory);
 
 
+        AreaView av = new AreaView(cvm, avatar);
+
+        ListInventoryView iv = new ListInventoryView(inventory);
+        DefaultViewManager vm = new DefaultViewManager(av, iv);
+
+
+        MainController controller = new MainController(avatar, viewEngine, vm);
+
         /**** Take-able and InventoryItems need to be paired up when created */
-        MapItem mi1 = new TakeableItem(new Hat("BlueHat"));
-        MapItem mi2 = new TakeableItem(new Hat("BlueHat"));
-        MapItem mi3 = new TakeableItem(new Sword("GodSword"));
+        InventoryItem hat1 = new Hat("BlueHat");
+        InventoryItem hat2 = new Hat("BlueHat");
+        InventoryItem sword1 = new Sword("GodSword");
+
+        MapItem mi1 = new TakeableItem(hat1);
+        MapItem mi2 = new TakeableItem(hat2);
+        MapItem mi3 = new TakeableItem(sword1);
 
         //avatar.addItem(new Hat("BlueHat"));
         //avatar.addItem(new Hat("BlueHat"));
@@ -65,17 +78,6 @@ public class Main {
         avatar.addItem(((TakeableItem)mi3).getInvItemRep());
         //TODO: a new factory for creating takable item + inventory item?
 
-
-
-
-
-        AreaView av = new AreaView(cvm, avatar);
-
-        ListInventoryView iv = new ListInventoryView(inventory);
-        DefaultViewManager vm = new DefaultViewManager(av, iv);
-
-
-        MainController controller = new MainController(avatar, viewEngine, vm);
 
 
         //set up engines

@@ -16,8 +16,8 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
 
     private ArrayList<InventoryItemViewObject> itemList;
 
-    InventoryItemViewObject GodSwordItemViewObject = new InventoryItemViewObject(new Sword("GodSword"));
-    InventoryItemViewObject PartyHatItemViewObject = new InventoryItemViewObject(new Hat("Blue Partyhat"));
+    InventoryItemViewObject GodSwordItemViewObject;
+    InventoryItemViewObject PartyHatItemViewObject;
 
     public ListInventoryViewObjectManager() {
         itemList = new ArrayList<InventoryItemViewObject>();
@@ -36,9 +36,13 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
     public void initWithInventory(Inventory inventory) {
         for (int i = 0; i < inventory.getSize(); i++) {
             InventoryItem item = inventory.getItem(i);
+
+
             if (item instanceof Hat) {
+                PartyHatItemViewObject = new InventoryItemViewObject(item);
                 this.addInventoryItemViewObject(PartyHatItemViewObject);
             } else if (item instanceof Sword) {
+                GodSwordItemViewObject = new InventoryItemViewObject(item);
                 this.addInventoryItemViewObject(GodSwordItemViewObject);
             }
         }

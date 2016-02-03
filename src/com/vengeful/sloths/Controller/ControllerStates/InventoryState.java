@@ -125,6 +125,8 @@ public class InventoryState extends MainControllerState {
 
         InventoryItem i = ((ListInventoryView)this.inventoryView).manager.removeInventoryItemViewObject(this.inventoryIndex--).getInventoryItem();
 
+        System.out.println("DROPPING " + i.getItemName());
+
         mainController.getAvatar().drop(i);
 
         if (this.inventoryIndex <= 0) this.inventoryIndex = 0;

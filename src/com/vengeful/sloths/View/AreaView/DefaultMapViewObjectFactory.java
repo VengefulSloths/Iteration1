@@ -159,7 +159,7 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
         //Test pickup/drop item
         if(mapItem instanceof TakeableItem){
             if(((TakeableItem) mapItem).getInvItemRep() instanceof Hat){
-                itemView = new ItemMapViewObject(x, y, "resources/Blue Partyhat.jpg", "", 1, 1000, coordinateStrategy);
+                itemView = new ItemMapViewObject(x, y, "resources/BlueHat.jpg", "", 1, 1000, coordinateStrategy);
             }else if(((TakeableItem) mapItem).getInvItemRep() instanceof Sword){
                 itemView = new ItemMapViewObject(x, y, "resources/GodSword.jpg", "", 1, 1000, coordinateStrategy);
             }
