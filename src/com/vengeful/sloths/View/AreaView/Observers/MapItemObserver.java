@@ -1,4 +1,4 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Observers;
 
 /**
  * Created by Alex on 2/1/2016.

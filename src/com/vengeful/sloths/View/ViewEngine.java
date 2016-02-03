@@ -1,16 +1,8 @@
 package com.vengeful.sloths.View;
 
-import com.vengeful.sloths.View.AreaView.AreaView;
-
 import javax.swing.*;
 
 import javax.swing.JFrame;
-import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
-
-import javax.swing.*;
-
 
 
 public class ViewEngine extends JFrame implements Runnable{
@@ -42,7 +34,7 @@ public class ViewEngine extends JFrame implements Runnable{
             long lastTime = System.currentTimeMillis();
 
             //Actual Code goes here
-
+            ViewTime.getInstance().tick();
             jpanel.repaint();
             //EntityObserver eo = (EntityObserver)av.getPlayer();
 

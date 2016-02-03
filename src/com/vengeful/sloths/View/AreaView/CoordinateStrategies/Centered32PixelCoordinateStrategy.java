@@ -1,6 +1,7 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.CoordinateStrategies;
 
 import com.vengeful.sloths.Utility.Config;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 
 public class Centered32PixelCoordinateStrategy extends CoordinateStrategy {
 	private int xOffset;

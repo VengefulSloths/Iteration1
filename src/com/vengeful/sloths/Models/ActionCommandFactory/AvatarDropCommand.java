@@ -5,8 +5,7 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Tile;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
-
+import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
 import java.util.Iterator;
 
 /**

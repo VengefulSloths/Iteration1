@@ -4,7 +4,11 @@ import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
-import com.vengeful.sloths.Models.Map.Tile;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.ItemMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
 
 import java.util.Iterator;
 

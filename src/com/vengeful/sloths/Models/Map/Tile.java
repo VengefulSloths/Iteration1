@@ -4,15 +4,9 @@ import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
-import com.vengeful.sloths.Models.ViewObservable;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
-import com.vengeful.sloths.View.AreaView.MapItemObserver;
-import com.vengeful.sloths.View.AreaView.ModelObserver;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by John on 1/30/2016.

@@ -1,7 +1,8 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Cameras;
 
 import com.vengeful.sloths.Models.Map.Map;
-import com.vengeful.sloths.Utility.Coord;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.MapViewObjectManager;
 
 public abstract class CameraView {
 	protected Map map;

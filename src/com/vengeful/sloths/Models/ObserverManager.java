@@ -1,10 +1,9 @@
 package com.vengeful.sloths.Models;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.vengeful.sloths.Models.TimeModel.Alertable;
 import com.vengeful.sloths.Models.TimeModel.TimeModel;
-import com.vengeful.sloths.View.AreaView.ModelObserver;
-import com.vengeful.sloths.View.AreaView.ProxyObserver;
+import com.vengeful.sloths.View.AreaView.Observers.ModelObserver;
+import com.vengeful.sloths.View.AreaView.Observers.ProxyObserver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
