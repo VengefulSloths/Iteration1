@@ -3,7 +3,7 @@ package com.vengeful.sloths.View.AreaView.ViewModels;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.ViewTime;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 

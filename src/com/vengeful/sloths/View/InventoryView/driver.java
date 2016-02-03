@@ -3,7 +3,7 @@ package com.vengeful.sloths.View.InventoryView;
 
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 
 import javax.swing.*;

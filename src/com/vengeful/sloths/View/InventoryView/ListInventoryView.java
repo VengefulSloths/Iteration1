@@ -5,8 +5,8 @@ import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ObserverManager;
-import com.vengeful.sloths.View.AreaView.Observers.InventoryObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyInventoryObserver;
+import com.vengeful.sloths.View.Observers.InventoryObserver;
+import com.vengeful.sloths.View.Observers.ProxyInventoryObserver;
 
 import javax.swing.*;
 import java.awt.*;

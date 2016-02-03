@@ -70,7 +70,7 @@ public class Main {
 
         ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
-        
+
 
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);

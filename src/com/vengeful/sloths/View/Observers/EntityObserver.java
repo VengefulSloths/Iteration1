@@ -1,4 +1,4 @@
-package com.vengeful.sloths.View.AreaView.Observers;
+package com.vengeful.sloths.View.Observers;
 
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.Models.Map.MapItems.*;

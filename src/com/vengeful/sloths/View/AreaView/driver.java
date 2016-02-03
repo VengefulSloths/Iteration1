@@ -1,7 +1,6 @@
 package com.vengeful.sloths.View.AreaView;
 
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
-import jdk.nashorn.internal.parser.JSONParser;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 
 import javax.swing.JFrame;
 

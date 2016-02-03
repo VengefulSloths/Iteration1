@@ -2,8 +2,8 @@ package com.vengeful.sloths.Models.Map.MapItems;
 
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.ViewObservable;
-import com.vengeful.sloths.View.AreaView.Observers.MapItemObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ModelObserver;
+import com.vengeful.sloths.View.Observers.MapItemObserver;
+import com.vengeful.sloths.View.Observers.ModelObserver;
 
 /**
  * Created by John on 1/30/2016.
