@@ -30,6 +30,7 @@ public class ItemMapViewObject extends ViewObject
     public void alertDestroyed() {
         this.startTime = System.currentTimeMillis();
         this.isDestroyed = true;
+        System.out.println("I am alerted! (MapItem)");
     }
 
     @Override
