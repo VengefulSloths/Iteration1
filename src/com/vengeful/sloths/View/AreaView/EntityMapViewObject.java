@@ -1,6 +1,7 @@
 package com.vengeful.sloths.View.AreaView;
 
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.View.ViewTime;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -61,7 +62,7 @@ public class EntityMapViewObject extends ViewObject
 	}
 
 	private float calculatePosition(int startX, int endX, long startTime, long endTime) {
-		long t = System.currentTimeMillis();
+		long t = ViewTime.getInstance().getCurrentTimeMilli();
 		if (t > endTime) {
 			return endX;
 
@@ -148,8 +149,8 @@ public class EntityMapViewObject extends ViewObject
 		this.x = x;
 		this.y = y;
 
-		this.animationStartTime = System.currentTimeMillis();
-		this.animationFinishTime = System.currentTimeMillis() + animationTime;
+		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
+		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + animationTime;
 	}
 
 }

@@ -42,7 +42,7 @@ public class ViewEngine extends JFrame implements Runnable{
             long lastTime = System.currentTimeMillis();
 
             //Actual Code goes here
-
+            ViewTime.getInstance().tick();
             jpanel.repaint();
             //EntityObserver eo = (EntityObserver)av.getPlayer();
 
