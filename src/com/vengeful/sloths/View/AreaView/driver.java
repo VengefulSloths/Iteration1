@@ -1,5 +1,6 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
 import jdk.nashorn.internal.parser.JSONParser;
 
@@ -78,6 +79,5 @@ public class driver extends JFrame implements Runnable{
 
     public static void main(String[] args) {
 
-        
     }
 }

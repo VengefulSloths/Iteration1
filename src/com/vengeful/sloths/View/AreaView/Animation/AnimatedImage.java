@@ -6,5 +6,9 @@ import java.awt.*;
  * Created by Alex on 1/30/2016.
  */
 abstract public class AnimatedImage {
-    public abstract Image getCurrentImage(long startTime, long endTime);
+    protected long duration;
+    public abstract Image getCurrentImage(long startTime);
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
 }
