@@ -1,4 +1,6 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.CoordinateStrategies;
+
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 
 public abstract class CoordinateStrategy {
 	protected CameraView cv;

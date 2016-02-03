@@ -5,9 +5,6 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Tile;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
-
-import java.util.Iterator;
 
 /**
  * Created by luluding on 2/1/16.

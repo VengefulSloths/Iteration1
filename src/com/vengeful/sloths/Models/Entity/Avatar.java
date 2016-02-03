@@ -1,15 +1,12 @@
 package com.vengeful.sloths.Models.Entity;
 
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
-import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
 import com.vengeful.sloths.Models.Inventory.Equipped;
-import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
 
 /**
  * Created by zach on 1/30/16.

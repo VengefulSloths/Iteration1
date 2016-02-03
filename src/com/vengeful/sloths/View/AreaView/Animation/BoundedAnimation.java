@@ -1,4 +1,6 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Animation;
+
+import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
 
 import javax.swing.ImageIcon;
 import java.awt.*;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Alex on 1/30/2016.
  */
-public class BoundedAnimation extends AnimatedImage{
+public class BoundedAnimation extends AnimatedImage {
 
     private ArrayList<Image> images;
 

@@ -1,4 +1,6 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.ViewModels;
+
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -26,7 +28,7 @@ public class TerrainMapViewObject extends ViewObject {
 	}
 
 	@Override
-	void paintComponent(Graphics2D g) {
+	public void paintComponent(Graphics2D g) {
 		for (Image image:
 			 terrainImages) {
 			g.drawImage(image, converter.convertX(x), converter.convertY(y), this);

@@ -1,8 +1,7 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Observers;
 
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ViewObservable;
-import com.vengeful.sloths.Utility.Direction;
 
 /**
  * Created by zach on 2/1/16.

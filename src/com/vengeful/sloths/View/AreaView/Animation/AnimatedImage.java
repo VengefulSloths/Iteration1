@@ -1,4 +1,4 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Animation;
 
 import java.awt.*;
 

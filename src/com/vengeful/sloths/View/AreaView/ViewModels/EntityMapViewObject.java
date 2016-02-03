@@ -1,14 +1,16 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.ViewModels;
 
-import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
 import com.vengeful.sloths.View.ViewTime;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-public class EntityMapViewObject extends ViewObject 
-		implements EntityObserver{
+public class EntityMapViewObject extends ViewObject
+		implements EntityObserver {
 
 	private AnimatedImage walkingN;
 	private AnimatedImage walkingNE;

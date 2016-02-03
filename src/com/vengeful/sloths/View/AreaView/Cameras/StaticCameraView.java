@@ -1,12 +1,13 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.Cameras;
 
-import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Utility.Coord;
-import com.vengeful.sloths.View.AreaView.CameraView;
+import com.vengeful.sloths.View.AreaView.DefaultMapViewObjectFactory;
+import com.vengeful.sloths.View.AreaView.MapViewObjectFactory;
+import com.vengeful.sloths.View.AreaView.MapViewObjectManager;
+import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class StaticCameraView extends CameraView {

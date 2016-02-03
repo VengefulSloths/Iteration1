@@ -1,11 +1,14 @@
 package com.vengeful.sloths.View.AreaView;
 
 import com.vengeful.sloths.Models.Entity.Entity;
-import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.EntityMapViewObject;
-import java.awt.Color;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
+import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.ViewObject;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;

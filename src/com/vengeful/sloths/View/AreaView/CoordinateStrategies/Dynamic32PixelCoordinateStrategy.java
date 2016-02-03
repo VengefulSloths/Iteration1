@@ -1,6 +1,8 @@
-package com.vengeful.sloths.View.AreaView;
+package com.vengeful.sloths.View.AreaView.CoordinateStrategies;
 
 import com.vengeful.sloths.Utility.Config;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
+import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 
 /**
  * Created by alexs on 2/1/2016.

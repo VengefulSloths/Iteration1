@@ -1,6 +1,5 @@
 package com.vengeful.sloths;
 
-import com.sun.glass.ui.View;
 import com.vengeful.sloths.Controller.MainController;
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
 import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
@@ -8,17 +7,12 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
-import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ModelEngine;
-import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
-import com.vengeful.sloths.Utility.Coord;
-import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.View.AreaView.CameraViewManager;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;

@@ -13,6 +13,14 @@ import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
+import com.vengeful.sloths.View.AreaView.Animation.BoundedAnimation;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.Centered32PixelCoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.Observers.ProxyEntityObserver;
+import com.vengeful.sloths.View.AreaView.Observers.ProxyMapItemObserver;
+import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.ItemMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,7 +28,7 @@ import java.util.Iterator;
 /**
  * Created by alexs on 1/31/2016.
  */
-public class DefaultMapViewObjectFactory extends MapViewObjectFactory{
+public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
     public DefaultMapViewObjectFactory(CameraView cv) {
         this.currentCameraView = cv;
         coordinateStrategy = new Centered32PixelCoordinateStrategy(this.currentCameraView);
