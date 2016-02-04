@@ -3,6 +3,7 @@ package com.vengeful.sloths.View.AreaView;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
@@ -42,28 +43,27 @@ public abstract class MapViewObjectFactory {
         System.out.println("NEW CAMERA");
         System.out.println("ITEMS! " + mapItem);
 
-        ItemMapViewObject itemView = null;
+        ItemMapViewObject itemViewObject = null;
 
         //Test pickup/drop item
         if(mapItem instanceof TakeableItem){
             String pickUpSoundPath = "resources/Audio/pickup.wav";
-            if(((TakeableItem) mapItem).getInvItemRep() instanceof Hat){
-                itemView = new ItemMapViewObject(x, y, "resources/Items/BluePartyHat", pickUpSoundPath, coordinateStrategy);
-            }else if(((TakeableItem) mapItem).getInvItemRep() instanceof Sword){
-                itemView = new ItemMapViewObject(x, y, "resources/Items/GodSword", pickUpSoundPath, coordinateStrategy);
-            }
+            InventoryItem item = ((TakeableItem) mapItem).getInvItemRep();
+
+            itemViewObject = new ItemMapViewObject(x, y, "resources/Items/Takeable/" + item.getItemName(), pickUpSoundPath, coordinateStrategy);
+
 
         }else{
-            itemView = new ItemMapViewObject(x, y, "resources/Items/Box", "resources/Audio/break.wav", coordinateStrategy);
+            itemViewObject = new ItemMapViewObject(x, y, "resources/Items/Box", "resources/Audio/break.wav", coordinateStrategy);
 
         }
 
 
-        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
+        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemViewObject, mapItem);
         ObserverManager.instance().addProxyObserver(pmio);
 
 
-        return itemView;
+        return itemViewObject;
 
 
         /*
