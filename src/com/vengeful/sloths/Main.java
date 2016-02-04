@@ -49,6 +49,7 @@ public class Main {
         Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
         map.getTile(avatar.getLocation()).addEntity(avatar);
         MainController controller = new MainController(avatar, viewEngine);
+        modelEngine.setController(controller);
 
 
         AreaView av = new AreaView(cvm, avatar);
