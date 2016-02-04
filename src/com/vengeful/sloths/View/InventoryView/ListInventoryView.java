@@ -7,8 +7,11 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.View.Observers.InventoryObserver;
 import com.vengeful.sloths.View.Observers.ProxyInventoryObserver;
+import com.vengeful.sloths.View.Observers.ProxyObserver;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.Iterator;
 
@@ -39,8 +42,8 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
     }
 
     /*EDIT: for testing purposes. */
-    InventoryItemViewObject GodSwordItemViewObject = new InventoryItemViewObject(new Sword("GodSword"));
-    InventoryItemViewObject PartyHatItemViewObject = new InventoryItemViewObject(new Hat("Blue Partyhat"));
+    InventoryItemViewObject GodSwordItemViewObject;
+    InventoryItemViewObject PartyHatItemViewObject;
 
     public ListInventoryView(Inventory inventory) {
 
@@ -48,7 +51,7 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         // pass in self
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
-        ProxyInventoryObserver pio = new ProxyInventoryObserver(this, inventory);
+        ProxyObserver pio = new ProxyInventoryObserver(this, inventory);
         ObserverManager.instance().addProxyObserver(pio);
 
         //this.setPreferredSize(new Dimension(viewWidth, viewHeight));
@@ -59,18 +62,6 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         setLayout(new BorderLayout());
         this.add(new JLabel("Inventory"), BorderLayout.NORTH);
 
-//        manager.addInventoryItemViewObject(testItem2);
-//        manager.addInventoryItemViewObject(testItem);
-
-
-
-//        manager.addInventoryItemViewObject(testItem2);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem2);
 
     }
 
@@ -85,7 +76,17 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
 
         while (iter.hasNext()) {
             InventoryItemViewObject current = iter.next();
-            current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
+            if(current.isSelected) {
+                System.out.print("borderersrs");
+//                current.setBorder();
+                Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLUE, Color.BLUE);
+                b.paintBorder(current, g2d, 0, offset, viewWidth, viewHeight);
+
+                current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
+
+            }else {
+                current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
+            }
             offset = offset + current.IMAGE_HEIGHT + 2;
         }
 
@@ -97,12 +98,11 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
     @Override
     public void alertItemAdded(InventoryItem item) {
 
-        System.out.println("LISTINVENTORYVIEW!!!!");
-        System.out.println("Item: " + item.getItemName() + " Added!");
-
         if (item instanceof Hat) {
+            PartyHatItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(PartyHatItemViewObject);
         } else if (item instanceof Sword) {
+            GodSwordItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(GodSwordItemViewObject);
         }
 
@@ -114,7 +114,22 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
     public void alertItemDropped(InventoryItem item) {
         System.out.println("LISTINVENTORYVIEW!!!!");
         System.out.println("Item: " + item.getItemName() + " DROPPED!");
+        manager.removeInventoryItemViewObject(item);
     }
+
+    public void setSelected(InventoryItemViewObject item){
+        //give a border
+        item.isSelected = true;
+
+    }
+
+
+    public void setDeselected(InventoryItemViewObject item){
+        //give a border
+        item.isSelected = false;
+
+    }
+
 
 
 }

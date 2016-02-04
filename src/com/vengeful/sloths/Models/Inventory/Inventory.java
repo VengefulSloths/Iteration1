@@ -57,14 +57,11 @@ public class Inventory implements ViewObservable {
         if (this.currentSize-- <= 0)
             this.currentSize = 0;
 
-        //@TODO: REMOVE REMOVE REMOVE
-        /*
         Iterator<InventoryObserver> iter = this.inventoryObservers.iterator();
         while (iter.hasNext()) {
             InventoryObserver io = iter.next();
             io.alertItemDropped(item);
-        }*/
-
+        }
 
         return inventory.remove(item);
     }
