@@ -5,8 +5,9 @@ import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ObserverManager;
-import com.vengeful.sloths.View.AreaView.Observers.InventoryObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyInventoryObserver;
+import com.vengeful.sloths.View.Observers.InventoryObserver;
+import com.vengeful.sloths.View.Observers.ProxyInventoryObserver;
+import com.vengeful.sloths.View.Observers.ProxyObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +49,7 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         // pass in self
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
-        ProxyInventoryObserver pio = new ProxyInventoryObserver(this, inventory);
+        ProxyObserver pio = new ProxyInventoryObserver(this, inventory);
         ObserverManager.instance().addProxyObserver(pio);
 
         //this.setPreferredSize(new Dimension(viewWidth, viewHeight));
@@ -101,8 +102,10 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         System.out.println("Item: " + item.getItemName() + " Added!");
 
         if (item instanceof Hat) {
+            PartyHatItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(PartyHatItemViewObject);
         } else if (item instanceof Sword) {
+            GodSwordItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(GodSwordItemViewObject);
         }
 

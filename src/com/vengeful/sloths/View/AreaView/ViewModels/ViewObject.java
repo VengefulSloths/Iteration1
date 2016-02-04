@@ -1,7 +1,7 @@
 package com.vengeful.sloths.View.AreaView.ViewModels;
 
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
-import com.vengeful.sloths.View.AreaView.Observers.ModelObserver;
+import com.vengeful.sloths.View.Observers.ModelObserver;
 
 import java.awt.Graphics2D;
 

@@ -3,7 +3,7 @@ package com.vengeful.sloths.View.AreaView.ViewModels;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.ViewTime;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 
@@ -105,7 +105,7 @@ public class EntityMapViewObject extends ViewObject
 	
 	public void paintComponent(Graphics2D g) {
 		if (currentAnimation != null) {
-			g.drawImage(currentAnimation.getCurrentImage(animationStartTime, animationFinishTime),
+			g.drawImage(currentAnimation.getCurrentImage(animationStartTime),
 					//g.drawImage(currentImage,
 					converter.convertX(calculatePosition(startX, postX, animationStartTime, animationFinishTime)),
 					converter.convertY(calculatePosition(startY, postY, animationStartTime, animationFinishTime)),
@@ -143,7 +143,9 @@ public class EntityMapViewObject extends ViewObject
 				currentAnimation = walkingNE;
 				break;
 		}
-			
+		currentAnimation.setDuration(this.animationFinishTime - this.animationStartTime);
+
+
 	}
 	public void alertMove(int x, int y, long animationTime) {
 		this.startX = this.x;
@@ -152,9 +154,10 @@ public class EntityMapViewObject extends ViewObject
 		this.postY = y;
 		this.x = x;
 		this.y = y;
-
+		currentAnimation.setDuration(animationTime);
 		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
 		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + animationTime;
+
 	}
 
 	@Override

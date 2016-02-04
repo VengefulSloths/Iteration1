@@ -70,6 +70,11 @@ public class MenuState extends MainControllerState {
         return false;
     }
 
+    @Override
+    public boolean handleDKey() {
+        return false;
+    }
+
     public String toString() {
         return "MenuState";
     }

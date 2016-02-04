@@ -10,8 +10,8 @@ import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ModelObserver;
+import com.vengeful.sloths.View.Observers.EntityObserver;
+import com.vengeful.sloths.View.Observers.ModelObserver;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -59,6 +59,8 @@ public class StaticCameraView extends CameraView {
 	@Override
 	public void alertDrop(int x, int y, MapItem itemToDrop) {
 		//mapViewObjectManager.addMapViewObject(mvoFactory.createItemMapViewObject(itemToDrop, x, y));
+		System.out.println("STATIC CAMERAVIEW");
+		System.out.println("ITEM IS: " + itemToDrop);
 		mvop.addMapViewObject(mvoFactory.createItemMapViewObject(itemToDrop, x, y));
 	}
 }
