@@ -2,7 +2,7 @@ package com.vengeful.sloths.View.AreaView.Cameras;
 
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.ObserverManager;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyEntityObserver;
+import com.vengeful.sloths.View.Observers.ProxyEntityObserver;
 import com.vengeful.sloths.Models.Entity.*;
 
 import java.util.ArrayList;
