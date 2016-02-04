@@ -5,6 +5,7 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 import com.vengeful.sloths.View.Observers.EntityObserver;
+import com.vengeful.sloths.View.Sound.SoundEffect;
 import com.vengeful.sloths.View.ViewTime;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 
@@ -195,6 +196,7 @@ public class EntityMapViewObject extends ViewObject
 		this.postY = y;
 		this.x = x;
 		this.y = y;
+		SoundEffect.GRASS.play();
 		currentAnimation.setDuration(animationTime);
 		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
 		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + animationTime;

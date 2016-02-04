@@ -5,6 +5,7 @@ import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.InventoryView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
+import com.vengeful.sloths.View.Sound.SoundEffect;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,7 @@ public class DefaultViewManager extends ViewManager {
 
     //public DefaultViewManager() {
     public DefaultViewManager(AreaView areaView, ListInventoryView inventoryView, EquipmentView equipmentView) {
+
 
         /* Create all of the segments of the overall view */
         //backgroundPanel = new JPanel(new BorderLayout());
