@@ -1,11 +1,17 @@
 package com.vengeful.sloths.View.AreaView;
 
 import com.vengeful.sloths.Models.Entity.Entity;
-import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.EntityMapViewObject;
-import java.awt.Color;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
+import com.vengeful.sloths.View.Observers.EntityObserver;
+import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.ViewObject;
+import com.vengeful.sloths.Models.Map.MapItems.*;
+
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;
@@ -34,11 +40,15 @@ public class AreaView extends JPanel
 		return player;
 	}
 	private int count=0;
-	
+
+	private Entity playerModel;
+
 	public AreaView(CameraViewManager cvm, Entity player) {
+		this.playerModel = player;
+
 		mapViewObjectManager = new MapViewObjectManager();
 		this.cameraViewManager  = cvm;
-		this.currentCameraView = cvm.getCameraView(player.getLocation().getX(), player.getLocation().getY());
+		this.currentCameraView = cvm.getCameraView(player.getLocation().getX(), player.getLocation().getY(), this.playerModel);
 		currentCameraView.populate(mapViewObjectManager);
 
 		player.registerObserver(this);
@@ -53,7 +63,9 @@ public class AreaView extends JPanel
 		Graphics2D g2d = (Graphics2D) g;
 
 		if (this.changeCameraFlag) {
-			currentCameraView = cameraViewManager.getCameraView(playerX, playerY);
+			//Deregister current camera view!!!
+			ObserverManager.instance().flagForDelete(currentCameraView);
+			currentCameraView = cameraViewManager.getCameraView(playerX, playerY, this.playerModel);
 			mapViewObjectManager.clear();
 			currentCameraView.populate(mapViewObjectManager);
 			changeCameraFlag = false;
@@ -84,5 +96,9 @@ public class AreaView extends JPanel
 			this.playerY = y;
 		}
 	}
-	
+
+	@Override
+	public void alertDrop(int x, int y, MapItem itemToDrop) {
+
+	}
 }

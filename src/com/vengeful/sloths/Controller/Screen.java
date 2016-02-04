@@ -3,11 +3,6 @@ package com.vengeful.sloths.Controller;
 
 import javax.swing.JFrame;
 import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
-
-import javax.swing.*;
-
 
 
 public class Screen extends JFrame implements Runnable{

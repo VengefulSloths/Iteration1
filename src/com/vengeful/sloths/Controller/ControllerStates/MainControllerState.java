@@ -29,6 +29,7 @@ public abstract class MainControllerState {
     public abstract boolean handle8Key();
     public abstract boolean handle9Key();
     public abstract boolean handle5Key();
+    public abstract boolean handleDKey();
 
     public abstract void handleRelease1Key();
     public abstract void handleRelease2Key();

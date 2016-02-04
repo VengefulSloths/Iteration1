@@ -1,6 +1,5 @@
 package com.vengeful.sloths;
 
-import com.sun.glass.ui.View;
 import com.vengeful.sloths.Controller.MainController;
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
 import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
@@ -9,19 +8,19 @@ import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
-import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
-import com.vengeful.sloths.Utility.Coord;
-import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.View.AreaView.CameraViewManager;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
+import com.vengeful.sloths.View.StatsView.StatsView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
+import com.vengeful.sloths.Models.Stats.*;
 
 public class Main {
 
@@ -48,8 +47,8 @@ public class Main {
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
         Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
         map.getTile(avatar.getLocation()).addEntity(avatar);
-        MainController controller = new MainController(avatar, viewEngine);
-        modelEngine.setController(controller);
+
+
 
 
         AreaView av = new AreaView(cvm, avatar);
@@ -58,13 +57,36 @@ public class Main {
         // Create inventory, add it to avatar and ListInventoryView
         Inventory inventory = new Inventory();
         avatar.setInventory(inventory);
-        avatar.addItem(new Hat("BlueHat"));
-        avatar.addItem(new Hat("BlueHat"));
+
+
+        /**** Take-able and InventoryItems need to be paired up when created */
+        InventoryItem hat1 = new Hat("BlueHat");
+        InventoryItem hat2 = new Hat("BlueHat");
+        InventoryItem sword1 = new Sword("GodSword");
+
+        MapItem mi1 = new TakeableItem(hat1);
+        MapItem mi2 = new TakeableItem(hat2);
+        MapItem mi3 = new TakeableItem(sword1);
+
+        //avatar.addItem(new Hat("BlueHat"));
+        //avatar.addItem(new Hat("BlueHat"));
+        avatar.addItem(((TakeableItem)mi1).getInvItemRep());
+        avatar.addItem(((TakeableItem)mi2).getInvItemRep());
+        avatar.addItem(((TakeableItem)mi3).getInvItemRep());
+        //TODO: a new factory for creating takable item + inventory item?
+
+
 
         ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
 
+        //johns test stuff for stats view
+        StatsView sv = new StatsView();
 
+        //make controller
+        MainController controller = new MainController(avatar, viewEngine, vm);
+
+        modelEngine.setController(controller);
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);
@@ -78,7 +100,7 @@ public class Main {
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        avatar.addItem(new Sword("Excal"));
+                        //avatar.addItem(new Sword("Excal"));
                         // your code here
                     }
                 },

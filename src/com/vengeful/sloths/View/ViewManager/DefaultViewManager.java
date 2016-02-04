@@ -2,6 +2,7 @@ package com.vengeful.sloths.View.ViewManager;
 
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.InventoryView.InventoryView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 
 import javax.swing.*;
@@ -97,4 +98,27 @@ public class DefaultViewManager extends ViewManager {
 
 
     }
+
+    public InventoryView getInventoryView() {
+        return this.inventoryView;
+    }
+
+    private void resetBorders(){
+        this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+        this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+    }
+
+    public void selectInventoryView(){
+        resetBorders();
+        this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.ORANGE, Color.ORANGE));
+    }
+    public void selectAreaView(){
+        resetBorders();
+        this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.ORANGE, Color.ORANGE));
+    }
+    public void selectEquipView(){
+        resetBorders();
+        //this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.ORANGE, Color.ORANGE));
+    }
+
 }

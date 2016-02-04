@@ -16,13 +16,11 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
 
     private ArrayList<InventoryItemViewObject> itemList;
 
-    InventoryItemViewObject GodSwordItemViewObject = new InventoryItemViewObject(new Sword("GodSword"));
-    InventoryItemViewObject PartyHatItemViewObject = new InventoryItemViewObject(new Hat("Blue Partyhat"));
+    InventoryItemViewObject GodSwordItemViewObject;
+    InventoryItemViewObject PartyHatItemViewObject;
 
     public ListInventoryViewObjectManager() {
         itemList = new ArrayList<InventoryItemViewObject>();
-
-
     }
 
     public void addInventoryItemViewObject(InventoryItemViewObject item) { //rename populate(InventoryItemViewObject item)?
@@ -30,12 +28,21 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
         itemList.add(item);
     }
 
+    public InventoryItemViewObject removeInventoryItemViewObject(int itemIndex) { //rename populate(InventoryItemViewObject item)?
+        //We can sort on iterator because it will be called less
+        return itemList.remove(itemIndex);
+    }
+
     public void initWithInventory(Inventory inventory) {
         for (int i = 0; i < inventory.getSize(); i++) {
             InventoryItem item = inventory.getItem(i);
+
+
             if (item instanceof Hat) {
+                PartyHatItemViewObject = new InventoryItemViewObject(item);
                 this.addInventoryItemViewObject(PartyHatItemViewObject);
             } else if (item instanceof Sword) {
+                GodSwordItemViewObject = new InventoryItemViewObject(item);
                 this.addInventoryItemViewObject(GodSwordItemViewObject);
             }
         }

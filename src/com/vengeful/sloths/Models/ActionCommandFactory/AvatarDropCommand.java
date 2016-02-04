@@ -5,8 +5,7 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Tile;
-import com.vengeful.sloths.View.AreaView.EntityObserver;
-
+import com.vengeful.sloths.View.Observers.EntityObserver;
 import java.util.Iterator;
 
 /**
@@ -29,27 +28,27 @@ public class AvatarDropCommand extends DropCommand{
     @Override
     public void execute() {
 
+        //System.out.println("BEFORE DROP: " + entity.getInventory().getItem(0) + entity.getInventory().getItem(1) + entity.getInventory().getItem(2));
 
-        //System.out.println("I am dropping!!!");
-
-        //The logic for droppping goes here
-
-        //System.out.println("MY LOCATION IS:" + dropLocation);
+        System.out.println(" I am the execute() of AvatarDropCommand");
+        System.out.println("I am dropping item: " + itemToDrop.getItemName());
         Tile tile = map.getTile(dropLocation);
-        //System.out.println("MY TILE IS:" + tile);
         tile.addMapItem(itemToDrop.getMapItemRep());
         entity.getInventory().removeItem(itemToDrop);
 
-        System.out.println("I am DONE dropping!!!");
-        System.out.println("dropped " + itemToDrop.getItemName());
+        //System.out.println("I am DONE dropping!!!");
+        //System.out.println("dropped " + itemToDrop.getItemName());
+
+        //System.out.println("AFTER DROP: " + entity.getInventory().getItem(0) + entity.getInventory().getItem(1) + entity.getInventory().getItem(2));
 
 
+        Iterator<EntityObserver> iter = this.entity.entityObserverIterator();
+        while (iter.hasNext()) {
+            EntityObserver eo = iter.next();
+            //System.out.println("EntityObservers: " + eo);
+            //System.out.println("NULL?" + itemToDrop.getMapItemRep());
+            eo.alertDrop(dropLocation.getX(), dropLocation.getY(), itemToDrop.getMapItemRep());
+        }
 
-
-        /*
-        System.out.println("After dropping");
-        System.out.println("Is it dropped on my tile?" + "(" + dropLocation.getX() + ", " + dropLocation.getY() + ")" + " : " + map.getTile(dropLocation).getMapItem(0));
-        System.out.println("Is that hat still in my inventory?: " + entity.getInventory().getItem(0));
-        */
     }
 }

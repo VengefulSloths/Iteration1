@@ -9,6 +9,8 @@ import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.ViewEngine;
+import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
+import com.vengeful.sloths.View.ViewManager.ViewManager;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -23,16 +25,19 @@ public class MainController {
     private MainControllerState state;
     private InputHandler inputHandler;
     private Screen screen;
+    private ViewManager viewManager;
 
     private AvatarState avatarState;
     private InventoryState inventoryState;
     private MenuState menuState;
 
-    public MainController(Avatar player, JFrame jframe){
+    public MainController(Avatar player, JFrame jframe, ViewManager vm){
 
         this.player = player;
-        this.inventory = player.getInventory();
+        System.out.println("in the maincontroller");
 
+        this.inventory = player.getInventory();
+        this.viewManager = vm;
         avatarState = new AvatarState(this);
         inventoryState = new InventoryState(this);
         menuState = new MenuState(this);
@@ -40,7 +45,11 @@ public class MainController {
         inputHandler = new InputHandler(this);
         jframe.addKeyListener(inputHandler);
 
-        this.state = avatarState;
+        this.setAvatarState();
+    }
+
+    public DefaultViewManager getDefaultViewManager() {
+        return (DefaultViewManager)this.viewManager;
     }
 
     public MainControllerState getState() {
@@ -58,6 +67,10 @@ public class MainController {
             case KeyEvent.VK_E :
                 state.handleEKey();
                 break;
+            case KeyEvent.VK_D :
+                state.handleDKey();
+                state.handle6Key(); //for wasd movement support
+                break;
             case KeyEvent.VK_ESCAPE :
                 state.handleESCKey();
                 break;
@@ -65,12 +78,14 @@ public class MainController {
                 state.handle1Key();
                 break;
             case KeyEvent.VK_2 :
+            case KeyEvent.VK_S:
                 state.handle2Key();
                 break;
             case KeyEvent.VK_3 :
                 state.handle3Key();
                 break;
             case KeyEvent.VK_4 :
+            case KeyEvent.VK_A:
                 state.handle4Key();
                 break;
             case KeyEvent.VK_5 :
@@ -110,22 +125,11 @@ public class MainController {
                 state.handle7Key();
                 break;
             case KeyEvent.VK_NUMPAD8 :
+            case KeyEvent.VK_W:
                 state.handle8Key();
                 break;
             case KeyEvent.VK_NUMPAD9 :
                 state.handle9Key();
-                break;
-            case KeyEvent.VK_W:
-                state.handle8Key();
-                break;
-            case KeyEvent.VK_A:
-                state.handle4Key();
-                break;
-            case KeyEvent.VK_S:
-                state.handle2Key();
-                break;
-            case KeyEvent.VK_D:
-                state.handle6Key();
                 break;
             default: //System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
         }
@@ -182,10 +186,12 @@ public class MainController {
     }
 
     public void setAvatarState(){
+        viewManager.selectAreaView();
         this.state = this.avatarState;
     }
 
     public void setInventoryState(){
+        viewManager.selectInventoryView();
         this.state = this.inventoryState;
     }
 
