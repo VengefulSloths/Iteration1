@@ -78,7 +78,7 @@ public class ListInventoryView extends InventoryView {
 
                 current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
 
-            }else {
+            } else {
                 current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
             }
             offset = offset + Config.instance().INVENTORY_IMAGE_HEIGHT + 2;

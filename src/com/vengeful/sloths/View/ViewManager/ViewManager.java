@@ -34,9 +34,9 @@ public abstract class ViewManager extends JPanel {
     //private static final double SIDE_PANEL_WIDTH_PROPORTION = 1.0 - AREA_VIEW_WIDTH_PROPORTION;
     //private static final double SIDE_PANEL_HEIGHT_PROPORTION = 1.0;
     protected static final double INVENTORY_VIEW_WIDTH_PROPORTION = 1.0;
-    protected static final double INVENTORY_VIEW_HEIGHT_PROPORTION = 0.50; //edit: this will change when StatsView and HUDView are added
+    protected static final double INVENTORY_VIEW_HEIGHT_PROPORTION = 0.40; //edit: this will change when StatsView and HUDView are added
     protected static final double EQUIPMENT_VIEW_WIDTH_PROPORTION = 1.0;
-    protected static final double EQUIPMENT_VIEW_HEIGHT_PROPORTION = 0.40; //edit: this will change when StatsView and HUDView are added
+    protected static final double EQUIPMENT_VIEW_HEIGHT_PROPORTION = 0.30; //edit: this will change when StatsView and HUDView are added
 
     //private static final double STATS_VIEW_HEIGHT_PROPORTION = .30;
     //private static final double HUD_VIEW_HEIGHT_PROPORTION = 1.0 - STATS_VIEW_HEIGHT_PROPORTION - INVENTORY_VIEW_HEIGHT_PROPORTION;
