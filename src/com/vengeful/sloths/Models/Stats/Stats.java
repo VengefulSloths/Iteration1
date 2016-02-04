@@ -42,7 +42,7 @@ public abstract class Stats implements ViewObservable {
         this.agility = 5;
         this.intellect = 5;
         this.hardiness = 5;
-        this.movement = 15;
+        this.movement = 24;
         this.statsObservers = new ArrayList<>();
     }
 
