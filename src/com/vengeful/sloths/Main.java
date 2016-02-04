@@ -17,6 +17,7 @@ import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
+import com.vengeful.sloths.View.StatsView.StatsView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 import com.vengeful.sloths.Models.Stats.*;
@@ -77,6 +78,8 @@ public class Main {
         ListInventoryView iv = new ListInventoryView(inventory);
         DefaultViewManager vm = new DefaultViewManager(av, iv);
 
+        //johns test stuff for stats view
+        StatsView sv = new StatsView();
 
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
