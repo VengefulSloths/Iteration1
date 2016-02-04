@@ -15,8 +15,8 @@ import java.util.Iterator;
  */
 public class AvatarMovementCommand extends MovementCommand {
 
-    public AvatarMovementCommand(Map map, Coord src, Coord dst, Direction dir, Entity avatar) {
-        super(map, src, dst, dir, avatar);
+    public AvatarMovementCommand(Map map, Coord src, Coord dst, Direction dir, Entity avatar, int movementSpeed) {
+        super(map, src, dst, dir, avatar, movementSpeed);
         doMove();
     }
 

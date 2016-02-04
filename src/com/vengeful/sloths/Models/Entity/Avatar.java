@@ -72,7 +72,7 @@ public class Avatar extends Entity {
                     break;
             }
             //System.out.println("Attempting to move to: " + dst
-           this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this);
+           this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this, entityStats.getMovement());
 
         }else{
             System.out.println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");

@@ -20,7 +20,7 @@ public abstract class ActionCommandFactory {
         this.map = map;
     }
 
-    public abstract MovementCommand createMovementCommand(Coord src, Coord dst, Direction dir, Entity entity);
+    public abstract MovementCommand createMovementCommand(Coord src, Coord dst, Direction dir, Entity entity, int movementSpeed);
     public abstract DropCommand createDropCommand(InventoryItem itemToDrop, Coord dropLoc, Entity entity);
     public abstract PickUpCommand createPickUpCommand(Coord dropLoc, Entity entity);
 }
