@@ -6,7 +6,7 @@ import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.*;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.Dynamic32PixelCoordinateStrategy;
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.MapViewObjectFactory;
 import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;

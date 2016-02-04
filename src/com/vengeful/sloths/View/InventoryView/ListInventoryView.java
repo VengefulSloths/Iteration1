@@ -5,9 +5,8 @@ import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ObserverManager;
-import com.vengeful.sloths.View.AreaView.Observers.InventoryObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyInventoryObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyObserver;
+import com.vengeful.sloths.View.Observers.InventoryObserver;
+import com.vengeful.sloths.View.Observers.ProxyInventoryObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,8 +53,6 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
 
         //this.setPreferredSize(new Dimension(viewWidth, viewHeight));
         manager = new ListInventoryViewObjectManager();
-
-
         manager.initWithInventory(inventory);
 
         /* edit the next two lines/maybe delete them */
@@ -110,6 +107,8 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
             GodSwordItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(GodSwordItemViewObject);
         }
+
+
 
     }
 

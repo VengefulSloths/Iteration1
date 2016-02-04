@@ -48,19 +48,13 @@ public class Main {
         map.getTile(avatar.getLocation()).addEntity(avatar);
 
 
+        AreaView av = new AreaView(cvm, avatar);
+
+
         // Create inventory, add it to avatar and ListInventoryView
-        // avatar.setInventory() needs to be above MainController or else it doesn't have a reference to the inventory
         Inventory inventory = new Inventory();
         avatar.setInventory(inventory);
 
-
-        AreaView av = new AreaView(cvm, avatar);
-
-        ListInventoryView iv = new ListInventoryView(inventory);
-        DefaultViewManager vm = new DefaultViewManager(av, iv);
-
-
-        MainController controller = new MainController(avatar, viewEngine, vm);
 
         /**** Take-able and InventoryItems need to be paired up when created */
         InventoryItem hat1 = new Hat("BlueHat");
@@ -80,6 +74,12 @@ public class Main {
 
 
 
+        ListInventoryView iv = new ListInventoryView(inventory);
+        DefaultViewManager vm = new DefaultViewManager(av, iv);
+
+
+        //make controller
+        MainController controller = new MainController(avatar, viewEngine, vm);
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);

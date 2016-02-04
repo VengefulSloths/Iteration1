@@ -13,11 +13,13 @@ import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
+import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
+import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.Animation.BoundedAnimation;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.Centered32PixelCoordinateStrategy;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyEntityObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyMapItemObserver;
+import com.vengeful.sloths.View.Observers.ProxyEntityObserver;
+import com.vengeful.sloths.View.Observers.ProxyMapItemObserver;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.ItemMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
@@ -38,48 +40,50 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
         Coord loc = entity.getLocation();
 
         Direction facingDir = entity.getFacingDirection();
-        BoundedAnimation facingImage;
+        AnimatedImage facingImage;
 
         switch (facingDir) {
             case N:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_north", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_north");
                 break;
             case E:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_east", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_east");
                 break;
             case S:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_south", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_south");
                 break;
             case W:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_west", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_west");
                 break;
             case NE:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_northeast", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_northeast");
                 break;
             case NW:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_northwest", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_northwest");
                 break;
             case SE:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_southeast", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_southeast");
                 break;
             case SW:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_southwest", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_southwest");
                 break;
             default:
-                facingImage = new BoundedAnimation("resources/man2/standing/man_south", 1);
+                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_south");
                 break;
         }
 
         EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, facingImage);
-        emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, facingImage);
-        emvo.setWalkingN(new BoundedAnimation("resources/man2/moving/north/man_north", 5));
-        emvo.setWalkingNE(new BoundedAnimation("resources/man2/moving/northeast/man_northeast", 5));
-        emvo.setWalkingE(new BoundedAnimation("resources/man2/moving/east/man_east", 5));
-        emvo.setWalkingSE(new BoundedAnimation("resources/man2/moving/southeast/man_southeast", 5));
-        emvo.setWalkingS(new BoundedAnimation("resources/man2/moving/south/man_south", 5));
-        emvo.setWalkingSW(new BoundedAnimation("resources/man2/moving/southwest/man_southwest", 5));
-        emvo.setWalkingW(new BoundedAnimation("resources/man2/moving/west/man_west", 5));
-        emvo.setWalkingNW(new BoundedAnimation("resources/man2/moving/northwest/man_northwest", 5));
+
+        AnimatedImageFactory aif = AnimatedImageFactory.instance();
+        emvo.setWalkingN( aif.createTimedAnimatedImage("resources/man2/moving/north/man_north"));
+        emvo.setWalkingNE(aif.createTimedAnimatedImage("resources/man2/moving/northeast/man_northeast"));
+        emvo.setWalkingE( aif.createTimedAnimatedImage("resources/man2/moving/east/man_east"));
+        emvo.setWalkingSE(aif.createTimedAnimatedImage("resources/man2/moving/southeast/man_southeast"));
+        emvo.setWalkingS( aif.createTimedAnimatedImage("resources/man2/moving/south/man_south"));
+        emvo.setWalkingSW(aif.createTimedAnimatedImage("resources/man2/moving/southwest/man_southwest"));
+        emvo.setWalkingW( aif.createTimedAnimatedImage("resources/man2/moving/west/man_west"));
+        emvo.setWalkingNW(aif.createTimedAnimatedImage("resources/man2/moving/northwest/man_northwest"));
+
 
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
@@ -159,13 +163,13 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
         //Test pickup/drop item
         if(mapItem instanceof TakeableItem){
             if(((TakeableItem) mapItem).getInvItemRep() instanceof Hat){
-                itemView = new ItemMapViewObject(x, y, "resources/BlueHat.jpg", "", 1, 1000, coordinateStrategy);
+                itemView = new ItemMapViewObject(x, y, "resources/Items/BluePartyHat", coordinateStrategy);
             }else if(((TakeableItem) mapItem).getInvItemRep() instanceof Sword){
-                itemView = new ItemMapViewObject(x, y, "resources/GodSword.jpg", "", 1, 1000, coordinateStrategy);
+                itemView = new ItemMapViewObject(x, y, "resources/Items/GodSword", coordinateStrategy);
             }
 
         }else{
-            itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Box/Destroyed/temp", 1, 1000, coordinateStrategy);
+            itemView = new ItemMapViewObject(x, y, "resources/Items/Box", coordinateStrategy);
 
         }
 
