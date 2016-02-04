@@ -1,18 +1,26 @@
 package com.vengeful.sloths.Controller.ControllerStates;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.vengeful.sloths.Controller.MainController;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.View.InventoryView.InventoryView;
+import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 
 /**
  * Created by John on 1/30/2016.
  */
 public class InventoryState extends MainControllerState {
+    private InventoryView inventoryView;
+
     private int inventoryIndex;
 
     public InventoryState(MainController m){
         super(m);
         this.inventoryIndex = 0;
+        this.inventoryView = m.getDefaultViewManager().getInventoryView();
     }
+
+
 
     public int getInventoryIndex() {
         return this.inventoryIndex;
@@ -50,18 +58,17 @@ public class InventoryState extends MainControllerState {
     public boolean handle2Key() {
         
         // Move down an item
-        if (this.inventoryIndex == mainController.getInventory().getSize()) {
+
+        int itemListSize = ((ListInventoryView) this.inventoryView).manager.getItemListSize();
+
+        this.inventoryIndex++;
+
+        if (this.inventoryIndex >= itemListSize) {
+            this.inventoryIndex = itemListSize - 1;
             return false;
-        } else {
-            this.inventoryIndex++;
-            System.out.println("Retrieving item at index: " + this.inventoryIndex);
-            InventoryItem i = mainController.getInventory().getItem(this.inventoryIndex);
-            if (i != null)
-                System.out.println("at index: " + (this.inventoryIndex) + ", " + i.getItemName() + " selected!");
-            else
-                System.out.println("I was null");
-            return true;
         }
+
+        return true;
     }
 
     @Override
@@ -89,19 +96,16 @@ public class InventoryState extends MainControllerState {
         // Move up an item
 
 
+        int itemListSize = ((ListInventoryView) this.inventoryView).manager.getItemListSize();
 
-        if (this.inventoryIndex == 0) {
+        this.inventoryIndex--;
+
+        if (this.inventoryIndex <= 0) {
+            this.inventoryIndex = 0;
             return false;
-        } else {
-            this.inventoryIndex--;
-            System.out.println("Retrieving item at index: " + this.inventoryIndex);
-            InventoryItem i = mainController.getInventory().getItem(this.inventoryIndex);
-            if (i != null)
-                System.out.println("at index: " + (this.inventoryIndex) + ", " + i.getItemName() + " selected!");
-            else
-                System.out.println("I was null");
-            return true;
         }
+
+        return true;
     }
 
     @Override
@@ -113,12 +117,22 @@ public class InventoryState extends MainControllerState {
     public boolean handle5Key() {
         //return false;
 
-        //TODO: change this back after done testing
-        /* Test drop item */
+        return true;
+    }
 
-        mainController.getAvatar().drop(inventoryIndex);
+    @Override
+    public boolean handleDKey() {
+
+        InventoryItem i = ((ListInventoryView)this.inventoryView).manager.removeInventoryItemViewObject(this.inventoryIndex--).getInventoryItem();
+
+        System.out.println("DROPPING " + i.getItemName());
+
+        mainController.getAvatar().drop(i);
+
+        if (this.inventoryIndex <= 0) this.inventoryIndex = 0;
 
         return true;
+
     }
 
     public String toString() {

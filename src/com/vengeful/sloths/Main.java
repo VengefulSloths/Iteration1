@@ -58,9 +58,13 @@ public class Main {
 
 
         /**** Take-able and InventoryItems need to be paired up when created */
-        MapItem mi1 = new TakeableItem(new Hat("BlueHat"));
-        MapItem mi2 = new TakeableItem(new Hat("BlueHat"));
-        MapItem mi3 = new TakeableItem(new Sword("GodSword"));
+        InventoryItem hat1 = new Hat("BlueHat");
+        InventoryItem hat2 = new Hat("BlueHat");
+        InventoryItem sword1 = new Sword("GodSword");
+
+        MapItem mi1 = new TakeableItem(hat1);
+        MapItem mi2 = new TakeableItem(hat2);
+        MapItem mi3 = new TakeableItem(sword1);
 
         //avatar.addItem(new Hat("BlueHat"));
         //avatar.addItem(new Hat("BlueHat"));

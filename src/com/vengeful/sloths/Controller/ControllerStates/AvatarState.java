@@ -86,6 +86,12 @@ public class AvatarState extends MainControllerState{
 
     @Override
     public boolean handle5Key() {
+
+        return false;
+    }
+
+    @Override
+    public boolean handleDKey() {
         return false;
     }
 

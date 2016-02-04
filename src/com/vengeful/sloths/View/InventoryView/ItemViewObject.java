@@ -32,11 +32,16 @@ public abstract class ItemViewObject extends JComponent {
 
     public ItemViewObject(InventoryItem item) { //this will be the actual method signature. it takes in item and x,y for drawing position
 
+        this.item = item;
         this.itemName = item.getItemName(); //get the name directly from the connected item object
         imageFileName = generateImageFileName(itemName);
         ImageIcon itemIcon = new ImageIcon(imageFileName);
         itemImage = itemIcon.getImage();
 
+    }
+
+    public InventoryItem getInventoryItem() {
+        return this.item;
     }
 
 

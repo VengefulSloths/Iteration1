@@ -73,7 +73,7 @@ public class LevelFactory {
 
         /* Testing pick up item */
 
-        MapItem mapItem1 = new TakeableItem(new Hat("Blue Partyhat"));
+        MapItem mapItem1 = new TakeableItem(new Hat("BlueHat"));
         MapItem mapItem2 = new TakeableItem(new Sword("GodSword"));
         map.getTile(new Coord(3,2)).addMapItem(mapItem1);
         //map.getTile(new Coord(3,2)).addMapItem(mapItem2);
