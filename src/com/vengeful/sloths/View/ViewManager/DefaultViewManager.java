@@ -88,7 +88,7 @@ public class DefaultViewManager extends ViewManager {
         //inventoryView.setLayout(new BorderLayout());//set layout of inventoryView....maybe this isn't appropriate in this class?
 
         //this.sidePanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 7));
-        this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+        //this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
 
 
         //sidePanel.add(inventoryView, BorderLayout.CENTER); //eventually, will add StatsView and HUDView to sidePanel

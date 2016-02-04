@@ -81,7 +81,7 @@ public class Main {
         DefaultViewManager vm = new DefaultViewManager(av, iv);
 
         //johns test stuff for stats view
-        StatsView sv = new StatsView();
+        //StatsView sv = new StatsView();
 
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
