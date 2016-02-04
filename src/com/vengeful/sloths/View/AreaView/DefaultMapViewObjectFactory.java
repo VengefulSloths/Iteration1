@@ -35,63 +35,6 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
         this.currentCameraView = cv;
         coordinateStrategy = new Centered32PixelCoordinateStrategy(this.currentCameraView);
     }
-    @Override
-    public EntityMapViewObject createEntityMapViewObject(Entity entity) {
-        Coord loc = entity.getLocation();
-
-        Direction facingDir = entity.getFacingDirection();
-        AnimatedImage facingImage;
-
-        switch (facingDir) {
-            case N:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_north");
-                break;
-            case E:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_east");
-                break;
-            case S:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_south");
-                break;
-            case W:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_west");
-                break;
-            case NE:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_northeast");
-                break;
-            case NW:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_northwest");
-                break;
-            case SE:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_southeast");
-                break;
-            case SW:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_southwest");
-                break;
-            default:
-                facingImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage("resources/man2/standing/man_south");
-                break;
-        }
-
-        EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, facingImage);
-
-        AnimatedImageFactory aif = AnimatedImageFactory.instance();
-        emvo.setWalkingN( aif.createTimedAnimatedImage("resources/man2/moving/north/man_north"));
-        emvo.setWalkingNE(aif.createTimedAnimatedImage("resources/man2/moving/northeast/man_northeast"));
-        emvo.setWalkingE( aif.createTimedAnimatedImage("resources/man2/moving/east/man_east"));
-        emvo.setWalkingSE(aif.createTimedAnimatedImage("resources/man2/moving/southeast/man_southeast"));
-        emvo.setWalkingS( aif.createTimedAnimatedImage("resources/man2/moving/south/man_south"));
-        emvo.setWalkingSW(aif.createTimedAnimatedImage("resources/man2/moving/southwest/man_southwest"));
-        emvo.setWalkingW( aif.createTimedAnimatedImage("resources/man2/moving/west/man_west"));
-        emvo.setWalkingNW(aif.createTimedAnimatedImage("resources/man2/moving/northwest/man_northwest"));
-
-
-
-        //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
-        ProxyEntityObserver peo = new ProxyEntityObserver(emvo, entity);
-        ObserverManager.instance().addProxyObserver(peo);
-
-        return emvo;
-    }
 
     @Override
     public TerrainMapViewObject createTerrainMapViewObject(Terrain terrain, int x, int y) {
@@ -142,48 +85,12 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
                     if (i-1 >= xMin && map.getTile(new Coord(i-1,j)).getTerrain().getClass() == Water.class) {
                         terrain.addTerrainImage("resources/Terrain/BeachWest.png");
                     }
-
-
-
                 }
                 terrainArray.add(terrain);
-
-
             }
         }
         return terrainArray.iterator();
     }
 
-    public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
-        System.out.println("NEW CAMERA");
-        System.out.println("ITEMS! " + mapItem);
 
-        ItemMapViewObject itemView = null;
-
-        //Test pickup/drop item
-        if(mapItem instanceof TakeableItem){
-            if(((TakeableItem) mapItem).getInvItemRep() instanceof Hat){
-                itemView = new ItemMapViewObject(x, y, "resources/Items/BluePartyHat", coordinateStrategy);
-            }else if(((TakeableItem) mapItem).getInvItemRep() instanceof Sword){
-                itemView = new ItemMapViewObject(x, y, "resources/Items/GodSword", coordinateStrategy);
-            }
-
-        }else{
-            itemView = new ItemMapViewObject(x, y, "resources/Items/Box", coordinateStrategy);
-
-        }
-
-
-        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
-        ObserverManager.instance().addProxyObserver(pmio);
-
-
-        return itemView;
-
-
-        /*
-        ItemMapViewObject itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Box/Destroyed/temp", 1, 1000, coordinateStrategy);
-        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
-        ObserverManager.instance().addProxyObserver(pmio);*/
-    }
 }

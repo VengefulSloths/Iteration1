@@ -5,6 +5,7 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.Animation.BoundedAnimation;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 import com.vengeful.sloths.View.Observers.MapItemObserver;
+import com.vengeful.sloths.View.ViewTime;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +39,7 @@ public class ItemMapViewObject extends ViewObject
 
     @Override
     public void alertDestroyed() {
-        this.startTime = System.currentTimeMillis();
+        this.startTime = ViewTime.getInstance().getCurrentTimeMilli();
         this.isDestroyed = true;
         System.out.println("I am alerted! (MapItem)");
     }

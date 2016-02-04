@@ -22,11 +22,10 @@ public class AnimatedImageFactory {
     public AnimatedImage createTimedAnimatedImage(String config) {
         try(BufferedReader br = new BufferedReader(new FileReader(config + ".txt"))) {
             int count = Integer.parseInt( br.readLine().substring(6));
-            AnimatedImage ai = new TimedAnimation(config, count, 0);
+            AnimatedImage ai = new TimedAnimation(config, count, 1000);
             return ai;
 
         } catch(Exception e) {
-            e.printStackTrace();
             return new SingleFrameAnimation("file_not_found.jpg");
         }
 
