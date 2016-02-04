@@ -8,5 +8,6 @@ import javax.swing.*;
  * Created by echristiansen on 1/30/2016.
  */
 public abstract class InventoryView extends View {
-
+    public abstract void setSelected(InventoryItemViewObject item);
+    public abstract void setDeselected(InventoryItemViewObject item);
 }

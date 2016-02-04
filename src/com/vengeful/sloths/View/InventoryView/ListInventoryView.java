@@ -10,6 +10,8 @@ import com.vengeful.sloths.View.Observers.ProxyInventoryObserver;
 import com.vengeful.sloths.View.Observers.ProxyObserver;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.Iterator;
 
@@ -74,7 +76,17 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
 
         while (iter.hasNext()) {
             InventoryItemViewObject current = iter.next();
-            current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
+            if(current.isSelected) {
+                System.out.print("borderersrs");
+//                current.setBorder();
+                Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLUE, Color.BLUE);
+                b.paintBorder(current, g2d, 0, offset, viewWidth, viewHeight);
+
+                current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
+
+            }else {
+                current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
+            }
             offset = offset + current.IMAGE_HEIGHT + 2;
         }
 
@@ -104,6 +116,20 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         System.out.println("Item: " + item.getItemName() + " DROPPED!");
         manager.removeInventoryItemViewObject(item);
     }
+
+    public void setSelected(InventoryItemViewObject item){
+        //give a border
+        item.isSelected = true;
+
+    }
+
+
+    public void setDeselected(InventoryItemViewObject item){
+        //give a border
+        item.isSelected = false;
+
+    }
+
 
 
 }

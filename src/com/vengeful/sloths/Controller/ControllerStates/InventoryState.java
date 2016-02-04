@@ -61,6 +61,7 @@ public class InventoryState extends MainControllerState {
 
         int itemListSize = ((ListInventoryView) this.inventoryView).manager.getItemListSize();
 
+        System.out.println(itemListSize + " size");
         this.inventoryIndex++;
 
         System.out.println("At index: " + this.inventoryIndex + " now");
@@ -69,7 +70,9 @@ public class InventoryState extends MainControllerState {
             return false;
         }
 
-
+        ((ListInventoryView)this.inventoryView).setSelected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+        if (this.inventoryIndex > 0)
+            ((ListInventoryView)this.inventoryView).setDeselected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex-1));
 
         return true;
     }
@@ -107,7 +110,9 @@ public class InventoryState extends MainControllerState {
             this.inventoryIndex = 0;
             return false;
         }
-
+        ((ListInventoryView)this.inventoryView).setSelected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+        if (this.inventoryIndex < itemListSize-1)
+            ((ListInventoryView)this.inventoryView).setDeselected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex + 1));
         System.out.println("At index: " + this.inventoryIndex + " now");
 
         return true;
@@ -128,7 +133,7 @@ public class InventoryState extends MainControllerState {
     @Override
     public boolean handleDKey() {
 
-        InventoryItem i = ((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex--).getInventoryItem();
+        InventoryItem i = ((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem();
 
 
         System.out.println("DROPPING " + i.getItemName());

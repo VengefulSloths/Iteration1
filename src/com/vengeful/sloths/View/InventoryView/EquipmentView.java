@@ -17,7 +17,16 @@ import java.util.Iterator;
         HEAD, BODY, LEGS, FEET, WEAPON
     }
 
-        public InventoryItemViewObject getHeadGear() {
+    @Override
+    public void setSelected(InventoryItemViewObject item) {
+
+    }
+    @Override
+    public void setDeselected(InventoryItemViewObject item) {
+
+    }
+
+    public InventoryItemViewObject getHeadGear() {
             return headGear;
         }
 
@@ -40,6 +49,7 @@ import java.util.Iterator;
             manager.addEquipment(headGear);
 
         }
+
 
 /*
     public void paintComponent(Graphics g) { //change to render(Graphics g, int x, int y) ?

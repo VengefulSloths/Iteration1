@@ -12,6 +12,8 @@ import java.awt.*;
 //public class InventoryItemViewObject extends JComponent{
 public class InventoryItemViewObject extends ItemViewObject{
 
+    public boolean isSelected = false;
+
     public InventoryItemViewObject(InventoryItem item) { //this will be the actual method signature. it takes in item and x,y for drawing position
         super(item);
     }
