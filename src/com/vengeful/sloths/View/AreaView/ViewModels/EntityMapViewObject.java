@@ -5,6 +5,7 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 import com.vengeful.sloths.View.Observers.EntityObserver;
+import com.vengeful.sloths.View.Sound.SoundEffect;
 import com.vengeful.sloths.View.ViewTime;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 
@@ -22,6 +23,8 @@ public class EntityMapViewObject extends ViewObject
 	private AnimatedImage walkingSW;
 	private AnimatedImage walkingW;
 	private AnimatedImage walkingNW;
+
+	private SoundEffect walkingSound;
 
 	private Image currentImage;
 	private AnimatedImage currentAnimation;
@@ -84,7 +87,7 @@ public class EntityMapViewObject extends ViewObject
 
 	}
 
-	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, String resourcePath, Direction facingDir) {
+	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, String resourcePath, String walkingSoundPath, Direction facingDir) {
 		this.x = x;
 		this.y = y;
 		this.startX = x;
@@ -94,6 +97,8 @@ public class EntityMapViewObject extends ViewObject
 		this.animationStartTime = 0;
 		this.animationFinishTime = 0;
 		this.converter = converter;
+
+		this.walkingSound = new SoundEffect(walkingSoundPath);
 
 		//setup all animations
 		AnimatedImageFactory aif = AnimatedImageFactory.instance();
@@ -195,6 +200,7 @@ public class EntityMapViewObject extends ViewObject
 		this.postY = y;
 		this.x = x;
 		this.y = y;
+		this.walkingSound.play();
 		currentAnimation.setDuration(animationTime);
 		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
 		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + animationTime;

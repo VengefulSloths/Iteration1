@@ -3,6 +3,7 @@ package com.vengeful.sloths.View.AreaView;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
@@ -28,7 +29,7 @@ public abstract class MapViewObjectFactory {
     public EntityMapViewObject createEntityMapViewObject(Entity entity) {
         Coord loc = entity.getLocation();
 
-        EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, "resources/man2",entity.getFacingDirection() );
+        EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, "resources/man2", "resources/Audio/grass_step3.wav", entity.getFacingDirection() );
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
         ProxyEntityObserver peo = new ProxyEntityObserver(emvo, entity);
@@ -37,31 +38,32 @@ public abstract class MapViewObjectFactory {
         return emvo;
     }
     public abstract TerrainMapViewObject createTerrainMapViewObject(Terrain terrain, int x, int y);
+
     public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
         System.out.println("NEW CAMERA");
         System.out.println("ITEMS! " + mapItem);
 
-        ItemMapViewObject itemView = null;
+        ItemMapViewObject itemViewObject = null;
 
         //Test pickup/drop item
         if(mapItem instanceof TakeableItem){
-            if(((TakeableItem) mapItem).getInvItemRep() instanceof Hat){
-                itemView = new ItemMapViewObject(x, y, "resources/Items/BluePartyHat", coordinateStrategy);
-            }else if(((TakeableItem) mapItem).getInvItemRep() instanceof Sword){
-                itemView = new ItemMapViewObject(x, y, "resources/Items/GodSword", coordinateStrategy);
-            }
+            String pickUpSoundPath = "resources/Audio/pickup.wav";
+            InventoryItem item = ((TakeableItem) mapItem).getInvItemRep();
+
+            itemViewObject = new ItemMapViewObject(x, y, "resources/Items/Takeable/" + item.getItemName(), pickUpSoundPath, coordinateStrategy);
+
 
         }else{
-            itemView = new ItemMapViewObject(x, y, "resources/Items/Box", coordinateStrategy);
+            itemViewObject = new ItemMapViewObject(x, y, "resources/Items/Box", "resources/Audio/break.wav", coordinateStrategy);
 
         }
 
 
-        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
+        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemViewObject, mapItem);
         ObserverManager.instance().addProxyObserver(pmio);
 
 
-        return itemView;
+        return itemViewObject;
 
 
         /*
