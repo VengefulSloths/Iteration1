@@ -7,6 +7,7 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.View.Observers.InventoryObserver;
 import com.vengeful.sloths.View.Observers.ProxyInventoryObserver;
+import com.vengeful.sloths.View.Observers.ProxyObserver;
 
 import javax.swing.*;
 import java.awt.*;

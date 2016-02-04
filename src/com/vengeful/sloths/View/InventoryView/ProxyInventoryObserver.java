@@ -2,8 +2,8 @@ package com.vengeful.sloths.View.InventoryView;
 
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ViewObservable;
-import com.vengeful.sloths.View.AreaView.Observers.ModelObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyObserver;
+import com.vengeful.sloths.View.Observers.ModelObserver;
+import com.vengeful.sloths.View.Observers.ProxyObserver;
 
 /**
  * Created by zach on 2/1/16.
