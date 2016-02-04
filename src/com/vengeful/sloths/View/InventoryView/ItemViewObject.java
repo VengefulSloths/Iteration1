@@ -3,6 +3,7 @@ package com.vengeful.sloths.View.InventoryView;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Utility.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +15,8 @@ import java.util.Iterator;
 public abstract class ItemViewObject extends JComponent {
 
     protected Image itemImage;
-    public static final int IMAGE_HEIGHT = 18; //increment the y positions by height + 2
-    public static final int IMAGE_WIDTH = 18;
+    private static final int IMAGE_HEIGHT = Config.instance().INVENTORY_IMAGE_HEIGHT; //increment the y positions by height + 2
+    private static final int IMAGE_WIDTH = Config.instance().INVENTORY_IMAGE_WIDTH;
     public static final int HORIZONTAL_OFFSET = IMAGE_WIDTH + 100;
     public static final double HORIZONTAL_OFFSET_PROPORTION = 0.50;
 

@@ -41,7 +41,7 @@ public class Config {
     private final int windowWidth = 1100; //set the overall window width
     private final int windowHeight = 800; //set the overall window height
 
-    private final double sidePanelWidthProportion = 0.30; //proportion of the overall window width that is the sidePanel
+    private final double sidePanelWidthProportion = 0.25; //proportion of the overall window width that is the sidePanel
     private final double sidePanelHeightProportion = 1.0; //proportion of the overall window height that is the sidePanel
 
     private final double sidePanelWidth = sidePanelWidthProportion * windowWidth; //sidePanelWidth relative to windowWidth
@@ -49,6 +49,9 @@ public class Config {
 
     private final int areaViewWidth = (int) (windowWidth - sidePanelWidth); //areaViewWidth (gameplay area) relative to window width and sidePanelWidth
     private final int areaViewHeight = (int) (windowHeight); //area ViewHeight (same as windowviewHeight)
+
+    public final int INVENTORY_IMAGE_HEIGHT = 18; //increment the y positions by height + 2
+    public final int INVENTORY_IMAGE_WIDTH = 18;
 
     private static Config instance = null;
     private Config() {

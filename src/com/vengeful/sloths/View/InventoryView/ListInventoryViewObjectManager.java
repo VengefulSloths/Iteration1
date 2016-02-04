@@ -12,17 +12,13 @@ import java.util.Iterator;
 /**
  * Created by echristiansen on 1/30/2016.
  */
-public class ListInventoryViewObjectManager { //this just manages all of the listInventoryViewObjects by keeping them in an arraylist and defining an iterator
-
-    private ArrayList<InventoryItemViewObject> itemList;
+public class ListInventoryViewObjectManager extends ViewObjectManager { //this just manages all of the listInventoryViewObjects by keeping them in an arraylist and defining an iterator
 
     InventoryItemViewObject GodSwordItemViewObject = new InventoryItemViewObject(new Sword("GodSword"));
     InventoryItemViewObject PartyHatItemViewObject = new InventoryItemViewObject(new Hat("Blue Partyhat"));
 
     public ListInventoryViewObjectManager() {
-        itemList = new ArrayList<InventoryItemViewObject>();
-
-
+        super();
     }
 
     public void addInventoryItemViewObject(InventoryItemViewObject item) { //rename populate(InventoryItemViewObject item)?
@@ -33,6 +29,7 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
     public void initWithInventory(Inventory inventory) {
         for (int i = 0; i < inventory.getSize(); i++) {
             InventoryItem item = inventory.getItem(i);
+            System.out.println("Testing initWithInventory" + inventory.getItem(i).getItemName());
             if (item instanceof Hat) {
                 this.addInventoryItemViewObject(PartyHatItemViewObject);
             } else if (item instanceof Sword) {
@@ -41,12 +38,5 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
         }
     }
 
-    public int getItemListSize() {
-        return itemList.size();
-    }
-
-    public Iterator<InventoryItemViewObject> iterator() {
-        return itemList.iterator();
-    }
 
 }

@@ -16,6 +16,7 @@ import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
+import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
@@ -57,8 +58,8 @@ public class Main {
 
 
         /**** Take-able and InventoryItems need to be paired up when created */
-        MapItem mi1 = new TakeableItem(new Hat("BlueHat"));
-        MapItem mi2 = new TakeableItem(new Hat("BlueHat"));
+        MapItem mi1 = new TakeableItem(new Hat("Blue Partyhat"));
+        MapItem mi2 = new TakeableItem(new Hat("Blue Partyhat"));
         MapItem mi3 = new TakeableItem(new Sword("GodSword"));
 
         //avatar.addItem(new Hat("BlueHat"));
@@ -71,7 +72,8 @@ public class Main {
 
 
         ListInventoryView iv = new ListInventoryView(inventory);
-        DefaultViewManager vm = new DefaultViewManager(av, iv);
+        EquipmentView ev = new EquipmentView();
+        DefaultViewManager vm = new DefaultViewManager(av, iv, ev);
         
 
         //make controller
