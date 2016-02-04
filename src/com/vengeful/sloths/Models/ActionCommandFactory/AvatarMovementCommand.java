@@ -6,7 +6,7 @@ import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Utility.Direction;
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 
 import java.util.Iterator;
 
@@ -15,15 +15,13 @@ import java.util.Iterator;
  */
 public class AvatarMovementCommand extends MovementCommand {
 
-    public AvatarMovementCommand(Map map, Coord src, Coord dst, Direction dir, Entity avatar) {
-        super(map, src, dst, dir, avatar);
-
-//
-
+    public AvatarMovementCommand(Map map, Coord src, Coord dst, Direction dir, Entity avatar, int movementSpeed) {
+        super(map, src, dst, dir, avatar, movementSpeed);
+        doMove();
     }
 
-    @Override
-    public void execute() {
+    public void doMove()
+    {
         //System.out.println(System.currentTimeMillis() + "executing movement command");
         Tile sourceTile = map.getTile(this.src);
         try {
@@ -51,8 +49,8 @@ public class AvatarMovementCommand extends MovementCommand {
                     ((Avatar)entity).pickup();
                 }
             }
-        } catch (Exception e) {
-
+        } catch (Exception e){
+            //do something
         } finally {
             Iterator<EntityObserver> iter = this.entity.entityObserverIterator();
             while (iter.hasNext()) {
@@ -65,6 +63,12 @@ public class AvatarMovementCommand extends MovementCommand {
         // can Tile t take an entity?
         // Move calling entity onto the tile
         map.getTile(this.entity.getLocation()).interact(entity);
+
+    }
+
+    @Override
+    public void execute() {
+
         entity.setMoving(false);
     }
 

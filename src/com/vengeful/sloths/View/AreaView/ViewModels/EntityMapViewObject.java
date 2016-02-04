@@ -2,8 +2,9 @@ package com.vengeful.sloths.View.AreaView.ViewModels;
 
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
+import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.ViewTime;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 
@@ -83,7 +84,7 @@ public class EntityMapViewObject extends ViewObject
 
 	}
 
-	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, AnimatedImage standingImage) {
+	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, String resourcePath, Direction facingDir) {
 		this.x = x;
 		this.y = y;
 		this.startX = x;
@@ -94,7 +95,47 @@ public class EntityMapViewObject extends ViewObject
 		this.animationFinishTime = 0;
 		this.converter = converter;
 
-		this.currentAnimation = standingImage;
+		//setup all animations
+		AnimatedImageFactory aif = AnimatedImageFactory.instance();
+		this.setWalkingN( aif.createTimedAnimatedImage(resourcePath + "/moving/north/man_north"));
+		this.setWalkingNE(aif.createTimedAnimatedImage(resourcePath + "/moving/northeast/man_northeast"));
+		this.setWalkingE( aif.createTimedAnimatedImage(resourcePath + "/moving/east/man_east"));
+		this.setWalkingSE(aif.createTimedAnimatedImage(resourcePath + "/moving/southeast/man_southeast"));
+		this.setWalkingS( aif.createTimedAnimatedImage(resourcePath + "/moving/south/man_south"));
+		this.setWalkingSW(aif.createTimedAnimatedImage(resourcePath + "/moving/southwest/man_southwest"));
+		this.setWalkingW( aif.createTimedAnimatedImage(resourcePath + "/moving/west/man_west"));
+		this.setWalkingNW(aif.createTimedAnimatedImage(resourcePath + "/moving/northwest/man_northwest"));
+
+
+		switch (facingDir) {
+			case N:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_north");
+				break;
+			case E:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_east");
+				break;
+			case S:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_south");
+				break;
+			case W:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_west");
+				break;
+			case NE:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_northeast");
+				break;
+			case NW:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_northwest");
+				break;
+			case SE:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_southeast");
+				break;
+			case SW:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_southwest");
+				break;
+			default:
+				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_south");
+				break;
+		}
 
 		//testAnimation = new BoundedAnimation("resources/man/man_down", 13);
 
@@ -105,7 +146,7 @@ public class EntityMapViewObject extends ViewObject
 	
 	public void paintComponent(Graphics2D g) {
 		if (currentAnimation != null) {
-			g.drawImage(currentAnimation.getCurrentImage(animationStartTime, animationFinishTime),
+			g.drawImage(currentAnimation.getCurrentImage(animationStartTime),
 					//g.drawImage(currentImage,
 					converter.convertX(calculatePosition(startX, postX, animationStartTime, animationFinishTime)),
 					converter.convertY(calculatePosition(startY, postY, animationStartTime, animationFinishTime)),
@@ -143,7 +184,9 @@ public class EntityMapViewObject extends ViewObject
 				currentAnimation = walkingNE;
 				break;
 		}
-			
+		currentAnimation.setDuration(this.animationFinishTime - this.animationStartTime);
+
+
 	}
 	public void alertMove(int x, int y, long animationTime) {
 		this.startX = this.x;
@@ -152,9 +195,10 @@ public class EntityMapViewObject extends ViewObject
 		this.postY = y;
 		this.x = x;
 		this.y = y;
-
+		currentAnimation.setDuration(animationTime);
 		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
 		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + animationTime;
+
 	}
 
 	@Override

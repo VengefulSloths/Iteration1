@@ -2,8 +2,8 @@ package com.vengeful.sloths.Models.Inventory;
 
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.ViewObservable;
-import com.vengeful.sloths.View.AreaView.Observers.InventoryObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ModelObserver;
+import com.vengeful.sloths.View.Observers.InventoryObserver;
+import com.vengeful.sloths.View.Observers.ModelObserver;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -57,14 +57,11 @@ public class Inventory implements ViewObservable {
         if (this.currentSize-- <= 0)
             this.currentSize = 0;
 
-        //@TODO: REMOVE REMOVE REMOVE
-        /*
         Iterator<InventoryObserver> iter = this.inventoryObservers.iterator();
         while (iter.hasNext()) {
             InventoryObserver io = iter.next();
             io.alertItemDropped(item);
-        }*/
-
+        }
 
         return inventory.remove(item);
     }

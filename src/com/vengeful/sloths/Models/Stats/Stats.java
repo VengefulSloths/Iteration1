@@ -1,14 +1,21 @@
 package com.vengeful.sloths.Models.Stats;
 
+import com.vengeful.sloths.Models.ViewObservable;
+import com.vengeful.sloths.View.Observers.ModelObserver;
+import com.vengeful.sloths.View.Observers.StatsObserver;
+
+import java.util.ArrayList;
+
 /**
  * Created by zach on 1/30/16.
  */
-public abstract class Stats {
+public abstract class Stats implements ViewObservable {
     protected int strength;
     protected int agility;
     protected int intellect;
     protected int hardiness;
     protected int movement;
+    protected ArrayList<StatsObserver> statsObservers;
 
     public int getStrength() {
         return strength;
@@ -35,7 +42,8 @@ public abstract class Stats {
         this.agility = 5;
         this.intellect = 5;
         this.hardiness = 5;
-        this.movement = 1;
+        this.movement = 24;
+        this.statsObservers = new ArrayList<>();
     }
 
     public Stats(int strength, int agility, int intellect, int hardiness, int movement) {
@@ -44,6 +52,7 @@ public abstract class Stats {
         this.intellect = intellect;
         this.hardiness = hardiness;
         this.movement = movement;
+        this.statsObservers = new ArrayList<>();
     }
 
     public void increaseStats(int strength, int agility, int intellect, int hardiness, int movement) {
@@ -62,4 +71,13 @@ public abstract class Stats {
         this.movement = move;
     }
 
+    @Override
+    public void registerObserver(ModelObserver modelObserver) {
+        this.statsObservers.add((StatsObserver) modelObserver);
+    }
+
+    @Override
+    public void deregisterObserver(ModelObserver modelObserver) {
+        this.statsObservers.remove((StatsObserver) modelObserver);
+    }
 }

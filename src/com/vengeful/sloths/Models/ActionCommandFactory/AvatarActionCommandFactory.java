@@ -18,8 +18,8 @@ public class AvatarActionCommandFactory extends ActionCommandFactory {
 
 
     @Override
-    public MovementCommand createMovementCommand(Coord src, Coord dst, Direction dir, Entity avatar) {
-        MovementCommand mc = new AvatarMovementCommand(map, src, dst, dir, avatar);
+    public MovementCommand createMovementCommand(Coord src, Coord dst, Direction dir, Entity avatar, int movementSpeed) {
+        MovementCommand mc = new AvatarMovementCommand(map, src, dst, dir, avatar, movementSpeed);
 
         return mc;
     }

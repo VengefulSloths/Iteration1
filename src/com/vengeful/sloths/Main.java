@@ -18,6 +18,7 @@ import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
+import com.vengeful.sloths.View.StatsView.StatsView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 import com.vengeful.sloths.Models.Stats.*;
@@ -49,6 +50,8 @@ public class Main {
         map.getTile(avatar.getLocation()).addEntity(avatar);
 
 
+
+
         AreaView av = new AreaView(cvm, avatar);
 
 
@@ -58,9 +61,14 @@ public class Main {
 
 
         /**** Take-able and InventoryItems need to be paired up when created */
-        MapItem mi1 = new TakeableItem(new Hat("Blue Partyhat"));
-        MapItem mi2 = new TakeableItem(new Hat("Blue Partyhat"));
-        MapItem mi3 = new TakeableItem(new Sword("GodSword"));
+
+        InventoryItem hat1 = new Hat("BlueHat");
+        InventoryItem hat2 = new Hat("BlueHat");
+        InventoryItem sword1 = new Sword("GodSword");
+
+        MapItem mi1 = new TakeableItem(hat1);
+        MapItem mi2 = new TakeableItem(hat2);
+        MapItem mi3 = new TakeableItem(sword1);
 
         //avatar.addItem(new Hat("BlueHat"));
         //avatar.addItem(new Hat("BlueHat"));
@@ -72,12 +80,19 @@ public class Main {
 
 
         ListInventoryView iv = new ListInventoryView(inventory);
+
         EquipmentView ev = new EquipmentView();
         DefaultViewManager vm = new DefaultViewManager(av, iv, ev);
         
 
+
+        //johns test stuff for stats view
+        //StatsView sv = new StatsView();
+
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
+
+        modelEngine.setController(controller);
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);

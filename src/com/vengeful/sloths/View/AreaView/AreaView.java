@@ -6,7 +6,7 @@ import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
-import com.vengeful.sloths.View.AreaView.Observers.EntityObserver;
+import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.ViewObject;
 import com.vengeful.sloths.Models.Map.MapItems.*;

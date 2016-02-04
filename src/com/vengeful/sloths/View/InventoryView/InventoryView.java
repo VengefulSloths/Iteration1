@@ -3,8 +3,8 @@ package com.vengeful.sloths.View.InventoryView;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Utility.Config;
-import com.vengeful.sloths.View.AreaView.Observers.InventoryObserver;
-import com.vengeful.sloths.View.AreaView.Observers.ProxyInventoryObserver;
+import com.vengeful.sloths.View.Observers.InventoryObserver;
+import com.vengeful.sloths.View.Observers.ProxyInventoryObserver;
 import com.vengeful.sloths.View.View;
 
 import javax.swing.*;
@@ -81,4 +81,6 @@ public InventoryView() {
         */
     }
 
+    public abstract void setSelected(InventoryItemViewObject item);
+    public abstract void setDeselected(InventoryItemViewObject item);
 }

@@ -15,6 +15,8 @@ public abstract class MainControllerState {
     }
     //add TimeController
 
+    public void continuousFunction(){};
+
     public abstract boolean handleIKey();
     public abstract boolean handleEKey();
     public abstract boolean handleESCKey();
@@ -27,5 +29,15 @@ public abstract class MainControllerState {
     public abstract boolean handle8Key();
     public abstract boolean handle9Key();
     public abstract boolean handle5Key();
+    public abstract boolean handleDKey();
 
+    public abstract void handleRelease1Key();
+    public abstract void handleRelease2Key();
+    public abstract void handleRelease3Key();
+    public abstract void handleRelease4Key();
+    public abstract void handleRelease6Key();
+    public abstract void handleRelease7Key();
+    public abstract void handleRelease8Key();
+    public abstract void handleRelease9Key();
+    public abstract void handleRelease5Key();
 }

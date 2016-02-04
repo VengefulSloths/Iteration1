@@ -18,7 +18,21 @@ import java.util.Iterator;
         public InventoryItemViewObject weapon;
 
 
-        public EquipmentView() { //edit method signature
+    @Override
+    public void setSelected(InventoryItemViewObject item) {
+
+    }
+    @Override
+    public void setDeselected(InventoryItemViewObject item) {
+
+    }
+
+    public InventoryItemViewObject getHeadGear() {
+            return headGear;
+        }
+
+
+    public EquipmentView(){
 
             manager = new EquipmentViewObjectManager();
 
@@ -47,6 +61,7 @@ import java.util.Iterator;
         }
 
     }
+
 
 /*
     public void paintComponent(Graphics g) { //change to render(Graphics g, int x, int y) ?

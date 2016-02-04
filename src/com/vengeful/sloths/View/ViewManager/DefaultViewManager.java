@@ -3,11 +3,10 @@ package com.vengeful.sloths.View.ViewManager;
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.InventoryView.EquipmentView;
+import com.vengeful.sloths.View.InventoryView.InventoryView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
-import com.vengeful.sloths.View.View;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -21,8 +20,6 @@ public class DefaultViewManager extends ViewManager {
 
     //public DefaultViewManager() {
     public DefaultViewManager(AreaView areaView, ListInventoryView inventoryView, EquipmentView equipmentView) {
-
-        //TODO we should change this paramters to ... and then assign each viw based on what class it is, or some other method
 
         /* Create all of the segments of the overall view */
         //backgroundPanel = new JPanel(new BorderLayout());
@@ -74,7 +71,7 @@ public class DefaultViewManager extends ViewManager {
 
         //this.sidePanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 7));
         //this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        resetBorders();
+
 
         //sidePanel.add(inventoryView, BorderLayout.CENTER); //eventually, will add StatsView and HUDView to sidePanel
 
@@ -90,6 +87,10 @@ public class DefaultViewManager extends ViewManager {
 
 
 
+    }
+
+    public InventoryView getInventoryView() {
+        return this.inventoryView;
     }
 
     private void resetBorders(){

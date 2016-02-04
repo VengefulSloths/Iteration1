@@ -1,4 +1,4 @@
-package com.vengeful.sloths.View.AreaView.Observers;
+package com.vengeful.sloths.View.Observers;
 
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 
@@ -10,6 +10,7 @@ public class ProxyMapItemObserver extends ProxyObserver
 
     private MapItemObserver target;
     public ProxyMapItemObserver(MapItemObserver target, MapItem subject) {
+        System.out.println("ProxyMapItemObserver constructor: ");
         this.subject = subject;
         this.subject.registerObserver(this);
         this.target = target;

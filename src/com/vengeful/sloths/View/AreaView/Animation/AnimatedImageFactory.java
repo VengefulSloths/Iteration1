@@ -1,5 +1,6 @@
 package com.vengeful.sloths.View.AreaView.Animation;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -15,17 +16,19 @@ public class AnimatedImageFactory {
         }
         return instance;
     }
-    public AnimatedImage createAnimatedImage(String config) {
+    public AnimatedImage createSingleFrameAnimatedImage(String filename) {
+        return new SingleFrameAnimation(filename);
+    }
+    public AnimatedImage createTimedAnimatedImage(String config) {
         try(BufferedReader br = new BufferedReader(new FileReader(config + ".txt"))) {
-            String countString = br.readLine().substring(6);
-            System.out.println(countString);
-            int count = Integer.parseInt(countString);
-            System.out.println(count);
+            int count = Integer.parseInt( br.readLine().substring(6));
+            AnimatedImage ai = new TimedAnimation(config, count, 1000);
+            return ai;
 
         } catch(Exception e) {
-            e.printStackTrace();
+            return new SingleFrameAnimation("file_not_found.jpg");
         }
-        return null;
+
     }
 
 }

@@ -1,6 +1,7 @@
 package com.vengeful.sloths.View.AreaView.Animation;
 
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
+import com.vengeful.sloths.View.ViewTime;
 
 import javax.swing.ImageIcon;
 import java.awt.*;
@@ -23,8 +24,9 @@ public class BoundedAnimation extends AnimatedImage {
         }
     }
     @Override
-    public Image getCurrentImage(long startTime, long endTime) {
-        long t = System.currentTimeMillis();
+    public Image getCurrentImage(long startTime) {
+        long t = ViewTime.getInstance().getCurrentTimeMilli();
+        long endTime = t + duration;
         if (startTime == t) return images.get(0);
         else if (t >= endTime) return images.get(images.size()-1);
         else {
@@ -32,4 +34,6 @@ public class BoundedAnimation extends AnimatedImage {
             return images.get((int)((float)(images.size()-1)/(float)(endTime - startTime)*(float)(t - startTime)));
         }
     }
+
+
 }
