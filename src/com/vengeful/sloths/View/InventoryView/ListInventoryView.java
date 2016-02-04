@@ -40,8 +40,8 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
     }
 
     /*EDIT: for testing purposes. */
-    InventoryItemViewObject GodSwordItemViewObject = new InventoryItemViewObject(new Sword("GodSword"));
-    InventoryItemViewObject PartyHatItemViewObject = new InventoryItemViewObject(new Hat("Blue Partyhat"));
+    InventoryItemViewObject GodSwordItemViewObject;
+    InventoryItemViewObject PartyHatItemViewObject;
 
     public ListInventoryView(Inventory inventory) {
 
@@ -60,18 +60,6 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         setLayout(new BorderLayout());
         this.add(new JLabel("Inventory"), BorderLayout.NORTH);
 
-//        manager.addInventoryItemViewObject(testItem2);
-//        manager.addInventoryItemViewObject(testItem);
-
-
-
-//        manager.addInventoryItemViewObject(testItem2);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem);
-//        manager.addInventoryItemViewObject(testItem2);
 
     }
 
@@ -98,9 +86,6 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
     @Override
     public void alertItemAdded(InventoryItem item) {
 
-        System.out.println("LISTINVENTORYVIEW!!!!");
-        System.out.println("Item: " + item.getItemName() + " Added!");
-
         if (item instanceof Hat) {
             PartyHatItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(PartyHatItemViewObject);
@@ -117,6 +102,7 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
     public void alertItemDropped(InventoryItem item) {
         System.out.println("LISTINVENTORYVIEW!!!!");
         System.out.println("Item: " + item.getItemName() + " DROPPED!");
+        manager.removeInventoryItemViewObject(item);
     }
 
 

@@ -63,10 +63,13 @@ public class InventoryState extends MainControllerState {
 
         this.inventoryIndex++;
 
+        System.out.println("At index: " + this.inventoryIndex + " now");
         if (this.inventoryIndex >= itemListSize) {
             this.inventoryIndex = itemListSize - 1;
             return false;
         }
+
+
 
         return true;
     }
@@ -105,6 +108,8 @@ public class InventoryState extends MainControllerState {
             return false;
         }
 
+        System.out.println("At index: " + this.inventoryIndex + " now");
+
         return true;
     }
 
@@ -123,7 +128,8 @@ public class InventoryState extends MainControllerState {
     @Override
     public boolean handleDKey() {
 
-        InventoryItem i = ((ListInventoryView)this.inventoryView).manager.removeInventoryItemViewObject(this.inventoryIndex--).getInventoryItem();
+        InventoryItem i = ((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex--).getInventoryItem();
+
 
         System.out.println("DROPPING " + i.getItemName());
 
