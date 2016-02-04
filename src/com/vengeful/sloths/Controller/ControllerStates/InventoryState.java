@@ -64,11 +64,12 @@ public class InventoryState extends MainControllerState {
         System.out.println(itemListSize + " size");
         this.inventoryIndex++;
 
-        System.out.println("At index: " + this.inventoryIndex + " now");
+
         if (this.inventoryIndex >= itemListSize) {
             this.inventoryIndex = itemListSize - 1;
             return false;
         }
+        System.out.println("At index: " + this.inventoryIndex + " now");
 
         ((ListInventoryView)this.inventoryView).setSelected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
         if (this.inventoryIndex > 0)
@@ -106,12 +107,12 @@ public class InventoryState extends MainControllerState {
 
         this.inventoryIndex--;
 
-        if (this.inventoryIndex <= 0) {
+        if (this.inventoryIndex < 0) {
             this.inventoryIndex = 0;
             return false;
         }
         ((ListInventoryView)this.inventoryView).setSelected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
-        if (this.inventoryIndex < itemListSize-1)
+        if (this.inventoryIndex < itemListSize)
             ((ListInventoryView)this.inventoryView).setDeselected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex + 1));
         System.out.println("At index: " + this.inventoryIndex + " now");
 

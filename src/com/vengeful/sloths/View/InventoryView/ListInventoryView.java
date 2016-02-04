@@ -77,10 +77,10 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
         while (iter.hasNext()) {
             InventoryItemViewObject current = iter.next();
             if(current.isSelected) {
-                System.out.print("borderersrs");
+                //System.out.print("borderersrs");
 //                current.setBorder();
-                Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLUE, Color.BLUE);
-                b.paintBorder(current, g2d, 0, offset, viewWidth, viewHeight);
+                Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.ORANGE, Color.ORANGE);
+                b.paintBorder(current, g2d, 0, offset, viewWidth, current.IMAGE_HEIGHT);
 
                 current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
 
