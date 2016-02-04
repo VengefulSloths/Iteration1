@@ -23,11 +23,11 @@ public class ItemMapViewObject extends ViewObject
     private long destructionTime;
     private SoundEffect destroyedSound;
 
-    public ItemMapViewObject(int x, int y, String resourceLocation, CoordinateStrategy converter ) {
+    public ItemMapViewObject(int x, int y, String resourceLocation, String destroyedSoundPath, CoordinateStrategy converter ) {
         this.x = x;
         this.y = y;
         this.converter = converter;
-        this.destroyedSound = SoundEffect.SMASH;
+        this.destroyedSound = new SoundEffect(destroyedSoundPath);
         String resourceName = resourceLocation.substring(resourceLocation.lastIndexOf('/')+1);
         System.out.println("RESOURCE: " + resourceName);
         String itemImagePath = resourceLocation + "/" + resourceName;

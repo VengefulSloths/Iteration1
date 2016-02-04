@@ -32,7 +32,7 @@ public class driver extends JFrame{
         btnSound1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SoundEffect.SMASH.play();
+                //SoundEffect.SMASH.play();
             }
         });
         cp.add(btnSound1);
@@ -40,7 +40,7 @@ public class driver extends JFrame{
         btnSound2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SoundEffect.SMASH.play();
+                //SoundEffect.SMASH.play();
             }
         });
         cp.add(btnSound2);
@@ -48,7 +48,7 @@ public class driver extends JFrame{
         btnSound3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SoundEffect.SMASH.play();
+                //SoundEffect.SMASH.play();
             }
         });
         cp.add(btnSound3);

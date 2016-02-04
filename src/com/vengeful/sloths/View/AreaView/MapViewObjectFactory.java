@@ -28,7 +28,7 @@ public abstract class MapViewObjectFactory {
     public EntityMapViewObject createEntityMapViewObject(Entity entity) {
         Coord loc = entity.getLocation();
 
-        EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, "resources/man2",entity.getFacingDirection() );
+        EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, "resources/man2", "resources/Audio/grass_step3.wav", entity.getFacingDirection() );
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
         ProxyEntityObserver peo = new ProxyEntityObserver(emvo, entity);
@@ -37,6 +37,7 @@ public abstract class MapViewObjectFactory {
         return emvo;
     }
     public abstract TerrainMapViewObject createTerrainMapViewObject(Terrain terrain, int x, int y);
+
     public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
         System.out.println("NEW CAMERA");
         System.out.println("ITEMS! " + mapItem);
@@ -45,14 +46,15 @@ public abstract class MapViewObjectFactory {
 
         //Test pickup/drop item
         if(mapItem instanceof TakeableItem){
+            String pickUpSoundPath = "resources/Audio/pickup.wav";
             if(((TakeableItem) mapItem).getInvItemRep() instanceof Hat){
-                itemView = new ItemMapViewObject(x, y, "resources/Items/BluePartyHat", coordinateStrategy);
+                itemView = new ItemMapViewObject(x, y, "resources/Items/BluePartyHat", pickUpSoundPath, coordinateStrategy);
             }else if(((TakeableItem) mapItem).getInvItemRep() instanceof Sword){
-                itemView = new ItemMapViewObject(x, y, "resources/Items/GodSword", coordinateStrategy);
+                itemView = new ItemMapViewObject(x, y, "resources/Items/GodSword", pickUpSoundPath, coordinateStrategy);
             }
 
         }else{
-            itemView = new ItemMapViewObject(x, y, "resources/Items/Box", coordinateStrategy);
+            itemView = new ItemMapViewObject(x, y, "resources/Items/Box", "resources/Audio/break.wav", coordinateStrategy);
 
         }
 

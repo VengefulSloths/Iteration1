@@ -7,9 +7,10 @@ import java.net.URL;
 /**
  * Created by alexs on 2/4/2016.
  */
-public enum SoundEffect {
-    SMASH("resources/Audio/break.wav"),   // explosion
-    GRASS("resources/Audio/grass_step3.wav");
+public class SoundEffect {
+//    SMASH("resources/Audio/break.wav"),   // explosion
+//    GRASS("resources/Audio/grass_step3.wav"),
+//    PICKUP("resources/Audio/pickup.wav");
 
     public static enum Volume {
         MUTE, LOW, MEDIUM, HIGH
@@ -19,7 +20,7 @@ public enum SoundEffect {
 
     private Clip clip;
 
-    SoundEffect(String soundFileName) {
+    public SoundEffect(String soundFileName) {
         try {
             URL url = this.getClass().getClassLoader().getResource(soundFileName);
             File file = new File(soundFileName);
@@ -47,6 +48,6 @@ public enum SoundEffect {
 
     // Optional static method to pre-load all the sound files.
     public static void init() {
-        values();
+
     }
 }
