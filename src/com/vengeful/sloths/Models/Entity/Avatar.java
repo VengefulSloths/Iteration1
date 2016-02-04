@@ -125,10 +125,6 @@ public class Avatar extends Entity {
             System.out.print(inventory.getItem(i).getItemName()+"\t ");
         }
         System.out.println();
-        System.out.println("Inventory Item being dropped: :");
-        System.out.println(item.getItemName());
-        System.out.println("MapItemRep:");
-        System.out.println(item.getMapItemRep());
         try{
 //            InventoryItem itemToDrop = inventory.getItem(itemIndex);
             this.commandFactory.createDropCommand(item, this.getLocation(), this);

@@ -5,9 +5,7 @@ import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Created by echristiansen on 1/30/2016.
@@ -28,9 +26,22 @@ public class ListInventoryViewObjectManager { //this just manages all of the lis
         itemList.add(item);
     }
 
-    public InventoryItemViewObject removeInventoryItemViewObject(int itemIndex) { //rename populate(InventoryItemViewObject item)?
+    public InventoryItemViewObject removeInventoryItemViewObject(InventoryItem item) { //rename populate(InventoryItemViewObject item)?
         //We can sort on iterator because it will be called less
-        return itemList.remove(itemIndex);
+        int index = 0;
+        InventoryItemViewObject ivo = null;
+        for (int i = 0; i < itemList.size(); i++) {
+            if (itemList.get(i).getInventoryItem().equals(item)) {
+                ivo = itemList.get(i);
+                itemList.remove(i);
+            }
+        }
+
+        return ivo;
+    }
+
+    public InventoryItemViewObject getFromItemList(int index) {
+        return itemList.get(index);
     }
 
     public void initWithInventory(Inventory inventory) {
