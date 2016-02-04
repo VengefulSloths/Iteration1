@@ -1,5 +1,7 @@
 package com.vengeful.sloths.Models.TimeModel;
 
+import com.vengeful.sloths.Controller.MainController;
+
 /**
  * Created by John on 1/30/2016.
  */

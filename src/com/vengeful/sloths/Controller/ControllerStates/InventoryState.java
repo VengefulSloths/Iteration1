@@ -138,4 +138,16 @@ public class InventoryState extends MainControllerState {
     public String toString() {
          return "InventoryState";
     }
+
+    public void handleRelease1Key(){
+        mainController.getAvatar().setMoving(false);
+    }
+    public void handleRelease2Key(){}
+    public void handleRelease3Key(){}
+    public void handleRelease4Key(){}
+    public void handleRelease6Key(){}
+    public void handleRelease7Key(){}
+    public void handleRelease8Key(){}
+    public void handleRelease9Key(){}
+    public void handleRelease5Key(){}
 }

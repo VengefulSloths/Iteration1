@@ -49,6 +49,8 @@ public class Main {
         map.getTile(avatar.getLocation()).addEntity(avatar);
 
 
+
+
         AreaView av = new AreaView(cvm, avatar);
 
 
@@ -83,6 +85,8 @@ public class Main {
 
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
+
+        modelEngine.setController(controller);
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);

@@ -28,7 +28,7 @@ public abstract class MovementCommand implements Alertable {
         //this.execute();
         //replace this with a alertable command poosibly vary by speed
 
-        TimeModel.getInstance().registerAlertable(this, 4);
+        TimeModel.getInstance().registerAlertable(this, 6);
 
     }
 
