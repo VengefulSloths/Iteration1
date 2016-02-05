@@ -16,29 +16,6 @@ import java.util.Iterator;
  */
 public abstract class InventoryView extends View implements InventoryObserver{
 
-    /*
-    //have width and height here?
-    protected int viewWidth;
-    protected int viewHeight;
-    protected int offset;
-
-    public ViewObjectManager manager;
-
-    public int getViewWidth() {
-        return viewWidth;
-    }
-    public void setViewWidth(int viewWidth) {
-        this.viewWidth = viewWidth;
-    }
-    public int getViewHeight() {
-        return viewHeight;
-    }
-    public void setViewHeight(int viewHeight) {
-        this.viewHeight = viewHeight;
-        //System.out.println("SET THE VIEW HEIGHT. IT IS: " + viewHeight);
-    }
-    */
-
 public InventoryView() {
 //manager = new ViewObjectManager();
 
