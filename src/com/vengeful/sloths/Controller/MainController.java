@@ -8,6 +8,7 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.MainMenuView.MenuView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 import com.vengeful.sloths.View.ViewManager.ViewManager;
@@ -25,12 +26,16 @@ public class MainController {
     private MainControllerState state;
     private InputHandler inputHandler;
     private Screen screen;
+
+    //These two may need to come together soon
     private ViewManager viewManager;
 
     private AvatarState avatarState;
     private InventoryState inventoryState;
     private MenuState menuState;
 
+
+    //Setting the menu view through the constructor is probably not final
     public MainController(Avatar player, JFrame jframe, ViewManager vm){
 
         this.player = player;
@@ -195,8 +200,13 @@ public class MainController {
         this.state = this.inventoryState;
     }
 
-    public void setMenuState(){
-        this.state = menuState;
+    //Yes this is hacky, I will work on it
+    public MenuState getMenuState() {
+        return this.menuState;
+    }
+
+    public void setMenuState() {
+        this.state = this.menuState;
     }
 
     public Avatar getAvatar(){

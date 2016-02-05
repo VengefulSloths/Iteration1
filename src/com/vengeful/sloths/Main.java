@@ -18,6 +18,8 @@ import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
+import com.vengeful.sloths.View.MainMenuView.MainMenuView;
+import com.vengeful.sloths.View.MainMenuView.MenuView;
 import com.vengeful.sloths.View.StatsView.StatsView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
@@ -89,6 +91,7 @@ public class Main {
         //johns test stuff for stats view
         //StatsView sv = new StatsView();
 
+        MenuView mainMenuView = new MainMenuView();
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
 

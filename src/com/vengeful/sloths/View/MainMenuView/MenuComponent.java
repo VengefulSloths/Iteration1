@@ -1,5 +1,8 @@
 package com.vengeful.sloths.View.MainMenuView;
 
+import com.vengeful.sloths.View.MainMenuView.Commands.DummyCommand;
+import com.vengeful.sloths.View.MainMenuView.Commands.MenuCommand;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -27,8 +30,14 @@ public class MenuComponent extends JComponent{
         return selected;
     }
 
+    private MenuCommand action;
+
     static void init() {
 
+    }
+
+    public void doAction() {
+        action.execute();
     }
 
     public MenuComponent(String textPath, int x, int y) {
@@ -45,7 +54,13 @@ public class MenuComponent extends JComponent{
         this.menuImageSelected = menuItemSelected.getImage();
         this.menuImageUnselected = menuItemUnselected.getImage();
 
+        action = new DummyCommand();
+
         this.setPreferredSize(new Dimension(200,50));
+    }
+
+    public void setAction(MenuCommand action) {
+        this.action = action;
     }
 
     @Override
