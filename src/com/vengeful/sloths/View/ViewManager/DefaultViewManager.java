@@ -18,6 +18,8 @@ import java.awt.*;
 public class DefaultViewManager extends ViewManager {
 
     public DefaultViewManager(AreaView areaView, ListInventoryView inventoryView, EquipmentView equipmentView, StatsView statsView) {
+        
+        //backgroundPanel = new JPanel(new BorderLayout());
 
         /* Initialize the views in the ViewManager */
         sidePanel = new JPanel();
@@ -71,6 +73,7 @@ public class DefaultViewManager extends ViewManager {
     public InventoryView getInventoryView() {
         return this.inventoryView;
     }
+
 
     private void resetBorders(){
         this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
