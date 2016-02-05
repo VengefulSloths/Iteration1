@@ -13,6 +13,7 @@ public class ViewTime {
     private long currentTimeMilli;
     private static ViewTime instance = null;
     private CopyOnWriteArrayList<AbstractMap.SimpleEntry<ViewAlertable, Long>> subjects;
+
     private ViewTime() {
         this.subjects = new CopyOnWriteArrayList<>();
         this.currentTimeMilli = System.currentTimeMillis();
@@ -23,8 +24,14 @@ public class ViewTime {
         }
         return instance;
     }
+
+
+
+
+
     public void tick() {
         this.currentTimeMilli = System.currentTimeMillis();
+
 
         Iterator<AbstractMap.SimpleEntry<ViewAlertable, Long>> iter = subjects.iterator();
         ArrayList<AbstractMap.SimpleEntry<ViewAlertable, Long>> toDelete = new ArrayList<>();
