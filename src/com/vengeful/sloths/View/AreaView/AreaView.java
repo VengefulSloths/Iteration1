@@ -10,17 +10,15 @@ import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.ViewObject;
 import com.vengeful.sloths.Models.Map.MapItems.*;
+import com.vengeful.sloths.View.View;
 
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Iterator;
 
 import javax.swing.JPanel;
 
-public class AreaView extends JPanel
+public class AreaView extends View
 					implements EntityObserver {
 
 
@@ -44,6 +42,11 @@ public class AreaView extends JPanel
 	private Entity playerModel;
 
 	public AreaView(CameraViewManager cvm, Entity player) {
+
+		//this.setBackgroundImageFileName("resources/inventoryBackground.jpg");
+
+		this.setBackground(Color.BLACK);
+
 		this.playerModel = player;
 
 		mapViewObjectManager = new MapViewObjectManager();

@@ -4,6 +4,7 @@ import com.vengeful.sloths.Models.Effects.EffectCommand;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Effects.*;
+import com.vengeful.sloths.Models.Map.*;
 
 /**
  * Created by qianwen on 2/3/16.
@@ -22,7 +23,7 @@ public class TakeDamageAE extends AreaEffect{
 
     //This AE can only take effect on Avatar
     @Override
-    public EffectCommand createEffectCommand(Entity affectedEntity) {
+    public EffectCommand createEffectCommand(Entity affectedEntity, Tile tile) {
         if(affectedEntity instanceof Avatar)
             return new TakeDamageAECommand(affectedEntity, this.damage, affectedEntity.getLocation());
         else

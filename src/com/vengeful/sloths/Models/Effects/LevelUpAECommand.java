@@ -2,15 +2,22 @@ package com.vengeful.sloths.Models.Effects;
 
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.TimeModel.TimeModel;
+import com.vengeful.sloths.Models.Map.*;
 
 /**
- * Created by luluding on 2/5/16.
+ * Created by qianwen on 2/5/16.
  */
 public class LevelUpAECommand extends EffectCommand {
 
-    public LevelUpAECommand(Entity entity){
+    Tile tile;
+    AreaEffect ae;
+
+    public LevelUpAECommand(Entity entity, Tile tile, AreaEffect ae){
         this.entity = entity;
+        this.tile = tile;
+        this.ae = ae;
         TimeModel.getInstance().registerAlertable(this, 0);
     }
 

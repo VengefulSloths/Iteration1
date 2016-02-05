@@ -44,19 +44,19 @@ public class AvatarMovementCommand extends MovementCommand {
                 //System.out.println("My location: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
 
 
+                /*
                 //if there is takeable item on the tile, let entity pick it up
                 if(destTile.getMapItemIterator().hasNext()){
                     System.out.println("Calling pick up!!!!");
                     ((Avatar)entity).pickup();
-                }
+                }*/
 
-                //Test
+                /*
                 //Check if there is there is area of effect on map
-                //AreaEffect.createAECommand(entity, this, location)
                 if(destTile.getAreaEffectIterator().hasNext()){
                     System.out.println("Calling creating effect!!!!");
                     destTile.createAEs();
-                }
+                }*/
 
             }
         } catch (Exception e){

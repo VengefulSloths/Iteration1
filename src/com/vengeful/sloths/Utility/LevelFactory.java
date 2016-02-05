@@ -89,7 +89,7 @@ public class LevelFactory {
 
 
         /**** Test AE ****/
-        AreaEffect ae1 = new TakeDamageAE(2);
+        AreaEffect ae1 = new TakeDamageAE(1);
         AreaEffect ae2 = new LevelUpAE();
         AreaEffect ae3 = new HealDamageAE(1);
         AreaEffect ae4 = new InstantDeathAE();

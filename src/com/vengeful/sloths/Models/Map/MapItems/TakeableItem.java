@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.Map.MapItems;
 
+import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 
@@ -21,6 +22,10 @@ public class TakeableItem extends MapItem {
     //Does nothing
     public void interact(Entity entity){
         //maybe alert user he cannot move here
+        if(entity instanceof Avatar){
+            System.out.println("Calling pick up!!!!");
+            ((Avatar)entity).pickup();
+        }
     }
 
     public InventoryItem getInvItemRep(){
