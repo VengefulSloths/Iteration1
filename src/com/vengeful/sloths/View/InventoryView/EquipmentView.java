@@ -34,12 +34,10 @@ import java.util.Iterator;
 
     public EquipmentView(){
 
+            generateBackground();
             manager = new EquipmentViewObjectManager();
-
-
             setLayout(new BorderLayout());
             this.add(new JLabel("Equipment"), BorderLayout.NORTH);
-
 
             //manager.addEquipment(headGear);
 
@@ -61,6 +59,12 @@ import java.util.Iterator;
         }
 
     }
+
+
+    public void generateBackground() {
+        setBackground(Color.ORANGE);
+    }
+
 
 
 /*

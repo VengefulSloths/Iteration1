@@ -84,7 +84,8 @@ public class Main {
         ListInventoryView iv = new ListInventoryView(inventory);
 
         EquipmentView ev = new EquipmentView();
-        DefaultViewManager vm = new DefaultViewManager(av, iv, ev);
+        StatsView sv = new StatsView(new BaseStats(5,5,5,5,5));
+        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv);
         
 
 
