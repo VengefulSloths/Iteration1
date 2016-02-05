@@ -107,8 +107,9 @@ public class EntityStats extends Stats {
     }
 
     public void setCurrentHealth(int health){
-        if((this.currentHealth + health) > this.life)
+        if((this.currentHealth + health) > this.life) {
             this.currentHealth = this.life;
+        }
         else
             this.currentHealth += health;
     }
