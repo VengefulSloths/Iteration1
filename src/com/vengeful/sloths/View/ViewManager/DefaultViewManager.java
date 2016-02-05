@@ -78,11 +78,11 @@ public class DefaultViewManager extends ViewManager {
 
 
     private void resetBorders(){
-        this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.equipmentView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.statsView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+        this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.equipmentView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.statsView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
     }
 
     public void selectInventoryView(){

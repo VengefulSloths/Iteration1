@@ -14,7 +14,7 @@ import java.util.Iterator;
     public class EquipmentView extends InventoryView {
 
     public static final String title = "Equipment";
-    public static final String backgroundImageFileName = "resources/inventoryBackground.jpg";
+    public static final String backgroundImageFileName = "resources/inventoryBackground2.jpg";
 
     public EquipmentViewObjectManager manager;
         public InventoryItemViewObject headGear;
