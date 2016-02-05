@@ -16,9 +16,7 @@ public class ListInventoryViewObjectManager extends ViewObjectManager { //this j
     InventoryItemViewObject PartyHatItemViewObject;
 
     public ListInventoryViewObjectManager() {
-
         super();
-
     }
 
     public void addInventoryItemViewObject(InventoryItemViewObject item) { //rename populate(InventoryItemViewObject item)?

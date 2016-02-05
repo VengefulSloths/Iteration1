@@ -42,6 +42,9 @@ public class ListInventoryView extends InventoryView {
 
         setLayout(new BorderLayout());
         this.add(new JLabel("Inventory"), BorderLayout.NORTH);
+        //this.setLayout(null);
+        //generateBackground("resources/inventoryBackground.jpg");
+        generateBackground();
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
         ProxyObserver pio = new ProxyInventoryObserver(this, inventory);
@@ -53,37 +56,30 @@ public class ListInventoryView extends InventoryView {
 
         /* edit the next two lines/maybe delete them */
 
+    }
 
-
+    public void generateBackground() {
+        //put the generate background in a method (below)
+      setBackground(Color.ORANGE);
     }
 
     ///*
     public void paintComponent(Graphics g) { //change to render(Graphics g, int x, int y) ?
         super.paintComponent(g);
-
         Graphics2D g2d = (Graphics2D) g;
-
         Iterator<ItemViewObject> iter = manager.iterator();
-        //offset = iter.next().IMAGE_HEIGHT; //this causes a problem because it skips the first one in the iterator
         offset = Config.instance().INVENTORY_IMAGE_HEIGHT; //going to need to find a better way to get an offset
-
         while (iter.hasNext()) {
-
             InventoryItemViewObject current = (InventoryItemViewObject)iter.next();
             if(current.isSelected) {
-                //System.out.print("borderersrs");
-//                current.setBorder();
                 Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.ORANGE, Color.ORANGE);
                 b.paintBorder(current, g2d, 0, offset, viewWidth, Config.instance().INVENTORY_IMAGE_HEIGHT);
-
                 current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
-
             } else {
                 current.paintComponent(g2d, 0, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
             }
             offset = offset + Config.instance().INVENTORY_IMAGE_HEIGHT + 2;
         }
-
         Toolkit.getDefaultToolkit().sync(); //purpose?
     }
 //*/

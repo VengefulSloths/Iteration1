@@ -15,10 +15,10 @@ import java.util.Iterator;
 public abstract class ItemViewObject extends JComponent {
 
     protected Image itemImage;
-    private static final int IMAGE_HEIGHT = Config.instance().INVENTORY_IMAGE_HEIGHT; //increment the y positions by height + 2
-    private static final int IMAGE_WIDTH = Config.instance().INVENTORY_IMAGE_WIDTH;
-    public static final int HORIZONTAL_OFFSET = IMAGE_WIDTH + 100;
-    public static final double HORIZONTAL_OFFSET_PROPORTION = 0.50;
+    protected static final int IMAGE_HEIGHT = Config.instance().INVENTORY_IMAGE_HEIGHT; //increment the y positions by height + 2
+    protected static final int IMAGE_WIDTH = Config.instance().INVENTORY_IMAGE_WIDTH;
+    protected static final int HORIZONTAL_OFFSET = IMAGE_WIDTH + 100;
+    protected static final double HORIZONTAL_OFFSET_PROPORTION = 0.50;
 
     public double horizontalOffset; //might not need, but it's down at the bottom in the paintComponent
 
