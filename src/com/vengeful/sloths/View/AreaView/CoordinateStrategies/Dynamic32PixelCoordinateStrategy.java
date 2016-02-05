@@ -27,7 +27,7 @@ public class Dynamic32PixelCoordinateStrategy extends CoordinateStrategy {
 
     @Override
     public int convertX(int x) {
-        return doOffset(x, this.player.getFloatX(), cv.getX(), xOffset);
+        return doOffset((float) x, this.player.getFloatX(), cv.getX(), xOffset);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Dynamic32PixelCoordinateStrategy extends CoordinateStrategy {
 
     @Override
     public int convertY(int y) {
-        return doOffset(y, this.player.getFloatY(), cv.getY(), yOffset);
+        return doOffset((float) y, this.player.getFloatY(), cv.getY(), yOffset);
 
     }
 

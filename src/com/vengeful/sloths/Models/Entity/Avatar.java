@@ -75,7 +75,7 @@ public class Avatar extends Entity {
            this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this, entityStats.getMovement());
 
         }else{
-            System.out.println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");
+            //System.out.println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");
         }
     }
 
