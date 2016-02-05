@@ -21,6 +21,8 @@ public class CharacterCreationView extends MenuView implements ViewAlertable{
 
     private final long SELECT_TIME = 300;
 
+    private Image avatarImage;
+
     private MenuIcon leftIcon;
     private MenuIcon rightIcon;
 
@@ -40,6 +42,9 @@ public class CharacterCreationView extends MenuView implements ViewAlertable{
         this.addMenuComponent("resources/Menu/Smasher");
         this.addMenuComponent("resources/Menu/Confirm");
         this.children.get(0).setSelected(true);
+
+        ImageIcon avatarIcon = new ImageIcon("resources/man2/AvatarDefault.png");
+        this.avatarImage = avatarIcon.getImage();
 
         leftIcon = new MenuIcon(
                 "resources/Menu/ArrowLeft",

@@ -67,6 +67,8 @@ public class DefaultViewManager extends ViewManager {
         this.add(areaView, BorderLayout.WEST);
         this.add(sidePanel, BorderLayout.EAST);
 
+
+        this.setDoubleBuffered(true);
     }
 
     /* Get the inventoryView in this ViewManager. The attribute is in the superclass definition */

@@ -4,6 +4,7 @@ import com.vengeful.sloths.Models.Effects.EffectCommand;
 import com.vengeful.sloths.Models.Effects.HealDamageAECommand;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.Map.*;
 
 /**
  * Created by luluding on 2/5/16.
@@ -21,7 +22,7 @@ public class HealDamageAE extends AreaEffect{
 
     //This AE can only take effect on Avatar
     @Override
-    public EffectCommand createEffectCommand(Entity affectedEntity) {
+    public EffectCommand createEffectCommand(Entity affectedEntity, Tile tile) {
         if(affectedEntity instanceof Avatar)
             return new HealDamageAECommand(affectedEntity, this.health, affectedEntity.getLocation());
         else

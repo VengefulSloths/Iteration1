@@ -47,6 +47,8 @@ public class ViewEngine extends JFrame implements Runnable{
                     //dont care
                 }
 
+            } else {
+                System.out.println("View tick took too long");
             }
             //System.out.println("View Tick");
         }
