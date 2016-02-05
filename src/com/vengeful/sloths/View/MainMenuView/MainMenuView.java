@@ -26,6 +26,8 @@ public class MainMenuView extends MenuView{
 
         this.addMenuComponent("resources/Menu/NewGame");
         this.addMenuComponent("resources/Menu/LoadGame");
+        this.addMenuComponent("resources/Menu/LoadGame");
+        this.addMenuComponent("resources/Menu/LoadGame");
 
         MenuCommandFactory menuCommandFactory = new MenuCommandFactory();
 

@@ -58,12 +58,14 @@ public class MenuState extends MainControllerState {
 
     @Override
     public boolean handle4Key() {
-        return false;
+        target.cursorLeft();
+        return true;
     }
 
     @Override
     public boolean handle6Key() {
-        return false;
+        target.cursorRight();
+        return true;
     }
 
     @Override

@@ -29,6 +29,7 @@ public class MenuContainer extends JPanel implements MenuControllable{
     }
 
 
+
     public MenuView getMainMenuView() {
         return mainMenuView;
     }

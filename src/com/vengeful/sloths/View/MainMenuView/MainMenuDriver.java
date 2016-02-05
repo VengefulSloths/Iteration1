@@ -12,6 +12,7 @@ import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
+import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
@@ -19,6 +20,7 @@ import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.MainMenuView.Commands.MenuCommandFactory;
+import com.vengeful.sloths.View.StatsView.StatsView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 
@@ -66,7 +68,9 @@ public class MainMenuDriver {
         ListInventoryView iv = new ListInventoryView(inventory);
 
         EquipmentView ev = new EquipmentView();
-        DefaultViewManager vm = new DefaultViewManager(av, iv, ev);
+        StatsView sv = new StatsView(new BaseStats(5,5,5,5,5));
+
+        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv);
 
 
 
@@ -96,7 +100,7 @@ public class MainMenuDriver {
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        menuContainer.goToCharacterCreation();
+                        //menuContainer.goToCharacterCreation();
                         //avatar.addItem(new Sword("Excal"));
                         // your code here
                     }

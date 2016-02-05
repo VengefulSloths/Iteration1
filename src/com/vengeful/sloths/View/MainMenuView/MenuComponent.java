@@ -13,15 +13,15 @@ public class MenuComponent extends JComponent{
     static final int WIDTH = 256;
     static final int HEIGTH = 64;
 
-    private Image menuImageUnselected;
-    private Image menuImageSelected;
+    protected Image menuImageUnselected;
+    protected Image menuImageSelected;
 
-    private Image textUnselected;
-    private Image textSelected;
-    private int y;
-    private int x;
+    protected Image textUnselected;
+    protected Image textSelected;
+    protected int y;
+    protected int x;
 
-    private boolean selected = false;
+    protected boolean selected = false;
 
     public void setSelected(boolean selected) {
         this.selected = selected;
@@ -30,14 +30,17 @@ public class MenuComponent extends JComponent{
         return selected;
     }
 
-    private MenuCommand action;
-
-    static void init() {
-
-    }
+    protected MenuCommand action;
 
     public void doAction() {
         action.execute();
+    }
+
+    public void setText(String textPath) {
+        ImageIcon textUnselected = new ImageIcon(textPath + ".png");
+        ImageIcon textSelected = new ImageIcon(textPath + "_Selected.png");
+        this.textUnselected = textUnselected.getImage();
+        this.textSelected = textSelected.getImage();
     }
 
     public MenuComponent(String textPath, int x, int y) {
@@ -56,7 +59,7 @@ public class MenuComponent extends JComponent{
 
         action = new DummyCommand();
 
-        this.setPreferredSize(new Dimension(200,50));
+        this.setPreferredSize(new Dimension(320,64));
     }
 
     public void setAction(MenuCommand action) {
