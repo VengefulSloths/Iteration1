@@ -36,6 +36,12 @@ public class MainMenuView extends MenuView{
 
     }
 
+    public void addMenuComponent(String textPath) {
+        children.add(new DefaultMenuComponent(
+                textPath,
+                Config.instance().getWindowWidth()/2-DefaultMenuComponent.WIDTH/2,
+                this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++));
+    }
 
     public MainMenuView() {
         this.init();
