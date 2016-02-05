@@ -22,20 +22,7 @@ public class ProxyInventoryObserver extends ProxyObserver
         return (ModelObserver) target;
     }
 
-//    @Override
-//    public void alertDirectionChange(Direction d) {
-//        if (!deleteFlag) {
-//            target.alertDirectionChange(d);
-//        }
-//    }
-//
-//    @Override
-//    public void alertMove(int x, int y, long animationTime) {
-//        if (!deleteFlag) {
-//            target.alertMove(x,y,animationTime);
-//        }
-//    }
-//
+
     @Override
     public void alertItemAdded(InventoryItem item) {
 

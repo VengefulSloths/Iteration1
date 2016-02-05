@@ -21,7 +21,6 @@ public class DynamicCameraView extends CameraView
         implements EntityObserver {
 
     private MapViewObjectManager mapViewObjectManager;
-    private MapViewObjectFactory mvoFactory;
     private int screenWidth;
     private int screenHeight;
     public DynamicCameraView(int x, int y, int width, int height, int screenWidth, int screenHeight) {
@@ -30,6 +29,11 @@ public class DynamicCameraView extends CameraView
         this.screenHeight = screenHeight;
         mvoFactory = new DefaultMapViewObjectFactory(this);
         mvoFactory.setCoordinateStrategy(new Dynamic32PixelCoordinateStrategy(this));
+    }
+    @Override
+    public void setMapViewObjectFactory(MapViewObjectFactory mvoFactory) {
+        this.mvoFactory = mvoFactory;
+        this.mvoFactory.setCoordinateStrategy(new Dynamic32PixelCoordinateStrategy(this));
     }
     @Override
     public void populate(MapViewObjectManager mapViewObjectManager) {

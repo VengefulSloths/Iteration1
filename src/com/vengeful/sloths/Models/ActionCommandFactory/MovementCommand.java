@@ -17,18 +17,19 @@ public abstract class MovementCommand implements Alertable {
     Coord dst;
     Entity entity;
     Direction direction;
+    int movementSpeed;
 
-    public MovementCommand(Map map, Coord src, Coord dst, Direction dir, Entity ent) {
+    public MovementCommand(Map map, Coord src, Coord dst, Direction dir, Entity ent, int movementSpeed) {
         this.map = map;
         this.src = src;
         this.dst = dst;
         this.direction = dir;
         this.entity = ent;
-
+        this.movementSpeed = movementSpeed;
         //this.execute();
         //replace this with a alertable command poosibly vary by speed
-
-        TimeModel.getInstance().registerAlertable(this, 4);
+        int ticks = 30-movementSpeed;
+        TimeModel.getInstance().registerAlertable(this, ticks);
 
     }
 

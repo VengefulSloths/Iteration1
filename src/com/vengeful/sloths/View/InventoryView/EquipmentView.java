@@ -1,5 +1,9 @@
 package com.vengeful.sloths.View.InventoryView;
 
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+
+import javax.swing.*;
 import java.awt.*;
 import java.util.Iterator;
 
@@ -13,33 +17,55 @@ import java.util.Iterator;
         public InventoryItemViewObject headGear;
         public InventoryItemViewObject weapon;
 
-    public enum Slots {
-        HEAD, BODY, LEGS, FEET, WEAPON
+
+    @Override
+    public void setSelected(InventoryItemViewObject item) {
+
+    }
+    @Override
+    public void setDeselected(InventoryItemViewObject item) {
+
     }
 
-        public InventoryItemViewObject getHeadGear() {
+    public InventoryItemViewObject getHeadGear() {
             return headGear;
         }
 
-        public void setHeadGear(InventoryItemViewObject headGear) {
-            this.headGear = headGear;
-        }
 
-        public InventoryItemViewObject getWeapon() {
-            return weapon;
-        }
+    public EquipmentView(){
 
-        public void setWeapon(InventoryItemViewObject weapon) {
-            this.weapon = weapon;
-        }
-
-        public EquipmentView() {
-
+            generateBackground();
             manager = new EquipmentViewObjectManager();
+            setLayout(new BorderLayout());
+            this.add(new JLabel("Equipment"), BorderLayout.NORTH);
 
-            manager.addEquipment(headGear);
+            //manager.addEquipment(headGear);
 
         }
+
+    @Override
+    public void alertItemAdded(InventoryItem item) {
+        if (!(item instanceof EquippableItems)) {
+            System.out.println("Cannot wield item");
+            return;
+        }
+    }
+
+    @Override
+    public void alertItemDropped(InventoryItem item) {
+        if(!(item instanceof EquippableItems)) {
+            System.out.println("Why am I printing? Should not be able to unwield unequippable");
+            return;
+        }
+
+    }
+
+
+    public void generateBackground() {
+        setBackground(Color.ORANGE);
+    }
+
+
 
 /*
     public void paintComponent(Graphics g) { //change to render(Graphics g, int x, int y) ?

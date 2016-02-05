@@ -12,10 +12,12 @@ import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Map.MapItems.Obstacle;
 import com.vengeful.sloths.Models.Map.Terrains.Mountain;
 import com.vengeful.sloths.Models.Map.Terrains.Water;
+import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.AreaView.Cameras.DynamicCameraView;
 import com.vengeful.sloths.View.AreaView.Cameras.StaticCameraView;
 import com.vengeful.sloths.Models.Map.MapItems.*;
+import com.vengeful.sloths.View.AreaView.DesertMapViewObjectFactory;
 
 /**
  * Created by alexs on 1/31/2016.
@@ -40,6 +42,11 @@ public class LevelFactory {
         for (int i=16; i<34; i++) {
             for (int j = 1; j < 19; j++) {
                 map.getTile(new Coord(i,j)).setTerrain(new Grass());
+            }
+        }
+        for (int i=19; i<25; i++) {
+            for (int j=3; j<8; j++) {
+                map.getTile(new Coord(i,j)).addMapItem(new OneShotTest());
             }
         }
 
@@ -74,7 +81,7 @@ public class LevelFactory {
 
         /* Testing pick up item */
 
-        MapItem mapItem1 = new TakeableItem(new Hat("BlueHat"));
+        MapItem mapItem1 = new TakeableItem(new Hat("BluePartyHat"));
         MapItem mapItem2 = new TakeableItem(new Sword("GodSword"));
         map.getTile(new Coord(3,2)).addMapItem(mapItem1);
         //map.getTile(new Coord(3,2)).addMapItem(mapItem2);
@@ -100,7 +107,10 @@ public class LevelFactory {
         CameraViewManager cvm = new CameraViewManager(activeMap);
         cvm.addCameraView(new StaticCameraView(0,0,5,7));
         cvm.addCameraView(new StaticCameraView(5,0,10,7));
-        cvm.addCameraView(new DynamicCameraView(15,0,20,20,10,10));
+        CameraView test = new DynamicCameraView(15,0,20,20,10,10);
+        test.setMapViewObjectFactory(new DesertMapViewObjectFactory(test));
+        cvm.addCameraView(test);
+
         return cvm;
     }
 

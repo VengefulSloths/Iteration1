@@ -4,82 +4,61 @@ package com.vengeful.sloths.View.AreaView;
 
 
 import com.vengeful.sloths.View.Observers.EntityObserver;
+import com.vengeful.sloths.View.Sound.SoundEffect;
 
 
-import javax.swing.JFrame;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.URL;
 
-public class driver extends JFrame implements Runnable{
+public class driver extends JFrame{
 
-	public driver() {
-    	//av = new AreaView();
-        initUI();
-    }
+    // Constructor
+    public driver() {
+        // Pre-load all the sound files
+        //SoundEffect.init();
+        SoundEffect.volume = SoundEffect.Volume.LOW;  // un-mute
 
-    private AreaView av;
-    
-    private void initUI() {
-
-        add(av);
-
-        setTitle("A game");
-        setResizable(false);
-        pack();
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-    
-    public void run() {
-    	int count = 0;
-		int ay=1;
-        while(true) {
-        	long lastTime = System.currentTimeMillis();
-        	
-        	//Actual Code goes here
-        	av.repaint();
-        	EntityObserver eo = (EntityObserver)av.getPlayer();
-
-//			int xlist[] = {	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-//							2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,
-//							5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
-//							4,4,4,4,3,3,3,3,2,2,2,2,1,1,1,1};
-//			int ylist[] = {	2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,
-//							5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
-//							4,4,4,4,3,3,3,3,2,2,2,2,1,1,1,1,
-//							1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,};
-//			if (count%4 == 0) eo.alertMove(xlist[count%64],ylist[count%64],200);
-//        	if ( count%64 == 16 ) {
-//            	eo.alertDirectionChange(Direction.LEFT);
-//        	} else if ( count%64 == 32) {
-//        		eo.alertDirectionChange(Direction.UP);
-//        	} else if ( count%64 == 48) {
-//        		eo.alertDirectionChange(Direction.RIGHT);
-//        	} else if ( count%64 == 0) {
-//        		eo.alertDirectionChange(Direction.DOWN);
-//        	}
-
-			if (count%25 == 0 && count < 125) eo.alertMove(1,ay++,1000);
-
-			//End of actual code
-
-        	
-        	long delta = System.currentTimeMillis() - lastTime;
-        	if (delta < 50) {
-        		try {
-        			Thread.sleep((50 - delta));
-        		} catch (Exception e) {
-        			//dont care
-        		}
-        		
-        	}
-			count++;
-//        	System.out.println(count++);
-        }
-    }
-    public void start() {
-    	new Thread(this).start();
+        // Set up UI components
+        Container cp = this.getContentPane();
+        cp.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        JButton btnSound1 = new JButton("Sound 1");
+        btnSound1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //SoundEffect.SMASH.play();
+            }
+        });
+        cp.add(btnSound1);
+        JButton btnSound2 = new JButton("Sound 2");
+        btnSound2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //SoundEffect.SMASH.play();
+            }
+        });
+        cp.add(btnSound2);
+        JButton btnSound3 = new JButton("Sound 3");
+        btnSound3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //SoundEffect.SMASH.play();
+            }
+        });
+        cp.add(btnSound3);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Test SoundEffct");
+        this.pack();
+        this.setVisible(true);
     }
 
     public static void main(String[] args) {
-
+        new driver();
     }
 }

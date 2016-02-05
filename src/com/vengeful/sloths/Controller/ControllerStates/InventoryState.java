@@ -61,12 +61,19 @@ public class InventoryState extends MainControllerState {
 
         int itemListSize = ((ListInventoryView) this.inventoryView).manager.getItemListSize();
 
+        System.out.println(itemListSize + " size");
         this.inventoryIndex++;
+
 
         if (this.inventoryIndex >= itemListSize) {
             this.inventoryIndex = itemListSize - 1;
             return false;
         }
+        System.out.println("At index: " + this.inventoryIndex + " now");
+
+        ((ListInventoryView)this.inventoryView).setSelected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+        if (this.inventoryIndex > 0)
+            ((ListInventoryView)this.inventoryView).setDeselected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex-1));
 
         return true;
     }
@@ -100,10 +107,14 @@ public class InventoryState extends MainControllerState {
 
         this.inventoryIndex--;
 
-        if (this.inventoryIndex <= 0) {
+        if (this.inventoryIndex < 0) {
             this.inventoryIndex = 0;
             return false;
         }
+        ((ListInventoryView)this.inventoryView).setSelected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+        if (this.inventoryIndex < itemListSize)
+            ((ListInventoryView)this.inventoryView).setDeselected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex + 1));
+        System.out.println("At index: " + this.inventoryIndex + " now");
 
         return true;
     }
@@ -123,7 +134,8 @@ public class InventoryState extends MainControllerState {
     @Override
     public boolean handleDKey() {
 
-        InventoryItem i = ((ListInventoryView)this.inventoryView).manager.removeInventoryItemViewObject(this.inventoryIndex--).getInventoryItem();
+        InventoryItem i = ((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem();
+
 
         System.out.println("DROPPING " + i.getItemName());
 
@@ -138,4 +150,16 @@ public class InventoryState extends MainControllerState {
     public String toString() {
          return "InventoryState";
     }
+
+    public void handleRelease1Key(){
+        mainController.getAvatar().setMoving(false);
+    }
+    public void handleRelease2Key(){}
+    public void handleRelease3Key(){}
+    public void handleRelease4Key(){}
+    public void handleRelease6Key(){}
+    public void handleRelease7Key(){}
+    public void handleRelease8Key(){}
+    public void handleRelease9Key(){}
+    public void handleRelease5Key(){}
 }

@@ -1,5 +1,7 @@
 package com.vengeful.sloths.View;
 
+import com.vengeful.sloths.View.Sound.SoundEffect;
+
 import javax.swing.*;
 
 import javax.swing.JFrame;
@@ -29,13 +31,12 @@ public class ViewEngine extends JFrame implements Runnable{
 
     public void run() {
         int count = 0;
-
         while(true) {
             long lastTime = System.currentTimeMillis();
 
             //Actual Code goes here
             ViewTime.getInstance().tick();
-            jpanel.repaint();
+            this.repaint();
             //EntityObserver eo = (EntityObserver)av.getPlayer();
 
             long delta = System.currentTimeMillis() - lastTime;

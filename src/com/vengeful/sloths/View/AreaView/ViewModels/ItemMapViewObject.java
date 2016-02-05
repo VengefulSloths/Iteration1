@@ -5,6 +5,8 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.Animation.BoundedAnimation;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 import com.vengeful.sloths.View.Observers.MapItemObserver;
+import com.vengeful.sloths.View.Sound.SoundEffect;
+import com.vengeful.sloths.View.ViewTime;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,12 +21,13 @@ public class ItemMapViewObject extends ViewObject
     private boolean isDestroyed = false;
     private long startTime;
     private long destructionTime;
+    private SoundEffect destroyedSound;
 
-    public ItemMapViewObject(int x, int y, String resourceLocation, CoordinateStrategy converter ) {
+    public ItemMapViewObject(int x, int y, String resourceLocation, String destroyedSoundPath, CoordinateStrategy converter ) {
         this.x = x;
         this.y = y;
         this.converter = converter;
-
+        this.destroyedSound = new SoundEffect(destroyedSoundPath);
         String resourceName = resourceLocation.substring(resourceLocation.lastIndexOf('/')+1);
         System.out.println("RESOURCE: " + resourceName);
         String itemImagePath = resourceLocation + "/" + resourceName;
@@ -38,8 +41,9 @@ public class ItemMapViewObject extends ViewObject
 
     @Override
     public void alertDestroyed() {
-        this.startTime = System.currentTimeMillis();
+        this.startTime = ViewTime.getInstance().getCurrentTimeMilli();
         this.isDestroyed = true;
+        destroyedSound.play();
         System.out.println("I am alerted! (MapItem)");
     }
 

@@ -8,6 +8,7 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.MainMenuView.MenuView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
 import com.vengeful.sloths.View.ViewManager.ViewManager;
@@ -25,12 +26,16 @@ public class MainController {
     private MainControllerState state;
     private InputHandler inputHandler;
     private Screen screen;
+
+    //These two may need to come together soon
     private ViewManager viewManager;
 
     private AvatarState avatarState;
     private InventoryState inventoryState;
     private MenuState menuState;
 
+
+    //Setting the menu view through the constructor is probably not final
     public MainController(Avatar player, JFrame jframe, ViewManager vm){
 
         this.player = player;
@@ -56,6 +61,8 @@ public class MainController {
         return this.state;
     }
 
+    public void continuousFunction(){state.continuousFunction();}
+
     public boolean dispatchKey(int key){
         //System.out.println(state.getClass());
         switch(key){
@@ -67,6 +74,7 @@ public class MainController {
                 break;
             case KeyEvent.VK_D :
                 state.handleDKey();
+                state.handle6Key(); //for wasd movement support
                 break;
             case KeyEvent.VK_ESCAPE :
                 state.handleESCKey();
@@ -75,12 +83,14 @@ public class MainController {
                 state.handle1Key();
                 break;
             case KeyEvent.VK_2 :
+            case KeyEvent.VK_S:
                 state.handle2Key();
                 break;
             case KeyEvent.VK_3 :
                 state.handle3Key();
                 break;
             case KeyEvent.VK_4 :
+            case KeyEvent.VK_A:
                 state.handle4Key();
                 break;
             case KeyEvent.VK_5 :
@@ -120,16 +130,64 @@ public class MainController {
                 state.handle7Key();
                 break;
             case KeyEvent.VK_NUMPAD8 :
+            case KeyEvent.VK_W:
                 state.handle8Key();
                 break;
             case KeyEvent.VK_NUMPAD9 :
                 state.handle9Key();
                 break;
-
             default: //System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
         }
 
         return true;
+    }
+
+    public void dispatchReleaseKey(int key)
+    {
+        switch(key){
+            case KeyEvent.VK_1 :
+            case KeyEvent.VK_NUMPAD1 :
+                state.handleRelease1Key();
+                break;
+            case KeyEvent.VK_2 :
+            case KeyEvent.VK_NUMPAD2:
+            case KeyEvent.VK_S:
+                state.handleRelease2Key();
+                break;
+            case KeyEvent.VK_3 :
+            case KeyEvent.VK_NUMPAD3:
+                state.handleRelease3Key();
+                break;
+            case KeyEvent.VK_4 :
+            case KeyEvent.VK_NUMPAD4:
+            case KeyEvent.VK_A:
+                state.handleRelease4Key();
+                break;
+            case KeyEvent.VK_5 :
+            case KeyEvent.VK_NUMPAD5:
+                state.handleRelease5Key();
+                break;
+            case KeyEvent.VK_6 :
+            case KeyEvent.VK_NUMPAD6:
+            case KeyEvent.VK_D:
+                state.handleRelease6Key();
+                break;
+            case KeyEvent.VK_7 :
+            case KeyEvent.VK_NUMPAD7:
+                state.handleRelease7Key();
+                break;
+            case KeyEvent.VK_8 :
+            case KeyEvent.VK_NUMPAD8:
+            case KeyEvent.VK_W:
+                state.handleRelease8Key();
+                break;
+            case KeyEvent.VK_9 :
+            case KeyEvent.VK_NUMPAD9:
+                state.handleRelease9Key();
+                break;
+            default: //System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
+        }
+
     }
 
     public void setAvatarState(){
@@ -142,8 +200,13 @@ public class MainController {
         this.state = this.inventoryState;
     }
 
-    public void setMenuState(){
-        this.state = menuState;
+    //Yes this is hacky, I will work on it
+    public MenuState getMenuState() {
+        return this.menuState;
+    }
+
+    public void setMenuState() {
+        this.state = this.menuState;
     }
 
     public Avatar getAvatar(){

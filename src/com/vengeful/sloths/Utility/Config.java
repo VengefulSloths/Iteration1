@@ -6,49 +6,74 @@ package com.vengeful.sloths.Utility;
 public class Config {
     private final int viewFrameRate = 30;
 
-    public int getAreaViewHeight() {
-        return areaViewHeight;
-    }
+    protected static final int WINDOW_WIDTH = 1100; //set the overall window width
+    protected static final int WINDOW_HEIGHT = 800; //set the overall window height
 
-    public int getAreaViewWidth() {
-        return areaViewWidth;
-    }
+    protected static final double SIDE_PANEL_WIDTH_PROPORTION = 0.25;
+    protected static final double SIDE_PANEL_HEIGHT_PROPORTION = 1.0;
+    protected static final double AREA_VIEW_WIDTH_PROPORTION = 1.0 - SIDE_PANEL_WIDTH_PROPORTION;
+    protected static final double AREA_VIEW_HEIGHT_PROPORTION = 1.0;
+    protected static final double INVENTORY_VIEW_WIDTH_PROPORTION = 1.0;
+    protected static final double INVENTORY_VIEW_HEIGHT_PROPORTION = 0.50; //edit: this will change when StatsView and HUDView are added
+    protected static final double EQUIPMENT_VIEW_WIDTH_PROPORTION = 1.0;
+    protected static final double EQUIPMENT_VIEW_HEIGHT_PROPORTION = 0.25; //edit: this will change when StatsView and HUDView are added
+    protected static final double STATS_VIEW_WIDTH_PROPORTION = 1.0;
+    protected static final double STATS_VIEW_HEIGHT_PROPORTION = .25;
+    protected static final double HUD_VIEW_HEIGHT_PROPORTION = 1.0 - STATS_VIEW_HEIGHT_PROPORTION - INVENTORY_VIEW_HEIGHT_PROPORTION;
+
+
+    protected static final int SIDE_PANEL_WIDTH = (int) (SIDE_PANEL_WIDTH_PROPORTION * WINDOW_WIDTH);
+    protected static final int SIDE_PANEL_HEIGHT = (int) (SIDE_PANEL_HEIGHT_PROPORTION * WINDOW_HEIGHT);
+    protected static final int AREA_VIEW_WIDTH =(int) (AREA_VIEW_WIDTH_PROPORTION * WINDOW_WIDTH);
+    protected static final int AREA_VIEW_HEIGHT = (int) (AREA_VIEW_HEIGHT_PROPORTION * WINDOW_HEIGHT);
+    protected static final int INVENTORY_VIEW_WIDTH = (int) (INVENTORY_VIEW_WIDTH_PROPORTION * SIDE_PANEL_WIDTH); //relative to the
+    protected static final int INVENTORY_VIEW_HEIGHT = (int) (INVENTORY_VIEW_HEIGHT_PROPORTION * SIDE_PANEL_HEIGHT); //relative to
+    protected static final int EQUIPMENT_VIEW_WIDTH = (int) (EQUIPMENT_VIEW_WIDTH_PROPORTION * SIDE_PANEL_WIDTH); //relative to the
+    protected static final int EQUIPMENT_VIEW_HEIGHT = (int) (EQUIPMENT_VIEW_HEIGHT_PROPORTION * SIDE_PANEL_HEIGHT); //relative to
+    protected static final int STATS_VIEW_WIDTH = (int) (STATS_VIEW_WIDTH_PROPORTION * SIDE_PANEL_WIDTH); //relative to the
+    protected static final int STATS_VIEW_HEIGHT = (int) (STATS_VIEW_HEIGHT_PROPORTION * SIDE_PANEL_HEIGHT); //relative to the
+
+    public final int INVENTORY_IMAGE_HEIGHT = 18; //increment the y positions by height + 2
+    public final int INVENTORY_IMAGE_WIDTH = 18;
+
 
     public int getWindowWidth() {
-        return windowWidth;
+        return WINDOW_WIDTH;
     }
-
     public int getWindowHeight() {
-        return windowHeight;
+        return WINDOW_HEIGHT;
+    }
+    public static int getSidePanelWidth() {
+        return SIDE_PANEL_WIDTH;
+    }
+    public static int getSidePanelHeight() {
+        return SIDE_PANEL_HEIGHT;
+    }
+    public static int getAreaViewWidth() {
+        return AREA_VIEW_WIDTH;
+    }
+    public static int getAreaViewHeight() {
+        return AREA_VIEW_HEIGHT;
+    }
+    public static int getInventoryViewWidth() {
+        return INVENTORY_VIEW_WIDTH;
+    }
+    public static int getInventoryViewHeight() {
+        return INVENTORY_VIEW_HEIGHT;
+    }
+    public static int getEquipmentViewWidth() {
+        return EQUIPMENT_VIEW_WIDTH;
+    }
+    public static int getEquipmentViewHeight() {
+        return EQUIPMENT_VIEW_HEIGHT;
+    }
+    public static int getStatsViewWidth() {
+        return STATS_VIEW_WIDTH;
+    }
+    public static int getStatsViewHeight() {
+        return STATS_VIEW_HEIGHT;
     }
 
-    public double getSidePanelWidth() {
-        return sidePanelWidth;
-    }
-
-    public double getSidePanelHeight() {
-        return sidePanelHeight;
-    }
-
-    public double getSidePanelWidthProportion() {
-        return sidePanelWidthProportion;
-    }
-
-    public double getSidePanelHeightProportion() {
-        return sidePanelHeightProportion;
-    }
-
-    private final int windowWidth = 1100; //set the overall window width
-    private final int windowHeight = 800; //set the overall window height
-
-    private final double sidePanelWidthProportion = 0.30; //proportion of the overall window width that is the sidePanel
-    private final double sidePanelHeightProportion = 1.0; //proportion of the overall window height that is the sidePanel
-
-    private final double sidePanelWidth = sidePanelWidthProportion * windowWidth; //sidePanelWidth relative to windowWidth
-    private final double sidePanelHeight = sidePanelHeightProportion * windowHeight; //sidePanelHeight relative to windowHeight
-
-    private final int areaViewWidth = (int) (windowWidth - sidePanelWidth); //areaViewWidth (gameplay area) relative to window width and sidePanelWidth
-    private final int areaViewHeight = (int) (windowHeight); //area ViewHeight (same as windowviewHeight)
 
     private static Config instance = null;
     private Config() {

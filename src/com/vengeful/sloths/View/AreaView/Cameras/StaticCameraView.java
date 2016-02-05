@@ -13,7 +13,6 @@ import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
 import java.util.Iterator;
 
 public class StaticCameraView extends CameraView {
-	private MapViewObjectFactory mvoFactory;
 	private MapViewObjectManager mvop;
 
 	public StaticCameraView(int x, int y, int width, int height) {

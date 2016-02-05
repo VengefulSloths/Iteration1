@@ -2,6 +2,7 @@ package com.vengeful.sloths.Models.Entity;
 
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
 import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
+import com.vengeful.sloths.Models.ActionCommandFactory.AvatarMovementCommand;
 import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
@@ -29,7 +30,7 @@ public class Avatar extends Entity {
     }
 
     public void move(Direction dir) {
-        if(!isMoving) {
+       if(!isMoving) {
 
             this.setFacingDirection(dir);
 
@@ -71,9 +72,10 @@ public class Avatar extends Entity {
                     break;
             }
             //System.out.println("Attempting to move to: " + dst
-            this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this);
+           this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this, entityStats.getMovement());
+
         }else{
-            //System.out.println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");
+            System.out.println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");
         }
     }
 
@@ -123,10 +125,6 @@ public class Avatar extends Entity {
             System.out.print(inventory.getItem(i).getItemName()+"\t ");
         }
         System.out.println();
-        System.out.println("Inventory Item being dropped: :");
-        System.out.println(item.getItemName());
-        System.out.println("MapItemRep:");
-        System.out.println(item.getMapItemRep());
         try{
 //            InventoryItem itemToDrop = inventory.getItem(itemIndex);
             this.commandFactory.createDropCommand(item, this.getLocation(), this);

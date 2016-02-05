@@ -3,6 +3,7 @@ package com.vengeful.sloths.View.InventoryView;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Utility.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,10 +15,10 @@ import java.util.Iterator;
 public abstract class ItemViewObject extends JComponent {
 
     protected Image itemImage;
-    public static final int IMAGE_HEIGHT = 18; //increment the y positions by height + 2
-    public static final int IMAGE_WIDTH = 18;
-    public static final int HORIZONTAL_OFFSET = IMAGE_WIDTH + 100;
-    public static final double HORIZONTAL_OFFSET_PROPORTION = 0.50;
+    protected static final int IMAGE_HEIGHT = Config.instance().INVENTORY_IMAGE_HEIGHT; //increment the y positions by height + 2
+    protected static final int IMAGE_WIDTH = Config.instance().INVENTORY_IMAGE_WIDTH;
+    protected static final int HORIZONTAL_OFFSET = IMAGE_WIDTH + 100;
+    protected static final double HORIZONTAL_OFFSET_PROPORTION = 0.50;
 
     public double horizontalOffset; //might not need, but it's down at the bottom in the paintComponent
 
@@ -46,7 +47,8 @@ public abstract class ItemViewObject extends JComponent {
 
 
     public String generateImageFileName(String itemName) {
-        imageFileName = "resources/"+itemName+".jpg";
+        //imageFileName = "resources/"+itemName+".jpg";
+        imageFileName = "resources/Items/Takeable/"+itemName+"/" + itemName + ".png";
         return imageFileName;
     }
 
@@ -54,7 +56,7 @@ public abstract class ItemViewObject extends JComponent {
     public void paintComponent(Graphics2D g, int x, int y) {
         //g.drawImage(itemImage, x,y, this);
         g.drawImage(itemImage,x,y, IMAGE_WIDTH, IMAGE_HEIGHT,this);
-        g.drawString(itemName, x+ HORIZONTAL_OFFSET, y + IMAGE_HEIGHT); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.
+        g.drawString(itemName, x+ HORIZONTAL_OFFSET, y + IMAGE_HEIGHT - 5); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.
 
     }
 
@@ -62,7 +64,7 @@ public abstract class ItemViewObject extends JComponent {
     public void paintComponent(Graphics2D g, int x, int y, int viewWidth, int viewHeight) {
         horizontalOffset = (HORIZONTAL_OFFSET_PROPORTION * viewWidth) - itemName.length();
         g.drawImage(itemImage,x,y, IMAGE_WIDTH, IMAGE_HEIGHT,this);
-        g.drawString(itemName, x+ (int) horizontalOffset, y + IMAGE_HEIGHT); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.
+        g.drawString(itemName, x+ (int) horizontalOffset, y + IMAGE_HEIGHT - 5); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.
     }
 
 

@@ -18,7 +18,10 @@ import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
+import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
+import com.vengeful.sloths.View.MainMenuView.MainMenuView;
+import com.vengeful.sloths.View.MainMenuView.MenuView;
 import com.vengeful.sloths.View.StatsView.StatsView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
@@ -51,6 +54,8 @@ public class Main {
         map.getTile(avatar.getLocation()).addEntity(avatar);
 
 
+
+
         AreaView av = new AreaView(cvm, avatar);
 
 
@@ -60,8 +65,9 @@ public class Main {
 
 
         /**** Take-able and InventoryItems need to be paired up when created */
-        InventoryItem hat1 = new Hat("BlueHat");
-        InventoryItem hat2 = new Hat("BlueHat");
+
+        InventoryItem hat1 = new Hat("BluePartyHat");
+        InventoryItem hat2 = new Hat("BluePartyHat");
         InventoryItem sword1 = new Sword("GodSword");
 
         MapItem mi1 = new TakeableItem(hat1);
@@ -77,13 +83,21 @@ public class Main {
 
 
         ListInventoryView iv = new ListInventoryView(inventory);
-        DefaultViewManager vm = new DefaultViewManager(av, iv);
+
+        EquipmentView ev = new EquipmentView();
+        StatsView sv = new StatsView(new BaseStats(5,5,5,5,5));
+        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv);
+        
+
 
         //johns test stuff for stats view
-        StatsView sv = new StatsView();
+        //StatsView sv = new StatsView();
 
+        MenuView mainMenuView = new MainMenuView();
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
+
+        modelEngine.setController(controller);
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);

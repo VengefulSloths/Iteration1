@@ -2,8 +2,11 @@ package com.vengeful.sloths.View.ViewManager;
 
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.InventoryView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
+import com.vengeful.sloths.View.Sound.SoundEffect;
+import com.vengeful.sloths.View.StatsView.StatsView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,101 +14,73 @@ import java.awt.*;
 /**
  * Created by echristiansen on 1/30/2016.
  */
-//all together we have 6 JPanels: an overall background/holder, an areaview, a secondary view panel (containing StatsView, HUDView, InventoryView),
-// and the three panels within the secondary view panel: (StatsVIEW, HUDView, InventoryView)
-//note/edit: backgroundPanel might not be necessary: the DefaultViewManager overall is a JPanel, and therefore IS the backgroundPanel
 
 public class DefaultViewManager extends ViewManager {
 
-    //JPanel backgroundPanel; //might not be necessary - defaultViewManager is the backgroundPanel
-    AreaView areaView;
-    JPanel sidePanel; //edit: make private or protected or something because this shouldn't be set elsewhere? it's all contained in this class
-    //HUDView hudview;
-    //StatsView statsview;
-    ListInventoryView inventoryView;
-    //private static int VIEW_WIDTH = Config.instance().getAreaViewWidth();
-   // private static int VIEW_HEIGHT = Config.instance().getAreaViewHeight();
-    private static int VIEW_WIDTH = Config.instance().getWindowWidth();
-    private static int VIEW_HEIGHT = Config.instance().getWindowHeight();
-
-    private static final double SIDE_PANEL_WIDTH_PROPORTION = Config.instance().getSidePanelWidthProportion();
-    private static final double SIDE_PANEL_HEIGHT_PROPORTION = Config.instance().getSidePanelHeightProportion();
-
-    private static final double AREA_VIEW_WIDTH_PROPORTION = 1.0 - SIDE_PANEL_WIDTH_PROPORTION;
-    private static final double AREA_VIEW_HEIGHT_PROPORTION = 1.0;
-
-    //private static final double SIDE_PANEL_WIDTH_PROPORTION = 1.0 - AREA_VIEW_WIDTH_PROPORTION;
-    //private static final double SIDE_PANEL_HEIGHT_PROPORTION = 1.0;
-    private static final double INVENTORY_VIEW_WIDTH_PROPORTION = 1.0;
-    private static final double INVENTORY_VIEW_HEIGHT_PROPORTION = 0.40; //edit: this will change when StatsView and HUDView are added
-    //private static final double STATS_VIEW_HEIGHT_PROPORTION = .30;
-    //private static final double HUD_VIEW_HEIGHT_PROPORTION = 1.0 - STATS_VIEW_HEIGHT_PROPORTION - INVENTORY_VIEW_HEIGHT_PROPORTION;
-
-
-    private static final int AREA_VIEW_WIDTH =(int) (AREA_VIEW_WIDTH_PROPORTION * VIEW_WIDTH);
-    private static final int AREA_VIEW_HEIGHT = (int) (AREA_VIEW_HEIGHT_PROPORTION * VIEW_HEIGHT);
-    private static final int SIDE_PANEL_WIDTH = (int) (SIDE_PANEL_WIDTH_PROPORTION * VIEW_WIDTH);
-    private static final int SIDE_PANEL_HEIGHT = (int) (SIDE_PANEL_HEIGHT_PROPORTION * VIEW_HEIGHT);
-    private static final int INVENTORY_VIEW_WIDTH = (int) (INVENTORY_VIEW_WIDTH_PROPORTION * SIDE_PANEL_WIDTH); //relative to the
-    private static final int INVENTORY_VIEW_HEIGHT = (int) (INVENTORY_VIEW_HEIGHT_PROPORTION * SIDE_PANEL_HEIGHT); //relative to
-
-    //public DefaultViewManager() {
-    public DefaultViewManager(AreaView areaView, ListInventoryView inventoryView) {
-
-        /* Create all of the segments of the overall view */
+    public DefaultViewManager(AreaView areaView, ListInventoryView inventoryView, EquipmentView equipmentView, StatsView statsView) {
+        
         //backgroundPanel = new JPanel(new BorderLayout());
+
+        /* Initialize the views in the ViewManager */
         sidePanel = new JPanel();
         this.areaView = areaView;
         this.inventoryView = inventoryView;
+        this.equipmentView = equipmentView;
+        this.statsView = statsView;
 
-
-
-
+        /*Set the viewWidths and viewHeights. Doesn't actually change them visually, this is really
+         * just for the render methods held in the view classes (determining offsets, etc. */
         this.inventoryView.setViewWidth(INVENTORY_VIEW_WIDTH);
         this.inventoryView.setViewHeight(INVENTORY_VIEW_HEIGHT);
+        this.equipmentView.setViewWidth(EQUIPMENT_VIEW_WIDTH);
+        this.equipmentView.setViewHeight(EQUIPMENT_VIEW_HEIGHT);
+        this.statsView.setViewWidth(STATS_VIEW_WIDTH);
+        this.statsView.setViewHeight(STATS_VIEW_HEIGHT);
 
+        /* Set the visual size of the views */
         this.setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT));
         this.sidePanel.setPreferredSize(new Dimension(SIDE_PANEL_WIDTH, SIDE_PANEL_HEIGHT));
         this.areaView.setPreferredSize(new Dimension(AREA_VIEW_WIDTH, AREA_VIEW_HEIGHT));
         this.inventoryView.setPreferredSize(new Dimension(INVENTORY_VIEW_WIDTH, INVENTORY_VIEW_HEIGHT)); //now handled in ListInventoryView
+        this.equipmentView.setPreferredSize(new Dimension(EQUIPMENT_VIEW_WIDTH, EQUIPMENT_VIEW_HEIGHT));
+        this.statsView.setPreferredSize(new Dimension(STATS_VIEW_WIDTH,STATS_VIEW_HEIGHT));
 
-        /* //original color scheme
+        /* Set the background colors of the views */
         this.setBackground(Color.BLACK);
-        this.sidePanel.setBackground(Color.BLUE);
+        //this.sidePanel.setBackground(new Color(0,0,255,155));
+        this.sidePanel.setBackground(Color.BLACK);
         this.areaView.setBackground(Color.BLACK);
-        this.inventoryView.setBackground(Color.RED);
-        */
+        //this.inventoryView.setBackground(Color.RED );
+        //this.equipmentView.setBackground(Color.CYAN);
+        //this.statsView.setBackground(Color.GREEN);
 
-        //color scheme with some opacity specifications
-        this.setBackground(Color.BLACK);
-        this.sidePanel.setBackground(new Color(0,0,255,155));
-        this.areaView.setBackground(Color.BLACK);
-        this.inventoryView.setBackground( new Color(255, 0, 0, 155) );
-
-
+        /* Set the layouts of the ViewManager */
         this.setLayout(new BorderLayout()); //set the layout of the DefaultViewManager to BorderLayout
-        this.sidePanel.setLayout(new BorderLayout()); //set the layout of the sidePanel to BorderLayout
-        //inventoryView.setLayout(new BorderLayout());//set layout of inventoryView....maybe this isn't appropriate in this class?
+        this.sidePanel.setLayout(new FlowLayout(0,0,3)); //not totally necessary - the default is fine. But this allows to specify 0 gap
 
-        //this.sidePanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 7));
-        this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+        /* Add views to the sidePanel */
+        this.sidePanel.add(statsView);
+        this.sidePanel.add(equipmentView);
+        this.sidePanel.add(inventoryView);
 
-
-        //sidePanel.add(inventoryView, BorderLayout.CENTER); //eventually, will add StatsView and HUDView to sidePanel
-        this.sidePanel.add(inventoryView, BorderLayout.SOUTH);
+        /* Visually add the areaView and sidePanel to the ViewManager */
         this.add(areaView, BorderLayout.WEST);
         this.add(sidePanel, BorderLayout.EAST);
 
-
     }
 
+    /* Get the inventoryView in this ViewManager. The attribute is in the superclass definition */
     public InventoryView getInventoryView() {
         return this.inventoryView;
     }
 
+
     private void resetBorders(){
+        this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
         this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
         this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+        this.equipmentView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+        this.statsView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
     }
 
     public void selectInventoryView(){
@@ -118,7 +93,7 @@ public class DefaultViewManager extends ViewManager {
     }
     public void selectEquipView(){
         resetBorders();
-        //this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.ORANGE, Color.ORANGE));
+        this.equipmentView.setBorder(BorderFactory.createEtchedBorder(Color.ORANGE, Color.ORANGE));
     }
 
 }
