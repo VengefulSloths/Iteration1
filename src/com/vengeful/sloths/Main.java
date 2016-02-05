@@ -15,6 +15,7 @@ import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
+import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
@@ -83,6 +84,9 @@ public class Main {
 
 
         ListInventoryView iv = new ListInventoryView(inventory);
+
+        //ListInventoryView iv = new ListInventoryView(inventory, Config.instance().getInventoryViewWidth(), Config.instance().getInventoryViewHeight());
+
 
         EquipmentView ev = new EquipmentView();
         StatsView sv = new StatsView(avatar.getEntityStats());

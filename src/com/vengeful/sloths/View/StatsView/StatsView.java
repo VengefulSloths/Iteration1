@@ -17,12 +17,15 @@ public class StatsView extends View implements StatsObserver {
     StatsViewObjectManager manager;
     private Stats stats;
 
+    public static final String title = "Stats";
+    public static final String backgroundImageFileName = "resources/inventoryBackground.jpg";
+
+
     public StatsView(Stats stats){
         if(stats != null){stats.deregisterObserver(this);}
 
-        generateBackground();
-        setLayout(new BorderLayout());
-        this.add(new JLabel("Stats"), BorderLayout.NORTH);
+        generateTitle(title);
+        this.setBackgroundImageFileName(backgroundImageFileName);
 
         this.manager = new StatsViewObjectManager(stats);
         stats.registerObserver(this);

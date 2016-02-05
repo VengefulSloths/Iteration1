@@ -18,7 +18,7 @@ import java.awt.*;
 public class DefaultViewManager extends ViewManager {
 
     public DefaultViewManager(AreaView areaView, ListInventoryView inventoryView, EquipmentView equipmentView, StatsView statsView) {
-        
+
         //backgroundPanel = new JPanel(new BorderLayout());
 
         /* Initialize the views in the ViewManager */
@@ -49,7 +49,7 @@ public class DefaultViewManager extends ViewManager {
         this.setBackground(Color.BLACK);
         //this.sidePanel.setBackground(new Color(0,0,255,155));
         this.sidePanel.setBackground(Color.BLACK);
-        this.areaView.setBackground(Color.BLACK);
+        //this.areaView.setBackground(Color.BLACK);
         //this.inventoryView.setBackground(Color.RED );
         //this.equipmentView.setBackground(Color.CYAN);
         //this.statsView.setBackground(Color.GREEN);
