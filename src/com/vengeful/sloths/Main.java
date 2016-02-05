@@ -85,7 +85,7 @@ public class Main {
         ListInventoryView iv = new ListInventoryView(inventory);
 
         EquipmentView ev = new EquipmentView();
-        StatsView sv = new StatsView(new BaseStats(5,5,5,5,5));
+        StatsView sv = new StatsView(avatar.getEntityStats());
         DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv);
         
 
