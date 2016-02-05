@@ -6,6 +6,7 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.Sound.SoundEffect;
+import com.vengeful.sloths.View.ViewAlertable;
 import com.vengeful.sloths.View.ViewTime;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 
@@ -13,7 +14,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 public class EntityMapViewObject extends ViewObject
-		implements EntityObserver {
+		implements EntityObserver, ViewAlertable {
 
 	private AnimatedImage walkingN;
 	private AnimatedImage walkingNE;
@@ -36,6 +37,17 @@ public class EntityMapViewObject extends ViewObject
 	private int postY;
 	private long animationStartTime;
 	private long animationFinishTime;
+
+
+	private int _x;
+	private int _y;
+	private int _startX;
+	private int _startY;
+	private int _postX;
+	private int _postY;
+	private long _animationStartTime;
+	private long _animationFinishTime;
+	private long _animationTime;
 
 	public void setWalkingN(AnimatedImage walkingN) {
 		this.walkingN = walkingN;
@@ -194,17 +206,30 @@ public class EntityMapViewObject extends ViewObject
 
 	}
 	public void alertMove(int x, int y, long animationTime) {
-		this.startX = this.x;
-		this.startY = this.y;
-		this.postX = x;
-		this.postY = y;
-		this.x = x;
-		this.y = y;
-		this.walkingSound.play();
-		currentAnimation.setDuration(animationTime);
-		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
-		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + animationTime;
+		ViewTime.getInstance().alert(0, this);
+		this._startX = this.x;
+		this._startY = this.y;
+		this._postX = x;
+		this._postY = y;
+		this._x = x;
+		this._y = y;
+		this._animationTime = animationTime;
 
+
+	}
+
+	@Override
+	public void activate() {
+		this.startX = this._startX;
+		this.startY = this._startY;
+		this.postX = _postX;
+		this.postY = _postY;
+		this.x = _x;
+		this.y = _y;
+		this.walkingSound.play();
+		currentAnimation.setDuration(_animationTime);
+		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
+		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + _animationTime;
 	}
 
 	@Override

@@ -1,8 +1,13 @@
 package com.vengeful.sloths.View.AreaView;
 
-import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.ObserverManager;
-import com.vengeful.sloths.View.AreaView.ViewModels.*;
+import com.vengeful.sloths.View.AreaView.ViewModels.ViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.AreaEffectMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.ItemMapViewObject;
+
+//import com.vengeful.sloths.View.AreaView.ViewModels.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;

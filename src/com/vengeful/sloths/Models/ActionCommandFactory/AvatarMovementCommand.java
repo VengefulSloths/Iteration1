@@ -41,7 +41,7 @@ public class AvatarMovementCommand extends MovementCommand {
                 }
 
 
-                System.out.println("My location: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
+                //System.out.println("My location: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
 
 
                 /*
