@@ -21,8 +21,6 @@ public class DefaultViewManager extends ViewManager {
 
     //public DefaultViewManager() {
     public DefaultViewManager(AreaView areaView, ListInventoryView inventoryView, EquipmentView equipmentView) {
-
-
         /* Create all of the segments of the overall view */
         //backgroundPanel = new JPanel(new BorderLayout());
         sidePanel = new JPanel();
@@ -94,6 +92,7 @@ public class DefaultViewManager extends ViewManager {
     public InventoryView getInventoryView() {
         return this.inventoryView;
     }
+
 
     private void resetBorders(){
         this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
