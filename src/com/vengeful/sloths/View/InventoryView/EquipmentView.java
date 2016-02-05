@@ -13,7 +13,10 @@ import java.util.Iterator;
 
     public class EquipmentView extends InventoryView {
 
-        public EquipmentViewObjectManager manager;
+    public static final String title = "Equipment";
+    public static final String backgroundImageFileName = "resources/inventoryBackground.jpg";
+
+    public EquipmentViewObjectManager manager;
         public InventoryItemViewObject headGear;
         public InventoryItemViewObject weapon;
 
@@ -34,12 +37,9 @@ import java.util.Iterator;
 
     public EquipmentView(){
 
-            generateBackground();
-            manager = new EquipmentViewObjectManager();
-            setLayout(new BorderLayout());
-            this.add(new JLabel("Equipment"), BorderLayout.NORTH);
-
-            //manager.addEquipment(headGear);
+        generateTitle(title);
+        this.setBackgroundImageFileName(backgroundImageFileName);
+        manager = new EquipmentViewObjectManager();
 
         }
 

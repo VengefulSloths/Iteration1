@@ -134,6 +134,25 @@ public class EntityStats extends Stats {
         return this.life;
     }
 
+    public int getMana() {
+        return mana;
+    }
+
+    public int getOffensiveRating() {
+        return offensiveRating;
+    }
+
+    public int getDefensiveRating() {
+        return defensiveRating;
+    }
+
+    public int getArmorRating() {
+        return armorRating;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
 
     public String toString() {
         return this.strength + " " + this.agility + " " + this.intellect + " " + this.hardiness + " " + this.movement;

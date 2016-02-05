@@ -18,13 +18,27 @@ import java.util.Iterator;
  */
 public abstract class InventoryView extends View implements InventoryObserver{
 
+    String defaultInventoryBackground = "resources/inventoryBackground.jpg";
 
-public InventoryView() {
+
+    public InventoryView() {
 //manager = new ViewObjectManager();
 
 }
 
     public InventoryView(Inventory inventory) {
+        // pass in Inventory
+        // pass in self
+
+        //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
+        ProxyInventoryObserver pio = new ProxyInventoryObserver(this, inventory);
+        ObserverManager.instance().addProxyObserver(pio);
+
+        //manager = new ViewObjectManager();
+
+    }
+
+    public InventoryView(Inventory inventory, int width, int height) {
         // pass in Inventory
         // pass in self
 
