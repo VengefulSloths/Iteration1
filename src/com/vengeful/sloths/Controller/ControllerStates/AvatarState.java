@@ -45,8 +45,8 @@ public class AvatarState extends MainControllerState{
 
     @Override
     public boolean handleEKey() {
-        System.out.println("chaning to equip, which is an inventory state?");
-        mainController.setInventoryState();
+        System.out.println("changing to equip");
+        mainController.setEquipmentState();
         return true;
     }
 
