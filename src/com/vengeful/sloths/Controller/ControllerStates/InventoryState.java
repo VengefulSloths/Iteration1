@@ -134,12 +134,19 @@ public class InventoryState extends MainControllerState {
     @Override
     public boolean handleDKey() {
 
-        InventoryItem i = ((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem();
+        InventoryItem i = null;
+        try {
+             i = ((ListInventoryView) this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem();
+        }catch(NullPointerException e){
+            //do nothing
+        }
 
 
-        System.out.println("DROPPING " + i.getItemName());
 
-        mainController.getAvatar().drop(i);
+        if(i != null) {
+            System.out.println("DROPPING " + i.getItemName());
+            mainController.getAvatar().drop(i);
+        }
 
         if (this.inventoryIndex <= 0) this.inventoryIndex = 0;
 
