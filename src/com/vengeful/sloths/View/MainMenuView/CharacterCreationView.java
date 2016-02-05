@@ -12,19 +12,14 @@ import java.util.ArrayList;
 /**
  * Created by alexs on 2/4/2016.
  */
-public class CharacterCreationView extends MenuView implements ViewAlertable{
+public class CharacterCreationView extends MenuView {
 
-    public long leftEndTime = 0;
-    public long rightEndTime = 0;
 
-    public int currentOccupation = 0;
-
-    private final long SELECT_TIME = 300;
+    private final String DECAL_PREFIX = "resources/man2/CharacterCreation/";
 
     private Image avatarImage;
+    private Image occupationImage;
 
-    private MenuIcon leftIcon;
-    private MenuIcon rightIcon;
 
     public CharacterCreationView() {
         Config config = Config.instance();
@@ -38,79 +33,54 @@ public class CharacterCreationView extends MenuView implements ViewAlertable{
 
 
 
-        this.addMenuComponent("resources/Menu/ChangeName");
-        this.addMenuComponent("resources/Menu/Smasher");
-        this.addMenuComponent("resources/Menu/Confirm");
+
+        children.add(new DefaultMenuComponent(
+                "resources/Menu/ChangeName",
+                200,
+                this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++));
+
+        MenuOption occupationSelector = new MenuOption(
+                "resources/Menu",
+                200,
+                this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++);
+
+        occupationSelector.addOption("Sneak");
+        occupationSelector.addOption("Smasher");
+        occupationSelector.addOption("Summoner");
+
+        children.add(occupationSelector);
+
+        children.add(new DefaultMenuComponent(
+                "resources/Menu/Confirm",
+                200,
+                this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++));
+
+
         this.children.get(0).setSelected(true);
 
-        ImageIcon avatarIcon = new ImageIcon("resources/man2/AvatarDefault.png");
+        ImageIcon avatarIcon = new ImageIcon("resources/man2/CharacterCreation/AvatarDefault.png");
+        ImageIcon occupationIcon = new ImageIcon(DECAL_PREFIX + "SneakDecal.png");
         this.avatarImage = avatarIcon.getImage();
+        this.occupationImage = occupationIcon.getImage();
 
-        leftIcon = new MenuIcon(
-                "resources/Menu/ArrowLeft",
-                Config.instance().getWindowWidth()/2 - MenuComponent.WIDTH/2 - MenuIcon.WIDTH - verticleSpacing,
-                verticalOffset + verticleSpacing + MenuComponent.HEIGTH);
 
-        rightIcon = new MenuIcon(
-                "resources/Menu/ArrowRight",
-                Config.instance().getWindowWidth()/2 + MenuComponent.WIDTH/2 + verticleSpacing,
-                verticalOffset + verticleSpacing + MenuComponent.HEIGTH);
-
-        ViewTime.getInstance().alert(300, this);
     }
+
+
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        leftIcon.paintComponent(g);
-        rightIcon.paintComponent(g);
+        g.drawImage(avatarImage, 700, 300, this);
+        g.drawImage(occupationImage, 700, 300, this);
 
-    }
-
-    private void changeOccupation(int index) {
-        switch (index) {
-            case -1:
-                currentOccupation = 2;
-                children.get(1).setText("resources/Menu/Summoner");
-                break;
-            case 0:
-                children.get(1).setText("resources/Menu/Smasher");
-                break;
-            case 1:
-                children.get(1).setText("resources/Menu/Sneak");
-                break;
-            case 2:
-                children.get(1).setText("resources/Menu/Summoner");
-                break;
-            case 3:
-                currentOccupation = 0;
-                children.get(1).setText("resources/Menu/Smasher");
-                break;
-            default:
-                currentOccupation = 0;
-                children.get(1).setText("resources/Menu/Smasher");
-
-        }
-    }
-
-    @Override
-    public void activate() {
-        System.out.println("ACTIVATED");
-        if (rightEndTime < ViewTime.getInstance().getCurrentTimeMilli()) {
-            rightIcon.setSelected(false);
-        }
-        if (leftEndTime < ViewTime.getInstance().getCurrentTimeMilli()) {
-            leftIcon.setSelected(false);
-        }
-        ViewTime.getInstance().alert(300, this);
     }
 
     @Override
     public void cursorLeft() {
         if (selectedIndex == 1) {
-            leftIcon.setSelected(true);
-            leftEndTime = ViewTime.getInstance().getCurrentTimeMilli() + SELECT_TIME;
-            changeOccupation(--currentOccupation);
+            ((MenuOption)children.get(1)).left();
+            this.occupationImage = (new ImageIcon(DECAL_PREFIX + ((MenuOption)children.get(1)).getCurrent() + "Decal.png")).getImage();
 
         }
     }
@@ -118,9 +88,9 @@ public class CharacterCreationView extends MenuView implements ViewAlertable{
     @Override
     public void cursorRight() {
         if (selectedIndex == 1) {
-            rightIcon.setSelected(true);
-            rightEndTime = ViewTime.getInstance().getCurrentTimeMilli() + SELECT_TIME;
-            changeOccupation(++currentOccupation);
+            ((MenuOption)children.get(1)).right();
+            this.occupationImage = (new ImageIcon(DECAL_PREFIX + ((MenuOption)children.get(1)).getCurrent() + "Decal.png")).getImage();
+
         }
     }
 }
