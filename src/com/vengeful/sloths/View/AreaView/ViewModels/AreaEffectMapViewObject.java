@@ -3,13 +3,15 @@ package com.vengeful.sloths.View.AreaView.ViewModels;
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImage;
 import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
+import com.vengeful.sloths.View.Observers.AreaEffectObserver;
+import com.vengeful.sloths.View.ViewTime;
 
 import java.awt.*;
 
 /**
  * Created by luluding on 2/5/16.
  */
-public class AreaEffectMapViewObject extends ViewObject{
+public class AreaEffectMapViewObject extends ViewObject implements AreaEffectObserver{
 
     private AnimatedImage itemImage;
     private AnimatedImage destructionAnimation;
@@ -32,6 +34,14 @@ public class AreaEffectMapViewObject extends ViewObject{
         System.out.println("broken item image should of been loaded");
     }
 
+
+    @Override
+    public void alertDestroyed() {
+        this.startTime = ViewTime.getInstance().getCurrentTimeMilli();
+        this.isDestroyed = true;
+        //destroyedSound.play();
+        System.out.println("I am alerted! (AreaEffect)");
+    }
 
     @Override
     public void paintComponent(Graphics2D g) {

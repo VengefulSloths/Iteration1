@@ -70,6 +70,17 @@ public class Tile{
             MapItem item = iter.next();
             item.interact(entity);
         }
+
+
+        //Create AEs
+        Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
+        while(aeIter.hasNext()){
+            AreaEffect ae = aeIter.next();
+            ae.createEffectCommand(this.entity, this);
+            System.out.println("AE: " + ae);
+        }
+
+
         cleanUp();
     }
 
@@ -119,6 +130,20 @@ public class Tile{
                 td.destroy();
                 mapItems.remove(td);
             }
+
+            //Remove destroyed AE
+            ArrayList<AreaEffect> toDestroyAE = new ArrayList<AreaEffect>();
+            Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
+            while(aeIter.hasNext()){
+                AreaEffect ae = aeIter.next();
+                if(ae.destroyFlag())
+                    toDestroyAE.add(ae);
+            }
+
+            for(AreaEffect ae : toDestroyAE){
+                ae.destroy();
+                areaEffect.remove(ae);
+            }
     }
 
 
@@ -138,26 +163,20 @@ public class Tile{
         return mapItems.get(index);
     }
 
+    /*
     public void createAEs(){
 
         System.out.println("CREATE AE CALLED!!");
         Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
         while(aeIter.hasNext()){
             AreaEffect ae = aeIter.next();
-            ae.createEffectCommand(this.entity);
+            ae.createEffectCommand(this.entity, this);
             System.out.println("AE: " + ae);
         }
-    }
+    }*/
 
     public void addAreaEffect(AreaEffect ae){
         areaEffect.add(ae);
     }
-
-    public void removeAreaEffect(AreaEffect ae){
-        areaEffect.remove(ae);
-
-        //alert abserver?
-    }
-
 
 }
