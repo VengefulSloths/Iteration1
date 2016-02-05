@@ -17,6 +17,7 @@ import com.vengeful.sloths.View.AreaView.ViewModels.AreaEffectMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.ItemMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
+import com.vengeful.sloths.View.Observers.ProxyAreaEffectObserver;
 import com.vengeful.sloths.View.Observers.ProxyEntityObserver;
 import com.vengeful.sloths.View.Observers.ProxyMapItemObserver;
 
@@ -42,8 +43,6 @@ public abstract class MapViewObjectFactory {
     public abstract TerrainMapViewObject createTerrainMapViewObject(Terrain terrain, int x, int y);
 
     public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
-        System.out.println("NEW CAMERA");
-        System.out.println("ITEMS! " + mapItem);
 
         ItemMapViewObject itemViewObject = null;
 
@@ -66,24 +65,19 @@ public abstract class MapViewObjectFactory {
 
 
         return itemViewObject;
-
-
-        /*
-        ItemMapViewObject itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Box/Destroyed/temp", 1, 1000, coordinateStrategy);
-        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
-        ObserverManager.instance().addProxyObserver(pmio);*/
     }
     public abstract Iterator<TerrainMapViewObject> createPrettyTerrain(Map map, int xMin, int yMin, int width, int height);
-    public AreaEffectMapViewObject createAEMapViewObject(AreaEffect mapItem, int x, int y){
+    public AreaEffectMapViewObject createAEMapViewObject(AreaEffect ae, int x, int y){
 
-        String className = mapItem.getClass().getSimpleName();
+        String className = ae.getClass().getSimpleName();
 
 
-        AreaEffectMapViewObject aeView = new AreaEffectMapViewObject(x, y, "resources/AreaEffect/"+className.substring(0, className.length()-2), coordinateStrategy);
-        //TODO: proxy
+        AreaEffectMapViewObject aeViewObject = new AreaEffectMapViewObject(x, y, "resources/AreaEffect/"+className.substring(0, className.length()-2), coordinateStrategy);
 
-        return aeView;
+        ProxyAreaEffectObserver paeo = new ProxyAreaEffectObserver(aeViewObject, ae);
+        ObserverManager.instance().addProxyObserver(paeo);
 
+        return aeViewObject;
     }
 
 
