@@ -1,10 +1,13 @@
 package com.vengeful.sloths.Models.Map;
 
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
+import com.vengeful.sloths.Models.Entity.*;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -73,7 +76,11 @@ public class Tile{
     public void addEntity(Entity entity){
         //may need to check for an entity already being on the tile
         this.entity = entity;
+
+        //For some reason check hasmapItem, and check hasAE logic can't be here
+        //Have to put the checking logic in movement command or the Pickup/drop, AE commands would not work
     }
+
 
     public boolean hasEntity() { return this.entity != null; }
 
@@ -95,6 +102,9 @@ public class Tile{
     public Iterator<MapItem> getMapItemIterator() {
         return mapItems.iterator();
     }
+    public Iterator<AreaEffect> getAreaEffectIterator() {
+        return areaEffect.iterator();
+    }
 
     private void cleanUp(){
             //cleaningup = true;
@@ -109,7 +119,6 @@ public class Tile{
                 td.destroy();
                 mapItems.remove(td);
             }
-
     }
 
 
@@ -127,6 +136,27 @@ public class Tile{
             return null;
 
         return mapItems.get(index);
+    }
+
+    public void createAEs(){
+
+        System.out.println("CREATE AE CALLED!!");
+        Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
+        while(aeIter.hasNext()){
+            AreaEffect ae = aeIter.next();
+            ae.createEffectCommand(this.entity);
+            System.out.println("AE: " + ae);
+        }
+    }
+
+    public void addAreaEffect(AreaEffect ae){
+        areaEffect.add(ae);
+    }
+
+    public void removeAreaEffect(AreaEffect ae){
+        areaEffect.remove(ae);
+
+        //alert abserver?
     }
 
 

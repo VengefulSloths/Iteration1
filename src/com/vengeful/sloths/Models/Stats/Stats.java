@@ -55,7 +55,7 @@ public abstract class Stats implements ViewObservable {
         this.statsObservers = new ArrayList<>();
     }
 
-    public void increaseStats(int strength, int agility, int intellect, int hardiness, int movement) {
+    public void updateStats(int strength, int agility, int intellect, int hardiness, int movement) {
         this.strength += strength;
         this.agility += agility;
         this.intellect += intellect;

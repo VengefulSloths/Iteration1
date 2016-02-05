@@ -16,7 +16,7 @@ public class EntityStats extends Stats {
     protected int experience;
     protected int level;
     // HP stat
-    protected int life;
+    protected int life; //life = maxHP
     protected int mana;
     protected int offensiveRating;
     protected int defensiveRating;
@@ -88,8 +88,8 @@ public class EntityStats extends Stats {
         level++;
     }
 
-    public void increaseStats(int strength, int agility, int intellect, int hardiness, int movement) {
-        super.increaseStats(strength, agility, intellect, hardiness, movement);
+    public void updateStats(int strength, int agility, int intellect, int hardiness, int movement) {
+        super.updateStats(strength, agility, intellect, hardiness, movement);
 
         updateStats();
     }
@@ -107,16 +107,31 @@ public class EntityStats extends Stats {
     }
 
     public void setCurrentHealth(int health){
-        this.currentHealth += health;
-
-        if(this.currentHealth > life)
-            this.currentHealth = life;
+        if((this.currentHealth + health) > this.life)
+            this.currentHealth = this.life;
+        else
+            this.currentHealth += health;
     }
 
     public int getCurrentHealth(){
         return this.currentHealth;
     }
 
+    public int getLevel(){
+        return this.level;
+    }
+
+    public int getLivesLeft(){
+        return this.livesLeft;
+    }
+
+    public void updateLivesLeft(int livesLeft){
+        this.livesLeft += livesLeft;
+    }
+
+    public int getLife(){
+        return this.life;
+    }
 
 
     public String toString() {

@@ -13,13 +13,13 @@ public class Summoner extends Occupation {
 
     @Override
     public void init(EntityStats entityStats) {
-        entityStats.increaseStats(0, 0, 10, 0, 0);
+        entityStats.updateStats(0, 0, 10, 0, 0);
     }
 
     @Override
     public void levelUp(EntityStats eStats) {
         super.levelUp(eStats);
 
-        eStats.increaseStats(1, 1, 2, 1, 0);
+        eStats.updateStats(1, 1, 2, 1, 0);
     }
 }

@@ -1,6 +1,7 @@
 package com.vengeful.sloths.View.AreaView;
 
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
@@ -18,6 +19,7 @@ import com.vengeful.sloths.View.AreaView.Animation.AnimatedImageFactory;
 import com.vengeful.sloths.View.AreaView.Animation.BoundedAnimation;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.Centered32PixelCoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.ViewModels.AreaEffectMapViewObject;
 import com.vengeful.sloths.View.Observers.ProxyEntityObserver;
 import com.vengeful.sloths.View.Observers.ProxyMapItemObserver;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
@@ -155,8 +157,6 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
     }
 
     public ItemMapViewObject createItemMapViewObject(MapItem mapItem, int x, int y) {
-        System.out.println("NEW CAMERA");
-        System.out.println("ITEMS! " + mapItem);
 
         ItemMapViewObject itemView = null;
 
@@ -180,10 +180,18 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
 
         return itemView;
 
-
-        /*
-        ItemMapViewObject itemView = new ItemMapViewObject(x, y, "resources/Items/Box/Box.png", "resources/Items/Box/Destroyed/temp", 1, 1000, coordinateStrategy);
-        ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemView, mapItem);
-        ObserverManager.instance().addProxyObserver(pmio);*/
     }
+
+
+    public AreaEffectMapViewObject createAEMapViewObject(AreaEffect mapItem, int x, int y) {
+        String className = mapItem.getClass().getSimpleName();
+
+
+        AreaEffectMapViewObject aeView = new AreaEffectMapViewObject(x, y, "resources/AreaEffect/"+className.substring(0, className.length()-2), coordinateStrategy);
+        //TODO: proxy
+
+        return aeView;
+    }
+
+
 }

@@ -108,9 +108,6 @@ public class ListInventoryView extends InventoryView implements InventoryObserve
             GodSwordItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(GodSwordItemViewObject);
         }
-
-
-
     }
 
     @Override

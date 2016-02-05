@@ -2,6 +2,7 @@ package com.vengeful.sloths.Utility;
 
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
+import com.vengeful.sloths.Models.Map.AreaEffects.*;
 import com.vengeful.sloths.Models.Map.Map;
 
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
@@ -77,9 +78,20 @@ public class LevelFactory {
         MapItem mapItem2 = new TakeableItem(new Sword("GodSword"));
         map.getTile(new Coord(3,2)).addMapItem(mapItem1);
         //map.getTile(new Coord(3,2)).addMapItem(mapItem2);
-
-
         /***********************/
+
+
+        /**** Test AE ****/
+        AreaEffect ae1 = new TakeDamageAE(2);
+        AreaEffect ae2 = new LevelUpAE();
+        AreaEffect ae3 = new HealDamageAE(1);
+        AreaEffect ae4 = new InstantDeathAE();
+        map.getTile(new Coord(3, 2)).addAreaEffect(ae1);
+        //map.getTile(new Coord(3, 0)).addAreaEffect(ae2);
+        map.getTile(new Coord(3, 0)).addAreaEffect(ae3);
+        map.getTile(new Coord(4, 0)).addAreaEffect(ae4);
+        map.getTile(new Coord(3, 1)).addAreaEffect(ae2);
+
 
 
         return map;

@@ -8,6 +8,8 @@ import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
+import com.vengeful.sloths.Models.Map.AreaEffects.TakeDamageAE;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
@@ -72,7 +74,6 @@ public class Main {
         avatar.addItem(((TakeableItem)mi2).getInvItemRep());
         avatar.addItem(((TakeableItem)mi3).getInvItemRep());
         //TODO: a new factory for creating takable item + inventory item?
-
 
 
         ListInventoryView iv = new ListInventoryView(inventory);

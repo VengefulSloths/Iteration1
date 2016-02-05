@@ -1,5 +1,6 @@
 package com.vengeful.sloths.View.AreaView.Cameras;
 
+import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Utility.Coord;
@@ -36,6 +37,12 @@ public class StaticCameraView extends CameraView {
 				Iterator<MapItem> itemIter = tile.getMapItemIterator();
 				while (itemIter.hasNext()) {
 					mvop.addMapViewObject(mvoFactory.createItemMapViewObject(itemIter.next(), i, j));
+				}
+
+				//add area effect
+				Iterator<AreaEffect> aeIter = tile.getAreaEffectIterator();
+				while(aeIter.hasNext()){
+					mvop.addMapViewObject(mvoFactory.createAEMapViewObject(aeIter.next(), i, j));
 				}
 
 			}

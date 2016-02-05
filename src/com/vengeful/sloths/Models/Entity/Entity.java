@@ -111,4 +111,8 @@ public abstract class Entity implements ViewObservable{
         isMoving = moving;
     }
 
+    public EntityStats getEntityStats(){
+        return this.entityStats;
+    }
+
 }

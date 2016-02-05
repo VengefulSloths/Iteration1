@@ -13,13 +13,13 @@ public class Smasher extends Occupation {
 
     @Override
     public void init(EntityStats entityStats) {
-        entityStats.increaseStats(10, 0, 0, 0, 0);
+        entityStats.updateStats(10, 0, 0, 0, 0);
     }
 
     @Override
     public void levelUp(EntityStats eStats) {
         super.levelUp(eStats);
 
-        eStats.increaseStats(2, 1, 1, 1, 0);
+        eStats.updateStats(2, 1, 1, 1, 0);
     }
 }

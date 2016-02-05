@@ -172,13 +172,22 @@ public class Avatar extends Entity {
     public void takeDamage(int damage) {
         entityStats.setCurrentHealth(-damage);
 
-        if(entityStats.getCurrentHealth() <= 0)
-            this.die();
+        if(entityStats.getCurrentHealth() <= 0){
+            if(entityStats.getLivesLeft() == 0)
+                this.die();
+            else{
+                entityStats.updateLivesLeft(-1);
+                entityStats.setCurrentHealth(entityStats.getLife()); //set currentHP to maxHP
+            }
+        }
+
 
     }
 
     public void die() {
+        System.out.println("Entity is Dead D:");
 
+        //Bring up game menu here??
     }
 
     // @TODO: Don't have Item object yet

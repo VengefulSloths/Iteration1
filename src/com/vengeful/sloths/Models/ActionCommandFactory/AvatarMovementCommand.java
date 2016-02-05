@@ -2,6 +2,7 @@ package com.vengeful.sloths.Models.ActionCommandFactory;
 
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Tile;
@@ -45,11 +46,20 @@ public class AvatarMovementCommand extends MovementCommand {
                 System.out.println("My location: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
 
 
+                //if there is takeable item on the tile, let entity pick it up
                 if(destTile.getMapItemIterator().hasNext()){
-                    //if there is takeable item on the tile, let entity pick it up
                     System.out.println("Calling pick up!!!!");
                     ((Avatar)entity).pickup();
                 }
+
+                //Test
+                //Check if there is there is area of effect on map
+                //AreaEffect.createAECommand(entity, this, location)
+                if(destTile.getAreaEffectIterator().hasNext()){
+                    System.out.println("Calling creating effect!!!!");
+                    destTile.createAEs();
+                }
+
             }
         } catch (Exception e) {
 

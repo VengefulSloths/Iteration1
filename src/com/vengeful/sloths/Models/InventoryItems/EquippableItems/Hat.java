@@ -8,9 +8,11 @@ import com.vengeful.sloths.Models.Stats.BaseStats;
  */
 public class Hat extends EquippableItems {
 
+    //TODO: this needs to be uncommented so we can create Hat of different stats
     //public Hat(String hatName, BaseStats b){
     //    super(hatName, b);
     //}
+
 
     public Hat(String hatName){
         super(hatName);

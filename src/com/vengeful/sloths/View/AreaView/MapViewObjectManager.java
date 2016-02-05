@@ -1,10 +1,8 @@
 package com.vengeful.sloths.View.AreaView;
 
+import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.ObserverManager;
-import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
-import com.vengeful.sloths.View.AreaView.ViewModels.ItemMapViewObject;
-import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
-import com.vengeful.sloths.View.AreaView.ViewModels.ViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -33,6 +31,7 @@ public class MapViewObjectManager {
 			private int viewObjectClassToHeightIndex(ViewObject vo) {
 				if (vo.getClass() == EntityMapViewObject.class) return 100;
 				else if (vo.getClass() == ItemMapViewObject.class) return 50;
+				else if (vo.getClass() == AreaEffectMapViewObject.class) return 30;
 				else if (vo.getClass() == TerrainMapViewObject.class) return 0;
 				else return 1000;
 			}
