@@ -23,6 +23,7 @@ public class StatsViewObject extends JComponent {
     public void paintComponent(Graphics2D g, int x, int y) {
         //g.drawImage(itemImage, x,y, this);
         g.drawImage(statIcon, x, y, Config.instance().INVENTORY_IMAGE_WIDTH, Config.instance().INVENTORY_IMAGE_HEIGHT, this);
+        g.setColor(Color.ORANGE);
         g.drawString(statName + ": " + value, x+ horizontalOffset, y + Config.instance().INVENTORY_IMAGE_HEIGHT - 5); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.
 
     }
@@ -31,6 +32,7 @@ public class StatsViewObject extends JComponent {
     public void paintComponent(Graphics2D g, int x, int y, int viewWidth, int viewHeight) {
         int newHorizontalOffset = (horizontalOffset * viewWidth) - statName.length();
         g.drawImage(statIcon, x, y, Config.instance().INVENTORY_IMAGE_WIDTH, Config.instance().INVENTORY_IMAGE_HEIGHT, this);
+        g.setColor(Color.ORANGE);
         g.drawString(statName + ": " + value, x+ (int) newHorizontalOffset, y + Config.instance().INVENTORY_IMAGE_HEIGHT - 5); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.
     }
 

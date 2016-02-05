@@ -45,14 +45,14 @@ public class StatsView extends View implements StatsObserver {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        int offset = Config.instance().INVENTORY_IMAGE_HEIGHT;
-        int xOffset = 10;
+        int offset = Config.instance().INVENTORY_IMAGE_HEIGHT + 10;
+        int xOffset = 15;
         int i = 0;
         Iterator<StatsViewObject> iterator = manager.iterator();
         while(iterator.hasNext()){
             if(++i == 9){
                 xOffset = Config.instance().getSidePanelWidth() /2;
-                offset = Config.instance().INVENTORY_IMAGE_HEIGHT;
+                offset = Config.instance().INVENTORY_IMAGE_HEIGHT + 10;
             }
             StatsViewObject current = iterator.next();
             current.paintComponent(g2d,xOffset,offset);
