@@ -90,11 +90,11 @@ public class LevelFactory {
         AreaEffect ae2 = new LevelUpAE();
         AreaEffect ae3 = new HealDamageAE(1);
         AreaEffect ae4 = new InstantDeathAE();
-        map.getTile(new Coord(3, 2)).addAreaEffect(ae1);
+        map.getTile(new Coord(7, 0)).addAreaEffect(ae1);
         //map.getTile(new Coord(3, 0)).addAreaEffect(ae2);
-        map.getTile(new Coord(3, 0)).addAreaEffect(ae3);
-        map.getTile(new Coord(4, 0)).addAreaEffect(ae4);
-        map.getTile(new Coord(3, 1)).addAreaEffect(ae2);
+        map.getTile(new Coord(8, 0)).addAreaEffect(ae3);
+        map.getTile(new Coord(9, 0)).addAreaEffect(ae4);
+        map.getTile(new Coord(10,0)).addAreaEffect(ae2);
 
 
 
