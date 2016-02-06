@@ -37,6 +37,4 @@ public class TakeableItem extends MapItem {
     public String toString(){
         return "My takeable is: " + this.itemName + "\n" + "My corresponding inv item is: " + this.invItemRep.getItemName();
     }
-
-
 }

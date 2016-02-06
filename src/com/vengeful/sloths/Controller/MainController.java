@@ -3,6 +3,7 @@ package com.vengeful.sloths.Controller;
 import com.vengeful.sloths.Controller.ControllerStates.*;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
+import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.EquipmentView.ListEquipmentView;
@@ -25,6 +26,16 @@ public class MainController {
     private MainControllerState state;
     private InputHandler inputHandler;
     private Screen screen;
+    private Map map;
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
 
     //These two may need to come together soon
     private ViewManager viewManager;

@@ -1,6 +1,9 @@
 package com.vengeful.sloths.Controller.ControllerStates;
 
 import com.vengeful.sloths.Controller.MainController;
+import com.vengeful.sloths.Models.Map.Map;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
+import com.vengeful.sloths.Utility.TileVisitor.SaveVisitor;
 import com.vengeful.sloths.View.MainMenuView.MainMenuView;
 import com.vengeful.sloths.View.MainMenuView.MenuControllable;
 import com.vengeful.sloths.View.MainMenuView.MenuView;
@@ -36,7 +39,11 @@ public class MenuState extends MainControllerState {
 
     @Override
     public boolean handle1Key() {
-        return false;
+        SaveManager sm = new SaveManager();
+        SaveVisitor sv = new SaveVisitor(mainController.getMap(), sm);
+        sm.setSaveVisitor(sv);
+        sm.save();
+        return true;
     }
 
     @Override

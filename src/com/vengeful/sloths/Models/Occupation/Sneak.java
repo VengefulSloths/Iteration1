@@ -22,4 +22,7 @@ public class Sneak extends Occupation {
 
         eStats.updateStats(1, 2, 1, 1, 0);
     }
+    public void saveMe() {
+        return;
+    }
 }
