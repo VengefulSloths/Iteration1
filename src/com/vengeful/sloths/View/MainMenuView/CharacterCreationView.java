@@ -2,6 +2,7 @@ package com.vengeful.sloths.View.MainMenuView;
 
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.View.MainMenuView.Commands.CharacterCreationCommand;
+import com.vengeful.sloths.View.MainMenuView.Commands.MenuCommandFactory;
 import com.vengeful.sloths.View.ViewAlertable;
 import com.vengeful.sloths.View.ViewTime;
 
@@ -20,24 +21,35 @@ public class CharacterCreationView extends MenuView {
     private Image avatarImage;
     private Image occupationImage;
 
+    private TextArea nameField;
 
     public CharacterCreationView() {
         Config config = Config.instance();
+
+
+        this.setLayout(null);
         this.setPreferredSize(new Dimension(config.getWindowWidth(), config.getWindowHeight()));
         this.setBackground(Color.GRAY);
+
+        this.nameField = new TextArea(5,20);
+        this.nameField.setFont(new Font("Serif", Font.BOLD, 22));
+        this.nameField.setBounds(100,100,150,50);
+        
+        this.add(nameField);
 
         this.verticleSpacing = 32;
         this.verticalOffset = 298;
 
         children = new ArrayList<>();
 
+        MenuCommandFactory mcf = new MenuCommandFactory();
 
-
-
-        children.add(new DefaultMenuComponent(
+        DefaultMenuComponent changeName = new DefaultMenuComponent(
                 "resources/Menu/ChangeName",
                 200,
-                this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++));
+                this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++);
+        changeName.setAction(mcf.createFocusTextCommand(this.nameField));
+        children.add(changeName);
 
         MenuOption occupationSelector = new MenuOption(
                 "resources/Menu",

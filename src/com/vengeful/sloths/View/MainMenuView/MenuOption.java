@@ -1,6 +1,7 @@
 package com.vengeful.sloths.View.MainMenuView;
 
 import com.vengeful.sloths.Utility.Tuple;
+import com.vengeful.sloths.View.MainMenuView.Commands.DummyCommand;
 import com.vengeful.sloths.View.ViewAlertable;
 import com.vengeful.sloths.View.ViewTime;
 
@@ -32,6 +33,8 @@ public class MenuOption extends MenuComponent implements ViewAlertable{
         this.rightArrow = new MenuIcon("resources/Menu/ArrowRight", this.x + 32 + DefaultMenuComponent.WIDTH, this.y);
         this.leftArrow = new MenuIcon("resources/Menu/ArrowLeft", this.x - 32 - MenuIcon.WIDTH, this.y);
         this.mainComponent = new DefaultMenuComponent("nope", this.x, this.y);
+
+        this.action = new DummyCommand();
 
         ViewTime.getInstance().alert(300, this);
     }
