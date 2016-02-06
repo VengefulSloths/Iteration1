@@ -1,5 +1,6 @@
 package com.vengeful.sloths;
 
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 import com.vengeful.sloths.Controller.MainController;
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
 import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
@@ -107,10 +108,19 @@ public class Main {
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);
 
+        System.out.println("HERE!");
 
         //start both threads
-        viewEngine.start();
-        modelEngine.start();
+        try{
+            viewEngine.start();
+        } catch(Exception e){
+            System.out.println("view engine error");
+        }
+        try{
+            //modelEngine.start();
+        }catch(Exception e){
+            System.out.println("model error");
+        }
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
