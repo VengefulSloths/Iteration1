@@ -134,8 +134,8 @@ public class ListInventoryView extends InventoryView {
 
     //@Override
     public void alertItemDropped(InventoryItem item) {
-        System.out.println("LISTINVENTORYVIEW!!!!");
-        System.out.println("Item: " + item.getItemName() + " DROPPED!");
+        //System.out.println("LISTINVENTORYVIEW!!!!");
+        //System.out.println("Item: " + item.getItemName() + " DROPPED!");
         manager.removeInventoryItemViewObject(item);
     }
 

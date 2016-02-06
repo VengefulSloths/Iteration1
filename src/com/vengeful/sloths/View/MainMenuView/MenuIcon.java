@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by alexs on 2/5/2016.
  */
-public class MenuIcon extends MenuComponent {
+public class MenuIcon extends DefaultMenuComponent {
     public static int HEIGHT = 64;
     public static int WIDTH = 64;
     public MenuIcon(String textPath, int x, int y) {

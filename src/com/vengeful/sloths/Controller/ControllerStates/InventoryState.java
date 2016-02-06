@@ -2,6 +2,8 @@ package com.vengeful.sloths.Controller.ControllerStates;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.vengeful.sloths.Controller.MainController;
+import com.vengeful.sloths.Models.Inventory.Inventory;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.View.InventoryView.InventoryView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
@@ -21,7 +23,6 @@ public class InventoryState extends MainControllerState {
     }
 
 
-
     public int getInventoryIndex() {
         return this.inventoryIndex;
     }
@@ -30,15 +31,58 @@ public class InventoryState extends MainControllerState {
         this.inventoryIndex = index;
     }
 
+    public InventoryView getInventoryView(){
+        return this.inventoryView;
+    }
+
     @Override
     public boolean handleIKey() {
+        ((ListInventoryView)this.inventoryView).setDeselected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
         mainController.setAvatarState();
         return true;
     }
 
     @Override
     public boolean handleEKey() {
-        mainController.setAvatarState();
+
+        int itemListSize = ((ListInventoryView) this.inventoryView).manager.getItemListSize();
+
+        System.out.println("Index before equipped: " + this.inventoryIndex);
+        System.out.println("Item Size In View before equipping: " + itemListSize);
+
+
+        //Need to talk to view to get the item to equip
+
+
+        //Testing purpose
+        InventoryItem item = mainController.getAvatar().getInventory().getItem(inventoryIndex);
+
+        //Deselect current item (item to be equipped)
+        ((ListInventoryView)this.inventoryView).setDeselected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+
+        //Do nothing if item is not equippable item
+        if(item instanceof EquippableItems){
+            mainController.getAvatar().equip(item);
+        }
+
+        if(itemListSize == 0)
+            this.inventoryIndex = 0;
+        else if(this.inventoryIndex == 0)
+            ((ListInventoryView)this.inventoryView).setSelected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+        else{
+            System.out.println("Index after equipped: " + this.inventoryIndex);
+            System.out.println("Item Size In View: " + itemListSize);
+            this.inventoryIndex--;
+            ((ListInventoryView)this.inventoryView).setSelected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+        }
+        //TODO: do the same to drop?
+
+
+        itemListSize = ((ListInventoryView) this.inventoryView).manager.getItemListSize();
+
+        System.out.println("Index after equipped: " + this.inventoryIndex);
+        System.out.println("Item Size In View after equipping: " + itemListSize);
+
         return true;
     }
 
@@ -101,8 +145,6 @@ public class InventoryState extends MainControllerState {
     @Override
     public boolean handle8Key() {
         // Move up an item
-
-
         int itemListSize = ((ListInventoryView) this.inventoryView).manager.getItemListSize();
 
         this.inventoryIndex--;
@@ -134,6 +176,7 @@ public class InventoryState extends MainControllerState {
     @Override
     public boolean handleDKey() {
 
+
         InventoryItem i = null;
         try {
              i = ((ListInventoryView) this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem();
@@ -148,10 +191,9 @@ public class InventoryState extends MainControllerState {
             mainController.getAvatar().drop(i);
         }
 
+
         if (this.inventoryIndex <= 0) this.inventoryIndex = 0;
-
         return true;
-
     }
 
     public String toString() {
