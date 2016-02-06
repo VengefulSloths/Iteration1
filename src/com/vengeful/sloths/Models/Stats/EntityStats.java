@@ -107,8 +107,9 @@ public class EntityStats extends Stats {
     }
 
     public void setCurrentHealth(int health){
-        if((this.currentHealth + health) > this.life)
+        if((this.currentHealth + health) > this.life) {
             this.currentHealth = this.life;
+        }
         else
             this.currentHealth += health;
     }
@@ -133,6 +134,25 @@ public class EntityStats extends Stats {
         return this.life;
     }
 
+    public int getMana() {
+        return mana;
+    }
+
+    public int getOffensiveRating() {
+        return offensiveRating;
+    }
+
+    public int getDefensiveRating() {
+        return defensiveRating;
+    }
+
+    public int getArmorRating() {
+        return armorRating;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
 
     public String toString() {
         return this.strength + " " + this.agility + " " + this.intellect + " " + this.hardiness + " " + this.movement;

@@ -1,5 +1,7 @@
 package com.vengeful.sloths.View.StatsView;
 
+import com.vengeful.sloths.Models.Stats.Stats;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -9,18 +11,36 @@ import java.util.Iterator;
 public class StatsViewObjectManager {
     private ArrayList<StatsViewObject> statsList;
 
+    private Stats stats;
+
     //InventoryItemViewObject GodSwordItemViewObject = new InventoryItemViewObject(new Sword("GodSword"));
     //InventoryItemViewObject PartyHatItemViewObject = new InventoryItemViewObject(new Hat("Blue Partyhat"));
 
     public StatsViewObjectManager() {
         statsList = new ArrayList<StatsViewObject>();
+    }
 
+    public StatsViewObjectManager(Stats stats) {
+        //statsList = new ArrayList<StatsViewObject>();
+        this.stats = stats;
+        StatsViewObjectFactory factory = new StatsViewObjectFactory();
+        statsList = factory.generateStatsViewObjects(stats);
+    }
 
+    public void setStats(Stats stats){
+        this.stats = stats;
+        StatsViewObjectFactory factory = new StatsViewObjectFactory();
+        statsList = factory.generateStatsViewObjects(stats);
     }
 
     public void addStatsViewObject(StatsViewObject stat) { //rename populate(InventoryItemViewObject item)?
         //We can sort on iterator because it will be called less
         statsList.add(stat);
+    }
+
+    private void generateStatViewObjects(){
+        statsList.clear();
+        //generate and add to statsview objects
     }
 
 

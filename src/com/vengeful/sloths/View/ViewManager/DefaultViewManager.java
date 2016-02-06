@@ -18,7 +18,7 @@ import java.awt.*;
 public class DefaultViewManager extends ViewManager {
 
     public DefaultViewManager(AreaView areaView, ListInventoryView inventoryView, EquipmentView equipmentView, StatsView statsView) {
-        
+
         //backgroundPanel = new JPanel(new BorderLayout());
 
         /* Initialize the views in the ViewManager */
@@ -49,14 +49,14 @@ public class DefaultViewManager extends ViewManager {
         this.setBackground(Color.BLACK);
         //this.sidePanel.setBackground(new Color(0,0,255,155));
         this.sidePanel.setBackground(Color.BLACK);
-        this.areaView.setBackground(Color.BLACK);
+        //this.areaView.setBackground(Color.BLACK);
         //this.inventoryView.setBackground(Color.RED );
         //this.equipmentView.setBackground(Color.CYAN);
         //this.statsView.setBackground(Color.GREEN);
 
         /* Set the layouts of the ViewManager */
         this.setLayout(new BorderLayout()); //set the layout of the DefaultViewManager to BorderLayout
-        this.sidePanel.setLayout(new FlowLayout(0,0,3)); //not totally necessary - the default is fine. But this allows to specify 0 gap
+        this.sidePanel.setLayout(new FlowLayout(0,0,0)); //not totally necessary - the default is fine. But this allows to specify 0 gap
 
         /* Add views to the sidePanel */
         this.sidePanel.add(statsView);
@@ -78,11 +78,11 @@ public class DefaultViewManager extends ViewManager {
 
 
     private void resetBorders(){
-        this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.equipmentView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.statsView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+        //this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.equipmentView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.statsView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
     }
 
     public void selectInventoryView(){

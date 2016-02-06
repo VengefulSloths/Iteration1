@@ -79,17 +79,36 @@ public class Avatar extends Entity {
         }
     }
 
-    public boolean equip(int itemIndex) {
+    public boolean equip(InventoryItem item) {
 
         try {
-            InventoryItem i = this.inventory.getItem(itemIndex);
-            if(i instanceof Hat){
-                this.equipped.setHat((Hat)i);
-            }else if(i instanceof Sword){
-                this.equipped.setSword((Sword)i);
+
+
+            if(item instanceof Hat){
+
+                Hat hat = this.equipped.getHat();
+                if(hat != null) {
+                    System.out.println("Swapping equipped hat");
+                    this.getInventory().addItem(hat);
+                }
+
+                this.equipped.setHat((Hat)item);
+
+
+
+            }else if(item instanceof Sword){
+
+                Sword sword = this.equipped.getSword();
+                if(sword != null)
+                    this.getInventory().addItem(sword);
+
+
+                this.equipped.setSword((Sword)item);
             }
 
-            this.inventory.removeItem(i);
+            System.out.println("Equipped: " + item);
+            this.inventory.removeItem(item);
+
 
         } catch(Exception e){
             System.out.println(e);
@@ -112,19 +131,12 @@ public class Avatar extends Entity {
     }
 
     public boolean drop(InventoryItem item) {
-        /* Drop:
-            - get item from inventory (check if item exists)
-            - get tile from map
-            - create take-able item
-            - drop on tile (add to tile)
-            - delete item from inventory
-         */
 
-        System.out.println("BEFORE DROP: ");
-        for (int i = 0; i < inventory.getSize(); i++) {
-            System.out.print(inventory.getItem(i).getItemName()+"\t ");
-        }
-        System.out.println();
+        //System.out.println("BEFORE DROP: ");
+        //for (int i = 0; i < inventory.getSize(); i++) {
+        //    System.out.print(inventory.getItem(i).getItemName()+"\t ");
+        //}
+        //System.out.println();
         try{
 //            InventoryItem itemToDrop = inventory.getItem(itemIndex);
             this.commandFactory.createDropCommand(item, this.getLocation(), this);
@@ -134,10 +146,10 @@ public class Avatar extends Entity {
 
         }
 
-        System.out.println("AFTER DROP: ");
-        for (int i = 0; i < inventory.getSize(); i++) {
-            System.out.print(inventory.getItem(i).getItemName()+"\t ");
-        }
+        //System.out.println("AFTER DROP: ");
+        //for (int i = 0; i < inventory.getSize(); i++) {
+        //    System.out.print(inventory.getItem(i).getItemName()+"\t ");
+        //}
 
         return true;
     }
@@ -178,8 +190,6 @@ public class Avatar extends Entity {
                 entityStats.setCurrentHealth(entityStats.getLife()); //set currentHP to maxHP
             }
         }
-
-
     }
 
     public void die() {

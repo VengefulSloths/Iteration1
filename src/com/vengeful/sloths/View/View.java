@@ -3,6 +3,8 @@ package com.vengeful.sloths.View;
 import com.vengeful.sloths.View.InventoryView.ViewObjectManager;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 /**
@@ -17,6 +19,19 @@ public abstract class View extends JPanel {
 
     ImageIcon backgroundImageIcon;
     JLabel backgroundImageLabel;
+    Image backgroundImage;
+    String backgroundImageFileName;
+
+    protected JLabel titleLabel;
+    protected String title;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setBackgroundImageFileName(String backgroundImageName) {
+        this.backgroundImageFileName = backgroundImageName;
+    }
 
     public ViewObjectManager manager;
 
@@ -35,6 +50,7 @@ public abstract class View extends JPanel {
     }
 
     public View(){
+        generateTitle(title);
 
     }
 
@@ -52,9 +68,32 @@ public abstract class View extends JPanel {
         add(backgroundImageLabel);
     }
 
+    public void generateImageBackground(String imageName, Graphics g) {
+        ImageIcon itemIcon = new ImageIcon(imageName);
+        backgroundImage = itemIcon.getImage();
+        g.drawImage(backgroundImage, 0, 0, this.getViewWidth(), this.getViewHeight(),this);
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        generateImageBackground(backgroundImageFileName, g);
+    }
+
     public void generateBackground() {
         //put the generate background in a method (below)
         setBackground(Color.WHITE);
+    }
+
+
+    public void generateTitle(String title) {
+        titleLabel = new JLabel(title);
+        Font font = new Font(titleLabel.getFont().getName(), Font.BOLD, 16);
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setFont(font);
+        //titleLabel.setBorder(new BevelBorder(BevelBorder.RAISED,Color.GRAY, Color.BLACK));
+        this.add(titleLabel);
+
+
     }
 
 

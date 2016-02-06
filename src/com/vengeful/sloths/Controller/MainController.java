@@ -1,14 +1,12 @@
 package com.vengeful.sloths.Controller;
 
-import com.vengeful.sloths.Controller.ControllerStates.AvatarState;
-import com.vengeful.sloths.Controller.ControllerStates.InventoryState;
-import com.vengeful.sloths.Controller.ControllerStates.MainControllerState;
-import com.vengeful.sloths.Controller.ControllerStates.MenuState;
+import com.vengeful.sloths.Controller.ControllerStates.*;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.MainMenuView.MenuView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
@@ -44,6 +42,7 @@ public class MainController {
     private AvatarState avatarState;
     private InventoryState inventoryState;
     private MenuState menuState;
+    private EquipmentState equipmentState;
 
 
     //Setting the menu view through the constructor is probably not final
@@ -57,6 +56,7 @@ public class MainController {
         avatarState = new AvatarState(this);
         inventoryState = new InventoryState(this);
         menuState = new MenuState(this);
+        equipmentState = new EquipmentState(this);
 
         inputHandler = new InputHandler(this);
         jframe.addKeyListener(inputHandler);
@@ -207,9 +207,19 @@ public class MainController {
     }
 
     public void setInventoryState(){
+        int itemListSize = ((ListInventoryView) this.inventoryState.getInventoryView()).manager.getItemListSize();
+        if(itemListSize != 0)
+            ((ListInventoryView)this.inventoryState.getInventoryView()).setSelected(((ListInventoryView)this.inventoryState.getInventoryView()).manager.getFromItemList(this.inventoryState.getInventoryIndex()));
+
         viewManager.selectInventoryView();
         this.state = this.inventoryState;
     }
+
+    public void setEquipmentState(){
+        viewManager.selectEquipView();
+        this.state = this.equipmentState;
+    }
+
 
     //Yes this is hacky, I will work on it
     public MenuState getMenuState() {

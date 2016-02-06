@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by alexs on 2/4/2016.
  */
-public class MenuView extends JPanel implements MenuControllable{
+public abstract class MenuView extends JPanel implements MenuControllable{
     protected ArrayList<MenuComponent> children;
     protected int selectedIndex=0;
     protected int verticalOffset;
@@ -17,12 +17,6 @@ public class MenuView extends JPanel implements MenuControllable{
     protected int menuCounter = 0;
 
 
-    public void addMenuComponent(String textPath) {
-        children.add(new MenuComponent(
-                textPath,
-                Config.instance().getWindowWidth()/2-MenuComponent.WIDTH/2,
-                this.verticalOffset +(MenuComponent.HEIGTH + verticleSpacing)*menuCounter++));
-    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
