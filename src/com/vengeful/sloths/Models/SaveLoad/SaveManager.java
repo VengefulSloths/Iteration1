@@ -54,7 +54,33 @@ public class SaveManager {
             while(i<=ws){
                 bw.write("/t");
             }
-            bw.write("\"" + className + "\"");
+            bw.write("\"" + className + "\"{");
+            bw.newLine();
+            bw.flush();
+        }catch (IOException e){
+            //not doin nothin
+        } finally {
+            if(bw != null)try{
+                bw.close();
+            }catch (IOException e){
+                //not doin nothin
+            }
+        }
+    }
+
+    public void writeVariableLine(int ws, String varName, String varValue, boolean notEnd){
+        BufferedWriter bw = null;
+        try{
+            f.delete();
+            f.createNewFile();
+            bw= new BufferedWriter(new FileWriter(f,true));
+            int i = 0;
+            while(i<=ws){
+                bw.write("/t");
+            }
+            bw.write("\"" + varName + "\": \"" + varValue +"\"");
+            bw.newLine();
+            bw.flush();
         }catch (IOException e){
             //not doin nothin
         } finally {
