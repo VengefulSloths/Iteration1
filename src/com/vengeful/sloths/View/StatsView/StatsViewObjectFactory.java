@@ -32,17 +32,16 @@ public class StatsViewObjectFactory {
 
             //derived stats
             //health
-            tmp = new StatsViewObject("Health", ((EntityStats) stats).getCurrentHealth());
-            tmpList.add(tmp);
+            //tmp = new StatsViewObject("Health", ((EntityStats) stats).getCurrentHealth());
+            //tmpList.add(tmp);
             //mana
-            tmp = new StatsViewObject("Mana", ((EntityStats) stats).getMana());
-            tmpList.add(tmp);
+
             //xp
-            tmp = new StatsViewObject("XP", ((EntityStats) stats).getExperience());
-            tmpList.add(tmp);
+            //tmp = new StatsViewObject("XP", ((EntityStats) stats).getExperience());
+            //tmpList.add(tmp);
             //xp to level
-            tmp = new StatsViewObject("Next Level XP", ((EntityStats) stats).getRequiredLevelXP());
-            tmpList.add(tmp);
+            //tmp = new StatsViewObject("Next Level XP", ((EntityStats) stats).getRequiredLevelXP());
+            //tmpList.add(tmp);
             //offensive rating
             tmp = new StatsViewObject("Offensive Rating", ((EntityStats) stats).getOffensiveRating());
             tmpList.add(tmp);
@@ -53,11 +52,16 @@ public class StatsViewObjectFactory {
             tmp = new StatsViewObject("Armor Rating", ((EntityStats) stats).getArmorRating());
             tmpList.add(tmp);
             //life
-            tmp = new StatsViewObject("Life", ((EntityStats) stats).getLife());
+            tmp = new StatsViewObject("Level", ((EntityStats) stats).getLevel());
             tmpList.add(tmp);
+            tmp = new StatsViewObject("Health", ((EntityStats) stats).getLife());
+            tmpList.add(tmp);
+            tmp = new StatsViewObject("Mana", ((EntityStats) stats).getMana());
+            tmpList.add(tmp);
+
             //lives Left
-            tmp = new StatsViewObject("Lives Left", ((EntityStats) stats).getLivesLeft());
-            tmpList.add(tmp);
+            //tmp = new StatsViewObject("Lives Left", ((EntityStats) stats).getLivesLeft());
+            //tmpList.add(tmp);
 
 
         }else if(stats instanceof BaseStats){
