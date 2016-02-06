@@ -16,6 +16,8 @@ import java.awt.Image;
 public class EntityMapViewObject extends ViewObject
 		implements EntityObserver, ViewAlertable {
 
+	private Direction facingDirection;
+
 	private AnimatedImage walkingN;
 	private AnimatedImage walkingNE;
 	private AnimatedImage walkingE;
@@ -25,10 +27,29 @@ public class EntityMapViewObject extends ViewObject
 	private AnimatedImage walkingW;
 	private AnimatedImage walkingNW;
 
+	private AnimatedImage weaponN;
+	private AnimatedImage weaponNE;
+	private AnimatedImage weaponE;
+	private AnimatedImage weaponSE;
+	private AnimatedImage weaponS;
+	private AnimatedImage weaponSW;
+	private AnimatedImage weaponW;
+	private AnimatedImage weaponNW;
+
+	private AnimatedImage hatN;
+	private AnimatedImage hatNE;
+	private AnimatedImage hatE;
+	private AnimatedImage hatSE;
+	private AnimatedImage hatS;
+	private AnimatedImage hatSW;
+	private AnimatedImage hatW;
+	private AnimatedImage hatNW;
+
 	private SoundEffect walkingSound;
 
-	private Image currentImage;
 	private AnimatedImage currentAnimation;
+	private AnimatedImage currentWeaponAnimation;
+	private AnimatedImage currentHatAnimation;
 
 	//These are for movement
 	private int startX;
@@ -99,6 +120,50 @@ public class EntityMapViewObject extends ViewObject
 
 	}
 
+	public void equipWeapon(String resourcePath) {
+		AnimatedImageFactory aif = AnimatedImageFactory.instance();
+		String resourceName = resourcePath.substring(resourcePath.lastIndexOf('/')+1);
+		System.out.println("EQUIPPING: " + resourcePath + "/north/" + resourceName + "_North");
+		this.weaponN = aif.createTimedAnimatedImage(resourcePath + "/north/" + resourceName + "_North");
+		this.weaponNE = aif.createTimedAnimatedImage(resourcePath + "/northeast/" + resourceName + "_NorthEast");
+		this.weaponE = aif.createTimedAnimatedImage(resourcePath + "/east/" + resourceName + "_East");
+		this.weaponSE = aif.createTimedAnimatedImage(resourcePath + "/southeast/" + resourceName + "_SouthEast");
+		this.weaponS = aif.createTimedAnimatedImage(resourcePath + "/south/" + resourceName + "_South");
+		this.weaponSW = aif.createTimedAnimatedImage(resourcePath + "/southwest/" + resourceName + "_SouthWest");
+		this.weaponW = aif.createTimedAnimatedImage(resourcePath + "/west/" + resourceName + "_West");
+		this.weaponNW = aif.createTimedAnimatedImage(resourcePath + "/northwest/" + resourceName + "_NorthWest");
+
+		switch (this.facingDirection) {
+			case N:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/north/" + resourceName + "_North_1");
+				break;
+			case E:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/east/" + resourceName + "_East_1");
+				break;
+			case S:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/south/" + resourceName + "_South_1");
+				break;
+			case W:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/west/" + resourceName + "_West_1");
+				break;
+			case NE:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/northeast/" + resourceName + "_NorthEast_1");
+				break;
+			case NW:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/northwest/" + resourceName + "_NorthWest_1");
+				break;
+			case SE:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/southeast/" + resourceName + "_SouthEast_1");
+				break;
+			case SW:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/southwest/" + resourceName + "_SouthWest_1");
+				break;
+			default:
+				this.currentWeaponAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/south/" + resourceName + "_South_1");
+				break;
+		}
+	}
+
 	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, String resourcePath, String walkingSoundPath, Direction facingDir) {
 		this.x = x;
 		this.y = y;
@@ -106,6 +171,7 @@ public class EntityMapViewObject extends ViewObject
 		this.startY = y;
 		this.postX = x;
 		this.postY = y;
+		this.facingDirection = facingDir;
 		this.animationStartTime = 0;
 		this.animationFinishTime = 0;
 		this.converter = converter;
@@ -123,8 +189,32 @@ public class EntityMapViewObject extends ViewObject
 		this.setWalkingW( aif.createTimedAnimatedImage(resourcePath + "/moving/west/man_west"));
 		this.setWalkingNW(aif.createTimedAnimatedImage(resourcePath + "/moving/northwest/man_northwest"));
 
+		this.weaponN = aif.createTimedAnimatedImage("nope");
+		this.weaponNE = aif.createTimedAnimatedImage("nope");
+		this.weaponE = aif.createTimedAnimatedImage("nope");
+		this.weaponSE = aif.createTimedAnimatedImage("nope");
+		this.weaponS = aif.createTimedAnimatedImage("nope");
+		this.weaponSW = aif.createTimedAnimatedImage("nope");
+		this.weaponW = aif.createTimedAnimatedImage("nope");
+		this.weaponNW = aif.createTimedAnimatedImage("nope");
 
-		switch (facingDir) {
+		this.hatN = aif.createTimedAnimatedImage("nope");
+		this.hatNE= aif.createTimedAnimatedImage("nope");
+		this.hatE = aif.createTimedAnimatedImage("nope");
+		this.hatSE = aif.createTimedAnimatedImage("nope");
+		this.hatS = aif.createTimedAnimatedImage("nope");
+		this.hatSW = aif.createTimedAnimatedImage("nope");
+		this.hatW = aif.createTimedAnimatedImage("nope");
+		this.hatNW = aif.createTimedAnimatedImage("nope");
+
+
+		//equipWeapon("resources/Equipment/Dagger");
+
+		this.currentWeaponAnimation = aif.createSingleFrameAnimatedImage("nope");
+		this.currentHatAnimation = aif.createSingleFrameAnimatedImage("nope");
+
+
+		switch (this.facingDirection) {
 			case N:
 				this.currentAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "/standing/man_north");
 				break;
@@ -163,46 +253,65 @@ public class EntityMapViewObject extends ViewObject
 	
 	public void paintComponent(Graphics2D g) {
 		if (currentAnimation != null) {
-			g.drawImage(currentAnimation.getCurrentImage(animationStartTime),
-					//g.drawImage(currentImage,
-					converter.convertX(calculatePosition(startX, postX, animationStartTime, animationFinishTime)),
-					converter.convertY(calculatePosition(startY, postY, animationStartTime, animationFinishTime)),
-					this);
+			int x = converter.convertX(calculatePosition(startX, postX, animationStartTime, animationFinishTime));
+			int y = converter.convertY(calculatePosition(startY, postY, animationStartTime, animationFinishTime));
+
+
+			g.drawImage(currentAnimation.getCurrentImage(animationStartTime), x, y, this);
+			g.drawImage(currentWeaponAnimation.getCurrentImage(animationStartTime), x, y, this);
+			g.drawImage(currentHatAnimation.getCurrentImage(animationStartTime), x, y, this);
 		}
 
 	}
 
 	public void alertDirectionChange(Direction d) {
 		//System.out.println("New direction " + d);
-		System.out.println("Drection is now " + d);
+		this.facingDirection = d;
 		switch (d) {
 			case N:
 				currentAnimation = walkingN;
+				currentWeaponAnimation = weaponN;
+				currentHatAnimation = hatN;
 				break;
 			case NW:
 				currentAnimation = walkingNW;
+				currentWeaponAnimation = weaponNW;
+				currentHatAnimation = hatNW;
 				break;
 			case W:
 				currentAnimation = walkingW;
+				currentWeaponAnimation = weaponW;
+				currentHatAnimation = hatW;
 				break;
 			case SW:
+				currentHatAnimation = hatSW;
 				currentAnimation = walkingSW;
+				currentWeaponAnimation = weaponSW;
 				break;
 			case S:
+				currentHatAnimation = hatS;
 				currentAnimation = walkingS;
+				currentWeaponAnimation = weaponS;
 				break;
 			case SE:
+				currentHatAnimation = hatSE;
 				currentAnimation = walkingSE;
+				currentWeaponAnimation = weaponSE;
 				break;
 			case E:
+				currentHatAnimation = hatE;
 				currentAnimation = walkingE;
+				currentWeaponAnimation = weaponE;
 				break;
 			case NE:
+				currentHatAnimation = hatNE;
 				currentAnimation = walkingNE;
+				currentWeaponAnimation = weaponNE;
 				break;
 		}
 		currentAnimation.setDuration(this.animationFinishTime - this.animationStartTime);
-
+		currentHatAnimation.setDuration(this.animationFinishTime - this.animationStartTime);
+		currentWeaponAnimation.setDuration(this.animationFinishTime - this.animationStartTime);
 
 	}
 	public void alertMove(int x, int y, long animationTime) {
@@ -228,12 +337,25 @@ public class EntityMapViewObject extends ViewObject
 		this.y = _y;
 		this.walkingSound.play();
 		currentAnimation.setDuration(_animationTime);
+		currentHatAnimation.setDuration(_animationTime);
+		currentWeaponAnimation.setDuration(_animationTime);
 		this.animationStartTime = ViewTime.getInstance().getCurrentTimeMilli();
-		this.animationFinishTime = ViewTime.getInstance().getCurrentTimeMilli() + _animationTime;
+		this.animationFinishTime = animationStartTime + _animationTime;
 	}
 
 	@Override
 	public void alertDrop(int x, int y, MapItem itemToDrop) {
 		//do nothing
+	}
+
+	@Override
+	public void alertEquipWeapon(String name) {
+		System.out.println("View Equipping " + name );
+		if (converter.getResolution() == 64) {
+			this.equipWeapon("resources/64/Equipment/" + name);
+		} else {
+			this.equipWeapon("resources/Equipment/" + name);
+
+		}
 	}
 }

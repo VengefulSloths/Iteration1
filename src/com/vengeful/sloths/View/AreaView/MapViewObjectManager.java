@@ -36,7 +36,7 @@ public class MapViewObjectManager {
 			private int viewObjectClassToHeightIndex(ViewObject vo) {
 				if (vo.getClass() == EntityMapViewObject.class) return 100;
 				else if (vo.getClass() == ItemMapViewObject.class) return 50;
-				else if (vo.getClass() == AreaEffectMapViewObject.class) return 30;
+				else if (vo.getClass() == AreaEffectMapViewObject.class) return 120;
 				else if (vo.getClass() == TerrainMapViewObject.class) return 0;
 				else return 1000;
 			}

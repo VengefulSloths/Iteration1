@@ -27,11 +27,11 @@ public class DesertMapViewObjectFactory extends MapViewObjectFactory {
     @Override
     public TerrainMapViewObject createTerrainMapViewObject(Terrain terrain, int x, int y) {
         if (terrain.getClass() == Grass.class) {
-            return new TerrainMapViewObject(x,y,"resources/Terrain/Sand.png", coordinateStrategy);
+            return new TerrainMapViewObject(x,y, resources + "Terrain/Sand.png", coordinateStrategy);
         } else if (terrain.getClass() == Mountain.class) {
-            return new TerrainMapViewObject(x,y,"resources/Terrain/Mountain.png", coordinateStrategy);
+            return new TerrainMapViewObject(x,y, resources + "Terrain/Mountain.png", coordinateStrategy);
         } else if (terrain.getClass() == Water.class) {
-            return new TerrainMapViewObject(x,y, "resources/Terrain/DesertWater.png", coordinateStrategy);
+            return new TerrainMapViewObject(x,y, resources + "Terrain/DesertWater.png", coordinateStrategy);
         }
         else {
             System.out.println("Could not create appropriate terrain class");
@@ -51,28 +51,28 @@ public class DesertMapViewObjectFactory extends MapViewObjectFactory {
                 if (tile.getTerrain().getClass() == Water.class) {
                     if (    j+1 < yMin+height &&    map.getTile(new Coord(i,j+1)).getTerrain().getClass() == Grass.class &&
                             i+1 < xMin+width &&     map.getTile(new Coord(i+1,j)).getTerrain().getClass() == Grass.class) {
-                        terrain.addTerrainImage("resources/Terrain/WaterSandBorderSouthEast.png");
+                        terrain.addTerrainImage( resources + "Terrain/WaterSandBorderSouthEast.png");
                     }
                     else  if (  j-1 >= yMin &&    map.getTile(new Coord(i,j-1)).getTerrain().getClass() == Grass.class &&
                                 i-1 >= xMin &&     map.getTile(new Coord(i-1,j)).getTerrain().getClass() == Grass.class) {
-                        terrain.addTerrainImage("resources/Terrain/WaterSandBorderNorthWest.png");
+                        terrain.addTerrainImage( resources + "Terrain/WaterSandBorderNorthWest.png");
                     }
                     else  if (  j+1 < yMin+height &&    map.getTile(new Coord(i,j+1)).getTerrain().getClass() == Grass.class &&
                                 i-1 >= xMin &&     map.getTile(new Coord(i-1,j)).getTerrain().getClass() == Grass.class) {
-                        terrain.addTerrainImage("resources/Terrain/WaterSandBorderSouthWest.png");
+                        terrain.addTerrainImage( resources + "Terrain/WaterSandBorderSouthWest.png");
                     }
                     else  if (  j-1 >= yMin &&    map.getTile(new Coord(i,j-1)).getTerrain().getClass() == Grass.class &&
                                 i+1 < xMin+width &&     map.getTile(new Coord(i+1,j)).getTerrain().getClass() == Grass.class) {
-                        terrain.addTerrainImage("resources/Terrain/WaterSandBorderNorthEast.png");
+                        terrain.addTerrainImage( resources + "Terrain/WaterSandBorderNorthEast.png");
 
                     } else  if (j+1 < yMin+height &&    map.getTile(new Coord(i,j+1)).getTerrain().getClass() == Grass.class) {
-                        terrain.addTerrainImage("resources/Terrain/WaterSandBorderSouth.png");
+                        terrain.addTerrainImage( resources + "Terrain/WaterSandBorderSouth.png");
                     } else  if (j-1 >= yMin &&    map.getTile(new Coord(i,j-1)).getTerrain().getClass() == Grass.class) {
-                        terrain.addTerrainImage("resources/Terrain/WaterSandBorderNorth.png");
+                        terrain.addTerrainImage( resources + "Terrain/WaterSandBorderNorth.png");
                     } else  if (i+1 < xMin+width &&     map.getTile(new Coord(i+1,j)).getTerrain().getClass() == Grass.class) {
-                        terrain.addTerrainImage("resources/Terrain/WaterSandBorderEast.png");
+                        terrain.addTerrainImage( resources + "Terrain/WaterSandBorderEast.png");
                     } else  if (i-1 >= xMin &&     map.getTile(new Coord(i-1,j)).getTerrain().getClass() == Grass.class) {
-                        terrain.addTerrainImage("resources/Terrain/WaterSandBorderWest.png");
+                        terrain.addTerrainImage( resources + "Terrain/WaterSandBorderWest.png");
                     }
 
                 }

@@ -21,7 +21,7 @@ public class EquipmentMapViewObject extends ViewObject {
 
     private AnimatedImage current;
 
-    public EquipmentMapViewObject(int x, int y, CoordinateStrategy converter)
+    public EquipmentMapViewObject(int x, int y, CoordinateStrategy converter) {}
 
     @Override
     public void paintComponent(Graphics2D g) {

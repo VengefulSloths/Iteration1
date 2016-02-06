@@ -104,4 +104,8 @@ public class AreaView extends View
 	public void alertDrop(int x, int y, MapItem itemToDrop) {
 
 	}
+
+	@Override
+	public void alertEquipWeapon(String name) {
+	}
 }
