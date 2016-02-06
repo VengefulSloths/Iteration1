@@ -18,7 +18,7 @@ public class StatsView extends View implements StatsObserver {
     private Stats stats;
 
     public static final String title = "Stats";
-    public static final String backgroundImageFileName = "resources/inventoryBackground2.jpg";
+    public static final String backgroundImageFileName = "resources/statsBackground.jpg";
 
 
     public StatsView(Stats stats){
