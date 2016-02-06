@@ -32,7 +32,7 @@ public abstract class MapViewObjectFactory {
     public EntityMapViewObject createEntityMapViewObject(Entity entity) {
         Coord loc = entity.getLocation();
 
-        EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, "resources/man2", "resources/Audio/grass_step3.wav", entity.getFacingDirection() );
+        EntityMapViewObject emvo = new EntityMapViewObject(loc.getX(), loc.getY(), coordinateStrategy, "resources/man2", "resources/Audio/grass_step2.wav", entity.getFacingDirection() );
 
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
         ProxyEntityObserver peo = new ProxyEntityObserver(emvo, entity);
