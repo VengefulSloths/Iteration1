@@ -48,7 +48,7 @@ public abstract class ItemViewObject extends JComponent {
 
     public String generateImageFileName(String itemName) {
         //imageFileName = "resources/"+itemName+".jpg";
-        imageFileName = "resources/Items/Takeable/"+itemName+"/" + itemName + ".png";
+        imageFileName = "resources/Items/"+itemName+"/" + itemName + ".png";
         return imageFileName;
     }
 

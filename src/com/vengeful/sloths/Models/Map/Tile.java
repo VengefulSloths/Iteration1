@@ -76,7 +76,7 @@ public class Tile{
         Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
         while(aeIter.hasNext()){
             AreaEffect ae = aeIter.next();
-            ae.createEffectCommand(this.entity, this);
+            ae.createEffectCommand(this.entity);
             System.out.println("AE: " + ae);
         }
 

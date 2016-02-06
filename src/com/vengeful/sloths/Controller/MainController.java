@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.TimeModel.TimeController;
 import com.vengeful.sloths.View.AreaView.AreaView;
+import com.vengeful.sloths.View.EquipmentView.ListEquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.MainMenuView.MenuView;
 import com.vengeful.sloths.View.ViewEngine;
@@ -205,6 +206,12 @@ public class MainController {
     }
 
     public void setEquipmentState(){
+
+        int itemListSize = ((ListEquipmentView) this.equipmentState.getEquipmentView()).manager.getItemListSize();
+        if(itemListSize != 0)
+            ((ListEquipmentView)this.equipmentState.getEquipmentView()).setSelected(((ListEquipmentView)this.equipmentState.getEquipmentView()).manager.getFromItemList(this.equipmentState.getEquipmentIndex()));
+
+
         viewManager.selectEquipView();
         this.state = this.equipmentState;
     }

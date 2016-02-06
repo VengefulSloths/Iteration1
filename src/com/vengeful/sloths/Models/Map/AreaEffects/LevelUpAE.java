@@ -20,10 +20,10 @@ public class LevelUpAE extends AreaEffect{
 
     //This AE can only take effect on Avatar
     @Override
-    public EffectCommand createEffectCommand(Entity affectedEntity, Tile tile) {
+    public EffectCommand createEffectCommand(Entity affectedEntity) {
         if(affectedEntity instanceof Avatar) {
             this.destory = true; //show be destroyed as soon as activated once
-            return new LevelUpAECommand(affectedEntity, tile, this);
+            return new LevelUpAECommand(affectedEntity, this);
         }
         else
             return null;

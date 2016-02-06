@@ -2,10 +2,9 @@ package com.vengeful.sloths.View.ViewManager;
 
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.View.InventoryView.EquipmentView;
+import com.vengeful.sloths.View.EquipmentView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.StatsView.StatsView;
-import com.vengeful.sloths.View.View;
 
 import javax.swing.*;
 

@@ -23,7 +23,7 @@ public class TakeDamageAE extends AreaEffect{
 
     //This AE can only take effect on Avatar
     @Override
-    public EffectCommand createEffectCommand(Entity affectedEntity, Tile tile) {
+    public EffectCommand createEffectCommand(Entity affectedEntity) {
         if(affectedEntity instanceof Avatar)
             return new TakeDamageAECommand(affectedEntity, this.damage, affectedEntity.getLocation());
         else

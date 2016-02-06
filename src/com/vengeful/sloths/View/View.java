@@ -89,14 +89,6 @@ public abstract class View extends JPanel {
         titleLabel.setFont(font);
         //this.add(titleLabel, BorderLayout.NORTH);
         this.add(titleLabel);
-
-
     }
-
-
-
-
-
-
 }
 

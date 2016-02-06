@@ -1,11 +1,9 @@
 package com.vengeful.sloths.View.ViewManager;
 
-import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.View.AreaView.AreaView;
-import com.vengeful.sloths.View.InventoryView.EquipmentView;
+import com.vengeful.sloths.View.EquipmentView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.InventoryView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
-import com.vengeful.sloths.View.Sound.SoundEffect;
 import com.vengeful.sloths.View.StatsView.StatsView;
 
 import javax.swing.*;
@@ -74,6 +72,10 @@ public class DefaultViewManager extends ViewManager {
     /* Get the inventoryView in this ViewManager. The attribute is in the superclass definition */
     public InventoryView getInventoryView() {
         return this.inventoryView;
+    }
+
+    public EquipmentView getEquipmentView(){
+        return this.equipmentView;
     }
 
 

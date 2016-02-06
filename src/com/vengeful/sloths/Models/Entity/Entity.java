@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.Entity;
 
+import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 
 import com.vengeful.sloths.Models.Occupation.Occupation;
@@ -29,12 +30,17 @@ public abstract class Entity implements ViewObservable{
     protected Occupation occupation;
     protected EntityStats entityStats;
     protected Inventory inventory;
+    protected Equipped equipped;
     protected Direction facingDirection;
 
     protected ArrayList<EntityObserver> entityObservers;
 
     public void setInventory(Inventory inv) {
         this.inventory = inv;
+    }
+
+    public void setEquipped(Equipped equipped) {
+        this.equipped = equipped;
     }
 
     public Entity(String name, String occupationString, EntityStats entityStats) {

@@ -116,6 +116,8 @@ public class ListInventoryView extends InventoryView {
         if (item instanceof Hat) {
             PartyHatItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(PartyHatItemViewObject);
+            //???Can't we just do..
+            //manager.addInventoryItemViewObject(new InventoryItemViewObject(item));
         } else if (item instanceof Sword) {
             GodSwordItemViewObject = new InventoryItemViewObject(item);
             manager.addInventoryItemViewObject(GodSwordItemViewObject);
@@ -134,7 +136,6 @@ public class ListInventoryView extends InventoryView {
         item.isSelected = true;
 
     }
-
 
     public void setDeselected(InventoryItemViewObject item){
         //give a border

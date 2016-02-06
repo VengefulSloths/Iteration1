@@ -23,7 +23,7 @@ public abstract class AreaEffect implements ViewObservable {
         this.destory = false;
     }
 
-    public abstract EffectCommand createEffectCommand(Entity affectedEntity, Tile tile);
+    public abstract EffectCommand createEffectCommand(Entity affectedEntity);
 
 
     public boolean destroyFlag()
