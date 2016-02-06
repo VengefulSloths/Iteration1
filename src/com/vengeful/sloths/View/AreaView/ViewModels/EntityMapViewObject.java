@@ -208,9 +208,9 @@ public class EntityMapViewObject extends ViewObject
 		this.hatNW = aif.createTimedAnimatedImage("nope");
 
 
-		equipWeapon("resources/Equipment/Dagger");
+		//equipWeapon("resources/Equipment/Dagger");
 
-		//this.currentWeaponAnimation = aif.createSingleFrameAnimatedImage("resources/Equipment/Dagger/north/Dagger_North");
+		this.currentWeaponAnimation = aif.createSingleFrameAnimatedImage("nope");
 		this.currentHatAnimation = aif.createSingleFrameAnimatedImage("nope");
 
 
@@ -346,5 +346,16 @@ public class EntityMapViewObject extends ViewObject
 	@Override
 	public void alertDrop(int x, int y, MapItem itemToDrop) {
 		//do nothing
+	}
+
+	@Override
+	public void alertEquipWeapon(String name) {
+		System.out.println("View Equipping " + name );
+		if (converter.getResolution() == 64) {
+			this.equipWeapon("resources/64/Equipment/" + name);
+		} else {
+			this.equipWeapon("resources/Equipment/" + name);
+
+		}
 	}
 }

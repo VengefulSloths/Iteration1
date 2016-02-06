@@ -12,10 +12,7 @@ import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Map.MapItems.Obstacle;
 import com.vengeful.sloths.Models.Map.Terrains.Mountain;
 import com.vengeful.sloths.Models.Map.Terrains.Water;
-import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
-import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
-import com.vengeful.sloths.View.AreaView.Cameras.DynamicCameraView;
-import com.vengeful.sloths.View.AreaView.Cameras.StaticCameraView;
+import com.vengeful.sloths.View.AreaView.Cameras.*;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 import com.vengeful.sloths.View.AreaView.DesertMapViewObjectFactory;
 
@@ -81,9 +78,9 @@ public class LevelFactory {
 
         /* Testing pick up item */
 
-        MapItem mapItem1 = new TakeableItem(new Hat("BluePartyHat"));
-        MapItem mapItem2 = new TakeableItem(new Sword("GodSword"));
-        map.getTile(new Coord(3,2)).addMapItem(mapItem1);
+        //MapItem mapItem1 = new TakeableItem(new Hat("BluePartyHat"));
+        MapItem mapItem2 = new TakeableItem(new Sword("Dagger"));
+        map.getTile(new Coord(3,2)).addMapItem(mapItem2);
         //map.getTile(new Coord(3,2)).addMapItem(mapItem2);
         /***********************/
 
@@ -105,9 +102,9 @@ public class LevelFactory {
     }
     private CameraViewManager generateTestCV() {
         CameraViewManager cvm = new CameraViewManager(activeMap);
-        cvm.addCameraView(new StaticCameraView(0,0,5,7));
+        cvm.addCameraView(new ZoomedStaticCameraView(0,0,5,7));
         cvm.addCameraView(new StaticCameraView(5,0,10,7));
-        CameraView test = new DynamicCameraView(15,0,20,20,10,10);
+        CameraView test = new DynamicCameraView(15,0,20,20);
         test.setMapViewObjectFactory(new DesertMapViewObjectFactory(test));
         cvm.addCameraView(test);
 
