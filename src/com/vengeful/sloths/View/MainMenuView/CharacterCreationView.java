@@ -34,7 +34,7 @@ public class CharacterCreationView extends MenuView {
         this.nameField = new TextArea(5,20);
         this.nameField.setFont(new Font("Serif", Font.BOLD, 22));
         this.nameField.setBounds(100,100,150,50);
-        
+
         this.add(nameField);
 
         this.verticleSpacing = 32;
