@@ -20,6 +20,7 @@ import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
+import com.vengeful.sloths.View.HUDView.HUDView;
 import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.MainMenuView.MainMenuView;
@@ -91,7 +92,8 @@ public class Main {
 
         EquipmentView ev = new EquipmentView();
         StatsView sv = new StatsView(avatar.getEntityStats());
-        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv);
+        HUDView hv = new HUDView();
+        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv, hv);
         
 
 

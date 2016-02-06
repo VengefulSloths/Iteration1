@@ -81,8 +81,14 @@ public abstract class Stats implements ViewObservable, Saveable{
         this.statsObservers.remove((StatsObserver) modelObserver);
     }
 
-    public void saveMe()
-    {
+    public void saveMe() {
         System.out.println("Saving: " + this.toString());
+    }
+
+    public void alertObservers(){
+        for(StatsObserver observer: statsObservers){
+            observer.alertStatChanged(this);
+        }
+
     }
 }
