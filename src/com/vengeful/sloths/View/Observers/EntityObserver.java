@@ -7,4 +7,5 @@ public interface EntityObserver extends ModelObserver{
 	void alertDirectionChange(Direction d);
 	void alertMove(int x, int y, long animationTime);
 	void alertDrop(int x, int y, MapItem itemToDrop);
+	void alertEquipWeapon(String name);
 }

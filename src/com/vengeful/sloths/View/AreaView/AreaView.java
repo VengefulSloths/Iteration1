@@ -41,9 +41,11 @@ public class AreaView extends View
 
 	private Entity playerModel;
 
+	public static final String backgroundImageFileName = "resources/desert.jpg";
+
 	public AreaView(CameraViewManager cvm, Entity player) {
 
-		//this.setBackgroundImageFileName("resources/inventoryBackground.jpg");
+		//this.setBackgroundImageFileName(backgroundImageFileName);
 
 		this.setBackground(Color.BLACK);
 
@@ -103,5 +105,9 @@ public class AreaView extends View
 	@Override
 	public void alertDrop(int x, int y, MapItem itemToDrop) {
 
+	}
+
+	@Override
+	public void alertEquipWeapon(String name) {
 	}
 }

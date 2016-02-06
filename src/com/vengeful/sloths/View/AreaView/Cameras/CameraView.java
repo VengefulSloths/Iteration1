@@ -10,6 +10,7 @@ import com.vengeful.sloths.View.Observers.EntityObserver;
 
 public abstract class CameraView implements EntityObserver {
 	protected MapViewObjectFactory mvoFactory;
+	protected MapViewObjectManager mapViewObjectManager;
 	protected Map map;
 	protected int x;
 	protected int y;
@@ -48,5 +49,22 @@ public abstract class CameraView implements EntityObserver {
 		this.map = map;
 	}
 	public abstract void populate(MapViewObjectManager mvom);
+
+	@Override
+	public void alertDirectionChange(Direction d) {
+		//do nothing
+	}
+	@Override
+	public void alertEquipWeapon(String name) {}
+
+
+	@Override
+	public void alertMove(int x, int y, long animationTime) {
+
+	}
+	@Override
+	public void alertDrop(int x, int y, MapItem itemToDrop) {
+		mapViewObjectManager.addMapViewObject(mvoFactory.createItemMapViewObject(itemToDrop, x, y));
+	}
 
 }

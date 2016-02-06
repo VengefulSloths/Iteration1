@@ -3,6 +3,8 @@ package com.vengeful.sloths.View;
 import com.vengeful.sloths.View.InventoryView.ViewObjectManager;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 /**
@@ -18,7 +20,7 @@ public abstract class View extends JPanel {
     ImageIcon backgroundImageIcon;
     JLabel backgroundImageLabel;
     Image backgroundImage;
-    String backgroundImageFileName;
+    protected String backgroundImageFileName;
 
     protected JLabel titleLabel;
     protected String title;
@@ -29,6 +31,10 @@ public abstract class View extends JPanel {
 
     public void setBackgroundImageFileName(String backgroundImageName) {
         this.backgroundImageFileName = backgroundImageName;
+    }
+
+    public String getBackgroundImageFileName() {
+        return backgroundImageFileName;
     }
 
     public ViewObjectManager manager;
@@ -86,8 +92,9 @@ public abstract class View extends JPanel {
     public void generateTitle(String title) {
         titleLabel = new JLabel(title);
         Font font = new Font(titleLabel.getFont().getName(), Font.BOLD, 16);
+        titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(font);
-        //this.add(titleLabel, BorderLayout.NORTH);
+        //titleLabel.setBorder(new BevelBorder(BevelBorder.RAISED,Color.GRAY, Color.BLACK));
         this.add(titleLabel);
     }
 }

@@ -9,4 +9,8 @@ public abstract class CoordinateStrategy {
 
 	public abstract int convertY(int y);
 	public abstract int convertY(float y);
+
+	public int getResolution() {
+		return 32;
+	}
 }

@@ -80,4 +80,9 @@ public abstract class Stats implements ViewObservable {
     public void deregisterObserver(ModelObserver modelObserver) {
         this.statsObservers.remove((StatsObserver) modelObserver);
     }
+    public void alertObservers(){
+        for(StatsObserver observer: statsObservers){
+            observer.alertStatChanged(this);
+        }
+    }
 }

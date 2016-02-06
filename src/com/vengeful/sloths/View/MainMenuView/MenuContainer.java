@@ -10,8 +10,8 @@ import java.awt.*;
  * Created by alexs on 2/4/2016.
  */
 public class MenuContainer extends JPanel implements MenuControllable{
-    private MenuView mainMenuView;
-    private MenuView characterCreationView;
+    private MainMenuView mainMenuView;
+    private CharacterCreationView characterCreationView;
 
     private MenuView currentMenuView;
     public MenuContainer() {
@@ -34,7 +34,7 @@ public class MenuContainer extends JPanel implements MenuControllable{
         return mainMenuView;
     }
 
-    public MenuView getCharacterCreationView() {
+    public CharacterCreationView getCharacterCreationView() {
         return characterCreationView;
     }
 

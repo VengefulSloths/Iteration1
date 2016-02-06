@@ -13,7 +13,6 @@ import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
 import java.util.Iterator;
 
 public class StaticCameraView extends CameraView {
-	private MapViewObjectManager mvop;
 
 	public StaticCameraView(int x, int y, int width, int height) {
 		super(x,y,width,height);
@@ -21,7 +20,7 @@ public class StaticCameraView extends CameraView {
 
 	}
 	public void populate(MapViewObjectManager mvop) {
-		this.mvop = mvop;
+		this.mapViewObjectManager = mvop;
 
 		for (int i = x; i < x+width; i++) {
 			for (int j = y; j<y+height; j++) {
@@ -52,21 +51,4 @@ public class StaticCameraView extends CameraView {
 		}
 	}
 
-	@Override
-	public void alertDirectionChange(Direction d) {
-		//do nothing
-	}
-
-	@Override
-	public void alertMove(int x, int y, long animationTime) {
-
-	}
-
-	@Override
-	public void alertDrop(int x, int y, MapItem itemToDrop) {
-		//mapViewObjectManager.addMapViewObject(mvoFactory.createItemMapViewObject(itemToDrop, x, y));
-		System.out.println("STATIC CAMERAVIEW");
-		System.out.println("ITEM IS: " + itemToDrop);
-		mvop.addMapViewObject(mvoFactory.createItemMapViewObject(itemToDrop, x, y));
-	}
 }
