@@ -56,7 +56,7 @@ public class DefaultViewManager extends ViewManager {
 
         /* Set the layouts of the ViewManager */
         this.setLayout(new BorderLayout()); //set the layout of the DefaultViewManager to BorderLayout
-        this.sidePanel.setLayout(new FlowLayout(0,0,3)); //not totally necessary - the default is fine. But this allows to specify 0 gap
+        this.sidePanel.setLayout(new FlowLayout(0,0,0)); //not totally necessary - the default is fine. But this allows to specify 0 gap
 
         /* Add views to the sidePanel */
         this.sidePanel.add(statsView);
@@ -78,11 +78,11 @@ public class DefaultViewManager extends ViewManager {
 
 
     private void resetBorders(){
-        this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.equipmentView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
-        this.statsView.setBorder(BorderFactory.createEtchedBorder(Color.WHITE, Color.WHITE));
+        //this.sidePanel.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.inventoryView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.areaView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.equipmentView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+        this.statsView.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
     }
 
     public void selectInventoryView(){

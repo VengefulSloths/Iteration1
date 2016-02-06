@@ -18,7 +18,7 @@ public class StatsView extends View implements StatsObserver {
     private Stats stats;
 
     public static final String title = "Stats";
-    public static final String backgroundImageFileName = "resources/inventoryBackground.jpg";
+    public static final String backgroundImageFileName = "resources/statsBackground.jpg";
 
 
     public StatsView(Stats stats){
@@ -46,12 +46,12 @@ public class StatsView extends View implements StatsObserver {
         Graphics2D g2d = (Graphics2D) g;
 
         int offset = Config.instance().INVENTORY_IMAGE_HEIGHT + 10;
-        int xOffset = 15;
+        int xOffset = 17;
         int i = 0;
         Iterator<StatsViewObject> iterator = manager.iterator();
         while(iterator.hasNext()){
             if(++i == 9){
-                xOffset = Config.instance().getSidePanelWidth() /2;
+                xOffset = (Config.instance().getSidePanelWidth()/2) ;
                 offset = Config.instance().INVENTORY_IMAGE_HEIGHT + 10;
             }
             StatsViewObject current = iterator.next();

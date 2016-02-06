@@ -3,6 +3,8 @@ package com.vengeful.sloths.View;
 import com.vengeful.sloths.View.InventoryView.ViewObjectManager;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 /**
@@ -86,8 +88,9 @@ public abstract class View extends JPanel {
     public void generateTitle(String title) {
         titleLabel = new JLabel(title);
         Font font = new Font(titleLabel.getFont().getName(), Font.BOLD, 16);
+        titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(font);
-        //this.add(titleLabel, BorderLayout.NORTH);
+        //titleLabel.setBorder(new BevelBorder(BevelBorder.RAISED,Color.GRAY, Color.BLACK));
         this.add(titleLabel);
 
 

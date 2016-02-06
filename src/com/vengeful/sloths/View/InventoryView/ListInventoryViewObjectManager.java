@@ -39,7 +39,11 @@ public class ListInventoryViewObjectManager extends ViewObjectManager { //this j
     }
 
     public InventoryItemViewObject getFromItemList(int index) {
-        return (InventoryItemViewObject) itemList.get(index);
+        try {
+            return (InventoryItemViewObject) itemList.get(index);
+        }catch(IndexOutOfBoundsException e){
+            return null;
+        }
     }
 
     public void initWithInventory(Inventory inventory) {
