@@ -36,6 +36,13 @@ public class ProxyEntityObserver extends ProxyObserver
     }
 
     @Override
+    public void alertEquipWeapon(String name) {
+        if (!deleteFlag) {
+            target.alertEquipWeapon(name);
+        }
+    }
+
+    @Override
     public void alertDrop(int x, int y, MapItem itemToDrop) {
         System.out.println("WHO IS MY TARGET?: " + target);
 

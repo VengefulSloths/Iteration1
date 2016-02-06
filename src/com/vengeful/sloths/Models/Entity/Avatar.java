@@ -10,6 +10,9 @@ import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.View.Observers.EntityObserver;
+
+import java.util.Iterator;
 
 /**
  * Created by zach on 1/30/16.
@@ -27,6 +30,10 @@ public class Avatar extends Entity {
 
         this.equipped = new Equipped();
         this.commandFactory = commandFactory;
+    }
+
+    public Equipped getEquipped() {
+        return equipped;
     }
 
     public void move(Direction dir) {
@@ -82,8 +89,6 @@ public class Avatar extends Entity {
     public boolean equip(InventoryItem item) {
 
         try {
-
-
             if(item instanceof Hat){
 
                 Hat hat = this.equipped.getHat();
@@ -96,12 +101,19 @@ public class Avatar extends Entity {
 
 
 
+
+
             }else if(item instanceof Sword){
 
                 Sword sword = this.equipped.getSword();
                 if(sword != null)
                     this.getInventory().addItem(sword);
 
+                Iterator<EntityObserver> iter = entityObservers.iterator();
+                while (iter.hasNext()) {
+                    //TODO: dont hardcode dagger here
+                    iter.next().alertEquipWeapon(item.getItemName());
+                }
 
                 this.equipped.setSword((Sword)item);
             }
