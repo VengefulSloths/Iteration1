@@ -187,4 +187,8 @@ public class Avatar extends Entity {
         return true;
     }
 
+    public void saveMe(){
+        super.saveMe();
+        equipped.saveMe();
+    }
 }

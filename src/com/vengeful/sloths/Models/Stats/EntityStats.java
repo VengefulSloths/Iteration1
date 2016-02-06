@@ -24,6 +24,7 @@ public class EntityStats extends Stats {
 
     protected int[] requiredLevelXP = {0, 10, 20, 40, 80, 160, 320, 640, 1280, 2560};
     protected int currentHealth;
+    protected int currentMana;
 
 
     public EntityStats() {
@@ -34,8 +35,10 @@ public class EntityStats extends Stats {
         this.level = 1;
         this.livesLeft = 1;
         this.life = 10;
+        this.mana = 10;
 
         this.currentHealth = life;
+        this.currentMana = mana;
 
         updateStats();
     }
@@ -153,6 +156,8 @@ public class EntityStats extends Stats {
     public int getExperience() {
         return experience;
     }
+
+    public int getCurrentMana(){return currentMana;}
 
     public String toString() {
         return this.strength + " " + this.agility + " " + this.intellect + " " + this.hardiness + " " + this.movement;

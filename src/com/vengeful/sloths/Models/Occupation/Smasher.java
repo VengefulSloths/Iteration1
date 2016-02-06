@@ -22,4 +22,8 @@ public class Smasher extends Occupation {
 
         eStats.updateStats(2, 1, 1, 1, 0);
     }
+
+    public void saveMe() {
+        return;
+    }
 }

@@ -3,13 +3,13 @@ package com.vengeful.sloths.Models.Stats;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.View.Observers.ModelObserver;
 import com.vengeful.sloths.View.Observers.StatsObserver;
-
+import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import java.util.ArrayList;
 
 /**
  * Created by zach on 1/30/16.
  */
-public abstract class Stats implements ViewObservable {
+public abstract class Stats implements ViewObservable, Saveable{
     protected int strength;
     protected int agility;
     protected int intellect;
@@ -80,9 +80,15 @@ public abstract class Stats implements ViewObservable {
     public void deregisterObserver(ModelObserver modelObserver) {
         this.statsObservers.remove((StatsObserver) modelObserver);
     }
+
+    public void saveMe() {
+        System.out.println("Saving: " + this.toString());
+    }
+
     public void alertObservers(){
         for(StatsObserver observer: statsObservers){
             observer.alertStatChanged(this);
         }
+
     }
 }

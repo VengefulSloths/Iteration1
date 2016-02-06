@@ -50,7 +50,7 @@ public class StatsView extends View implements StatsObserver {
         int i = 0;
         Iterator<StatsViewObject> iterator = manager.iterator();
         while(iterator.hasNext()){
-            if(++i == 9){
+            if(++i == 8){
                 xOffset = (Config.instance().getSidePanelWidth()/2) ;
                 offset = Config.instance().INVENTORY_IMAGE_HEIGHT + 10;
             }

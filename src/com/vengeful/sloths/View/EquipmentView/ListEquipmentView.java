@@ -66,8 +66,6 @@ public class ListEquipmentView extends EquipmentView{
         while (iter.hasNext()) {
             EquipmentViewObject current = (EquipmentViewObject)iter.next();
             if(current.isSelected) {
-                //Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.ORANGE, Color.ORANGE);
-                //b.paintBorder(current, g2d, 0, offset, viewWidth, Config.instance().INVENTORY_IMAGE_HEIGHT);
                 g2d.setColor(new Color(255, 255, 255, 80));
                 g2d.fillRect(0, offset, viewWidth, Config.instance().INVENTORY_IMAGE_HEIGHT);
                 //current.paintComponent(g2d, 20, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class

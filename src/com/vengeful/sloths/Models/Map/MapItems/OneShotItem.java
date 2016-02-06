@@ -11,4 +11,5 @@ public class OneShotItem extends MapItem {
         //build effect command
     }
 
+
 }
