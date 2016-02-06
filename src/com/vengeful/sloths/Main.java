@@ -117,16 +117,10 @@ public class Main {
         System.out.println("HERE!");
 
         //start both threads
-        try{
             viewEngine.start();
-        } catch(Exception e){
-            System.out.println("view engine error");
-        }
-        try{
-            //modelEngine.start();
-        }catch(Exception e){
-            System.out.println("model error");
-        }
+            modelEngine.start();
+
+
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
