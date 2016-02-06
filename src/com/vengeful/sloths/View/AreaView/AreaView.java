@@ -41,9 +41,11 @@ public class AreaView extends View
 
 	private Entity playerModel;
 
+	public static final String backgroundImageFileName = "resources/desert.jpg";
+
 	public AreaView(CameraViewManager cvm, Entity player) {
 
-		//this.setBackgroundImageFileName("resources/inventoryBackground.jpg");
+		//this.setBackgroundImageFileName(backgroundImageFileName);
 
 		this.setBackground(Color.BLACK);
 

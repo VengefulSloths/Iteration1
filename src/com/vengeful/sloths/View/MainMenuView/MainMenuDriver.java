@@ -17,6 +17,7 @@ import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
+import com.vengeful.sloths.View.HUDView.HUDView;
 import com.vengeful.sloths.View.InventoryView.EquipmentView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.MainMenuView.Commands.MenuCommandFactory;
@@ -70,7 +71,9 @@ public class MainMenuDriver {
         EquipmentView ev = new EquipmentView();
         StatsView sv = new StatsView(new BaseStats(5,5,5,5,5));
 
-        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv);
+        HUDView hv = new HUDView();
+
+        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv, hv);
 
 
 

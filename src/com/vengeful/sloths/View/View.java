@@ -20,7 +20,7 @@ public abstract class View extends JPanel {
     ImageIcon backgroundImageIcon;
     JLabel backgroundImageLabel;
     Image backgroundImage;
-    String backgroundImageFileName;
+    protected String backgroundImageFileName;
 
     protected JLabel titleLabel;
     protected String title;
@@ -31,6 +31,10 @@ public abstract class View extends JPanel {
 
     public void setBackgroundImageFileName(String backgroundImageName) {
         this.backgroundImageFileName = backgroundImageName;
+    }
+
+    public String getBackgroundImageFileName() {
+        return backgroundImageFileName;
     }
 
     public ViewObjectManager manager;
