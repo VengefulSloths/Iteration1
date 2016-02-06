@@ -6,6 +6,7 @@ import com.vengeful.sloths.Models.Occupation.Occupation;
 import com.vengeful.sloths.Models.Occupation.Smasher;
 import com.vengeful.sloths.Models.Occupation.Sneak;
 import com.vengeful.sloths.Models.Occupation.Summoner;
+import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Coord;
@@ -19,7 +20,7 @@ import java.util.Iterator;
 /**
  * Created by zach on 1/30/16.
  */
-public abstract class Entity implements ViewObservable{
+public abstract class Entity implements ViewObservable, Saveable{
 
     private Coord location;
 
@@ -113,6 +114,13 @@ public abstract class Entity implements ViewObservable{
 
     public EntityStats getEntityStats(){
         return this.entityStats;
+    }
+
+    public void saveMe(){
+        System.out.println("Saving:" + this.toString());
+        entityStats.saveMe();
+        inventory.saveMe();
+        occupation.saveMe();
     }
 
 }

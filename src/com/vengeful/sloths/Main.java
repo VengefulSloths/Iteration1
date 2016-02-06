@@ -96,6 +96,7 @@ public class Main {
         MenuView mainMenuView = new MainMenuView();
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
+        controller.setMap(map);
 
         modelEngine.setController(controller);
         //set up engines
