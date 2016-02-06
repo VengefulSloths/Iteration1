@@ -37,7 +37,9 @@ public class InventoryState extends MainControllerState {
 
     @Override
     public boolean handleIKey() {
-        ((ListInventoryView)this.inventoryView).setDeselected(((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+        if(((ListInventoryView) this.inventoryView).manager.getItemListSize() > 0) {
+            ((ListInventoryView) this.inventoryView).setDeselected(((ListInventoryView) this.inventoryView).manager.getFromItemList(this.inventoryIndex));
+        }
         mainController.setAvatarState();
         return true;
     }
@@ -178,6 +180,7 @@ public class InventoryState extends MainControllerState {
 
 
         InventoryItem i = null;
+        int itemListSize = ((ListInventoryView) this.inventoryView).manager.getItemListSize();
         try {
              i = ((ListInventoryView) this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem();
         }catch(NullPointerException e){
@@ -187,12 +190,24 @@ public class InventoryState extends MainControllerState {
 
 
         if(i != null) {
+
             System.out.println("DROPPING " + i.getItemName());
             mainController.getAvatar().drop(i);
-        }
+
 
 
         if (this.inventoryIndex <= 0) this.inventoryIndex = 0;
+
+        if(itemListSize > 1){
+            if (inventoryIndex != 0) {
+                ((ListInventoryView) this.inventoryView).setSelected(((ListInventoryView) this.inventoryView).manager.getFromItemList(--this.inventoryIndex));
+            }else{
+                ((ListInventoryView) this.inventoryView).setSelected(((ListInventoryView) this.inventoryView).manager.getFromItemList(this.inventoryIndex+1));
+
+            }
+        }
+        //System.out.println("should be changing selected to: " + (((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem().getItemName()));
+        }
         return true;
     }
 
