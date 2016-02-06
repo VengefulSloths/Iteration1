@@ -177,6 +177,7 @@ public class Avatar extends Entity {
     public void levelUp() {
         // Let occupation know level is increased, then levelUp occ and base stats
         occupation.levelUp(entityStats);
+        entityStats.alertObservers();
     }
 
     public void gainXP(int xp) {
@@ -185,10 +186,12 @@ public class Avatar extends Entity {
         if(entityStats.getXP() >= entityStats.getRequiredLevelXP()){
             this.levelUp();
         }
+        entityStats.alertObservers();
     }
 
     public void gainHealth(int health) {
         entityStats.setCurrentHealth(health);
+        entityStats.alertObservers();
     }
 
     public void takeDamage(int damage) {
@@ -202,6 +205,7 @@ public class Avatar extends Entity {
                 entityStats.setCurrentHealth(entityStats.getLife()); //set currentHP to maxHP
             }
         }
+        entityStats.alertObservers();
     }
 
     public void die() {
