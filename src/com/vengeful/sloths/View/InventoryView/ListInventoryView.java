@@ -51,7 +51,7 @@ public class ListInventoryView extends InventoryView {
         manager = new ListInventoryViewObjectManager();
         manager.initWithInventory(inventory);
 
-
+        selectFirst();
         /* edit the next two lines/maybe delete them */
 
     }
@@ -73,9 +73,17 @@ public class ListInventoryView extends InventoryView {
         manager = new ListInventoryViewObjectManager();
         manager.initWithInventory(inventory);
 
-
+        selectFirst();
         /* edit the next two lines/maybe delete them */
 
+    }
+
+    private void selectFirst(){
+        Iterator<ItemViewObject> iter = manager.iterator();
+        if(iter.hasNext()) {
+            InventoryItemViewObject current = (InventoryItemViewObject) iter.next();
+            setSelected(current);
+        }
     }
 
 
@@ -93,8 +101,10 @@ public class ListInventoryView extends InventoryView {
         while (iter.hasNext()) {
             InventoryItemViewObject current = (InventoryItemViewObject)iter.next();
             if(current.isSelected) {
-                Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.ORANGE, Color.ORANGE);
-                b.paintBorder(current, g2d, 0, offset, viewWidth, Config.instance().INVENTORY_IMAGE_HEIGHT);
+                //Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.ORANGE, Color.ORANGE);
+                //b.paintBorder(current, g2d, 0, offset, viewWidth, Config.instance().INVENTORY_IMAGE_HEIGHT);
+                g2d.setColor(new Color(255, 255, 255, 80));
+                g2d.fillRect(0, offset, viewWidth, Config.instance().INVENTORY_IMAGE_HEIGHT);
                 //current.paintComponent(g2d, 20, offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
                 current.paintComponent(g2d, (viewWidth/4) - Config.instance().INVENTORY_IMAGE_WIDTH - (viewWidth/12), offset, viewWidth, viewHeight); //this paintComponent method is in the InventoryItemViewObject class
 
