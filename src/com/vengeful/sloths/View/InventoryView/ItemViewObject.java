@@ -56,6 +56,7 @@ public abstract class ItemViewObject extends JComponent {
     public void paintComponent(Graphics2D g, int x, int y) {
         //g.drawImage(itemImage, x,y, this);
         g.drawImage(itemImage,x,y, IMAGE_WIDTH, IMAGE_HEIGHT,this);
+        g.setColor(Color.WHITE);
         g.drawString(itemName, x+ HORIZONTAL_OFFSET, y + IMAGE_HEIGHT - 5); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.
 
     }
@@ -64,6 +65,7 @@ public abstract class ItemViewObject extends JComponent {
     public void paintComponent(Graphics2D g, int x, int y, int viewWidth, int viewHeight) {
         horizontalOffset = (HORIZONTAL_OFFSET_PROPORTION * viewWidth) - itemName.length();
         g.drawImage(itemImage,x,y, IMAGE_WIDTH, IMAGE_HEIGHT,this);
+        g.setColor(Color.WHITE);
         g.drawString(itemName, x+ (int) horizontalOffset, y + IMAGE_HEIGHT - 5); //want to draw the item image and then its name on the same line. Drawing of name is offset by the width of the image.
     }
 

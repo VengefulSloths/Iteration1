@@ -15,7 +15,7 @@ import com.vengeful.sloths.View.Observers.ModelObserver;
 public class LevelUpAE extends AreaEffect{
 
     public LevelUpAE(){
-        //this.destory = true; //show be destroyed as soon as activated once
+        
     }
 
     //This AE can only take effect on Avatar
