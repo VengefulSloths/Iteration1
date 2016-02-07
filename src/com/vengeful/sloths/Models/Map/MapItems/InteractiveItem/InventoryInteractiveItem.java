@@ -22,8 +22,12 @@ public class InventoryInteractiveItem extends InteractiveItem{
         System.out.println("INTERACTIVEITEM OBSERVER" + this.observer);
 
         this.observer.alertActivated();
-        if(entity.getInventory().hasItem(requiredItem) || entity.getEquipped().getSword().equals(requiredItem) || entity.getEquipped().getHat().equals(requiredItem)){
+        try{
+        if(entity.getInventory().hasItem(requiredItem) || entity.getEquipped().getSword().equals(requiredItem) || entity.getEquipped().getHat().equals(requiredItem)) {
             command.execute();
+        }
+        }catch (NullPointerException e){
+            //dont have any objects, sont execute command
         }
     }
 

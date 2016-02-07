@@ -14,6 +14,7 @@ public abstract class MapItem implements ViewObservable, Saveable {
 
     protected MapItemObserver observer;
     protected boolean destroy = false;
+
     protected String itemName;
     protected String graphicFolder;
 
@@ -35,6 +36,14 @@ public abstract class MapItem implements ViewObservable, Saveable {
     //public void setDestroyFlag(boolean flag){
     //    this.destroy = flag;
     //}
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setGraphicFolder(String graphicFolder) {
+        this.graphicFolder = graphicFolder;
+    }
 
     public void destroy() {
         observer.alertDestroyed();
