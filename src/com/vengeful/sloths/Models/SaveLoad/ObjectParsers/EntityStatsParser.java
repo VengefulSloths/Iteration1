@@ -10,7 +10,6 @@ import java.util.Scanner;
  */
 public class EntityStatsParser extends ObjectParser {
 
-
     public EntityStatsParser(String objectName, Scanner sc, Loader l, ObjectParserFactory ops){
         this.sc = sc;
         this.objectName = objectName;
