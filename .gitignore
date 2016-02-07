@@ -4,3 +4,4 @@ out
 **/.idea/misc.xml
 **/.idea/modules.xml
 *.iml
+**/resources/save/save.txt
