@@ -2,6 +2,7 @@ package com.vengeful.sloths.View.AreaView;
 
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.ObserverManager;
+import com.vengeful.sloths.Models.TimeModel.TimeModel;
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
@@ -73,6 +74,10 @@ public class AreaView extends View
 			currentCameraView = cameraViewManager.getCameraView(playerX, playerY, this.playerModel);
 			//System.out.println("====================== NEW CAMERA ====================");
 			mapViewObjectManager.clear();
+
+			//Make the ObserverManager clear on the next model tick
+			TimeModel.getInstance().registerAlertable(ObserverManager.instance(),0);
+
 			currentCameraView.populate(mapViewObjectManager);
 			changeCameraFlag = false;
 

@@ -60,6 +60,8 @@ public class Main {
         //Loader l = new Loader();
         //Object o = l.avatar;
         //System.out.println(o.toString());
+        //System.out.println(((Entity) o).getInventory().toString());
+
 
         //start both threads
         viewEngine.start();
