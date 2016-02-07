@@ -6,8 +6,11 @@ import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
 import com.vengeful.sloths.Models.Entity.*;
+import com.vengeful.sloths.Models.SaveLoad.Saveable;
+import com.vengeful.sloths.Utility.TileVisitor.TileVisitor;
 
 import java.awt.geom.Area;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -76,7 +79,7 @@ public class Tile{
         Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
         while(aeIter.hasNext()){
             AreaEffect ae = aeIter.next();
-            ae.createEffectCommand(this.entity, this);
+            ae.createEffectCommand(this.entity);
             System.out.println("AE: " + ae);
         }
 
@@ -127,8 +130,9 @@ public class Tile{
                 }
             }
             for (MapItem td : toDestroy) {
-                td.destroy();
-                mapItems.remove(td);
+                    td.destroy();
+                    mapItems.remove(td);
+
             }
 
             //Remove destroyed AE
@@ -146,7 +150,6 @@ public class Tile{
             }
     }
 
-
     public void addMapItem(MapItem mapItem) {
         mapItems.add(mapItem);
     }
@@ -163,20 +166,30 @@ public class Tile{
         return mapItems.get(index);
     }
 
-    /*
-    public void createAEs(){
-
-        System.out.println("CREATE AE CALLED!!");
-        Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
-        while(aeIter.hasNext()){
-            AreaEffect ae = aeIter.next();
-            ae.createEffectCommand(this.entity, this);
-            System.out.println("AE: " + ae);
-        }
-    }*/
-
     public void addAreaEffect(AreaEffect ae){
         areaEffect.add(ae);
+    }
+
+    public void accept(TileVisitor v)
+    {
+        v.doVisit(this);
+    }
+
+    public ArrayList<Saveable> getSaveables()
+    {
+        ArrayList<Saveable> s = new ArrayList<Saveable>();
+        if(entity != null){s.add(entity);}
+        for(MapItem mi: mapItems) {
+            s.add(mi);
+        }
+        for(AreaEffect ae: areaEffect){
+            s.add(ae);
+        }
+
+        for(Decal d: decals){
+            s.add(d);
+        }
+        return s;
     }
 
 }

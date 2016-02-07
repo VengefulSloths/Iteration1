@@ -21,7 +21,6 @@ public class ViewEngine extends JFrame implements Runnable{
     private void initUI() {
 
         add(jpanel);
-
         setTitle("A game");
         setResizable(false);
         pack();
@@ -60,5 +59,8 @@ public class ViewEngine extends JFrame implements Runnable{
     public void registerView(JPanel jpanel){
         this.jpanel = jpanel;
         initUI();
+    }
+    public void killOldView(){
+        remove(this.jpanel);
     }
 }

@@ -1,5 +1,7 @@
 package com.vengeful.sloths.Models.Stats;
 
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
+
 /**
  * Created by zach on 1/30/16.
  */
@@ -24,6 +26,7 @@ public class EntityStats extends Stats {
 
     protected int[] requiredLevelXP = {0, 10, 20, 40, 80, 160, 320, 640, 1280, 2560};
     protected int currentHealth;
+    protected int currentMana;
 
 
     public EntityStats() {
@@ -34,8 +37,10 @@ public class EntityStats extends Stats {
         this.level = 1;
         this.livesLeft = 1;
         this.life = 10;
+        this.mana = 10;
 
         this.currentHealth = life;
+        this.currentMana = mana;
 
         updateStats();
     }
@@ -154,7 +159,25 @@ public class EntityStats extends Stats {
         return experience;
     }
 
+    public int getCurrentMana(){return currentMana;}
+
     public String toString() {
         return this.strength + " " + this.agility + " " + this.intellect + " " + this.hardiness + " " + this.movement;
     }
+
+    public void saveMe(SaveManager sm, int ws){
+        sm.writeClassLine(ws, "EntityStats");
+        super.saveMe(sm,ws);
+        sm.writeVariableLine(ws, "livesLeft", ""+livesLeft ,false);
+        sm.writeVariableLine(ws, "experience", ""+experience ,false);
+        sm.writeVariableLine(ws, "level", ""+level ,false);
+        sm.writeVariableLine(ws, "life", ""+life ,false);
+        sm.writeVariableLine(ws, "mana", ""+mana ,false);
+        sm.writeVariableLine(ws, "offensiveRating", ""+offensiveRating ,false);
+        sm.writeVariableLine(ws, "defensiveRating", ""+defensiveRating ,false);
+        sm.writeVariableLine(ws, "armorRating", ""+armorRating ,false);
+        sm.writeVariableLine(ws, "currentHealth", ""+currentHealth ,true);
+
+    }
+
 }

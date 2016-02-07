@@ -94,14 +94,6 @@ public abstract class View extends JPanel {
         titleLabel.setFont(font);
         //titleLabel.setBorder(new BevelBorder(BevelBorder.RAISED,Color.GRAY, Color.BLACK));
         this.add(titleLabel);
-
-
     }
-
-
-
-
-
-
 }
 

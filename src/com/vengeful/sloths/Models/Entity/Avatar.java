@@ -7,6 +7,7 @@ import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.Direction;
@@ -21,7 +22,7 @@ public class Avatar extends Entity {
 
     // Superclass
     //  private Inventory inventory;
-    private Equipped equipped;
+    //private Equipped equipped;
     private ActionCommandFactory commandFactory;
 
     //passes in AvatarActionCommandFactory
@@ -88,55 +89,37 @@ public class Avatar extends Entity {
 
     public boolean equip(InventoryItem item) {
 
-        try {
-            if(item instanceof Hat){
 
-                Hat hat = this.equipped.getHat();
-                if(hat != null) {
-                    System.out.println("Swapping equipped hat");
-                    this.getInventory().addItem(hat);
-                }
-
-                this.equipped.setHat((Hat)item);
-
-
-
-
-
-            }else if(item instanceof Sword){
-
-                Sword sword = this.equipped.getSword();
-                if(sword != null)
-                    this.getInventory().addItem(sword);
-
-                Iterator<EntityObserver> iter = entityObservers.iterator();
-                while (iter.hasNext()) {
-                    //TODO: dont hardcode dagger here
-                    iter.next().alertEquipWeapon(item.getItemName());
-                }
-
-                this.equipped.setSword((Sword)item);
-            }
-
-            System.out.println("Equipped: " + item);
-            this.inventory.removeItem(item);
-
-
-        } catch(Exception e){
-            System.out.println(e);
+        if(!(item instanceof EquippableItems))
             return false;
+
+        InventoryItem checkEquipped = this.equipped.alreadyEquipped((EquippableItems)item);
+
+        if(checkEquipped != null){
+            System.out.println("Swapping equipped item");
+            this.unequip(checkEquipped);
+        }
+
+        this.equipped.addEquipped((EquippableItems)item);
+        this.inventory.removeItem(item);
+
+
+        Iterator<EntityObserver> iter = entityObservers.iterator();
+        while (iter.hasNext()) {
+            //TODO: dont hardcode dagger here
+            iter.next().alertEquipWeapon(item.getItemName());
         }
 
         return true;
     }
 
     public boolean unequip(InventoryItem item) {
-        if(item instanceof Hat){
-            this.equipped.setHat(null);
-        }else if(item instanceof Sword){
-            this.equipped.setSword(null);
-        }else
+
+        if(!(item instanceof EquippableItems)){
             return false;
+        }
+
+        this.equipped.removeEquipped((EquippableItems) item);
 
         this.inventory.addItem(item);
         return true;
@@ -144,24 +127,13 @@ public class Avatar extends Entity {
 
     public boolean drop(InventoryItem item) {
 
-        //System.out.println("BEFORE DROP: ");
-        //for (int i = 0; i < inventory.getSize(); i++) {
-        //    System.out.print(inventory.getItem(i).getItemName()+"\t ");
-        //}
-        //System.out.println();
         try{
 //            InventoryItem itemToDrop = inventory.getItem(itemIndex);
             this.commandFactory.createDropCommand(item, this.getLocation(), this);
 
         }catch(Exception e){
             //whatever
-
         }
-
-        //System.out.println("AFTER DROP: ");
-        //for (int i = 0; i < inventory.getSize(); i++) {
-        //    System.out.print(inventory.getItem(i).getItemName()+"\t ");
-        //}
 
         return true;
     }
@@ -223,4 +195,14 @@ public class Avatar extends Entity {
         return true;
     }
 
+    public void saveMe(SaveManager sv, int ws){
+        //super.saveMe();
+        sv.writeClassLine(ws, "Avatar");
+        entityStats.saveMe(sv, ws+1);
+        inventory.saveMe(sv, ws+1);
+        occupation.saveMe(sv, ws+1);
+        equipped.saveMe(sv, ws+1);
+        sv.writeVariableLine(ws, "name", name, false);
+        sv.writeVariableLine(ws,"Direction", facingDirection.toString(), false);
+    }
 }

@@ -42,4 +42,9 @@ public class Map {
         Tile tile = tiles[coord.getX()][coord.getY()];
         return tile;
     }
+
+    public Tile[][] getTiles()
+    {
+        return tiles;
+    }
 }

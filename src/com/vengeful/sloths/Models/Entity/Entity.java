@@ -1,11 +1,14 @@
 package com.vengeful.sloths.Models.Entity;
 
+import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 
 import com.vengeful.sloths.Models.Occupation.Occupation;
 import com.vengeful.sloths.Models.Occupation.Smasher;
 import com.vengeful.sloths.Models.Occupation.Sneak;
 import com.vengeful.sloths.Models.Occupation.Summoner;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
+import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.Utility.Coord;
@@ -19,7 +22,7 @@ import java.util.Iterator;
 /**
  * Created by zach on 1/30/16.
  */
-public abstract class Entity implements ViewObservable{
+public abstract class Entity implements ViewObservable, Saveable{
 
     private Coord location;
 
@@ -29,12 +32,17 @@ public abstract class Entity implements ViewObservable{
     protected Occupation occupation;
     protected EntityStats entityStats;
     protected Inventory inventory;
+    protected Equipped equipped;
     protected Direction facingDirection;
 
     protected ArrayList<EntityObserver> entityObservers;
 
     public void setInventory(Inventory inv) {
         this.inventory = inv;
+    }
+
+    public void setEquipped(Equipped equipped) {
+        this.equipped = equipped;
     }
 
     public Entity(String name, String occupationString, EntityStats entityStats) {
@@ -113,6 +121,10 @@ public abstract class Entity implements ViewObservable{
 
     public EntityStats getEntityStats(){
         return this.entityStats;
+    }
+
+    public void saveMe(SaveManager sv, int ws){
+        //System.out.println("Saving:" + this.toString());
     }
 
 }

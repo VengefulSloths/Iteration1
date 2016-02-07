@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by Alex on 2/3/2016.
  */
 public class TimedAnimation extends AnimatedImage {
-    private ArrayList<Image> images;
+    protected ArrayList<Image> images;
 
     //Animations are stored in the form FILEPREFIX_FRAMENUMBER
     public TimedAnimation(String filePrefix, int frameCount, long duration) {

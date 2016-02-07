@@ -1,25 +1,50 @@
 package com.vengeful.sloths.Controller.ControllerStates;
 
-import com.vengeful.sloths.Controller.ControllerStates.MainControllerState;
+
 import com.vengeful.sloths.Controller.MainController;
+import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.View.EquipmentView.EquipmentView;
+import com.vengeful.sloths.View.EquipmentView.ListEquipmentView;
 
 /**
  * Created by qianwen on 2/5/16.
  */
 public class EquipmentState extends MainControllerState{
 
+    private EquipmentView equipmentView;
+    private int equipmentIndex;
+
     public EquipmentState(MainController m){
         super(m);
+
+        this.equipmentIndex = 0;
+        this.equipmentView = m.getDefaultViewManager().getEquipmentView();
+    }
+
+
+    public int getEquipmentIndex() {
+        return this.equipmentIndex;
+    }
+
+
+    public EquipmentView getEquipmentView(){
+        return this.equipmentView;
     }
 
 
     @Override
     public boolean handleIKey() {
-        return false;
+        if(((ListEquipmentView) this.equipmentView).manager.getItemListSize() > 0)
+            ((ListEquipmentView)this.equipmentView).setDeselected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex));
+        mainController.setInventoryState();
+        return true;
     }
 
     @Override
     public boolean handleEKey() {
+
+        if(((ListEquipmentView) this.equipmentView).manager.getItemListSize() > 0)
+            ((ListEquipmentView)this.equipmentView).setDeselected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex));
         mainController.setAvatarState();
         return true;
     }
@@ -36,7 +61,27 @@ public class EquipmentState extends MainControllerState{
 
     @Override
     public boolean handle2Key() {
-        return false;
+        //move down the list
+
+        int itemListSize = ((ListEquipmentView) this.equipmentView).manager.getItemListSize();
+
+        if(itemListSize == 0)
+            return false;
+
+
+        this.equipmentIndex++;
+
+
+        if (this.equipmentIndex >= itemListSize) {
+            ((ListEquipmentView)this.equipmentView).setDeselected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex-1));
+            this.equipmentIndex = 0;
+        }else{
+            if (this.equipmentIndex > 0)
+                ((ListEquipmentView)this.equipmentView).setDeselected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex-1));
+        }
+
+        ((ListEquipmentView)this.equipmentView).setSelected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex));
+        return true;
     }
 
     @Override
@@ -61,7 +106,24 @@ public class EquipmentState extends MainControllerState{
 
     @Override
     public boolean handle8Key() {
-        return false;
+        // Move up an item
+        int itemListSize = ((ListEquipmentView) this.equipmentView).manager.getItemListSize();
+
+        if(itemListSize == 0)
+            return false;
+
+        this.equipmentIndex--;
+
+        if (this.equipmentIndex < 0) {
+            ((ListEquipmentView)this.equipmentView).setDeselected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex + 1));
+            this.equipmentIndex = itemListSize-1;
+        }else{
+            if (this.equipmentIndex < itemListSize)
+                ((ListEquipmentView)this.equipmentView).setDeselected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex + 1));
+        }
+
+        ((ListEquipmentView)this.equipmentView).setSelected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex));
+        return true;
     }
 
     @Override
@@ -71,7 +133,30 @@ public class EquipmentState extends MainControllerState{
 
     @Override
     public boolean handle5Key() {
-        return false;
+
+        int itemListSize = ((ListEquipmentView) this.equipmentView).manager.getItemListSize();
+
+        if(itemListSize <= 0)
+            return false;
+        else if(this.equipmentIndex >= itemListSize || this.equipmentIndex < 0)
+            return false;
+
+        InventoryItem i = ((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex).getInventoryItem();
+        if(i != null){
+            mainController.getAvatar().unequip(i);
+
+            itemListSize = ((ListEquipmentView) this.equipmentView).manager.getItemListSize();
+
+            if(itemListSize == 0)
+                this.equipmentIndex = 0; //do not highlight anything
+            else if(this.equipmentIndex >= itemListSize){
+                this.equipmentIndex--;
+                ((ListEquipmentView)this.equipmentView).setSelected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex));
+            }else
+                ((ListEquipmentView)this.equipmentView).setSelected(((ListEquipmentView)this.equipmentView).manager.getFromItemList(this.equipmentIndex));
+        }
+        return true;
+
     }
 
     @Override

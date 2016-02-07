@@ -22,7 +22,7 @@ public abstract class InventoryView extends View implements InventoryObserver{
 
 
     public InventoryView() {
-//manager = new ViewObjectManager();
+    //manager = new ViewObjectManager();
 
 }
 

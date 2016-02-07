@@ -2,11 +2,13 @@ package com.vengeful.sloths.Models.InventoryItems;
 
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
+import com.vengeful.sloths.Models.SaveLoad.Saveable;
 
 /**
  * Created by qianwen on 1/30/16.
  */
-public abstract class InventoryItem {
+public abstract class InventoryItem implements Saveable {
 
     private TakeableItem mapItemRep;
     protected String itemName;
@@ -29,4 +31,11 @@ public abstract class InventoryItem {
         return this.mapItemRep;
     }
 
+
+    public void saveMe(SaveManager sv, int ws){
+        mapItemRep.saveMeFromInv(sv, ws+1);
+        sv.writeVariableLine(ws,"itemName", itemName, false);
+    }
+
+    public abstract void saveMeFromTakeable(SaveManager sm, int ws);
 }

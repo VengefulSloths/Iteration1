@@ -1,9 +1,11 @@
 package com.vengeful.sloths.View.HUDView;
 
+import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Stats.Stats;
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.View.Observers.StatsObserver;
 import com.vengeful.sloths.View.View;
+import javafx.scene.control.ProgressBar;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -35,6 +37,12 @@ public class HUDView extends View implements StatsObserver {
 
     public static final String title = "Character Status";
 
+    private Stats stats;
+
+    private JProgressBar HealthBar;
+    private JProgressBar ManaBar;
+    private JProgressBar healthBar;
+
 
     public HUDView() {
         generateTitle(title);
@@ -47,6 +55,10 @@ public class HUDView extends View implements StatsObserver {
 
     }
 
+    public void setStats(Stats stats){
+        this.stats = stats;
+        setBars();
+    }
 
     public void generateTitle(String title) {
         titleLabel = new JLabel(title);
@@ -104,14 +116,14 @@ public class HUDView extends View implements StatsObserver {
         JLabel healthLabel = new JLabel("     Health: ");
         healthPanel.setBackground(new Color(0f,0f,0f,0f));
         //healthPanel.setPreferredSize(new Dimension((int) (centerSubPanelWidth), (int) (0.15*subPanelHeight)));
-        JProgressBar health = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
-        health.setValue(80);
-        health.setBackground(Color.DARK_GRAY);
-        health.setStringPainted(true);
-        health.setForeground(Color.GREEN);
-        health.setPreferredSize(new Dimension((int) (0.6*centerSubPanelWidth), (int) (0.12*subPanelHeight)));
+        healthBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
+        healthBar.setValue(80);
+        healthBar.setBackground(Color.DARK_GRAY);
+        healthBar.setStringPainted(true);
+        healthBar.setForeground(Color.GREEN);
+        healthBar.setPreferredSize(new Dimension((int) (0.6*centerSubPanelWidth), (int) (0.12*subPanelHeight)));
         healthPanel.add(healthLabel);
-        healthPanel.add(health);
+        healthPanel.add(healthBar);
         this.centerPanel.add(healthPanel);
 
         JPanel mannaPanel = new JPanel();
@@ -198,6 +210,12 @@ public class HUDView extends View implements StatsObserver {
         titleLabel.setFont(font);
         //titleLabel.setBorder(new BevelBorder(BevelBorder.RAISED,Color.GRAY, Color.BLACK));
         return titleLabel;
+    }
+
+    public void setBars(){
+        double health = ((double)((EntityStats) stats).getCurrentHealth()) / ((double)((EntityStats)stats).getLife());
+        System.out.println(health);
+        healthBar.setValue((int)(health*100));
     }
 
     }

@@ -1,6 +1,8 @@
 package com.vengeful.sloths.Models.Map.MapItems;
 
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
+import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.View.Observers.MapItemObserver;
 import com.vengeful.sloths.View.Observers.ModelObserver;
@@ -8,7 +10,7 @@ import com.vengeful.sloths.View.Observers.ModelObserver;
 /**
  * Created by John on 1/30/2016.
  */
-public abstract class MapItem implements ViewObservable{
+public abstract class MapItem implements ViewObservable, Saveable {
 
     protected MapItemObserver observer;
     protected boolean destroy = false;
@@ -46,4 +48,13 @@ public abstract class MapItem implements ViewObservable{
         this.observer = null;
 
     }
+
+    public void saveMe(SaveManager sm, int ws) {
+
+        sm.writeVariableLine(ws, "itemName", itemName, false);
+        sm.writeVariableLine(ws,"graphicsFolder", graphicFolder, false);
+
+    }
+
+
 }

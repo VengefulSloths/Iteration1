@@ -11,14 +11,12 @@ import com.vengeful.sloths.Models.Map.*;
  */
 public class LevelUpAECommand extends EffectCommand {
 
-    Tile tile;
     AreaEffect ae;
 
-    public LevelUpAECommand(Entity entity, Tile tile, AreaEffect ae){
+    public LevelUpAECommand(Entity entity, AreaEffect ae){
         this.entity = entity;
-        this.tile = tile;
         this.ae = ae;
-        TimeModel.getInstance().registerAlertable(this, 0);
+        //TimeModel.getInstance().registerAlertable(this, 0);
     }
 
 

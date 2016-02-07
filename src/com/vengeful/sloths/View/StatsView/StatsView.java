@@ -2,6 +2,7 @@ package com.vengeful.sloths.View.StatsView;
 
 import com.vengeful.sloths.Models.Stats.Stats;
 import com.vengeful.sloths.Utility.Config;
+import com.vengeful.sloths.View.HUDView.HUDView;
 import com.vengeful.sloths.View.Observers.StatsObserver;
 import com.vengeful.sloths.View.View;
 
@@ -16,6 +17,7 @@ public class StatsView extends View implements StatsObserver {
 
     StatsViewObjectManager manager;
     private Stats stats;
+    private HUDView hv;
 
     public static final String title = "Stats";
     public static final String backgroundImageFileName = "resources/statsBackground.jpg";
@@ -37,10 +39,15 @@ public class StatsView extends View implements StatsObserver {
     @Override
     public void alertStatChanged(Stats stats) {
         manager.setStats(stats);
+        hv.setStats(stats);
     }
 
     public void generateBackground() {
         setBackground(Color.ORANGE);
+    }
+
+    public void setHUDView(HUDView hv){
+        this.hv = hv;
     }
 
     public void paintComponent(Graphics g) {
@@ -54,7 +61,7 @@ public class StatsView extends View implements StatsObserver {
         int i = 0;
         Iterator<StatsViewObject> iterator = manager.iterator();
         while(iterator.hasNext()){
-            if(++i == 9){
+            if(++i == 8){
                 xOffset = (Config.instance().getSidePanelWidth()/2) ;
                 //offset = Config.instance().INVENTORY_IMAGE_HEIGHT + 10;
                 offset = 28;
