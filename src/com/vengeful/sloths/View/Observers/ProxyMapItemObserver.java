@@ -24,4 +24,14 @@ public class ProxyMapItemObserver extends ProxyObserver
     public void alertDestroyed() {
         target.alertDestroyed();
     }
+
+    @Override
+    public void alertActivated() {
+        target.alertActivated();
+    }
+
+    @Override
+    public void alertDeactivated() {
+        target.alertDeactivated();
+    }
 }

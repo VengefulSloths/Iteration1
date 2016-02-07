@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.InventoryItems.EquippableItems;
 
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import com.vengeful.sloths.Models.Stats.BaseStats;
 
@@ -28,9 +29,15 @@ public abstract class EquippableItems extends InventoryItem implements Saveable 
         this.itemStats = new BaseStats(0,0,0,0,0);
     }
 
-    public void saveMe(){
-        System.out.println("save: " + this.toString());
-        itemStats.saveMe();
+    public void saveMe(SaveManager sv, int ws){
+        super.saveMe(sv,ws);
+        itemStats.saveMe(sv, ws+1);
+    }
+
+    public void saveMeFromTakeable(SaveManager sm, int ws)
+    {
+        itemStats.saveMe(sm, ws+1);
+        sm.writeVariableLine(ws, "itemName", itemName, true);
     }
 
 }

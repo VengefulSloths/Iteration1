@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.Inventory;
 
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.View.Observers.InventoryObserver;
@@ -34,6 +35,12 @@ public class Inventory implements ViewObservable, Saveable {
 
         return inventory.get(index);
     }
+
+    public boolean hasItem(InventoryItem item){
+        return this.inventory.contains(item);
+    }
+
+
 
     public int getSize() {
         return this.currentSize;
@@ -73,12 +80,14 @@ public class Inventory implements ViewObservable, Saveable {
 
     public void deregisterObserver(ModelObserver modelObserver) { this.inventoryObservers.remove(modelObserver);}
 
-    public void saveMe()
+    public void saveMe(SaveManager sv, int ws)
     {
-        System.out.println("Saving: " + this.toString());
+        sv.writeClassLine(ws, "Inventory");
         for(InventoryItem ii: inventory){
-            ii.saveMe();
+            ii.saveMe(sv, ws+1);
         }
+        String cs = ""+currentSize;
+        sv.writeVariableLine(ws,"currentSize", cs, true);
     }
 
 }

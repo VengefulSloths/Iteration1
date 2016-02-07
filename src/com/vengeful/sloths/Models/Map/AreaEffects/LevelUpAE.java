@@ -1,10 +1,12 @@
 package com.vengeful.sloths.Models.Map.AreaEffects;
 
 import com.vengeful.sloths.Models.Effects.EffectCommand;
+import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
 import com.vengeful.sloths.Models.Effects.LevelUpAECommand;
 import com.vengeful.sloths.Models.Effects.TakeDamageAECommand;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.*;
 import com.vengeful.sloths.View.Observers.ModelObserver;
@@ -14,8 +16,8 @@ import com.vengeful.sloths.View.Observers.ModelObserver;
  */
 public class LevelUpAE extends AreaEffect{
 
-    public LevelUpAE(){
-        
+    public LevelUpAE(EffectCommandFactory commandFactory){
+        super(commandFactory);
     }
 
     //This AE can only take effect on Avatar
@@ -23,10 +25,15 @@ public class LevelUpAE extends AreaEffect{
     public EffectCommand createEffectCommand(Entity affectedEntity) {
         if(affectedEntity instanceof Avatar) {
             this.destory = true; //show be destroyed as soon as activated once
-            return new LevelUpAECommand(affectedEntity, this);
+            //return new LevelUpAECommand(affectedEntity, this);
+            return this.commandFactory.createLevelUpAECommand(affectedEntity, this);
         }
         else
             return null;
+    }
+
+    public void saveMe(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "LevelUpAE");
     }
 
 }

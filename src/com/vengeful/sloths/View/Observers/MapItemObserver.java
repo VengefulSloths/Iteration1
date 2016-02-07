@@ -5,4 +5,6 @@ package com.vengeful.sloths.View.Observers;
  */
 public interface MapItemObserver extends ModelObserver {
     void alertDestroyed();
+    void alertActivated();
+    void alertDeactivated();
 }
