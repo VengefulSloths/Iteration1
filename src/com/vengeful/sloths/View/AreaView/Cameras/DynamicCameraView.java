@@ -33,6 +33,7 @@ public class DynamicCameraView extends CameraView
     }
     @Override
     public void populate(MapViewObjectManager mapViewObjectManager) {
+        super.populate(mapViewObjectManager);
         this.mapViewObjectManager = mapViewObjectManager;
 
         //First find the player because the factory's strategy needs a player needs a player
