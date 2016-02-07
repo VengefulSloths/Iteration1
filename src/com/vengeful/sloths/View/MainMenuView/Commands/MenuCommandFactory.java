@@ -33,6 +33,6 @@ public class MenuCommandFactory {
     }
 
     public MenuCommand createlaunchGameCommand(ViewEngine ve, ModelEngine me, MainController cont){
-        return new LaunchGameCommand(ve, me, cont);
+        return new LaunchGameCommand(ve, me, cont, MENU);
     }
 }
