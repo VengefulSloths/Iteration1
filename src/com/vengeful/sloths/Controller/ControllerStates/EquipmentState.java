@@ -51,7 +51,8 @@ public class EquipmentState extends MainControllerState{
 
     @Override
     public boolean handleESCKey() {
-        return false;
+        mainController.setAvatarState();
+        return true;
     }
 
     @Override
