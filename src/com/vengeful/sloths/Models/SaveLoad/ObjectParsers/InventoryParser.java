@@ -37,11 +37,22 @@ public class InventoryParser extends ObjectParser {
 
                     // Convert first char in var name to uppercase to find the correct setter
                     varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
-
                     String methodName = "set"+varName;
                     try{
                         Method method = inv.getClass().getMethod(methodName, o.getClass());
                         method.invoke(inv, o);
+                    }catch (Exception e){
+                        System.out.println("Error with creating setter avatar method");
+                    }
+                }
+                else{
+                    // Convert first char in var name to uppercase to find the correct setter
+                    varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
+                    String methodName = "set"+varName;
+                    int param = Integer.parseInt(varValue);
+                    try{
+                        Method method = inv.getClass().getMethod(methodName, int.class);
+                        method.invoke(inv, param);
                     }catch (Exception e){
                         System.out.println("Error with creating setter avatar method");
                     }

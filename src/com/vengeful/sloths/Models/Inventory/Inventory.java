@@ -17,6 +17,10 @@ public class Inventory implements ViewObservable, Saveable {
     private ArrayList<InventoryItem> inventory;
     private int currentSize;
 
+    public void setCurrentSize(int currentSize) {
+        this.currentSize = currentSize;
+    }
+
     protected ArrayList<InventoryObserver> inventoryObservers;
 
 
