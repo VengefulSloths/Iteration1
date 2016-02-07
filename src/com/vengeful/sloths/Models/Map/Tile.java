@@ -2,6 +2,7 @@ package com.vengeful.sloths.Models.Map;
 
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
+import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.InteractiveItem;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
@@ -105,6 +106,15 @@ public class Tile{
     public Entity removeEntity(){
         Entity entity = this.entity;
         this.entity = null;
+
+        for (Iterator<MapItem> iter = mapItems.iterator(); iter.hasNext();) {
+            MapItem item = iter.next();
+            //item.interact(entity);
+            if(item instanceof InteractiveItem)
+                item.getObserver().alertDeactivated();
+        }
+
+
         return entity;
     }
 

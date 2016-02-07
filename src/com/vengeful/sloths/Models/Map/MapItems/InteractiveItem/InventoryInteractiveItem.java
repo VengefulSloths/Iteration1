@@ -18,6 +18,7 @@ public class InventoryInteractiveItem extends InteractiveItem{
 
     @Override
     public void interact(Entity entity) {
+        this.observer.alertActivated();
         if(entity.getInventory().hasItem(requiredItem)){
             command.execute();
         }

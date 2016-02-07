@@ -19,6 +19,7 @@ public class ActionInteractiveItem extends InteractiveItem{
 
     @Override
     public void interact(Entity entity) {
+        this.observer.alertActivated();
         System.out.println("IS QUEST FINISHED: " + quest.finished());
 
         if(quest.finished()){
