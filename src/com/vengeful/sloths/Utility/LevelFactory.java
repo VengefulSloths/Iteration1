@@ -90,8 +90,10 @@ public class LevelFactory {
         //MapItem mapItem1 = new TakeableItem(new Hat("BluePartyHat"));
         MapItem testWeapon = new TakeableItem(new Sword("Dagger"));
         MapItem testHat = new TakeableItem(new Hat("SpartanHat"));
+        MapItem wand = new TakeableItem(new Sword("Wand"));
         map.getTile(new Coord(3,2)).addMapItem(testWeapon);
         map.getTile(new Coord(3,4)).addMapItem(testHat);
+        map.getTile(new Coord(1,3)).addMapItem(wand);
 
         //map.getTile(new Coord(3,2)).addMapItem(mapItem2);
         /***********************/

@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.SaveLoad.Loader;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
 
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 /**
@@ -28,14 +29,23 @@ public class AvatarParser extends ObjectParser{
                 //we have reached end of avater definition
                 //return avatar to loader
                 l.avatar = avatar;
+                return avatar;
             }
             else{
                 String[] line = check.split(":");
                 String varName = line[0];
                 String varValue = line[1];
-                if(varValue.equals("}")){
+                if(varValue.equals("{")){
                     //looking to create a new object parser based on the varName
-
+                    ObjectParser op = ops.ObjectParserFactory(varName);
+                    Object o = op.Parse();
+                    String methodName = "set"+varName;
+                    try{
+                        Method method = avatar.getClass().getMethod(methodName, o.getClass());
+                        method.invoke(avatar, o);
+                    }catch (Exception e){
+                        System.out.println("Error with creating setter avatar method");
+                    }
                 }
                 if(varName.equals("name"))
                 {

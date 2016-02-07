@@ -204,6 +204,7 @@ public class Avatar extends Entity {
         System.out.println("Entity is Dead D:");
 
         //Bring up game menu here??
+        entityStats.alertObservers();
     }
 
     // @TODO: Don't have Item object yet
@@ -225,4 +226,8 @@ public class Avatar extends Entity {
         sv.writeVariableLine(ws, "name", name, false);
         sv.writeVariableLine(ws,"Direction", facingDirection.toString(), false);
     }
+
+    /*public void setInventory(Inventory inv) {
+        this.inventory = inv;
+    }*/
 }
