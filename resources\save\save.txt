@@ -1,4 +1,6 @@
 Avatar:{
+Inventory:{
+}
 name:SlothMan
 Direction:S
 Coord:(2,2)
