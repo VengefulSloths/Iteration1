@@ -20,6 +20,7 @@ public class StaticCameraView extends CameraView {
 
 	}
 	public void populate(MapViewObjectManager mvop) {
+		super.populate(mvop);
 		this.mapViewObjectManager = mvop;
 
 		for (int i = x; i < x+width; i++) {

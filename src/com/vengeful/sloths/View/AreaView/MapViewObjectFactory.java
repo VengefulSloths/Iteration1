@@ -15,11 +15,14 @@ import com.vengeful.sloths.Models.ObserverManager;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraView;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
+
 import com.vengeful.sloths.View.AreaView.ViewModels.AreaEffectMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.ItemMapViewObject;
 import com.vengeful.sloths.View.AreaView.ViewModels.TerrainMapViewObject;
+import com.vengeful.sloths.View.AreaView.ViewModels.DecalViewObject;
 import com.vengeful.sloths.View.Observers.ProxyAreaEffectObserver;
+
 import com.vengeful.sloths.View.Observers.ProxyEntityObserver;
 import com.vengeful.sloths.View.Observers.ProxyMapItemObserver;
 
@@ -92,6 +95,10 @@ public abstract class MapViewObjectFactory {
         ObserverManager.instance().addProxyObserver(paeo);
 
         return aeViewObject;
+    }
+
+    public DecalViewObject createDecalViewObject(String name, int x, int y) {
+        return new DecalViewObject(x, y, resources + "/Decals/" + name, coordinateStrategy);
     }
 
 

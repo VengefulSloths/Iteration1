@@ -103,6 +103,13 @@ public class Avatar extends Entity {
         this.equipped.addEquipped((EquippableItems)item);
         this.inventory.removeItem(item);
 
+
+        Iterator<EntityObserver> iter = entityObservers.iterator();
+        while (iter.hasNext()) {
+            //TODO: dont hardcode dagger here
+            iter.next().alertEquipWeapon(item.getItemName());
+        }
+
         return true;
     }
 
