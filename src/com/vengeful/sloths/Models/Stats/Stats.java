@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.Stats;
 
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.View.Observers.ModelObserver;
 import com.vengeful.sloths.View.Observers.StatsObserver;
@@ -81,7 +82,7 @@ public abstract class Stats implements ViewObservable, Saveable{
         this.statsObservers.remove((StatsObserver) modelObserver);
     }
 
-    public void saveMe() {
+    public void saveMe(SaveManager sv, int ws) {
         System.out.println("Saving: " + this.toString());
     }
 

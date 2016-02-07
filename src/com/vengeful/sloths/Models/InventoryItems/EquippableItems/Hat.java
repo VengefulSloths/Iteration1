@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.InventoryItems.EquippableItems;
 
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.EquippableItems;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.Stats.BaseStats;
 
 /**
@@ -20,6 +21,10 @@ public class Hat extends EquippableItems {
         //this.itemStats = new BaseStats(0,0,0,10,0);
         this.itemStats.setStats(0,0,0,10,0);
     }
-
+    public void saveMe(SaveManager sv, int ws){
+        sv.writeClassLine(ws, "Hat");
+        super.saveMe(sv, ws);
+        sv.writeCloseBracket(ws);
+    }
 
 }

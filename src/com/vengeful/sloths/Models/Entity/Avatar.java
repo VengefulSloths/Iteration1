@@ -7,6 +7,7 @@ import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.Direction;
@@ -187,8 +188,14 @@ public class Avatar extends Entity {
         return true;
     }
 
-    public void saveMe(){
-        super.saveMe();
-        equipped.saveMe();
+    public void saveMe(SaveManager sv, int ws){
+        //super.saveMe();
+        sv.writeClassLine(ws, "Avatar");
+        entityStats.saveMe(sv, ws+1);
+        inventory.saveMe(sv, ws+1);
+        occupation.saveMe(sv, ws+1);
+        equipped.saveMe(sv, ws+1);
+        sv.writeVariableLine(ws, "name", name, false);
+        sv.writeVariableLine(ws,"Direction", facingDirection.toString(), false);
     }
 }
