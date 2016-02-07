@@ -42,6 +42,9 @@ public class MenuState extends MainControllerState {
         SaveManager sm = new SaveManager();
         SaveVisitor sv = new SaveVisitor(mainController.getMap(), sm);
         sm.setSaveVisitor(sv);
+        System.out.println("SAVING");
+        System.out.println(sm);
+        System.out.println(sv);
         sm.save();
         return true;
     }

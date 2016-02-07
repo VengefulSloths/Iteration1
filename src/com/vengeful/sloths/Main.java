@@ -7,6 +7,7 @@ import com.vengeful.sloths.GameLauncher.LaunchNewGame;
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
 import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
 import com.vengeful.sloths.Models.Entity.Avatar;
+import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
@@ -55,9 +56,10 @@ public class Main {
         viewEngine.setVisible(true);
         viewEngine.registerView(menuContainer);
         //beginning test
-        //Loader l = new Loader();
-        //Object o = l.avatar;
-        //System.out.println(o.toString());
+
+        Loader l = new Loader();
+        Object o = l.avatar;
+        System.out.println(o.toString());
 
         //start both threads
         viewEngine.start();
