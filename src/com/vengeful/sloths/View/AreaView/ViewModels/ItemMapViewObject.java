@@ -31,14 +31,10 @@ public class ItemMapViewObject extends ViewObject
         this.converter = converter;
         this.destroyedSound = new SoundEffect(destroyedSoundPath);
         String resourceName = resourceLocation.substring(resourceLocation.lastIndexOf('/')+1);
-        System.out.println("RESOURCE: " + resourceName);
         String itemImagePath = resourceLocation + "/" + resourceName;
-        System.out.println("PATH: " + itemImagePath);
         itemImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(itemImagePath);
         activatedItemImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(itemImagePath + "_Activated");
-        System.out.println("itemImage should of been loaded");
         destructionAnimation = AnimatedImageFactory.instance().createTimedAnimatedImage(resourceLocation + "/Destroyed/" + resourceName + "_Broken");
-        System.out.println("broken item image should of been loaded");
 
     }
 
@@ -53,6 +49,7 @@ public class ItemMapViewObject extends ViewObject
     @Override
     public void alertActivated() {
         this.isActivated = true;
+        (new SoundEffect("resources/Audio/click.wav")).play();
         System.out.println("I AM ACTIVATED!");
     }
 

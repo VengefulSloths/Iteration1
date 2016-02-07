@@ -10,6 +10,7 @@ public class Map {
     private int maxX;
     private int maxY;
     private Tile[][] tiles;
+    private Coord respawnPoint;
 
     public Map(Coord maxCoords) {
         tiles = new Tile[maxCoords.getX()][maxCoords.getY()];
@@ -41,6 +42,10 @@ public class Map {
         }
         Tile tile = tiles[coord.getX()][coord.getY()];
         return tile;
+    }
+
+    public void respawnAvatar(){
+
     }
 
     public Tile[][] getTiles()

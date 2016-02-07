@@ -36,8 +36,8 @@ public class EntityStats extends Stats {
         this.experience = 1;
         this.level = 1;
         this.livesLeft = 1;
-        this.life = 10;
-        this.mana = 10;
+        this.life = 11;
+        this.mana = 11;
 
         this.currentHealth = life;
         this.currentMana = mana;
@@ -60,13 +60,13 @@ public class EntityStats extends Stats {
     private int calculateLife() {
         double factor = hardiness / 50.0;
         double levelFactor = level / 50.0;
-        return life + ((int)(life * factor)) + ((int)(life * levelFactor));
+        return 10 + ((int)(life * factor)) + ((int)(life * levelFactor));
     }
 
     private int calculateMana() {
         double factor = intellect / 50.0;
         double levelFactor = level / 50.0;
-        return mana + ((int)(mana * factor)) + ((int)(mana * levelFactor));
+        return 10 + ((int)(mana * factor)) + ((int)(mana * levelFactor));
     }
 
     private int calculateOffensiveRating() {
@@ -161,13 +161,48 @@ public class EntityStats extends Stats {
 
     public int getCurrentMana(){return currentMana;}
 
+    public void setLivesLeft(int livesLeft) {
+        this.livesLeft = livesLeft;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public void setOffensiveRating(int offensiveRating) {
+        this.offensiveRating = offensiveRating;
+    }
+
+    public void setDefensiveRating(int defensiveRating) {
+        this.defensiveRating = defensiveRating;
+    }
+
+    public void setArmorRating(int armorRating) {
+        this.armorRating = armorRating;
+    }
+
+    public void setCurrentMana(int currentMana) {
+        this.currentMana = currentMana;
+    }
+
     public String toString() {
         return this.strength + " " + this.agility + " " + this.intellect + " " + this.hardiness + " " + this.movement;
     }
 
     public void saveMe(SaveManager sm, int ws){
         sm.writeClassLine(ws, "EntityStats");
-        super.saveMe(sm,ws);
         sm.writeVariableLine(ws, "livesLeft", ""+livesLeft ,false);
         sm.writeVariableLine(ws, "experience", ""+experience ,false);
         sm.writeVariableLine(ws, "level", ""+level ,false);
@@ -176,8 +211,8 @@ public class EntityStats extends Stats {
         sm.writeVariableLine(ws, "offensiveRating", ""+offensiveRating ,false);
         sm.writeVariableLine(ws, "defensiveRating", ""+defensiveRating ,false);
         sm.writeVariableLine(ws, "armorRating", ""+armorRating ,false);
-        sm.writeVariableLine(ws, "currentHealth", ""+currentHealth ,true);
-
+        sm.writeVariableLine(ws, "currentHealth", ""+currentHealth ,false);
+        super.saveMe(sm,ws);
     }
 
 }

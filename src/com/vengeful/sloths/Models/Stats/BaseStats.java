@@ -18,7 +18,7 @@ public class BaseStats extends Stats {
     public void saveMe(SaveManager sm, int ws){
         sm.writeClassLine(ws,"BaseStats");
         super.saveMe(sm,ws);
-        sm.writeCloseBracket(ws);
+        //sm.writeCloseBracket(ws);
     }
 
 }
