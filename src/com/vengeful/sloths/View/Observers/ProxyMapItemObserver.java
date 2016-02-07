@@ -10,10 +10,12 @@ public class ProxyMapItemObserver extends ProxyObserver
 
     private MapItemObserver target;
     public ProxyMapItemObserver(MapItemObserver target, MapItem subject) {
-        System.out.println("ProxyMapItemObserver constructor: ");
+        //System.out.println("ProxyMapItemObserver constructor: ");
         this.subject = subject;
         this.subject.registerObserver(this);
         this.target = target;
+
+        //System.out.println("PROXY REGISTERED OBSERVER: " + subject.getClass().getSimpleName() + " =-= " + target.toString());
     }
     @Override
     public ModelObserver getModelObserver() {

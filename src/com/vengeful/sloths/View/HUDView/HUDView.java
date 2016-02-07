@@ -38,7 +38,8 @@ public class HUDView extends View implements StatsObserver {
     public static final String title = "Character Status";
 
     private Stats stats;
-
+    private int level;
+    private int livesRemaining;
     private JProgressBar healthBar;
     private JProgressBar mannaBar;
     private JProgressBar xpBar;
@@ -94,7 +95,7 @@ public class HUDView extends View implements StatsObserver {
         JLabel nameLabel = generateTitleLabel("Smasher");
         this.leftPanel.add(nameLabel);
 
-        JLabel levelLabel = new JLabel("Level: 126");
+        JLabel levelLabel = new JLabel("Level: " + level);
         this.leftPanel.add(generateCharacterImageLabel(characterImageFileName));
         this.leftPanel.add(levelLabel);
         this.leftPanel.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK, Color.BLACK));
@@ -131,6 +132,7 @@ public class HUDView extends View implements StatsObserver {
         JPanel mannaPanel = new JPanel();
         JLabel mannaLabel = new JLabel("     Manna: ");
         mannaPanel.setBackground(new Color(0f,0f,0f,0f));
+
         mannaBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
         //mannaBar.setValue(100);
         mannaBar.setBackground(Color.DARK_GRAY);
@@ -157,7 +159,7 @@ public class HUDView extends View implements StatsObserver {
     }
 
     public void initRightPanel() {
-        int livesRemaining = 3;
+        //int livesRemaining = 3;
         this.rightPanel = new JPanel();
         this.rightPanel.setPreferredSize(new Dimension(rightPanelWidth, subPanelHeight));
         this.rightPanel.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK, Color.BLACK));
@@ -174,10 +176,12 @@ public class HUDView extends View implements StatsObserver {
         livesPanel.setBackground(new Color(0f,0f,0f,0f));
         //livesPanel.setPreferredSize(new Dimension(rightPanelWidth,(int)(0.8*subPanelHeight))); //used if want hearts aligned horizontally
         //livesPanel.setLayout(new GridLayout(3,1)); //
-        for (int i=0; i<livesRemaining; i++) {
-            livesPanel.add(generateLivesImageLabel(livesImageFileName));
-            //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
-        }
+        //if (livesRemaining>0) {
+            for (int i = 0; i < livesRemaining; i++) {
+                livesPanel.add(generateLivesImageLabel(livesImageFileName));
+                //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
+            }
+        //}
         this.rightPanel.add(livesPanel);
     }
 
@@ -215,6 +219,13 @@ public class HUDView extends View implements StatsObserver {
     }
 
     public void setBars(){
+
+       this.level = ((EntityStats) stats).getLevel();
+        System.out.println("This is my LEVEL: " + this.level);
+        livesRemaining = ((EntityStats)stats).getLivesLeft();
+        System.out.println("This is my LIVES REMAINING: " + this.livesRemaining);
+
+
         double health = ((double)((EntityStats) stats).getCurrentHealth()) / ((double)((EntityStats)stats).getLife());
         System.out.println(health);
         healthBar.setValue((int)(health*100));
