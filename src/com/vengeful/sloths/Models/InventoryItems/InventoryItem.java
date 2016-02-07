@@ -32,8 +32,8 @@ public abstract class InventoryItem implements Saveable {
 
 
     public void saveMe(SaveManager sv, int ws){
-        mapItemRep.saveMeFromInv(sv, ws+1);
         sv.writeVariableLine(ws,"itemName", itemName, false);
+        mapItemRep.saveMeFromInv(sv, ws+1);
     }
 
     public abstract void saveMeFromTakeable(SaveManager sm, int ws);

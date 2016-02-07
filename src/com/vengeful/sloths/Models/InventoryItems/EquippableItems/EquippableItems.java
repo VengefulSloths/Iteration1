@@ -44,7 +44,7 @@ public abstract class EquippableItems extends InventoryItem implements Saveable 
         sm.writeVariableLine(ws, "itemName", itemName, true);
     }
 
-    public void setItemStats(BaseStats itemStats) {
+    public void setBaseStats(BaseStats itemStats) {
         this.itemStats = itemStats;
     }
 

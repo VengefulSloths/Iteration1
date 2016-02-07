@@ -7,6 +7,7 @@ import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.SaveLoad.Loader;
 import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Stats.Stats;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.lang.reflect.Method;
 import java.util.Scanner;
@@ -47,12 +48,38 @@ public class EquippableItemParser extends ObjectParser {
                 String varValue = line[1];
                 if(varValue.equals("{")){
                     //looking to create a new object parser based on the varName
-                    ObjectParser op = ops.ObjectParserFactory(varName);
-                    Object o = op.Parse();
-                    if(varName.equals("BaseStats")){
-                        eitem.setItemStats((BaseStats) o);
-                    }else if(varName.equals("TakeableItem")){
+                    //
+                    if(varName.equals("TakeableItem")){
+                        ObjectParser op = new TakeableItemParser("TakeableItem",sc, l, ops,eitem);
+                       Object o =  op.Parse();
                         eitem.setTakeableItem((TakeableItem)o);
+                    }else{
+                        ObjectParser op = ops.ObjectParserFactory(varName);
+                        Object o = op.Parse();
+                        varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
+
+                        String methodName = "set"+varName;
+                        try{
+                            Method method = null;
+                            if(NumberUtils.isNumber(varValue)){
+                                int val = Integer.parseInt(varValue);
+                                method = eitem.getClass().getMethod(methodName, int.class);
+                                method.invoke(eitem, val);
+                            }
+                            else{
+                                if(o.getClass() == String.class){
+//                                    method = eitem.getClass().getMethod(methodName, String.class);
+//                                    method.invoke(eitem, varValue);
+                                    System.out.println("Shouldnt be here in Equippable item parser Object o:" + o.toString());
+                                } else if(o.getClass() == BaseStats.class){
+                                    method = eitem.getClass().getMethod(methodName, BaseStats.class);
+                                    method.invoke(eitem, o);
+                                }
+                            }
+                        }catch (Exception e){
+                            System.out.println("Error with creating setter avatar method");
+                        }
+                        //eitem.setItemStats((BaseStats) o);
                     }
                 }
                 else{

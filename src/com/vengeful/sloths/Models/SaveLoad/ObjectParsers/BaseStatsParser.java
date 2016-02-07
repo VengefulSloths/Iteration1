@@ -19,13 +19,13 @@ public class BaseStatsParser extends ObjectParser {
         this.ops = ops;
     }
 
-    public TakeableItem Parse() {
+    public BaseStats Parse() {
         BaseStats baseStats = new BaseStats();
         while(sc.hasNext()){
             String check = sc.nextLine();
 
             if(check.contains("}")){
-                return null;
+                return baseStats;
             }
             else{
                 String[] line = check.split(":");
@@ -40,8 +40,9 @@ public class BaseStatsParser extends ObjectParser {
                 System.out.println("methodNamE: " + methodName);
 
                 try {
+                    int val = Integer.parseInt(varValue);
                     Method method = baseStats.getClass().getMethod(methodName, int.class);
-                    method.invoke(baseStats, varValue);
+                    method.invoke(baseStats, val);
                 }catch (Exception e){
                     System.out.println("Error with creating setter BaseSets method");
                 }
@@ -50,6 +51,6 @@ public class BaseStatsParser extends ObjectParser {
             }
         }
 
-        return null;
+        return baseStats;
     }
 }

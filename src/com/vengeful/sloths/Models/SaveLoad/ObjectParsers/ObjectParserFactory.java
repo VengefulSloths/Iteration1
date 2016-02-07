@@ -28,6 +28,8 @@ public class ObjectParserFactory {
             return new EntityStatsParser(className, sc, l, this);
         }else if(className.equals("Sword")||className.equals("Hat")){
             return new EquippableItemParser(className, sc, l, this);
+        }else if(className.equals("BaseStats")){
+            return new BaseStatsParser(className, sc, l, this);
         }
         return null;
     }
