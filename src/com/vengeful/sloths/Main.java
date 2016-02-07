@@ -15,6 +15,7 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
+import com.vengeful.sloths.Models.SaveLoad.Loader;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.LevelFactory;
@@ -39,6 +40,9 @@ public class Main {
         ViewEngine viewEngine = new ViewEngine();
         ModelEngine modelEngine = new ModelEngine();
 
+
+        MenuView mainMenuView = new MainMenuView();
+
         //make controller
         MainController controller = new MainController( viewEngine);
 
@@ -50,10 +54,12 @@ public class Main {
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(menuContainer);
-
+        //beginning test
+        Loader l = new Loader();
+        System.out.println(l.avatar.toString());
 
         //start both threads
         viewEngine.start();
-        modelEngine.start();
+       modelEngine.start();
     }
 }

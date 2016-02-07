@@ -45,6 +45,14 @@ public abstract class Entity implements ViewObservable, Saveable{
         this.equipped = equipped;
     }
 
+    public void setName(String name) {this.name = name;}
+
+    public void setOccupation(Occupation occupation) { this.occupation = occupation; }
+
+    public void setEntityStats(EntityStats entityStats) {this.entityStats = entityStats; }
+
+    public Entity(){}
+
     public Entity(String name, String occupationString, EntityStats entityStats) {
         this.name = name;
         this.entityObservers = new ArrayList<>();

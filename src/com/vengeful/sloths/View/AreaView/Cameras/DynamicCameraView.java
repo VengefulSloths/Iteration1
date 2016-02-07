@@ -21,10 +21,12 @@ public class DynamicCameraView extends CameraView
         implements EntityObserver {
 
 
+
     public DynamicCameraView(int x, int y, int width, int height) {
         super(x,y,width,height);
+        this.converter = new Dynamic32PixelCoordinateStrategy(this);
         mvoFactory = new DefaultMapViewObjectFactory(this);
-        mvoFactory.setCoordinateStrategy(new Dynamic32PixelCoordinateStrategy(this));
+        mvoFactory.setCoordinateStrategy(converter);
     }
     @Override
     public void setMapViewObjectFactory(MapViewObjectFactory mvoFactory) {
@@ -33,7 +35,6 @@ public class DynamicCameraView extends CameraView
     }
     @Override
     public void populate(MapViewObjectManager mapViewObjectManager) {
-        super.populate(mapViewObjectManager);
         this.mapViewObjectManager = mapViewObjectManager;
 
         //First find the player because the factory's strategy needs a player needs a player
@@ -68,6 +69,8 @@ public class DynamicCameraView extends CameraView
         while (iter.hasNext()) {
             mapViewObjectManager.addMapViewObject(iter.next());
         }
+        super.populate(mapViewObjectManager);
+
 
     }
 

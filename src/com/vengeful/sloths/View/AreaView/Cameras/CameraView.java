@@ -2,7 +2,9 @@ package com.vengeful.sloths.View.AreaView.Cameras;
 
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.Utility.Tuple;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.CoordinateStrategy;
 import com.vengeful.sloths.View.AreaView.MapViewObjectFactory;
 import com.vengeful.sloths.View.AreaView.MapViewObjectManager;
@@ -17,7 +19,7 @@ public abstract class CameraView implements EntityObserver {
 	protected MapViewObjectManager mapViewObjectManager;
 	protected Map map;
 
-	protected ArrayList<ViewObject> decals = new ArrayList<>();
+	protected ArrayList<Tuple<Integer,Integer,String>> decals = new ArrayList<>();
 
 	protected int x;
 	protected int y;
@@ -47,7 +49,7 @@ public abstract class CameraView implements EntityObserver {
 	}
 
 	public void addDecal(int x, int y, String path) {
-		this.decals.add(mvoFactory.createDecalViewObject(path, x, y));
+		this.decals.add(new Tuple<>(x,y,path));
 	}
 
 	public boolean contains(int x, int y) {
@@ -60,9 +62,9 @@ public abstract class CameraView implements EntityObserver {
 		this.map = map;
 	}
 	public void populate(MapViewObjectManager mvom) {
-		for (ViewObject decal:
+		for (Tuple decal:
 			 decals) {
-			mvom.addMapViewObject(decal);
+			mvom.addMapViewObject(mvoFactory.createDecalViewObject((String) decal.z, (int)decal.x, (int)decal.y));
 		}
 	}
 
@@ -81,6 +83,11 @@ public abstract class CameraView implements EntityObserver {
 	@Override
 	public void alertDrop(int x, int y, MapItem itemToDrop) {
 		mapViewObjectManager.addMapViewObject(mvoFactory.createItemMapViewObject(itemToDrop, x, y));
+	}
+
+	@Override
+	public void alertEquipHat(String name) {
+
 	}
 
 }

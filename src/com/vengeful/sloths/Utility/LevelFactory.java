@@ -2,6 +2,7 @@ package com.vengeful.sloths.Utility;
 
 import com.vengeful.sloths.Models.Effects.EffectCommand;
 import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
+import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.Map.AreaEffects.*;
 import com.vengeful.sloths.Models.Map.Map;
@@ -87,8 +88,11 @@ public class LevelFactory {
         /* Testing pick up item */
 
         //MapItem mapItem1 = new TakeableItem(new Hat("BluePartyHat"));
-        MapItem mapItem2 = new TakeableItem(new Sword("Dagger"));
-        map.getTile(new Coord(3,2)).addMapItem(mapItem2);
+        MapItem testWeapon = new TakeableItem(new Sword("Dagger"));
+        MapItem testHat = new TakeableItem(new Hat("SpartanHat"));
+        map.getTile(new Coord(3,2)).addMapItem(testWeapon);
+        map.getTile(new Coord(3,4)).addMapItem(testHat);
+
         //map.getTile(new Coord(3,2)).addMapItem(mapItem2);
         /***********************/
 
@@ -108,7 +112,7 @@ public class LevelFactory {
 
         /** Test Interactive Item***/
         EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1);
-        InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)mapItem2).getInvItemRep());
+        InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)testWeapon).getInvItemRep());
         map.getTile(new Coord(3,3)).addMapItem(ii);
 
 
@@ -132,11 +136,15 @@ public class LevelFactory {
         StaticCameraView middle = new StaticCameraView(5,0,10,7);
         middle.addDecal(6,1,"Roses");
         middle.addDecal(13,5, "Hydrangeas");
+        middle.addDecal(9,4, "Star");
 
         cvm.addCameraView(middle);
-        CameraView test = new DynamicCameraView(15,0,20,20);
-        test.setMapViewObjectFactory(new DesertMapViewObjectFactory(test));
-        cvm.addCameraView(test);
+        CameraView desert = new DynamicCameraView(15,0,20,20);
+        desert.addDecal(32,17,"RedX");
+        desert.addDecal(30,5, "Skull");
+
+        desert.setMapViewObjectFactory(new DesertMapViewObjectFactory(desert));
+        cvm.addCameraView(desert);
 
         return cvm;
     }

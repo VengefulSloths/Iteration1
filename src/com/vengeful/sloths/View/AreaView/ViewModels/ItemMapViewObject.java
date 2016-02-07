@@ -17,11 +17,13 @@ import java.awt.*;
 public class ItemMapViewObject extends ViewObject
         implements MapItemObserver {
     private AnimatedImage itemImage;
+    private AnimatedImage activatedItemImage;
     private AnimatedImage destructionAnimation;
     private boolean isDestroyed = false;
     private long startTime;
     private long destructionTime;
     private SoundEffect destroyedSound;
+    private boolean isActivated = false;
 
     public ItemMapViewObject(int x, int y, String resourceLocation, String destroyedSoundPath, CoordinateStrategy converter ) {
         this.x = x;
@@ -29,13 +31,10 @@ public class ItemMapViewObject extends ViewObject
         this.converter = converter;
         this.destroyedSound = new SoundEffect(destroyedSoundPath);
         String resourceName = resourceLocation.substring(resourceLocation.lastIndexOf('/')+1);
-        System.out.println("RESOURCE: " + resourceName);
         String itemImagePath = resourceLocation + "/" + resourceName;
-        System.out.println("PATH: " + itemImagePath);
         itemImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(itemImagePath);
-        System.out.println("itemImage should of been loaded");
+        activatedItemImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(itemImagePath + "_Activated");
         destructionAnimation = AnimatedImageFactory.instance().createTimedAnimatedImage(resourceLocation + "/Destroyed/" + resourceName + "_Broken");
-        System.out.println("broken item image should of been loaded");
 
     }
 
@@ -48,13 +47,30 @@ public class ItemMapViewObject extends ViewObject
     }
 
     @Override
+    public void alertActivated() {
+        this.isActivated = true;
+        (new SoundEffect("resources/Audio/click.wav")).play();
+        System.out.println("I AM ACTIVATED!");
+    }
+
+    @Override
+    public void alertDeactivated() {
+        this.isActivated = false;
+    }
+
+    @Override
     public void paintComponent(Graphics2D g) {
-        if (!isDestroyed) {
+        if (!isDestroyed && !this.isActivated) {
             g.drawImage(itemImage.getCurrentImage(0),
                     converter.convertX(this.x),
                     converter.convertY(this.y),
                     this);
-        } else {
+        }else if(this.isActivated){
+            g.drawImage(activatedItemImage.getCurrentImage(0),
+                    converter.convertX(this.x),
+                    converter.convertY(this.y),
+                    this);
+        }else {
             g.drawImage(destructionAnimation.getCurrentImage(startTime),
                     converter.convertX(this.x),
                     converter.convertY(this.y),
