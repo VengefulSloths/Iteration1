@@ -1,9 +1,12 @@
 package com.vengeful.sloths.View.MainMenuView;
 
+import com.vengeful.sloths.Controller.MainController;
+import com.vengeful.sloths.Models.ModelEngine;
 import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.View.MainMenuView.Commands.CharacterCreationCommand;
 import com.vengeful.sloths.View.MainMenuView.Commands.MenuCommandFactory;
 import com.vengeful.sloths.View.ViewAlertable;
+import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewTime;
 
 import javax.swing.*;
@@ -18,6 +21,8 @@ import java.util.ArrayList;
 public class CharacterCreationView extends MenuView {
 
     private JFrame ve;
+    private MainController controller;
+    private ModelEngine me;
 
     private final String DECAL_PREFIX = "resources/man2/CharacterCreation/";
 
@@ -26,8 +31,10 @@ public class CharacterCreationView extends MenuView {
     private DefaultMenuComponent borderHack;
     private TextArea nameField;
 
-    public CharacterCreationView(JFrame ve) {
+    public CharacterCreationView(JFrame ve, ModelEngine me, MainController controller) {
         this.ve = ve;
+        this.me = me;
+        this.controller = controller;
         Config config = Config.instance();
 
 
@@ -73,11 +80,12 @@ public class CharacterCreationView extends MenuView {
 
         children.add(occupationSelector);
 
-        children.add(new DefaultMenuComponent(
+        DefaultMenuComponent launchGame = new DefaultMenuComponent(
                 "resources/Menu/Confirm",
                 200,
-                this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++));
-
+                this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++);
+        launchGame.setAction(mcf.createlaunchGameCommand((ViewEngine) ve, me, controller));
+        this.children.add(launchGame);
 
         this.children.get(0).setSelected(true);
 

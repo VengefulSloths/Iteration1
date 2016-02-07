@@ -47,6 +47,20 @@ public class MainController {
 
 
     //Setting the menu view through the constructor is probably not final
+    public MainController( JFrame jframe){
+
+        System.out.println("in the maincontroller");
+
+        //avatarState = new AvatarState(this);
+        //inventoryState = new InventoryState(this);
+        menuState = new MenuState(this);
+        //equipmentState = new EquipmentState(this);
+
+        inputHandler = new InputHandler(this);
+        jframe.addKeyListener(inputHandler);
+
+        //this.setAvatarState();
+    }
     public MainController(Avatar player, JFrame jframe, ViewManager vm){
 
         this.player = player;
@@ -228,6 +242,16 @@ public class MainController {
     }
 
 
+    public void setAvatar(Avatar avatar){
+        this.player = avatar;
+        this.inventory = this.player.getInventory();
+        avatarState = new AvatarState(this);
+        inventoryState = new InventoryState(this);
+        equipmentState = new EquipmentState(this);
+    }
+    public void setViewManager(ViewManager vm){
+        this.viewManager = vm;
+    }
     //Yes this is hacky, I will work on it
     public MenuState getMenuState() {
         return this.menuState;
