@@ -19,5 +19,7 @@ public class FocusTextCommand extends MenuCommand{
     public void execute() {
         this.hack.setSelected(true);
         this.textField.requestFocus();
+        int length = this.textField.getText().length();
+        this.textField.setCaretPosition(length);
     }
 }
