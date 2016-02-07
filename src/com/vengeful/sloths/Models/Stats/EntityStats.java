@@ -36,8 +36,8 @@ public class EntityStats extends Stats {
         this.experience = 1;
         this.level = 1;
         this.livesLeft = 1;
-        this.life = 10;
-        this.mana = 10;
+        this.life = 11;
+        this.mana = 11;
 
         this.currentHealth = life;
         this.currentMana = mana;
@@ -60,13 +60,13 @@ public class EntityStats extends Stats {
     private int calculateLife() {
         double factor = hardiness / 50.0;
         double levelFactor = level / 50.0;
-        return life + ((int)(life * factor)) + ((int)(life * levelFactor));
+        return 10 + ((int)(life * factor)) + ((int)(life * levelFactor));
     }
 
     private int calculateMana() {
         double factor = intellect / 50.0;
         double levelFactor = level / 50.0;
-        return mana + ((int)(mana * factor)) + ((int)(mana * levelFactor));
+        return 10 + ((int)(mana * factor)) + ((int)(mana * levelFactor));
     }
 
     private int calculateOffensiveRating() {
