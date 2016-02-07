@@ -41,7 +41,10 @@ public class AvatarParser extends ObjectParser{
                     String methodName = "set"+varName;
                     try{
                         Method method = avatar.getClass().getMethod(methodName);
-                    }catch ()
+                        method.invoke(avatar, varName);
+                    }catch (Exception e){
+                        System.out.println("Error with creating setter avatar method");
+                    }
                 }
                 if(varName.equals("name"))
                 {
