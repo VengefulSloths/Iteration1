@@ -204,6 +204,7 @@ public class Avatar extends Entity {
         System.out.println("Entity is Dead D:");
 
         //Bring up game menu here??
+        entityStats.alertObservers();
     }
 
     // @TODO: Don't have Item object yet
