@@ -13,11 +13,13 @@ public class TakeDamageAE extends AreaEffect{
     private int damage;
 
 
-    public TakeDamageAE(){
+    public TakeDamageAE(EffectCommandFactory commandFactory){
+        super(commandFactory);
         this.damage = 1;
     }
 
-    public TakeDamageAE(int damage){
+    public TakeDamageAE(int damage, EffectCommandFactory commandFactory){
+        super(commandFactory);
         this.damage = damage;
     }
 
@@ -25,7 +27,8 @@ public class TakeDamageAE extends AreaEffect{
     @Override
     public EffectCommand createEffectCommand(Entity affectedEntity) {
         if(affectedEntity instanceof Avatar)
-            return new TakeDamageAECommand(affectedEntity, this.damage, affectedEntity.getLocation());
+            //return new TakeDamageAECommand(affectedEntity, this.damage, affectedEntity.getLocation());
+            return this.commandFactory.createTakeDamageAECommand(affectedEntity, this.damage, affectedEntity.getLocation());
         else
             return null;
     }

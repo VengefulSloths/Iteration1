@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.Map.AreaEffects;
 
 import com.vengeful.sloths.Models.Effects.EffectCommand;
+import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.*;
 import com.vengeful.sloths.Models.SaveLoad.Saveable;
@@ -15,13 +16,17 @@ import com.vengeful.sloths.View.Observers.ModelObserver;
 public abstract class AreaEffect implements ViewObservable, Saveable {
 
     //protected String name;
+    EffectCommandFactory commandFactory;
+
+
 
     //Flag for whether to destory the AE after use
     protected boolean destory;
     protected AreaEffectObserver observer;
 
-    public AreaEffect(){
+    public AreaEffect(EffectCommandFactory commandFactory){
         this.destory = false;
+        this.commandFactory = commandFactory;
     }
 
     public abstract EffectCommand createEffectCommand(Entity affectedEntity);

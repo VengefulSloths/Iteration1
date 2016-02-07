@@ -3,11 +3,9 @@ package com.vengeful.sloths.View.AreaView;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
-import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
-import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
-import com.vengeful.sloths.Models.Map.AreaEffects.TakeDamageAE;
 import com.vengeful.sloths.Models.Map.Map;
+import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.InteractiveItem;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
@@ -68,7 +66,10 @@ public abstract class MapViewObjectFactory {
             itemViewObject = new ItemMapViewObject(x, y, resources + "Items/Takeable/" + item.getItemName(), pickUpSoundPath, coordinateStrategy);
 
 
-        }else{
+        }else if(mapItem instanceof InteractiveItem){
+            itemViewObject = new ItemMapViewObject(x, y, "resources/" + "Items/Barrel", "resources/Audio/pickup.wav", coordinateStrategy);
+        }
+        else{
             itemViewObject = new ItemMapViewObject(x, y, resources + "Items/Box", "resources/Audio/break.wav", coordinateStrategy);
 
         }

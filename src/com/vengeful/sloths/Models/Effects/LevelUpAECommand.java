@@ -16,7 +16,7 @@ public class LevelUpAECommand extends EffectCommand {
     public LevelUpAECommand(Entity entity, AreaEffect ae){
         this.entity = entity;
         this.ae = ae;
-        TimeModel.getInstance().registerAlertable(this, 0);
+        //TimeModel.getInstance().registerAlertable(this, 0);
     }
 
 

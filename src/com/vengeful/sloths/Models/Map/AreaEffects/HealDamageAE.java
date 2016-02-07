@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.Map.AreaEffects;
 
 import com.vengeful.sloths.Models.Effects.EffectCommand;
+import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
 import com.vengeful.sloths.Models.Effects.HealDamageAECommand;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
@@ -12,11 +13,13 @@ import com.vengeful.sloths.Models.Map.*;
 public class HealDamageAE extends AreaEffect{
     int health;
 
-    public HealDamageAE(){
+    public HealDamageAE(EffectCommandFactory commandFactory){
+        super(commandFactory);
         this.health = 1;
     }
 
-    public HealDamageAE(int heal){
+    public HealDamageAE(int heal, EffectCommandFactory commandFactory){
+        super(commandFactory);
         this.health = heal;
     }
 
@@ -24,7 +27,8 @@ public class HealDamageAE extends AreaEffect{
     @Override
     public EffectCommand createEffectCommand(Entity affectedEntity) {
         if(affectedEntity instanceof Avatar)
-            return new HealDamageAECommand(affectedEntity, this.health, affectedEntity.getLocation());
+            //return new HealDamageAECommand(affectedEntity, this.health, affectedEntity.getLocation());
+            return this.commandFactory.createHealDamageAECommand(affectedEntity, this.health, affectedEntity.getLocation());
         else
             return null;
     }

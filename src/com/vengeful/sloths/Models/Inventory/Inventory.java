@@ -35,6 +35,12 @@ public class Inventory implements ViewObservable, Saveable {
         return inventory.get(index);
     }
 
+    public boolean hasItem(InventoryItem item){
+        return this.inventory.contains(item);
+    }
+
+
+
     public int getSize() {
         return this.currentSize;
     }

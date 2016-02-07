@@ -149,7 +149,6 @@ public class Tile{
             }
     }
 
-
     public void addMapItem(MapItem mapItem) {
         mapItems.add(mapItem);
     }
@@ -165,18 +164,6 @@ public class Tile{
 
         return mapItems.get(index);
     }
-
-    /*
-    public void createAEs(){
-
-        System.out.println("CREATE AE CALLED!!");
-        Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
-        while(aeIter.hasNext()){
-            AreaEffect ae = aeIter.next();
-            ae.createEffectCommand(this.entity, this);
-            System.out.println("AE: " + ae);
-        }
-    }*/
 
     public void addAreaEffect(AreaEffect ae){
         areaEffect.add(ae);
