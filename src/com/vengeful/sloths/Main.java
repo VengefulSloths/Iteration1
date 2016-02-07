@@ -57,9 +57,9 @@ public class Main {
         viewEngine.registerView(menuContainer);
         //beginning test
 
-        Loader l = new Loader();
-        Object o = l.avatar;
-        System.out.println(o.toString());
+//        Loader l = new Loader();
+  //      Object o = l.avatar;
+    //    System.out.println(o.toString());
 
         //start both threads
         viewEngine.start();

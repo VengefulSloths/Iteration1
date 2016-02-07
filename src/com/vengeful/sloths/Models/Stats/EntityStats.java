@@ -14,6 +14,7 @@ public class EntityStats extends Stats {
     //  int hardiness;
     //  int movement;
 
+    protected int maxLives;
     protected int livesLeft;
     protected int experience;
     protected int level;
@@ -32,10 +33,11 @@ public class EntityStats extends Stats {
     public EntityStats() {
         super();
 
+        this.maxLives=3;
         // Set defaults
         this.experience = 1;
         this.level = 1;
-        this.livesLeft = 1;
+        this.livesLeft = maxLives;
         this.life = 11;
         this.mana = 11;
 
@@ -125,6 +127,10 @@ public class EntityStats extends Stats {
 
     public int getLevel(){
         return this.level;
+    }
+
+    public int getMaxLives() {
+        return maxLives;
     }
 
     public int getLivesLeft(){
