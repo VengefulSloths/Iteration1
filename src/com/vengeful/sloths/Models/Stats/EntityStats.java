@@ -93,9 +93,12 @@ public class EntityStats extends Stats {
         level++;
     }
 
-    public void updateStats(int strength, int agility, int intellect, int hardiness, int movement) {
-        super.updateStats(strength, agility, intellect, hardiness, movement);
-
+    public void updateStats(BaseStats stats) {
+        super.updateStats(stats.getStrength(), stats.getAgility(), stats.getIntellect(), stats.getHardiness(), stats.getMovement());
+        updateStats();
+    }
+    public void revertStats(BaseStats stats) {
+        super.revertStats(stats.getStrength(), stats.getAgility(), stats.getIntellect(), stats.getHardiness(), stats.getMovement());
         updateStats();
     }
 

@@ -16,7 +16,8 @@ public class Sword extends EquippableItems {
     public Sword(String swordName){
         super(swordName);
         //this.itemStats.setStats(10,0,0,0,0); //currently causes error
-        this.itemStats.setStats(0,0,0,10,0);
+        this.itemStats.setStats(10,0,0,0,0);
+
 
     }
     public void saveMe(SaveManager sv, int ws){
