@@ -161,6 +161,42 @@ public class EntityStats extends Stats {
 
     public int getCurrentMana(){return currentMana;}
 
+    public void setLivesLeft(int livesLeft) {
+        this.livesLeft = livesLeft;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public void setOffensiveRating(int offensiveRating) {
+        this.offensiveRating = offensiveRating;
+    }
+
+    public void setDefensiveRating(int defensiveRating) {
+        this.defensiveRating = defensiveRating;
+    }
+
+    public void setArmorRating(int armorRating) {
+        this.armorRating = armorRating;
+    }
+
+    public void setCurrentMana(int currentMana) {
+        this.currentMana = currentMana;
+    }
+
     public String toString() {
         return this.strength + " " + this.agility + " " + this.intellect + " " + this.hardiness + " " + this.movement;
     }

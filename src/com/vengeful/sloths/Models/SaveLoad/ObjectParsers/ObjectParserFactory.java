@@ -24,6 +24,9 @@ public class ObjectParserFactory {
         }else if(className.equals("Inventory")){
             return new InventoryParser(className, sc, l, this);
         }
+        if(className.equals("EntityStats")){
+            return new EntityStatsParser(className, sc, l, this);
+        }
         return null;
     }
 

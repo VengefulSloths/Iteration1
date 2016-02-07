@@ -56,9 +56,10 @@ public class Main {
         viewEngine.setVisible(true);
         viewEngine.registerView(menuContainer);
         //beginning test
+
         Loader l = new Loader();
         Object o = l.avatar;
-        System.out.println(((Entity) o).getInventory().toString());
+        System.out.println(o.toString());
 
         //start both threads
         viewEngine.start();
