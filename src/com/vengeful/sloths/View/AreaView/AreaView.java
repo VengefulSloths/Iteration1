@@ -121,4 +121,12 @@ public class AreaView extends View
 	public void alertEquipHat(String name) {
 
 	}
+	@Override
+	public void alertLevelUp() {
+
+	}
+	@Override
+	public void alertDeath() {
+
+	}
 }

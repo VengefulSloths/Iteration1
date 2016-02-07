@@ -9,4 +9,6 @@ public interface EntityObserver extends ModelObserver{
 	void alertDrop(int x, int y, MapItem itemToDrop);
 	void alertEquipWeapon(String name);
 	void alertEquipHat(String name);
+	void alertLevelUp();
+	void alertDeath();
 }
