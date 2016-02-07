@@ -31,6 +31,11 @@ public class CharacterCreationView extends MenuView {
     private DefaultMenuComponent borderHack;
     private TextArea nameField;
 
+    public String avatarName = "";
+    public String avatarOccupation = "";
+
+
+
     public CharacterCreationView(JFrame ve, ModelEngine me, MainController controller) {
         this.ve = ve;
         this.me = me;
@@ -52,6 +57,9 @@ public class CharacterCreationView extends MenuView {
 
         this.verticleSpacing = 32;
         this.verticalOffset = 298;
+
+        avatarName = "Avatar";
+        avatarOccupation = "Sneak";
 
         children = new ArrayList<>();
 
@@ -84,7 +92,7 @@ public class CharacterCreationView extends MenuView {
                 "resources/Menu/Confirm",
                 200,
                 this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++);
-        launchGame.setAction(mcf.createlaunchGameCommand((ViewEngine) ve, me, controller));
+        launchGame.setAction(mcf.createlaunchGameCommand((ViewEngine) ve, me, controller, this));
         this.children.add(launchGame);
 
         this.children.get(0).setSelected(true);
@@ -116,6 +124,8 @@ public class CharacterCreationView extends MenuView {
                     s = s.substring(0, s.length() - 1);
 //and setting that text to your TextArea
                     nameArea.setText(s);
+                    avatarName = s;
+                    System.out.println(avatarName);
                     borderHack.setSelected(false);
                 }
             }
@@ -141,6 +151,10 @@ public class CharacterCreationView extends MenuView {
     public void cursorLeft() {
         if (selectedIndex == 1) {
             ((MenuOption)children.get(1)).left();
+            System.out.println("#####################################################################");
+            System.out.println(((MenuOption)children.get(1)).getCurrent());
+            avatarOccupation = ((MenuOption)children.get(1)).getCurrent();
+            System.out.println(this.avatarOccupation);
             this.occupationImage = (new ImageIcon(DECAL_PREFIX + ((MenuOption)children.get(1)).getCurrent() + "Decal.png")).getImage();
 
         }
@@ -150,6 +164,7 @@ public class CharacterCreationView extends MenuView {
     public void cursorRight() {
         if (selectedIndex == 1) {
             ((MenuOption)children.get(1)).right();
+            avatarOccupation = ((MenuOption)children.get(1)).getCurrent();
             this.occupationImage = (new ImageIcon(DECAL_PREFIX + ((MenuOption)children.get(1)).getCurrent() + "Decal.png")).getImage();
 
         }
