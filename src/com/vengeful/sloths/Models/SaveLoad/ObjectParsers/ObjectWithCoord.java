@@ -14,6 +14,11 @@ public class ObjectWithCoord {
         this.c = c;
     }
 
+    ObjectWithCoord(Object objectToPlace){
+        this.objectToPlace = objectToPlace;
+        c = null;
+    }
+
     public Object getObjectToPlace() {
         return objectToPlace;
     }
