@@ -164,6 +164,49 @@ public class EntityMapViewObject extends ViewObject
 		}
 	}
 
+	public void equipHat(String resourcePath) {
+		AnimatedImageFactory aif = AnimatedImageFactory.instance();
+		this.hatN = aif.createSingleFrameAnimatedImage(resourcePath + "North");
+		this.hatNE = aif.createSingleFrameAnimatedImage(resourcePath + "NorthEast");
+		this.hatNW = aif.createSingleFrameAnimatedImage(resourcePath + "NorthWest");
+		this.hatW = aif.createSingleFrameAnimatedImage(resourcePath + "West");
+		this.hatE = aif.createSingleFrameAnimatedImage(resourcePath + "East");
+		this.hatS = aif.createSingleFrameAnimatedImage(resourcePath + "South");
+		this.hatSE = aif.createSingleFrameAnimatedImage(resourcePath + "SouthEast");
+		this.hatSW = aif.createSingleFrameAnimatedImage(resourcePath + "SouthWest");
+
+
+		switch (this.facingDirection) {
+			case N:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "North");
+				break;
+			case E:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "East");
+				break;
+			case S:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "South");
+				break;
+			case W:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "West");
+				break;
+			case NE:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "NorthEast");
+				break;
+			case NW:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "NorthWest");
+				break;
+			case SE:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "SouthEast");
+				break;
+			case SW:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "SouthWest");
+				break;
+			default:
+				this.currentHatAnimation = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(resourcePath + "South");
+				break;
+		}
+	}
+
 	public EntityMapViewObject(int x, int y, CoordinateStrategy converter, String resourcePath, String walkingSoundPath, Direction facingDir) {
 		this.x = x;
 		this.y = y;
@@ -355,6 +398,17 @@ public class EntityMapViewObject extends ViewObject
 			this.equipWeapon("resources/64/Equipment/" + name);
 		} else {
 			this.equipWeapon("resources/Equipment/" + name);
+
+		}
+	}
+
+	@Override
+	public void alertEquipHat(String name) {
+		System.out.println("View Equipping " + name );
+		if (converter.getResolution() == 64) {
+			this.equipHat("resources/64/Equipment/" + name + "/" + name);
+		} else {
+			this.equipHat("resources/Equipment/" + name + "/"  + name);
 
 		}
 	}

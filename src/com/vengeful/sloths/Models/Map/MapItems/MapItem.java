@@ -37,6 +37,10 @@ public abstract class MapItem implements ViewObservable, Saveable {
         System.out.println("This is map object, my observer is: " + observer);
     }
 
+    public MapItemObserver getObserver(){
+        return this.observer;
+    }
+
 
     @Override
     public void registerObserver(ModelObserver modelObserver) {

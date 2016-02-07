@@ -50,4 +50,11 @@ public class ProxyEntityObserver extends ProxyObserver
             target.alertDrop(x,y,itemToDrop);
         }
     }
+
+    @Override
+    public void alertEquipHat(String name) {
+        if (!deleteFlag) {
+            target.alertEquipHat(name);
+        }
+    }
 }
