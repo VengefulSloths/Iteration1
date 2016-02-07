@@ -167,7 +167,6 @@ public class EntityStats extends Stats {
 
     public void saveMe(SaveManager sm, int ws){
         sm.writeClassLine(ws, "EntityStats");
-        super.saveMe(sm,ws);
         sm.writeVariableLine(ws, "livesLeft", ""+livesLeft ,false);
         sm.writeVariableLine(ws, "experience", ""+experience ,false);
         sm.writeVariableLine(ws, "level", ""+level ,false);
@@ -176,8 +175,8 @@ public class EntityStats extends Stats {
         sm.writeVariableLine(ws, "offensiveRating", ""+offensiveRating ,false);
         sm.writeVariableLine(ws, "defensiveRating", ""+defensiveRating ,false);
         sm.writeVariableLine(ws, "armorRating", ""+armorRating ,false);
-        sm.writeVariableLine(ws, "currentHealth", ""+currentHealth ,true);
-
+        sm.writeVariableLine(ws, "currentHealth", ""+currentHealth ,false);
+        super.saveMe(sm,ws);
     }
 
 }
