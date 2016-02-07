@@ -5,6 +5,7 @@ import com.vengeful.sloths.Controller.MainController;
 import com.vengeful.sloths.GameLauncher.LaunchGameTemplate;
 import com.vengeful.sloths.GameLauncher.LaunchNewGame;
 import com.vengeful.sloths.Models.ModelEngine;
+import com.vengeful.sloths.View.MainMenuView.CharacterCreationView;
 import com.vengeful.sloths.View.MainMenuView.DefaultMenuComponent;
 import com.vengeful.sloths.View.MainMenuView.MenuContainer;
 import com.vengeful.sloths.View.ViewEngine;
@@ -32,7 +33,10 @@ public class MenuCommandFactory {
         return new FocusTextCommand(textField, hack);
     }
 
-    public MenuCommand createlaunchGameCommand(ViewEngine ve, ModelEngine me, MainController cont){
-        return new LaunchGameCommand(ve, me, cont);
+
+    public MenuCommand createlaunchGameCommand(ViewEngine ve, ModelEngine me, MainController cont, CharacterCreationView view){
+
+        return new LaunchGameCommand(ve, me, cont, view, MENU);
+
     }
 }

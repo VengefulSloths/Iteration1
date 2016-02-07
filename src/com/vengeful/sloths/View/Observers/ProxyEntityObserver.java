@@ -57,4 +57,17 @@ public class ProxyEntityObserver extends ProxyObserver
             target.alertEquipHat(name);
         }
     }
+
+    @Override
+    public void alertLevelUp() {
+        if (!deleteFlag) {
+            target.alertLevelUp();
+        }
+    }
+    @Override
+    public void alertDeath() {
+        if (!deleteFlag) {
+            target.alertDeath();
+        }
+    }
 }
