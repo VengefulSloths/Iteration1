@@ -22,7 +22,7 @@ public class HealDamageAE extends AreaEffect{
 
     //This AE can only take effect on Avatar
     @Override
-    public EffectCommand createEffectCommand(Entity affectedEntity, Tile tile) {
+    public EffectCommand createEffectCommand(Entity affectedEntity) {
         if(affectedEntity instanceof Avatar)
             return new HealDamageAECommand(affectedEntity, this.health, affectedEntity.getLocation());
         else

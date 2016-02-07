@@ -22,4 +22,7 @@ public class Summoner extends Occupation {
 
         eStats.updateStats(1, 1, 2, 1, 0);
     }
+    public void saveMe() {
+        return;
+    }
 }

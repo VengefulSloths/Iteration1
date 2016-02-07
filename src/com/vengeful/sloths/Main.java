@@ -1,32 +1,32 @@
 package com.vengeful.sloths;
 
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 import com.vengeful.sloths.Controller.MainController;
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
 import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
 import com.vengeful.sloths.Models.Entity.Avatar;
+import com.vengeful.sloths.Models.Inventory.Equipped;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
-import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
-import com.vengeful.sloths.Models.Map.AreaEffects.TakeDamageAE;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
-import com.vengeful.sloths.Utility.Config;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
-import com.vengeful.sloths.View.InventoryView.EquipmentView;
+import com.vengeful.sloths.View.EquipmentView.EquipmentView;
+import com.vengeful.sloths.View.EquipmentView.ListEquipmentView;
+import com.vengeful.sloths.View.HUDView.HUDView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.MainMenuView.MainMenuView;
 import com.vengeful.sloths.View.MainMenuView.MenuView;
 import com.vengeful.sloths.View.StatsView.StatsView;
 import com.vengeful.sloths.View.ViewEngine;
 import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
-import com.vengeful.sloths.Models.Stats.*;
 
 public class Main {
 
@@ -35,7 +35,6 @@ public class Main {
         //create engine objects
         ViewEngine viewEngine = new ViewEngine();
         ModelEngine modelEngine = new ModelEngine();
-
 
 
         //Create the level
@@ -68,7 +67,7 @@ public class Main {
         /**** Take-able and InventoryItems need to be paired up when created */
 
         InventoryItem hat1 = new Hat("BluePartyHat");
-        InventoryItem hat2 = new Hat("BluePartyHat");
+        InventoryItem hat2 = new Hat("RedPartyHat");
         InventoryItem sword1 = new Sword("GodSword");
 
         MapItem mi1 = new TakeableItem(hat1);
@@ -88,9 +87,17 @@ public class Main {
         //ListInventoryView iv = new ListInventoryView(inventory, Config.instance().getInventoryViewWidth(), Config.instance().getInventoryViewHeight());
 
 
-        EquipmentView ev = new EquipmentView();
+        Equipped equipped = new Equipped();
+        avatar.setEquipped(equipped);
+        ListEquipmentView ev = new ListEquipmentView(equipped);
+
+
+
+
+        //EquipmentView ev = new EquipmentView();
         StatsView sv = new StatsView(avatar.getEntityStats());
-        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv);
+        HUDView hv = new HUDView();
+        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv, hv);
         
 
 
@@ -100,16 +107,20 @@ public class Main {
         MenuView mainMenuView = new MainMenuView();
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
+        controller.setMap(map);
 
         modelEngine.setController(controller);
         //set up engines
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);
 
+        System.out.println("HERE!");
 
         //start both threads
-        viewEngine.start();
-        modelEngine.start();
+            viewEngine.start();
+            modelEngine.start();
+
+
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
