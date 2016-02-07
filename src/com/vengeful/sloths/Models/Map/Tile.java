@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.Map;
 
+import com.vengeful.sloths.Models.Effects.EffectCommand;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.InteractiveItem;
@@ -80,7 +81,8 @@ public class Tile{
         Iterator<AreaEffect> aeIter = this.getAreaEffectIterator();
         while(aeIter.hasNext()){
             AreaEffect ae = aeIter.next();
-            ae.createEffectCommand(this.entity);
+            EffectCommand effect = ae.createEffectCommand(this.entity);
+            effect.execute();
             System.out.println("AE: " + ae);
         }
 

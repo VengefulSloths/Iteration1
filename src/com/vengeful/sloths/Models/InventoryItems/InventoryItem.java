@@ -9,7 +9,6 @@ import com.vengeful.sloths.Models.SaveLoad.Saveable;
  * Created by qianwen on 1/30/16.
  */
 public abstract class InventoryItem implements Saveable {
-
     private TakeableItem mapItemRep;
     protected String itemName;
 
@@ -33,9 +32,17 @@ public abstract class InventoryItem implements Saveable {
 
 
     public void saveMe(SaveManager sv, int ws){
-        mapItemRep.saveMeFromInv(sv, ws+1);
         sv.writeVariableLine(ws,"itemName", itemName, false);
+        mapItemRep.saveMeFromInv(sv, ws+1);
     }
 
     public abstract void saveMeFromTakeable(SaveManager sm, int ws);
+
+    public void setMapItemRep(TakeableItem mapItemRep) {
+        this.mapItemRep = mapItemRep;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
 }

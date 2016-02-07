@@ -18,6 +18,8 @@ public class EntityMapViewObject extends ViewObject
 
 	private Direction facingDirection;
 
+	private AnimatedImage levelUpAnimation;
+
 	private AnimatedImage walkingN;
 	private AnimatedImage walkingNE;
 	private AnimatedImage walkingE;
@@ -46,6 +48,7 @@ public class EntityMapViewObject extends ViewObject
 	private AnimatedImage hatNW;
 
 	private SoundEffect walkingSound;
+	private SoundEffect levelUpSound;
 
 	private AnimatedImage currentAnimation;
 	private AnimatedImage currentWeaponAnimation;
@@ -69,6 +72,9 @@ public class EntityMapViewObject extends ViewObject
 	private long _animationStartTime;
 	private long _animationFinishTime;
 	private long _animationTime;
+
+
+	private long levelUpStartTime = 0;
 
 	public void setWalkingN(AnimatedImage walkingN) {
 		this.walkingN = walkingN;
@@ -220,6 +226,7 @@ public class EntityMapViewObject extends ViewObject
 		this.converter = converter;
 
 		this.walkingSound = new SoundEffect(walkingSoundPath);
+		this.levelUpSound = new SoundEffect("resources/Audio/levelup.wav");
 
 		//setup all animations
 		AnimatedImageFactory aif = AnimatedImageFactory.instance();
@@ -250,8 +257,9 @@ public class EntityMapViewObject extends ViewObject
 		this.hatW = aif.createTimedAnimatedImage("nope");
 		this.hatNW = aif.createTimedAnimatedImage("nope");
 
+		this.levelUpAnimation = aif.createTimedAnimatedImage(resourcePath + "/levelup/LevelUp");
 
-		//equipWeapon("resources/Equipment/Dagger");
+				//equipWeapon("resources/Equipment/Dagger");
 
 		this.currentWeaponAnimation = aif.createSingleFrameAnimatedImage("nope");
 		this.currentHatAnimation = aif.createSingleFrameAnimatedImage("nope");
@@ -303,6 +311,8 @@ public class EntityMapViewObject extends ViewObject
 			g.drawImage(currentAnimation.getCurrentImage(animationStartTime), x, y, this);
 			g.drawImage(currentWeaponAnimation.getCurrentImage(animationStartTime), x, y, this);
 			g.drawImage(currentHatAnimation.getCurrentImage(animationStartTime), x, y, this);
+			g.drawImage(levelUpAnimation.getCurrentImage(levelUpStartTime), x, y, this);
+
 		}
 
 	}
@@ -411,5 +421,16 @@ public class EntityMapViewObject extends ViewObject
 			this.equipHat("resources/Equipment/" + name + "/"  + name);
 
 		}
+	}
+
+	@Override
+	public void alertLevelUp() {
+		this.levelUpStartTime = ViewTime.getInstance().getCurrentTimeMilli();
+		this.levelUpSound.play();
+	}
+
+	@Override
+	public void alertDeath() {
+
 	}
 }

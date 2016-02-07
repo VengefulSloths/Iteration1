@@ -15,6 +15,7 @@ public class MenuContainer extends JPanel implements MenuControllable{
     private MainMenuView mainMenuView;
     private CharacterCreationView characterCreationView;
     private NameView nameView;
+    private LoadingView loadingView;
     private JFrame ve;
     private MainController controller;
 
@@ -29,9 +30,11 @@ public class MenuContainer extends JPanel implements MenuControllable{
         this.mainMenuView = new MainMenuView();
         this.characterCreationView = new CharacterCreationView(ve, me, controller);
         this.nameView = new NameView(ve);
+        this.loadingView = new LoadingView();
         add(this.mainMenuView, "Main Menu");
         add(this.characterCreationView, "Character Creation");
         add(this.nameView, "Name Your Character");
+        add(this.loadingView, "Loading");
 
         this.currentMenuView = this.mainMenuView;
         setPreferredSize(new Dimension(Config.instance().getWindowWidth(), Config.instance().getWindowHeight()));
@@ -59,6 +62,11 @@ public class MenuContainer extends JPanel implements MenuControllable{
     public void goToNameView(){
         ((CardLayout) this.getLayout()).show(this, "Name Your Character");
         this.currentMenuView = nameView;
+    }
+    public void goToLoading(){
+        System.out.println("going to loading");
+        ((CardLayout) this.getLayout()).show(this, "Loading");
+        this.currentMenuView = loadingView;
     }
 
     @Override

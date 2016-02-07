@@ -3,6 +3,7 @@ package com.vengeful.sloths.Models.SaveLoad.ObjectParsers;
 import com.vengeful.sloths.Models.Inventory.Inventory;
 import com.vengeful.sloths.Models.SaveLoad.Loader;
 
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 /**
@@ -21,9 +22,41 @@ public class InventoryParser extends ObjectParser {
 
             String check = sc.nextLine();
             if(check.equals("}")){
-                //we have reached end of avater definition
-                //return avatar to loader
+                //we have reached end of Inventory definition
+                //inventory to object that called it
                 return inv;
+            }
+            else{
+                String[] line = check.split(":");
+                String varName = line[0].substring(0,1).toUpperCase() + line[0].substring(1);
+                String varValue = line[1];
+                if(varValue.equals("{")){
+                    //looking to create a new object parser based on the varName
+                    ObjectParser op = ops.ObjectParserFactory(varName);
+                    Object o = op.Parse();
+
+                    // Convert first char in var name to uppercase to find the correct setter
+                    varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
+                    String methodName = "set"+varName;
+                    try{
+                        Method method = inv.getClass().getMethod(methodName, o.getClass());
+                        method.invoke(inv, o);
+                    }catch (Exception e){
+                        System.out.println("Error with creating setter avatar method");
+                    }
+                }
+                else{
+                    // Convert first char in var name to uppercase to find the correct setter
+                    varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
+                    String methodName = "set"+varName;
+                    int param = Integer.parseInt(varValue);
+                    try{
+                        Method method = inv.getClass().getMethod(methodName, int.class);
+                        method.invoke(inv, param);
+                    }catch (Exception e){
+                        System.out.println("Error with creating setter avatar method");
+                    }
+                }
             }
         }
         return inv;

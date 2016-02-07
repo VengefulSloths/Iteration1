@@ -4,6 +4,7 @@ import com.vengeful.sloths.Models.Effects.EffectCommand;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Utility.Coord;
 
 /**
@@ -24,6 +25,12 @@ public abstract class InteractiveItem extends MapItem {
 
 
     public abstract void interact(Entity entity);
+
+    public void saveMe(SaveManager sm, int ws){
+        sm.writeVariableLine(ws, "name", name, false);
+        //command.saveMe(sm, ws);
+        super.saveMe(sm, ws);
+    }
 
 
 

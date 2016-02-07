@@ -13,10 +13,15 @@ public class Sword extends EquippableItems {
     //    super(swordName, b);
     //}
 
-    public Sword(String swordName){
+    public Sword(){
+
+    }
+
+    public Sword(String swordName, BaseStats stats){
         super(swordName);
         //this.itemStats.setStats(10,0,0,0,0); //currently causes error
-        this.itemStats.setStats(0,0,0,10,0);
+        this.itemStats.setStats(stats.getStrength(), stats.getAgility(), stats.getIntellect(), stats.getHardiness(), stats.getMovement());
+
 
     }
     public void saveMe(SaveManager sv, int ws){

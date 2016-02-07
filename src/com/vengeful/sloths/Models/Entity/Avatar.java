@@ -120,7 +120,8 @@ public class Avatar extends Entity {
 
             }
         }
-
+        entityStats.updateStats(((EquippableItems) item).getItemStats());
+        entityStats.alertObservers();
         return true;
     }
 
@@ -142,6 +143,8 @@ public class Avatar extends Entity {
 
             }
         }
+        entityStats.revertStats(((EquippableItems) item).getItemStats());
+        entityStats.alertObservers();
         return true;
     }
 
@@ -170,6 +173,11 @@ public class Avatar extends Entity {
         // Let occupation know level is increased, then levelUp occ and base stats
         occupation.levelUp(entityStats);
         entityStats.alertObservers();
+
+        Iterator<EntityObserver> iter = entityObservers.iterator();
+        while(iter.hasNext()) {
+            iter.next().alertLevelUp();
+        }
     }
 
     public void gainXP(int xp) {

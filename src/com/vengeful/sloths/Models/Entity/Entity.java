@@ -70,6 +70,7 @@ public abstract class Entity implements ViewObservable, Saveable{
                 this.occupation = new Smasher();
                 break;
             case "Sneak":
+                System.out.println("sneak selected");
                 this.occupation = new Sneak();
                 break;
             case "Summoner":
@@ -108,6 +109,10 @@ public abstract class Entity implements ViewObservable, Saveable{
 
     public Inventory getInventory(){
         return this.inventory;
+    }
+
+    public Equipped getEquipped(){
+        return this.equipped;
     }
 
 

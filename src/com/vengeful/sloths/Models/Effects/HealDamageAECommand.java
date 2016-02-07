@@ -15,7 +15,7 @@ public class HealDamageAECommand extends EffectCommand{
         this.entity = entity;
         this.health = health;
         this.currentLoc = currentLoc;
-        TimeModel.getInstance().registerAlertable(this, 0);
+        //TimeModel.getInstance().registerAlertable(this, 0);
         //When AE created 1st time, ticks = 0 (immediate effect). After that, tick at a fixed interval
     }
 

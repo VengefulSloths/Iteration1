@@ -11,7 +11,7 @@ public class InstantDeathAECommand extends EffectCommand{
 
     public InstantDeathAECommand(Entity entity){
         this.entity = entity;
-        TimeModel.getInstance().registerAlertable(this, 0);
+        //TimeModel.getInstance().registerAlertable(this, 0);
     }
 
     @Override
