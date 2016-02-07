@@ -71,6 +71,7 @@ public class AreaView extends View
 			//Deregister current camera view!!!
 			ObserverManager.instance().flagForDelete(currentCameraView);
 			currentCameraView = cameraViewManager.getCameraView(playerX, playerY, this.playerModel);
+			//System.out.println("====================== NEW CAMERA ====================");
 			mapViewObjectManager.clear();
 			currentCameraView.populate(mapViewObjectManager);
 			changeCameraFlag = false;

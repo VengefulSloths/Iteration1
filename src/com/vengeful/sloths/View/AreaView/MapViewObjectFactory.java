@@ -89,6 +89,9 @@ public abstract class MapViewObjectFactory {
         ObserverManager.instance().addProxyObserver(pmio);
 
 
+        //System.out.println("MAP VIEW OBJECT CREATED: " + mapItem.getClass().getSimpleName());
+
+
         return itemViewObject;
     }
     public abstract Iterator<TerrainMapViewObject> createPrettyTerrain(Map map, int xMin, int yMin, int width, int height);

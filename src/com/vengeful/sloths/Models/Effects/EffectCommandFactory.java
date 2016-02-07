@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Utility.Coord;
+import com.vengeful.sloths.Models.Map.Tile;
 
 /**
  * Created by qianwen on 2/6/16.
@@ -38,8 +39,8 @@ public class EffectCommandFactory {
     }
 
 
-    public EffectCommand createDestroyObstacleCommand(MapItem obstacle){
-        return new DestroyObstacleCommand(obstacle);
+    public EffectCommand createDestroyObstacleCommand(MapItem obstacle, Tile tile){
+        return new DestroyObstacleCommand(obstacle, tile);
     }
 
     public EffectCommand createAECreationCommand(AreaEffect ae, Coord coord){

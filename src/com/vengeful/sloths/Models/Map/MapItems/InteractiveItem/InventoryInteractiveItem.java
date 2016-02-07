@@ -5,7 +5,7 @@ import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 
 /**
- * Created by luluding on 2/6/16.
+ * Created by qianwen on 2/6/16.
  */
 public class InventoryInteractiveItem extends InteractiveItem{
 
@@ -18,6 +18,8 @@ public class InventoryInteractiveItem extends InteractiveItem{
 
     @Override
     public void interact(Entity entity) {
+        System.out.println("INTERACTIVEITEM OBSERVER" + this.observer);
+
         this.observer.alertActivated();
         if(entity.getInventory().hasItem(requiredItem)){
             command.execute();
