@@ -1,56 +1,47 @@
-package com.vengeful.sloths.Models.SaveLoad;
+package com.vengeful.sloths.Models.SaveLoad.ObjectParsers;
 
 import com.vengeful.sloths.Models.Entity.Avatar;
+import com.vengeful.sloths.Models.SaveLoad.Loader;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Scanner;
 
 /**
- * Created by icavitt on 2/6/2016.
+ * Created by icavitt on 2/7/2016.
  */
-public class ObjectParser {
-    private Scanner sc;
-    String objectName;
+public class AvatarParser extends ObjectParser{
 
-    public ObjectParser(String objectName, Scanner sc){
+    public AvatarParser(String objectName, Scanner sc, Loader l,ObjectParserFactory ops){
         this.sc = sc;
         this.objectName = objectName;
+        this.l  = l;
+        this.ops = ops;
+        Parse();
     }
 
-    public Object beginParsing()
-    {
-        if(objectName.equals("Avatar")){
-            return createAndParseAvatar();
-        }
-        else if(objectName.equals("null for now")){
-            //do stuff
-        }
-        else{
-            System.out.println("Object Parser cant identify the object");
-            return null;
-        }
-        return null;
-    }
-
-   public Avatar createAndParseAvatar(){
-       Avatar avatar = new Avatar();
+    public Avatar Parse(){
+        Avatar avatar = new Avatar();
         while(sc.hasNext()){
             String check = sc.nextLine();
             if(check.equals("}")){
-                //do the return logic
+                //we have reached end of avater definition
+                //return avatar to loader
+                l.avatar = avatar;
             }
             else{
-                String[] line = sc.nextLine().split(":");
+                String[] line = check.split(":");
                 String varName = line[0];
                 String varValue = line[1];
+                if(varValue.equals("}")){
+                    //looking to create a new object parser based on the varName
+
+                }
                 if(varName.equals("name"))
                 {
                     avatar.setName(varValue);
                 }
-                if(varName.equals("Direction")){
+                else if(varName.equals("Direction")){
                     if(varValue.equals("N")){
                         avatar.setFacingDirection(Direction.N);
                     }else if(varValue.equals("NE")){
@@ -69,15 +60,16 @@ public class ObjectParser {
                         avatar.setFacingDirection(Direction.SW);
                     }
                 }
-                if(varName.equals("Coord")){
-                    Scanner s = new Scanner(varValue);
-                    int x = s.nextInt();
-                    int y = s.nextInt();
+                else if(varName.equals("Coord")){
+
+                    int x = Character.getNumericValue(varValue.charAt(1));
+                    int y = Character.getNumericValue(varValue.charAt(3));
                     Coord c = new Coord(x,y);
                     avatar.setLocation(c);
+
                 }
             }
         }
-       return avatar;
+        return avatar;
     }
 }

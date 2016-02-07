@@ -2,6 +2,8 @@ package com.vengeful.sloths.Models.SaveLoad;
 
 
 import com.vengeful.sloths.Models.Entity.Avatar;
+import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectParser;
+import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectParserFactory;
 
 import java.io.File;
 import java.util.Scanner;
@@ -12,6 +14,7 @@ import java.util.Scanner;
 public class Loader {
     private File f;
     private Scanner sc;
+    ObjectParserFactory ops;
     //containers that hold everything being loaded
     public Avatar avatar = null;
 
@@ -23,6 +26,8 @@ public class Loader {
         }catch(Exception e){
             System.out.println("issue creating scanner for loading from save file");
         }
+        ops = new ObjectParserFactory(sc, this);
+        loadIntoContainers();
     }
 
     public void loadIntoContainers()
@@ -32,8 +37,7 @@ public class Loader {
             String s = sc.nextLine();
             String[] line = s.split(":");
             String className = line[0];
-            ObjectParser op = new ObjectParser(className, sc);
-            op.beginParsing();
+            ops.ObjectParserFactory(className);
         }
     }
 
