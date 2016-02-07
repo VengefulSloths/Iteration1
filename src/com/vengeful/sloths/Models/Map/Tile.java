@@ -130,8 +130,9 @@ public class Tile{
                 }
             }
             for (MapItem td : toDestroy) {
-                td.destroy();
-                mapItems.remove(td);
+                    td.destroy();
+                    mapItems.remove(td);
+
             }
 
             //Remove destroyed AE
