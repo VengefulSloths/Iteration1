@@ -21,6 +21,8 @@ public class ObjectParserFactory {
     {
         if(className.equals("Avatar")){
             return new AvatarParser(className, sc, l, this);
+        }else if(className.equals("Inventory")){
+            return new InventoryParser(className, sc, l, this);
         }
         return null;
     }

@@ -29,6 +29,7 @@ public class AvatarParser extends ObjectParser{
                 //we have reached end of avater definition
                 //return avatar to loader
                 l.avatar = avatar;
+                return avatar;
             }
             else{
                 String[] line = check.split(":");
@@ -40,8 +41,8 @@ public class AvatarParser extends ObjectParser{
                     Object o = op.Parse();
                     String methodName = "set"+varName;
                     try{
-                        Method method = avatar.getClass().getMethod(methodName);
-                        method.invoke(avatar, varName);
+                        Method method = avatar.getClass().getMethod(methodName, o.getClass());
+                        method.invoke(avatar, o);
                     }catch (Exception e){
                         System.out.println("Error with creating setter avatar method");
                     }
