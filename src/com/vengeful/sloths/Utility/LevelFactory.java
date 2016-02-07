@@ -16,6 +16,7 @@ import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.MapItems.Obstacle;
 import com.vengeful.sloths.Models.Map.Terrains.Mountain;
 import com.vengeful.sloths.Models.Map.Terrains.Water;
+import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.View.AreaView.Cameras.*;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 import com.vengeful.sloths.View.AreaView.DesertMapViewObjectFactory;
@@ -88,9 +89,9 @@ public class LevelFactory {
         /* Testing pick up item */
 
         //MapItem mapItem1 = new TakeableItem(new Hat("BluePartyHat"));
-        MapItem testWeapon = new TakeableItem(new Sword("Dagger"));
+        MapItem testWeapon = new TakeableItem(new Sword("Dagger", new BaseStats(10,0,0,0,0)));
         MapItem testHat = new TakeableItem(new Hat("SpartanHat"));
-        MapItem wand = new TakeableItem(new Sword("Wand"));
+        MapItem wand = new TakeableItem(new Sword("Wand", new BaseStats(0,0,10,0,0)));
         map.getTile(new Coord(3,2)).addMapItem(testWeapon);
         map.getTile(new Coord(3,4)).addMapItem(testHat);
         map.getTile(new Coord(1,3)).addMapItem(wand);

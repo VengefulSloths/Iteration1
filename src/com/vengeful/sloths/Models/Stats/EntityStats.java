@@ -48,8 +48,9 @@ public class EntityStats extends Stats {
     private void updateStats() {
         //livesLeft
         //experience
-
+        //int oldLife = life;
         life = calculateLife();
+        //this.setCurrentHealth( currentHealth + (life - oldLife));
         mana = calculateMana();
         offensiveRating = calculateOffensiveRating();
         defensiveRating = calculateDefensiveRating();
@@ -58,44 +59,48 @@ public class EntityStats extends Stats {
     }
 
     private int calculateLife() {
-        double factor = hardiness / 50.0;
-        double levelFactor = level / 50.0;
-        return 10 + ((int)(life * factor)) + ((int)(life * levelFactor));
+        double factor = hardiness / 5.0;
+        double levelFactor = level / 5.0;
+        return 10 + ((int)(1 * factor)) + ((int)(1 * levelFactor));
     }
 
     private int calculateMana() {
-        double factor = intellect / 50.0;
-        double levelFactor = level / 50.0;
-        return 10 + ((int)(mana * factor)) + ((int)(mana * levelFactor));
+        double factor = intellect / 5.0;
+        double levelFactor = level / 5.0;
+        return 10 + ((int)(1 * factor)) + ((int)(1 * levelFactor));
     }
 
     private int calculateOffensiveRating() {
-        double factor = strength / 50.0;
-        double levelFactor = level / 50.0;
+        double factor = strength / 5.0;
+        double levelFactor = level / 5.0;
         // FACTOR IN EQUIPPED ARMOR!
-        return offensiveRating + ((int)(offensiveRating * factor)) + ((int)(offensiveRating * levelFactor));
+        return 1 + ((int)(1 * factor)) + ((int)(1 * levelFactor));
     }
 
     private int calculateDefensiveRating() {
-        double factor = agility / 50.0;
-        double levelFactor = level / 50.0;
-        return defensiveRating + ((int)(defensiveRating * factor)) + ((int)(defensiveRating * levelFactor));
+        double factor = agility / 5.0;
+        double levelFactor = level / 5.0;
+        return 1 + ((int)(1 * factor)) + ((int)(1 * levelFactor));
     }
 
     private int calculateArmorRating() {
-        double factor = hardiness / 50.0;
-        double levelFactor = level / 50.0;
+        double factor = hardiness / 5.0;
+        System.out.println("this is hardiness" + hardiness);
+        double levelFactor = level / 5.0;
         // FACTOR IN EQUIPPED ARMOR!
-        return armorRating + ((int)(armorRating * factor)) + ((int)(armorRating * levelFactor));
+        return 1 + ((int)(1 * factor)) + ((int)(1 * levelFactor));
     }
 
     public void levelUp() {
         level++;
     }
 
-    public void updateStats(int strength, int agility, int intellect, int hardiness, int movement) {
-        super.updateStats(strength, agility, intellect, hardiness, movement);
-
+    public void updateStats(BaseStats stats) {
+        super.updateStats(stats.getStrength(), stats.getAgility(), stats.getIntellect(), stats.getHardiness(), stats.getMovement());
+        updateStats();
+    }
+    public void revertStats(BaseStats stats) {
+        super.revertStats(stats.getStrength(), stats.getAgility(), stats.getIntellect(), stats.getHardiness(), stats.getMovement());
         updateStats();
     }
 

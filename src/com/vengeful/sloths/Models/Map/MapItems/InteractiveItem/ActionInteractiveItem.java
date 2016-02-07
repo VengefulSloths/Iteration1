@@ -3,6 +3,7 @@ package com.vengeful.sloths.Models.Map.MapItems.InteractiveItem;
 import com.vengeful.sloths.Models.Effects.EffectCommand;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.Quest.*;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 
 /**
  * Created by luluding on 2/6/16.
@@ -27,5 +28,10 @@ public class ActionInteractiveItem extends InteractiveItem{
         }
 
 
+    }
+
+    public void saveMe(SaveManager sm, int ws){
+        sm.writeClassLine(ws, "ActionInteractiveItem");
+        super.saveMe(sm ,ws);
     }
 }

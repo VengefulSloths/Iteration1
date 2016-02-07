@@ -63,6 +63,13 @@ public abstract class Stats implements ViewObservable, Saveable{
         this.hardiness += hardiness;
         this.movement += movement;
     }
+    public void revertStats(int strength, int agility, int intellect, int hardiness, int movement) {
+        this.strength -= strength;
+        this.agility -= agility;
+        this.intellect -= intellect;
+        this.hardiness -= hardiness;
+        this.movement -= movement;
+    }
 
     public void setStats(int str, int agil, int intel, int hardi, int move){
         this.strength = str;
@@ -70,6 +77,26 @@ public abstract class Stats implements ViewObservable, Saveable{
         this.intellect = intel;
         this.hardiness = hardi;
         this.movement = move;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setAgility(int agility) {
+        this.agility = agility;
+    }
+
+    public void setIntellect(int intellect) {
+        this.intellect = intellect;
+    }
+
+    public void setHardiness(int hardiness) {
+        this.hardiness = hardiness;
+    }
+
+    public void setMovement(int movement) {
+        this.movement = movement;
     }
 
     @Override
