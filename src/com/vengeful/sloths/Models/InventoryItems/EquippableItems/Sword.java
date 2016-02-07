@@ -24,4 +24,8 @@ public class Sword extends EquippableItems {
         super.saveMe(sv, ws);
         sv.writeCloseBracket(ws);
     }
+    public void saveMeFromTakeable(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "Sword");
+        super.saveMeFromTakeable(sm, ws);
+    }
 }

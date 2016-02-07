@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Effects.InstantDeathAECommand;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.*;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 
 /**
  * Created by luluding on 2/5/16.
@@ -22,5 +23,9 @@ public class InstantDeathAE extends AreaEffect {
             return new InstantDeathAECommand(affectedEntity);
         }else
             return null;
+    }
+
+    public void saveMe(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "InstantDeathAE");
     }
 }

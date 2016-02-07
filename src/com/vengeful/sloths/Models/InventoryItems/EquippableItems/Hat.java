@@ -27,4 +27,10 @@ public class Hat extends EquippableItems {
         sv.writeCloseBracket(ws);
     }
 
+    @Override
+    public void saveMeFromTakeable(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "Hat");
+        super.saveMeFromTakeable(sm, ws);
+    }
+
 }

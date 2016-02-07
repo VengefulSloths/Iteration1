@@ -100,6 +100,7 @@ public class SaveManager {
                     ++i;
                 }
                 bw.write("}");
+                bw.newLine();
             }
             bw.flush();
         }catch (IOException e){

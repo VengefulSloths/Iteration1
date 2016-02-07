@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Effects.LevelUpAECommand;
 import com.vengeful.sloths.Models.Effects.TakeDamageAECommand;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.*;
 import com.vengeful.sloths.View.Observers.ModelObserver;
@@ -27,6 +28,10 @@ public class LevelUpAE extends AreaEffect{
         }
         else
             return null;
+    }
+
+    public void saveMe(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "LevelUpAE");
     }
 
 }

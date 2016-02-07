@@ -34,4 +34,10 @@ public abstract class EquippableItems extends InventoryItem implements Saveable 
         itemStats.saveMe(sv, ws+1);
     }
 
+    public void saveMeFromTakeable(SaveManager sm, int ws)
+    {
+        itemStats.saveMe(sm, ws+1);
+        sm.writeVariableLine(ws, "itemName", itemName, true);
+    }
+
 }

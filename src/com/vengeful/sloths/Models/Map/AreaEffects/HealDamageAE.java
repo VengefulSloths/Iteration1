@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Effects.HealDamageAECommand;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.*;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 
 /**
  * Created by luluding on 2/5/16.
@@ -27,5 +28,12 @@ public class HealDamageAE extends AreaEffect{
             return new HealDamageAECommand(affectedEntity, this.health, affectedEntity.getLocation());
         else
             return null;
+    }
+
+    @Override
+    public void saveMe(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "HealingDamageAE");
+        String h = "" + health;
+        sm.writeVariableLine(ws, "health", h, false);
     }
 }

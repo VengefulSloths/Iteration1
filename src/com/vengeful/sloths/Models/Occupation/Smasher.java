@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.Occupation;
 
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 
 /**
@@ -23,7 +24,8 @@ public class Smasher extends Occupation {
         eStats.updateStats(2, 1, 1, 1, 0);
     }
 
-    public void saveMe() {
-        return;
+    public void saveMe(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "Smasher");
+        sm.writeCloseBracket(ws);
     }
 }

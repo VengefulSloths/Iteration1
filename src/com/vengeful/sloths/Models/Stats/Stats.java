@@ -82,8 +82,12 @@ public abstract class Stats implements ViewObservable, Saveable{
         this.statsObservers.remove((StatsObserver) modelObserver);
     }
 
-    public void saveMe(SaveManager sv, int ws) {
-        System.out.println("Saving: " + this.toString());
+    public void saveMe(SaveManager sm, int ws){
+        sm.writeVariableLine(ws,"strength", ""+strength, false );
+        sm.writeVariableLine(ws,"agility", ""+agility, false );
+        sm.writeVariableLine(ws,"intellect", ""+ intellect, false );
+        sm.writeVariableLine(ws,"hardiness", ""+ hardiness, false );
+        sm.writeVariableLine(ws,"movement", ""+ movement, false );
     }
 
     public void alertObservers(){

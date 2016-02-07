@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.Map;
 
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.SaveLoad.Saveable;
 
 /**
@@ -8,7 +9,8 @@ import com.vengeful.sloths.Models.SaveLoad.Saveable;
 public class Decal implements Saveable{
 
     @Override
-    public void saveMe() {
-
+    public void saveMe(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "Decal");
+        sm.writeCloseBracket(ws);
     }
 }
