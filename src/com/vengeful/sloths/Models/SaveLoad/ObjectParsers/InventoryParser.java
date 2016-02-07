@@ -16,7 +16,17 @@ public class InventoryParser extends ObjectParser {
 
     @Override
     public Inventory Parse() {
-        return new Inventory();
+        Inventory inv = new Inventory();
+        while(sc.hasNext()){
+
+            String check = sc.nextLine();
+            if(check.equals("}")){
+                //we have reached end of avater definition
+                //return avatar to loader
+                return inv;
+            }
+        }
+        return inv;
     }
 
 

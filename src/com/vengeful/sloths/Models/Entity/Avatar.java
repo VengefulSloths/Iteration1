@@ -226,4 +226,8 @@ public class Avatar extends Entity {
         sv.writeVariableLine(ws, "name", name, false);
         sv.writeVariableLine(ws,"Direction", facingDirection.toString(), false);
     }
+
+    /*public void setInventory(Inventory inv) {
+        this.inventory = inv;
+    }*/
 }
