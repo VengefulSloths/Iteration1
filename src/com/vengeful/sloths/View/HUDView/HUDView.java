@@ -39,9 +39,9 @@ public class HUDView extends View implements StatsObserver {
 
     private Stats stats;
 
-    private JProgressBar HealthBar;
-    private JProgressBar ManaBar;
     private JProgressBar healthBar;
+    private JProgressBar mannaBar;
+    private JProgressBar xpBar;
 
 
     public HUDView() {
@@ -81,6 +81,8 @@ public class HUDView extends View implements StatsObserver {
         this.add(this.centerPanel, BorderLayout.CENTER);
         this.add(this.rightPanel, BorderLayout.EAST);
         this.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK, Color.BLACK));
+        //setBars();
+
 
     }
 
@@ -117,7 +119,7 @@ public class HUDView extends View implements StatsObserver {
         healthPanel.setBackground(new Color(0f,0f,0f,0f));
         //healthPanel.setPreferredSize(new Dimension((int) (centerSubPanelWidth), (int) (0.15*subPanelHeight)));
         healthBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
-        healthBar.setValue(80);
+        //healthBar.setValue(100);
         healthBar.setBackground(Color.DARK_GRAY);
         healthBar.setStringPainted(true);
         healthBar.setForeground(Color.GREEN);
@@ -129,27 +131,27 @@ public class HUDView extends View implements StatsObserver {
         JPanel mannaPanel = new JPanel();
         JLabel mannaLabel = new JLabel("     Manna: ");
         mannaPanel.setBackground(new Color(0f,0f,0f,0f));
-        JProgressBar manna = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
-        manna.setValue(40);
-        manna.setBackground(Color.DARK_GRAY);
-        manna.setStringPainted(true);
-        manna.setForeground(Color.BLUE);
-        manna.setPreferredSize(new Dimension((int) (0.6*centerSubPanelWidth), (int) (0.12*subPanelHeight)));
+        mannaBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
+        //mannaBar.setValue(100);
+        mannaBar.setBackground(Color.DARK_GRAY);
+        mannaBar.setStringPainted(true);
+        mannaBar.setForeground(Color.BLUE);
+        mannaBar.setPreferredSize(new Dimension((int) (0.6*centerSubPanelWidth), (int) (0.12*subPanelHeight)));
         mannaPanel.add(mannaLabel);
-        mannaPanel.add(manna);
+        mannaPanel.add(mannaBar);
         this.centerPanel.add(mannaPanel);
 
         JPanel xpPanel = new JPanel();
         JLabel xpLabel = new JLabel("XP Points:");
         xpPanel.setBackground(new Color(0f,0f,0f,0f));
-        JProgressBar xp = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
-        xp.setValue(60);
-        xp.setBackground(Color.DARK_GRAY);
-        xp.setStringPainted(true);
-        xp.setForeground(Color.ORANGE);
-        xp.setPreferredSize(new Dimension((int) (0.6*centerSubPanelWidth), (int) (0.12*subPanelHeight)));
+        xpBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
+        //xpBar.setValue(0);
+        xpBar.setBackground(Color.DARK_GRAY);
+        xpBar.setStringPainted(true);
+        xpBar.setForeground(Color.ORANGE);
+        xpBar.setPreferredSize(new Dimension((int) (0.6*centerSubPanelWidth), (int) (0.12*subPanelHeight)));
         xpPanel.add(xpLabel);
-        xpPanel.add(xp);
+        xpPanel.add(xpBar);
         this.centerPanel.add(xpPanel);
 
     }
@@ -216,6 +218,16 @@ public class HUDView extends View implements StatsObserver {
         double health = ((double)((EntityStats) stats).getCurrentHealth()) / ((double)((EntityStats)stats).getLife());
         System.out.println(health);
         healthBar.setValue((int)(health*100));
+
+        double manna = ((double)((EntityStats) stats).getCurrentMana()) / ((double)((EntityStats)stats).getMana());
+        System.out.println("This is manna:" + manna);
+        mannaBar.setValue((int)(manna*100));
+
+        double xp = ((double)((EntityStats) stats).getXP()) / ((double)((EntityStats)stats).getRequiredLevelXP());
+        System.out.println("This is xp:" + xp);
+        xpBar.setValue((int)(xp*100));
+
+
     }
 
     }

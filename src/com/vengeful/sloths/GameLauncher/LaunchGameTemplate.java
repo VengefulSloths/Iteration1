@@ -87,6 +87,7 @@ public abstract class LaunchGameTemplate {
         this.vm = new DefaultViewManager(av, iv, ev, sv, hv);
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);
+        avatar.getEntityStats().alertObservers();
     }
 
     private void setUpController(){
