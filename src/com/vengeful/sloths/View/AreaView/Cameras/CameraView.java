@@ -89,5 +89,12 @@ public abstract class CameraView implements EntityObserver {
 	public void alertEquipHat(String name) {
 
 	}
+	@Override
+	public void alertLevelUp() {
 
+	}
+	@Override
+	public void alertDeath() {
+
+	}
 }

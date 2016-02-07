@@ -33,8 +33,10 @@ public class MenuCommandFactory {
         return new FocusTextCommand(textField, hack);
     }
 
+
     public MenuCommand createlaunchGameCommand(ViewEngine ve, ModelEngine me, MainController cont, CharacterCreationView view){
 
-        return new LaunchGameCommand(ve, me, cont, view);
+        return new LaunchGameCommand(ve, me, cont, view, MENU);
+
     }
 }
