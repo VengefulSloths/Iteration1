@@ -6,7 +6,7 @@ import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 
 /**
- * Created by luluding on 2/6/16.
+ * Created by qianwen on 2/6/16.
  */
 public class InventoryInteractiveItem extends InteractiveItem{
 
@@ -19,8 +19,10 @@ public class InventoryInteractiveItem extends InteractiveItem{
 
     @Override
     public void interact(Entity entity) {
+        System.out.println("INTERACTIVEITEM OBSERVER" + this.observer);
+
         this.observer.alertActivated();
-        if(entity.getInventory().hasItem(requiredItem)){
+        if(entity.getInventory().hasItem(requiredItem) || entity.getEquipped().getSword().equals(requiredItem) || entity.getEquipped().getHat().equals(requiredItem)){
             command.execute();
         }
     }

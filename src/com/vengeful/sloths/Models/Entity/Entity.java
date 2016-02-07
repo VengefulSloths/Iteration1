@@ -110,6 +110,10 @@ public abstract class Entity implements ViewObservable, Saveable{
         return this.inventory;
     }
 
+    public Equipped getEquipped(){
+        return this.equipped;
+    }
+
 
     public boolean isMoving() {
         return isMoving;

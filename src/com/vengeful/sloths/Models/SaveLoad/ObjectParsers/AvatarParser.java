@@ -39,6 +39,10 @@ public class AvatarParser extends ObjectParser{
                     //looking to create a new object parser based on the varName
                     ObjectParser op = ops.ObjectParserFactory(varName);
                     Object o = op.Parse();
+
+                    // Convert first char in var name to uppercase to find the correct setter
+                    varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
+
                     String methodName = "set"+varName;
                     try{
                         Method method = avatar.getClass().getMethod(methodName, o.getClass());

@@ -20,7 +20,7 @@ public class Loader {
 
     public Loader()
     {
-        f = new File("resources\\save\\save.txt");
+        f = new File("resources" + File.separator + "save" + File.separator + "save.txt");
         try{
             sc = new Scanner(f);
         }catch(Exception e){

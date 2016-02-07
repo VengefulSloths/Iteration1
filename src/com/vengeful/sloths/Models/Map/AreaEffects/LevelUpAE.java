@@ -26,6 +26,10 @@ public class LevelUpAE extends AreaEffect{
         if(affectedEntity instanceof Avatar) {
             this.destory = true; //show be destroyed as soon as activated once
             //return new LevelUpAECommand(affectedEntity, this);
+            //EffectCommand levelUpCMD = this.commandFactory.createLevelUpAECommand(affectedEntity, this);
+
+            //levelUpCMD.execute();
+            //return levelUpCMD;
             return this.commandFactory.createLevelUpAECommand(affectedEntity, this);
         }
         else
