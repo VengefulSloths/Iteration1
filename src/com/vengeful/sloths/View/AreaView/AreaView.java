@@ -110,4 +110,9 @@ public class AreaView extends View
 	@Override
 	public void alertEquipWeapon(String name) {
 	}
+
+	@Override
+	public void alertEquipHat(String name) {
+
+	}
 }

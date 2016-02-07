@@ -177,7 +177,7 @@ public class AvatarState extends MainControllerState{
         }
     }
     public void handleRelease9Key(){
-        if(directionState == Direction.NW)
+        if(directionState == Direction.NE)
         {
             setMovingState(false);
         }
