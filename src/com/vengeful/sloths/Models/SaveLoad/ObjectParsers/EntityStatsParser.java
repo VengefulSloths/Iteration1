@@ -8,8 +8,8 @@ import java.util.Scanner;
 /**
  * Created by zach on 2/7/16.
  */
-public class EntityStatsParser extends ObjectParser {
 
+public class EntityStatsParser extends ObjectParser {
     public EntityStatsParser(String objectName, Scanner sc, Loader l, ObjectParserFactory ops){
         this.sc = sc;
         this.objectName = objectName;
@@ -17,7 +17,7 @@ public class EntityStatsParser extends ObjectParser {
         this.ops = ops;
     }
 
-    public EntityStats Parse(){
+    public EntityStats Parse() {
         EntityStats entityStats = new EntityStats();
         while(sc.hasNext()){
             String check = sc.nextLine();
