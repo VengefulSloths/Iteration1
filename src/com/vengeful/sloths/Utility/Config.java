@@ -20,7 +20,7 @@ public class Config {
     protected static final double STATS_VIEW_WIDTH_PROPORTION = 1.0;
     protected static final double STATS_VIEW_HEIGHT_PROPORTION = .25;
     protected static final double HUD_VIEW_WIDTH_PROPORTION = 1.0;
-    protected static final double HUD_VIEW_HEIGHT_PROPORTION = .30;
+    protected static final double HUD_VIEW_HEIGHT_PROPORTION = .23;
 
 
     protected static final int SIDE_PANEL_WIDTH = (int) (SIDE_PANEL_WIDTH_PROPORTION * WINDOW_WIDTH);
@@ -42,8 +42,8 @@ public class Config {
 
 
 
-    public final int INVENTORY_IMAGE_HEIGHT = 18; //increment the y positions by height + 24
-    public final int INVENTORY_IMAGE_WIDTH = 18;
+    public final int INVENTORY_IMAGE_HEIGHT = 20; //increment the y positions by height + 24
+    public final int INVENTORY_IMAGE_WIDTH = 20; //original was 18x18
 
 
     public int getWindowWidth() {

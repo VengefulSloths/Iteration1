@@ -81,6 +81,7 @@ public class Main {
         avatar.addItem(((TakeableItem)mi1).getInvItemRep());
         avatar.addItem(((TakeableItem)mi2).getInvItemRep());
         avatar.addItem(((TakeableItem)mi3).getInvItemRep());
+
         //TODO: a new factory for creating takable item + inventory item?
 
 
