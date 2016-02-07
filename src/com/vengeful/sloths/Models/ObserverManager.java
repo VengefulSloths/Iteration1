@@ -53,6 +53,5 @@ public class ObserverManager implements Alertable {
     }
     public void execute() {
         cleanUp();
-        TimeModel.getInstance().registerAlertable(this, 30);
     }
 }
