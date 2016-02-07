@@ -54,4 +54,8 @@ public class ViewTime {
     public void alert(long time, ViewAlertable subject) {
         this.subjects.add(new AbstractMap.SimpleEntry<ViewAlertable, Long>(subject, currentTimeMilli + time));
     }
+
+    public void clear(){
+        subjects.clear();
+    }
 }

@@ -45,8 +45,8 @@ public class AreaView extends View
 
 	public AreaView(CameraViewManager cvm, Entity player) {
 
-		//this.setBackgroundImageFileName(backgroundImageFileName);
-
+		this.setBackgroundImageFileName(backgroundImageFileName);
+		//this.setBackground(new Color(0f,1f,1f,.1f));
 		this.setBackground(Color.BLACK);
 
 		this.playerModel = player;
@@ -109,5 +109,10 @@ public class AreaView extends View
 
 	@Override
 	public void alertEquipWeapon(String name) {
+	}
+
+	@Override
+	public void alertEquipHat(String name) {
+
 	}
 }

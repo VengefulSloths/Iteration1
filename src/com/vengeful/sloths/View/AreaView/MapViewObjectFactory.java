@@ -3,12 +3,11 @@ package com.vengeful.sloths.View.AreaView;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
-import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
-import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
-import com.vengeful.sloths.Models.Map.AreaEffects.TakeDamageAE;
 import com.vengeful.sloths.Models.Map.Map;
+import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.InteractiveItem;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
+import com.vengeful.sloths.Models.Map.MapItems.Obstacle;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.Map.Terrains.Terrain;
 import com.vengeful.sloths.Models.ObserverManager;
@@ -43,8 +42,10 @@ public abstract class MapViewObjectFactory {
 
         //TODO: give entity a weapon on camera change
         if (((Avatar) entity).getEquipped().getSword() != null) {
-            System.out.println("Created entity, about to equip: " + ((Avatar) entity).getEquipped().getSword().getItemName());
             emvo.equipWeapon(resources + "Equipment/" + ((Avatar) entity).getEquipped().getSword().getItemName());
+        }
+        if (((Avatar) entity).getEquipped().getHat() != null) {
+            emvo.equipHat(resources + "Equipment/" + ((Avatar) entity).getEquipped().getHat().getItemName() + "/" + ((Avatar) entity).getEquipped().getHat().getItemName());
         }
         //Create a proxy for the observer, regester the proxy w/ entity, add proxy to manager
         ProxyEntityObserver peo = new ProxyEntityObserver(emvo, entity);
@@ -68,10 +69,17 @@ public abstract class MapViewObjectFactory {
             String pickUpSoundPath = "resources/Audio/pickup.wav";
             InventoryItem item = ((TakeableItem) mapItem).getInvItemRep();
 
-            itemViewObject = new ItemMapViewObject(x, y, resources + "Items/Takeable/" + item.getItemName(), pickUpSoundPath, coordinateStrategy);
+            itemViewObject = new ItemMapViewObject(x, y, resources + "Items/" + item.getItemName(), pickUpSoundPath, coordinateStrategy);
 
 
-        }else{
+        }else if (mapItem instanceof Obstacle) {
+            itemViewObject = new ItemMapViewObject(x, y, resources + "Items/Lock", "resources/Audio/success.wav", coordinateStrategy);
+
+        }else if(mapItem instanceof InteractiveItem){
+            itemViewObject = new ItemMapViewObject(x, y, "resources/" + "Items/Button", "resources/Audio/click.wav", coordinateStrategy);
+        }
+        else{
+
             itemViewObject = new ItemMapViewObject(x, y, resources + "Items/Box", "resources/Audio/break.wav", coordinateStrategy);
 
         }

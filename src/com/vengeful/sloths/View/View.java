@@ -33,9 +33,7 @@ public abstract class View extends JPanel {
         this.backgroundImageFileName = backgroundImageName;
     }
 
-    public String getBackgroundImageFileName() {
-        return backgroundImageFileName;
-    }
+
 
     public ViewObjectManager manager;
 

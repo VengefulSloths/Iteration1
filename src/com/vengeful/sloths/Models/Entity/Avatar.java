@@ -110,8 +110,15 @@ public class Avatar extends Entity {
 
         Iterator<EntityObserver> iter = entityObservers.iterator();
         while (iter.hasNext()) {
-            //TODO: dont hardcode dagger here
-            iter.next().alertEquipWeapon(item.getItemName());
+            if (item instanceof  Hat) {
+                System.out.println("EQUIPING a HAT ~~~~~~~~~~~~~~~~");
+
+                iter.next().alertEquipHat(item.getItemName());
+            } else {
+                System.out.println("EQUIPING a WEAPON ~~~~~~~~~~~~~~~~");
+                iter.next().alertEquipWeapon(item.getItemName());
+
+            }
         }
 
         return true;
@@ -126,6 +133,15 @@ public class Avatar extends Entity {
         this.equipped.removeEquipped((EquippableItems) item);
 
         this.inventory.addItem(item);
+        Iterator<EntityObserver> iter = entityObservers.iterator();
+        while (iter.hasNext()) {
+            if (item instanceof  Hat) {
+                iter.next().alertEquipHat("");
+            } else {
+                iter.next().alertEquipWeapon("");
+
+            }
+        }
         return true;
     }
 

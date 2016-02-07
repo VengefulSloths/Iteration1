@@ -1,13 +1,17 @@
 package com.vengeful.sloths.Utility;
 
+import com.vengeful.sloths.Models.Effects.EffectCommand;
+import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.Map.AreaEffects.*;
 import com.vengeful.sloths.Models.Map.Map;
 
+import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.ActionInteractiveItem;
+import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.InteractiveItem;
+import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.InventoryInteractiveItem;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.Map.Terrains.Grass;
-import com.vengeful.sloths.Models.Stats.BaseStats;
 
 import com.vengeful.sloths.Models.Map.MapItems.Obstacle;
 import com.vengeful.sloths.Models.Map.Terrains.Mountain;
@@ -15,6 +19,7 @@ import com.vengeful.sloths.Models.Map.Terrains.Water;
 import com.vengeful.sloths.View.AreaView.Cameras.*;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 import com.vengeful.sloths.View.AreaView.DesertMapViewObjectFactory;
+import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.Quest.*;
 import com.vengeful.sloths.View.AreaView.ViewModels.DecalViewObject;
 
 /**
@@ -72,32 +77,50 @@ public class LevelFactory {
             }
         }
         map.getTile(new Coord(5,5)).addMapItem(new Obstacle());
-        map.getTile(new Coord(1,2)).addMapItem(new Obstacle());
         map.getTile(new Coord(12,3)).addMapItem(new Obstacle());
         map.getTile(new Coord(2,3)).addMapItem(new OneShotTest());
+        MapItem obstacle1 = new Obstacle();
+        map.getTile(new Coord(1,2)).addMapItem(obstacle1);
+        MapItem obstacle2 = new Obstacle();
+        map.getTile(new Coord(27, 8)).addMapItem(obstacle2);
 
 
         /* Testing pick up item */
 
         //MapItem mapItem1 = new TakeableItem(new Hat("BluePartyHat"));
-        MapItem mapItem2 = new TakeableItem(new Sword("Dagger"));
-        map.getTile(new Coord(3,2)).addMapItem(mapItem2);
+        MapItem testWeapon = new TakeableItem(new Sword("Dagger"));
+        MapItem testHat = new TakeableItem(new Hat("SpartanHat"));
+        map.getTile(new Coord(3,2)).addMapItem(testWeapon);
+        map.getTile(new Coord(3,4)).addMapItem(testHat);
+
         //map.getTile(new Coord(3,2)).addMapItem(mapItem2);
         /***********************/
 
 
         /**** Test AE ****/
-        AreaEffect ae1 = new TakeDamageAE(1);
-        AreaEffect ae2 = new LevelUpAE();
-        AreaEffect ae3 = new HealDamageAE(1);
-        AreaEffect ae4 = new InstantDeathAE();
+        EffectCommandFactory effectCMDFactory = new EffectCommandFactory(map);
+
+        AreaEffect ae1 = new TakeDamageAE(1, effectCMDFactory);
+        AreaEffect ae2 = new LevelUpAE(effectCMDFactory);
+        AreaEffect ae3 = new HealDamageAE(1, effectCMDFactory);
+        AreaEffect ae4 = new InstantDeathAE(effectCMDFactory);
         map.getTile(new Coord(7, 0)).addAreaEffect(ae1);
         //map.getTile(new Coord(3, 0)).addAreaEffect(ae2);
         map.getTile(new Coord(8, 0)).addAreaEffect(ae3);
         map.getTile(new Coord(9, 0)).addAreaEffect(ae4);
         map.getTile(new Coord(10,0)).addAreaEffect(ae2);
 
+        /** Test Interactive Item***/
+        EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1);
+        InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)testWeapon).getInvItemRep());
+        map.getTile(new Coord(3,3)).addMapItem(ii);
 
+
+        Quest q = new BreakBoxQuest(map.getTile(new Coord(19, 3)), map.getTile(new Coord(19, 4)), map.getTile(new Coord(19, 5)));
+        EffectCommand cmd2 = effectCMDFactory.createDestroyObstacleCommand(obstacle2);
+        InteractiveItem ii2 = new ActionInteractiveItem(cmd2, q);
+        map.getTile(new Coord(24, 9)).addMapItem(ii2);
+        
 
         return map;
     }
@@ -113,11 +136,15 @@ public class LevelFactory {
         StaticCameraView middle = new StaticCameraView(5,0,10,7);
         middle.addDecal(6,1,"Roses");
         middle.addDecal(13,5, "Hydrangeas");
+        middle.addDecal(9,4, "Star");
 
         cvm.addCameraView(middle);
-        CameraView test = new DynamicCameraView(15,0,20,20);
-        test.setMapViewObjectFactory(new DesertMapViewObjectFactory(test));
-        cvm.addCameraView(test);
+        CameraView desert = new DynamicCameraView(15,0,20,20);
+        desert.addDecal(32,17,"RedX");
+        desert.addDecal(30,5, "Skull");
+
+        desert.setMapViewObjectFactory(new DesertMapViewObjectFactory(desert));
+        cvm.addCameraView(desert);
 
         return cvm;
     }

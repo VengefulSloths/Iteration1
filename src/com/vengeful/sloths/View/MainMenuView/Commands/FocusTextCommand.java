@@ -1,5 +1,7 @@
 package com.vengeful.sloths.View.MainMenuView.Commands;
 
+import com.vengeful.sloths.View.MainMenuView.DefaultMenuComponent;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,11 +10,16 @@ import java.awt.*;
  */
 public class FocusTextCommand extends MenuCommand{
     private TextArea textField;
-    public FocusTextCommand(TextArea textField) {
+    private DefaultMenuComponent hack;
+    public FocusTextCommand(TextArea textField, DefaultMenuComponent hack) {
+        this.hack = hack;
         this.textField = textField;
     }
 
     public void execute() {
+        this.hack.setSelected(true);
         this.textField.requestFocus();
+        int length = this.textField.getText().length();
+        this.textField.setCaretPosition(length);
     }
 }

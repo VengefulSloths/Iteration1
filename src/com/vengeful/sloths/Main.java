@@ -2,6 +2,8 @@ package com.vengeful.sloths;
 
 import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 import com.vengeful.sloths.Controller.MainController;
+import com.vengeful.sloths.GameLauncher.LaunchGameTemplate;
+import com.vengeful.sloths.GameLauncher.LaunchNewGame;
 import com.vengeful.sloths.Models.ActionCommandFactory.ActionCommandFactory;
 import com.vengeful.sloths.Models.ActionCommandFactory.AvatarActionCommandFactory;
 import com.vengeful.sloths.Models.Entity.Avatar;
@@ -23,6 +25,7 @@ import com.vengeful.sloths.View.EquipmentView.ListEquipmentView;
 import com.vengeful.sloths.View.HUDView.HUDView;
 import com.vengeful.sloths.View.InventoryView.ListInventoryView;
 import com.vengeful.sloths.View.MainMenuView.MainMenuView;
+import com.vengeful.sloths.View.MainMenuView.MenuContainer;
 import com.vengeful.sloths.View.MainMenuView.MenuView;
 import com.vengeful.sloths.View.StatsView.StatsView;
 import com.vengeful.sloths.View.ViewEngine;
@@ -37,101 +40,23 @@ public class Main {
         ModelEngine modelEngine = new ModelEngine();
 
 
-        //Create the level
-        LevelFactory levelFactory = new LevelFactory();
-        levelFactory.initilize("TEST");
-        Map map = levelFactory.getMap();
-        CameraViewManager cvm = levelFactory.getCVM();
-
-
-
-        //TODO: right now movement is not working via ticks!!!!!, we need to create alertables with a time of 0 for movement!
-
-        //make map factory and make a level to TimeModel with to create the map
-
-        ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
-        Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
-        map.getTile(avatar.getLocation()).addEntity(avatar);
-
-
-
-
-        AreaView av = new AreaView(cvm, avatar);
-
-
-        // Create inventory, add it to avatar and ListInventoryView
-        Inventory inventory = new Inventory();
-        avatar.setInventory(inventory);
-
-
-        /**** Take-able and InventoryItems need to be paired up when created */
-
-        InventoryItem hat1 = new Hat("BluePartyHat");
-        InventoryItem hat2 = new Hat("RedPartyHat");
-        InventoryItem sword1 = new Sword("GodSword");
-
-        MapItem mi1 = new TakeableItem(hat1);
-        MapItem mi2 = new TakeableItem(hat2);
-        MapItem mi3 = new TakeableItem(sword1);
-
-        //avatar.addItem(new Hat("BlueHat"));
-        //avatar.addItem(new Hat("BlueHat"));
-        avatar.addItem(((TakeableItem)mi1).getInvItemRep());
-        avatar.addItem(((TakeableItem)mi2).getInvItemRep());
-        avatar.addItem(((TakeableItem)mi3).getInvItemRep());
-        //TODO: a new factory for creating takable item + inventory item?
-
-
-        ListInventoryView iv = new ListInventoryView(inventory);
-
-        //ListInventoryView iv = new ListInventoryView(inventory, Config.instance().getInventoryViewWidth(), Config.instance().getInventoryViewHeight());
-
-
-        Equipped equipped = new Equipped();
-        avatar.setEquipped(equipped);
-        ListEquipmentView ev = new ListEquipmentView(equipped);
-
-
-
-
-        //EquipmentView ev = new EquipmentView();
-        StatsView sv = new StatsView(avatar.getEntityStats());
-        HUDView hv = new HUDView();
-        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv, hv);
-        
-
-
-        //johns test stuff for stats view
-        //StatsView sv = new StatsView();
-
         MenuView mainMenuView = new MainMenuView();
+
         //make controller
-        MainController controller = new MainController(avatar, viewEngine, vm);
-        controller.setMap(map);
+        MainController controller = new MainController( viewEngine);
+
+        MenuContainer menuContainer = new MenuContainer(viewEngine, modelEngine, controller);
+        controller.getMenuState().setTarget(menuContainer);
 
         modelEngine.setController(controller);
+        controller.setMenuState();
         //set up engines
         viewEngine.setVisible(true);
-        viewEngine.registerView(vm);
+        viewEngine.registerView(menuContainer);
 
-        System.out.println("HERE!");
 
         //start both threads
-            viewEngine.start();
-            modelEngine.start();
-
-
-
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        //avatar.addItem(new Sword("Excal"));
-                        // your code here
-                    }
-                },
-                2000
-        );
-
+        viewEngine.start();
+        modelEngine.start();
     }
 }
