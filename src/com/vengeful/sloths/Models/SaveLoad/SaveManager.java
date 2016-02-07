@@ -28,7 +28,8 @@ public class SaveManager {
 
     public SaveManager(){
         objectsToSave = new ArrayList<MapSaveable>();
-        f = new File("resources\\save\\save.txt");
+        f = new File("resources" + File.separator + "save" + File.separator + "save.txt");
+        System.out.println(f.getAbsolutePath());
     }
 
     public void setSaveVisitor(SaveVisitor sv)
@@ -48,11 +49,29 @@ public class SaveManager {
             return;
         }
         sv.visitTiles();
+       // insertChar('{'); not real json so these are taken out
         for(MapSaveable s: objectsToSave){
-            s.saveMe(this,0);
+            s.saveMe(this,1);
+        }
+       // insertChar('}');
+    }
+    public void insertChar(char c){
+        BufferedWriter bw = null;
+        try{
+            bw= new BufferedWriter(new FileWriter(f,true));
+            bw.write(c);
+            bw.newLine();
+            bw.flush();
+        }catch (IOException e){
+            //not doin nothin
+        } finally {
+            if(bw != null)try{
+                bw.close();
+            }catch (IOException e){
+                //not doin nothin
+            }
         }
     }
-
     public void writeClassLine(int ws, String className)
     {
         BufferedWriter bw = null;
@@ -60,10 +79,10 @@ public class SaveManager {
             bw= new BufferedWriter(new FileWriter(f,true));
             int i = 0;
             while(i<=ws){
-                bw.write(" ");
+                bw.write("");
                 ++i;
             }
-            bw.write("\"" + className + "\"{");
+            bw.write(className + ":{");
             bw.newLine();
             bw.flush();
         }catch (IOException e){
@@ -84,19 +103,19 @@ public class SaveManager {
             bw= new BufferedWriter(new FileWriter(f,true));
             int i = 0;
             while(i <= ws){
-                bw.write(" ");
+                bw.write("");
                 ++i;
             }
-            bw.write("\"" + varName + "\": \"" + varValue +"\"");
+            bw.write(varName + ":" + varValue);
             if(!last){
-                bw.write(",");
+                //bw.write(",");
             }
             bw.newLine();
             if(last) {
                 ws = ws-1;
                 i = 0;
                 while(i <= ws){
-                    bw.write(" ");
+                    bw.write("");
                     ++i;
                 }
                 bw.write("}");
@@ -121,7 +140,7 @@ public class SaveManager {
             bw= new BufferedWriter(new FileWriter(f,true));
             int i = 0;
             while(i<=ws){
-                bw.write(" ");
+                bw.write("");
                 ++i;
             }
             bw.write("}");
@@ -137,5 +156,28 @@ public class SaveManager {
             }
         }
 
+    }
+    public void writeCloseBracketNoComma(int ws)
+    {
+        BufferedWriter bw = null;
+        try{
+            bw= new BufferedWriter(new FileWriter(f,true));
+            int i = 0;
+            while(i<=ws){
+                bw.write("");
+                ++i;
+            }
+            bw.write("}");
+            bw.newLine();
+            bw.flush();
+        }catch (IOException e){
+            //not doin nothin
+        } finally {
+            if(bw != null)try{
+                bw.close();
+            }catch (IOException e){
+                //not doin nothin
+            }
+        }
     }
 }

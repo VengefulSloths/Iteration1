@@ -87,7 +87,7 @@ public abstract class Stats implements ViewObservable, Saveable{
         sm.writeVariableLine(ws,"agility", ""+agility, false );
         sm.writeVariableLine(ws,"intellect", ""+ intellect, false );
         sm.writeVariableLine(ws,"hardiness", ""+ hardiness, false );
-        sm.writeVariableLine(ws,"movement", ""+ movement, false );
+        sm.writeVariableLine(ws,"movement", ""+ movement, true );
     }
 
     public void alertObservers(){

@@ -25,6 +25,10 @@ public class Avatar extends Entity {
     //private Equipped equipped;
     private ActionCommandFactory commandFactory;
 
+    public Avatar(){
+
+    }
+
     //passes in AvatarActionCommandFactory
     public Avatar(String name, String occupationString, EntityStats entityStats, ActionCommandFactory commandFactory) {
         super(name, occupationString, entityStats);

@@ -76,12 +76,10 @@ public abstract class MapViewObjectFactory {
             itemViewObject = new ItemMapViewObject(x, y, resources + "Items/Lock", "resources/Audio/success.wav", coordinateStrategy);
 
         }else if(mapItem instanceof InteractiveItem){
-            itemViewObject = new ItemMapViewObject(x, y, "resources/" + "Items/Button", "resources/Audio/click.wav", coordinateStrategy);
+            itemViewObject = new ItemMapViewObject(x, y, resources + "Items/Button", "resources/Audio/click.wav", coordinateStrategy);
         }
         else{
-
             itemViewObject = new ItemMapViewObject(x, y, resources + "Items/Box", "resources/Audio/break.wav", coordinateStrategy);
-
         }
 
 
