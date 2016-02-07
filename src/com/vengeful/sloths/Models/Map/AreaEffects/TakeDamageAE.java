@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Effects.*;
 import com.vengeful.sloths.Models.Map.*;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 
 /**
  * Created by qianwen on 2/3/16.
@@ -31,5 +32,11 @@ public class TakeDamageAE extends AreaEffect{
             return this.commandFactory.createTakeDamageAECommand(affectedEntity, this.damage, affectedEntity.getLocation());
         else
             return null;
+    }
+
+    public void saveMe(SaveManager sm, int ws) {
+        sm.writeClassLine(ws, "TakeDamageAE");
+        String d = "" + damage;
+        sm.writeVariableLine(ws, "damage", d, false);
     }
 }

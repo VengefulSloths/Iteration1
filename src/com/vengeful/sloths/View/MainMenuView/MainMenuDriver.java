@@ -78,7 +78,7 @@ public class MainMenuDriver {
         //make controller
         MainController controller = new MainController(avatar, viewEngine, vm);
 
-        MenuContainer menuContainer = new MenuContainer();
+        MenuContainer menuContainer = new MenuContainer(viewEngine);
         controller.getMenuState().setTarget(menuContainer);
 
         modelEngine.setController(controller);

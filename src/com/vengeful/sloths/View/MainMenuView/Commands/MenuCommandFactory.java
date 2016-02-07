@@ -1,6 +1,7 @@
 package com.vengeful.sloths.View.MainMenuView.Commands;
 
 import com.vengeful.sloths.Controller.ControllerStates.MenuState;
+import com.vengeful.sloths.View.MainMenuView.DefaultMenuComponent;
 import com.vengeful.sloths.View.MainMenuView.MenuContainer;
 
 import javax.swing.*;
@@ -20,7 +21,9 @@ public class MenuCommandFactory {
         return new CharacterCreationCommand(MENU);
     }
 
-    public MenuCommand createFocusTextCommand(TextArea textField) {
-        return new FocusTextCommand(textField);
+    public MenuCommand createNameCommand(){return new NameCommand(MENU);}
+
+    public MenuCommand createFocusTextCommand(TextArea textField, DefaultMenuComponent hack) {
+        return new FocusTextCommand(textField, hack);
     }
 }

@@ -8,6 +8,8 @@ import com.vengeful.sloths.View.ViewTime;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 /**
@@ -15,27 +17,31 @@ import java.util.ArrayList;
  */
 public class CharacterCreationView extends MenuView {
 
+    private JFrame ve;
 
     private final String DECAL_PREFIX = "resources/man2/CharacterCreation/";
 
     private Image avatarImage;
     private Image occupationImage;
-
+    private DefaultMenuComponent borderHack;
     private TextArea nameField;
 
-    public CharacterCreationView() {
+    public CharacterCreationView(JFrame ve) {
+        this.ve = ve;
         Config config = Config.instance();
+
 
 
         this.setLayout(null);
         this.setPreferredSize(new Dimension(config.getWindowWidth(), config.getWindowHeight()));
         this.setBackground(Color.GRAY);
 
-        this.nameField = new TextArea(5,20);
-        this.nameField.setFont(new Font("Serif", Font.BOLD, 22));
-        this.nameField.setBounds(100,100,150,50);
-
-        this.add(nameField);
+        this.nameField = new TextArea("",1,20,TextArea.SCROLLBARS_NONE);
+        this.nameField.setBackground(Color.DARK_GRAY);
+        this.nameField.setFont(new Font("Serif", Font.BOLD, 36));
+        this.nameField.setForeground(Color.WHITE);
+        this.nameField.setBounds(208,225,240,50);
+        this.nameField.setRows(1);
 
         this.verticleSpacing = 32;
         this.verticalOffset = 298;
@@ -44,11 +50,16 @@ public class CharacterCreationView extends MenuView {
 
         MenuCommandFactory mcf = new MenuCommandFactory();
 
+
+       borderHack = new DefaultMenuComponent("resources/Menu/ChangeName",
+                200,
+                218);
+
         DefaultMenuComponent changeName = new DefaultMenuComponent(
                 "resources/Menu/ChangeName",
                 200,
                 this.verticalOffset +(DefaultMenuComponent.HEIGTH + verticleSpacing)*menuCounter++);
-        changeName.setAction(mcf.createFocusTextCommand(this.nameField));
+        changeName.setAction(mcf.createFocusTextCommand(this.nameField, borderHack));
         children.add(changeName);
 
         MenuOption occupationSelector = new MenuOption(
@@ -75,7 +86,36 @@ public class CharacterCreationView extends MenuView {
         this.avatarImage = avatarIcon.getImage();
         this.occupationImage = occupationIcon.getImage();
 
+        JPanel j = this;
+        TextArea nameArea = this.nameField;
+        KeyListener swagswaglikecaillou = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
 
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    ve.requestFocus();
+                    String s = nameArea.getText();
+//deleting the last character (newline)
+                    s = s.substring(0, s.length() - 1);
+//and setting that text to your TextArea
+                    nameArea.setText(s);
+                    borderHack.setSelected(false);
+                }
+            }
+        };
+
+
+        this.nameField.addKeyListener(swagswaglikecaillou);
+        this.add(nameField);
     }
 
 
@@ -85,6 +125,7 @@ public class CharacterCreationView extends MenuView {
         super.paintComponent(g);
         g.drawImage(avatarImage, 700, 300, this);
         g.drawImage(occupationImage, 700, 300, this);
+        borderHack.paintComponent(g);
 
     }
 

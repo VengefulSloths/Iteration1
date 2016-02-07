@@ -19,6 +19,7 @@ import com.vengeful.sloths.View.AreaView.Cameras.*;
 import com.vengeful.sloths.Models.Map.MapItems.*;
 import com.vengeful.sloths.View.AreaView.DesertMapViewObjectFactory;
 import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.Quest.*;
+import com.vengeful.sloths.View.AreaView.ViewModels.DecalViewObject;
 
 /**
  * Created by alexs on 1/31/2016.
@@ -120,9 +121,19 @@ public class LevelFactory {
         return map;
     }
     private CameraViewManager generateTestCV() {
+
         CameraViewManager cvm = new CameraViewManager(activeMap);
-        cvm.addCameraView(new ZoomedStaticCameraView(0,0,5,7));
-        cvm.addCameraView(new StaticCameraView(5,0,10,7));
+        ZoomedStaticCameraView start = new ZoomedStaticCameraView(0,0,5,7);
+        start.addDecal(1,1,"Hydrangeas");
+        start.addDecal(0,2, "Roses");
+
+        cvm.addCameraView(start);
+
+        StaticCameraView middle = new StaticCameraView(5,0,10,7);
+        middle.addDecal(6,1,"Roses");
+        middle.addDecal(13,5, "Hydrangeas");
+
+        cvm.addCameraView(middle);
         CameraView test = new DynamicCameraView(15,0,20,20);
         test.setMapViewObjectFactory(new DesertMapViewObjectFactory(test));
         cvm.addCameraView(test);

@@ -7,6 +7,7 @@ import com.vengeful.sloths.Models.Occupation.Occupation;
 import com.vengeful.sloths.Models.Occupation.Smasher;
 import com.vengeful.sloths.Models.Occupation.Sneak;
 import com.vengeful.sloths.Models.Occupation.Summoner;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.ViewObservable;
@@ -122,11 +123,8 @@ public abstract class Entity implements ViewObservable, Saveable{
         return this.entityStats;
     }
 
-    public void saveMe(){
-        System.out.println("Saving:" + this.toString());
-        entityStats.saveMe();
-        inventory.saveMe();
-        occupation.saveMe();
+    public void saveMe(SaveManager sv, int ws){
+        //System.out.println("Saving:" + this.toString());
     }
 
 }

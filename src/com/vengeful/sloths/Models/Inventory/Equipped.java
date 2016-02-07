@@ -4,6 +4,7 @@ package com.vengeful.sloths.Models.Inventory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.*;
 
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.View.EquipmentView.EquipmentObserver;
 import com.vengeful.sloths.View.Observers.InventoryObserver;
@@ -108,9 +109,10 @@ public class Equipped implements ViewObservable, Saveable{
     public void registerObserver(ModelObserver modelObserver) {
         this.equipmentObserver.add((EquipmentObserver) modelObserver);
     }
-    public void saveMe() {
-        System.out.println("save:" + this.toString());
-        if(hat != null){hat.saveMe();}
-        if(sword != null){sword.saveMe();}
+    public void saveMe(SaveManager sv, int ws) {
+        sv.writeClassLine(ws, "Equipped");
+        if(hat != null){hat.saveMe(sv, ws+1);}
+        if(sword != null){sword.saveMe(sv, ws+1);}
+        sv.writeCloseBracket(ws);
     }
 }

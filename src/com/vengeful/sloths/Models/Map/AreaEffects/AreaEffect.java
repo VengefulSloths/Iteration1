@@ -4,6 +4,7 @@ import com.vengeful.sloths.Models.Effects.EffectCommand;
 import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.*;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import com.vengeful.sloths.Models.ViewObservable;
 import com.vengeful.sloths.View.Observers.AreaEffectObserver;
@@ -51,8 +52,6 @@ public abstract class AreaEffect implements ViewObservable, Saveable {
         this.observer = null;
     }
 
-    public void saveMe(){
-        System.out.println("Saving:" + this.toString());
-    }
+    public abstract void saveMe(SaveManager sm, int ws);
 
 }

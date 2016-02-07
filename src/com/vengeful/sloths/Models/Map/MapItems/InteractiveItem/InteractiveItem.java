@@ -22,13 +22,6 @@ public abstract class InteractiveItem extends MapItem {
         this.command = command;
     }
 
-    //Need object to hold "quest"?
-    //public InteractiveItem(EffectCommand command, Coord coord){
-    //    this.command = command;
-    //    this.checkInventory = false;
-    //    this.coord = coord;
-    //}
-
 
     public abstract void interact(Entity entity);
 
