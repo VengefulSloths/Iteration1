@@ -18,7 +18,7 @@ public class AvatarParser extends ObjectParser{
         this.objectName = objectName;
         this.l  = l;
         this.ops = ops;
-        Parse();
+        //Parse();
     }
 
     public Avatar Parse(){

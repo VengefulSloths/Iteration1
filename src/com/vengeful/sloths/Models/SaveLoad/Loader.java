@@ -37,7 +37,8 @@ public class Loader {
             String s = sc.nextLine();
             String[] line = s.split(":");
             String className = line[0];
-            ops.ObjectParserFactory(className);
+            ObjectParser op=  ops.ObjectParserFactory(className);
+            op.Parse();
         }
     }
 
