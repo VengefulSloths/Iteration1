@@ -12,7 +12,7 @@ public class BaseStats extends Stats {
     }
 
     public BaseStats(int str, int agil, int intel, int hardi, int move) {
-        super();
+        super(str, agil, intel, hardi, move);
     }
 
     public void saveMe(SaveManager sm, int ws){

@@ -18,14 +18,13 @@ public class AvatarParser extends ObjectParser{
         this.objectName = objectName;
         this.l  = l;
         this.ops = ops;
-        //Parse();
     }
 
     public Avatar Parse(){
         Avatar avatar = new Avatar();
         while(sc.hasNext()){
             String check = sc.nextLine();
-            if(check.equals("}")){
+            if(check.contains("}")){
                 //we have reached end of avater definition
                 //return avatar to loader
                 l.avatar = avatar;

@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.Occupation;
 
 import com.vengeful.sloths.Models.SaveLoad.SaveManager;
+import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 
 /**
@@ -14,14 +15,14 @@ public class Summoner extends Occupation {
 
     @Override
     public void init(EntityStats entityStats) {
-        entityStats.updateStats(0, 0, 10, 0, 0);
+        entityStats.updateStats(new BaseStats( 0, 0, 10, 0, 0));
     }
 
     @Override
     public void levelUp(EntityStats eStats) {
         super.levelUp(eStats);
 
-        eStats.updateStats(1, 1, 2, 1, 0);
+        eStats.updateStats(new BaseStats(1, 1, 2, 1, 0));
     }
     public void saveMe(SaveManager sm, int ws) {
         sm.writeClassLine(ws, "Summoner");

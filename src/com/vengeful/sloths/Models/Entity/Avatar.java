@@ -120,7 +120,8 @@ public class Avatar extends Entity {
 
             }
         }
-
+        entityStats.updateStats(((EquippableItems) item).getItemStats());
+        entityStats.alertObservers();
         return true;
     }
 
@@ -142,6 +143,8 @@ public class Avatar extends Entity {
 
             }
         }
+        entityStats.revertStats(((EquippableItems) item).getItemStats());
+        entityStats.alertObservers();
         return true;
     }
 

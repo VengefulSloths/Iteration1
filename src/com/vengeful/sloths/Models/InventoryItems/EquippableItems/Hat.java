@@ -19,7 +19,7 @@ public class Hat extends EquippableItems {
         super(hatName);
         //this.itemStats.setStats(0, 0, 0, 10, 0); //Once equipped, increase avatar stats by these factors. Currently causes error so used line below.
         //this.itemStats = new BaseStats(0,0,0,10,0);
-        this.itemStats.setStats(0,0,0,10,0);
+        this.itemStats.setStats(0,5,0,10,0);
     }
     public void saveMe(SaveManager sv, int ws){
         sv.writeClassLine(ws, "Hat");
