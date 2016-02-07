@@ -17,6 +17,10 @@ public abstract class EquippableItems extends InventoryItem implements Saveable 
         return itemStats;
     }
 
+    public EquippableItems(){
+
+    }
+
     //public EquippableItems(String itemName, BaseStats b){
         //super(); //not needed
     //    this.itemName = itemName;
@@ -38,6 +42,10 @@ public abstract class EquippableItems extends InventoryItem implements Saveable 
     {
         itemStats.saveMe(sm, ws+1);
         sm.writeVariableLine(ws, "itemName", itemName, true);
+    }
+
+    public void setItemStats(BaseStats itemStats) {
+        this.itemStats = itemStats;
     }
 
 }

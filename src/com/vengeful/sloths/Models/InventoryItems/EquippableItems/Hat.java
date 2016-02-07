@@ -13,7 +13,9 @@ public class Hat extends EquippableItems {
     //public Hat(String hatName, BaseStats b){
     //    super(hatName, b);
     //}
+     public Hat(){
 
+     }
 
     public Hat(String hatName){
         super(hatName);

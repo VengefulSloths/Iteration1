@@ -61,7 +61,7 @@ public class Main {
 //        Loader l = new Loader();
 //        Object o = l.avatar;
 //        System.out.println(((Entity) o).getInventory().toString());
-        
+
 
 
         //start both threads
