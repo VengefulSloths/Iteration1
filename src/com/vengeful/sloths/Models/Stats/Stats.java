@@ -72,6 +72,26 @@ public abstract class Stats implements ViewObservable, Saveable{
         this.movement = move;
     }
 
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setAgility(int agility) {
+        this.agility = agility;
+    }
+
+    public void setIntellect(int intellect) {
+        this.intellect = intellect;
+    }
+
+    public void setHardiness(int hardiness) {
+        this.hardiness = hardiness;
+    }
+
+    public void setMovement(int movement) {
+        this.movement = movement;
+    }
+
     @Override
     public void registerObserver(ModelObserver modelObserver) {
         this.statsObservers.add((StatsObserver) modelObserver);

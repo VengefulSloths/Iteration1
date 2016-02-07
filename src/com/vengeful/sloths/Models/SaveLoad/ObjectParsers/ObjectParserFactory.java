@@ -25,6 +25,7 @@ public class ObjectParserFactory {
             return new InventoryParser(className, sc, l, this);
         }
         if(className.equals("EntityStats")){
+            System.out.println("Entity stats parser created");
             return new EntityStatsParser(className, sc, l, this);
         }
         return null;
