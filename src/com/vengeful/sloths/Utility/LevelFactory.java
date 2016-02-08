@@ -158,10 +158,26 @@ public class LevelFactory {
     }
 
     private Map populateDemoMapFromLoad(Map map, Loader loader) {
+        EffectCommandFactory effectCMDFactory = new EffectCommandFactory(map);
         for (ObjectWithCoord owc : loader.listToInstantiate) {
             //System.out.Println(owc.getC().getX()+ " " + owc.getC().getY());
             map.getTile(owc.getC()).addMapItem((MapItem)owc.getObjectToPlace());
         }
+
+        MapItem obstacle1 = null;
+        Iterator<MapItem> iter = map.getTile(new Coord(14, 9)).getMapItemIterator();
+        while (iter.hasNext()) {
+            MapItem mapItem = iter.next();
+            if (mapItem instanceof Obstacle) {
+                obstacle1 = mapItem;
+            }
+        }
+//        if(obstacle1 != null){
+//            //map.getTile(new Coord(14, 9)).addMapItem(obstacle1);
+//        }
+        EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(14, 9)));
+        InteractiveItem ii = new InventoryInteractiveItem(cmd, "Key");
+        map.getTile(new Coord(14,11)).addMapItem(ii);
 
         return map;
     }
@@ -258,7 +274,7 @@ public class LevelFactory {
 
     private Map generateDemoMap() {
         Map map = new Map(new Coord(23,25));
-
+        EffectCommandFactory effectCMDFactory = new EffectCommandFactory(map);
 
         /*
         for (int i=0; i<23; i++) {
@@ -304,6 +320,13 @@ public class LevelFactory {
         }
         map.getTile(new Coord(0,22)).setTerrain(new Mountain());
         map.getTile(new Coord(7,22)).setTerrain(new Grass());
+        AreaEffect ae1 = new TakeDamageAE(1, effectCMDFactory);
+        AreaEffect ae2 = new LevelUpAE(effectCMDFactory);
+        AreaEffect ae3 = new HealDamageAE(1, effectCMDFactory);
+        AreaEffect ae4 = new InstantDeathAE(effectCMDFactory);
+        map.getTile(new Coord(3,20)).addAreaEffect(ae4);
+
+
 
 
         //zone 3
@@ -317,7 +340,24 @@ public class LevelFactory {
         }
         map.getTile(new Coord(8,7)).setTerrain(new Grass());
         map.getTile(new Coord(14,8)).setTerrain(new Grass());
+        EffectCommandFactory effectCommandFactory = new EffectCommandFactory(map);
+        AreaEffect damageAE = new TakeDamageAE(1, effectCommandFactory);
+        AreaEffect levelUpAE = new LevelUpAE(effectCommandFactory);
+        AreaEffect healDamageAE = new HealDamageAE(1, effectCommandFactory);
+        map.getTile(new Coord(9,1)).addAreaEffect(damageAE);
+        map.getTile(new Coord(9,2)).addAreaEffect(damageAE);
+        map.getTile(new Coord(10,1)).addAreaEffect(damageAE);
+        map.getTile(new Coord(10,2)).addAreaEffect(damageAE);
 
+        map.getTile(new Coord(18,1)).addAreaEffect(healDamageAE);
+        map.getTile(new Coord(17,1)).addAreaEffect(healDamageAE);
+        map.getTile(new Coord(18,2)).addAreaEffect(healDamageAE);
+        map.getTile(new Coord(17,2)).addAreaEffect(healDamageAE);
+
+        map.getTile(new Coord(14,4)).addAreaEffect(levelUpAE);
+        map.getTile(new Coord(13,4)).addAreaEffect(levelUpAE);
+        map.getTile(new Coord(13,5)).addAreaEffect(levelUpAE);
+        map.getTile(new Coord(14,5)).addAreaEffect(levelUpAE);
 
 
         //zone 4
@@ -489,12 +529,9 @@ public class LevelFactory {
 
         /************* Zone 2 ***********/
 
-        AreaEffect ae1 = new TakeDamageAE(1, effectCMDFactory);
-        AreaEffect ae2 = new LevelUpAE(effectCMDFactory);
-        AreaEffect ae3 = new HealDamageAE(1, effectCMDFactory);
-        AreaEffect ae4 = new InstantDeathAE(effectCMDFactory);
+
         MapItem wand = new TakeableItem(new Sword("Wand", new BaseStats(0,0,10,0,0)));
-        map.getTile(new Coord(3,20)).addAreaEffect(ae4);
+
 
         map.getTile(new Coord(1,20)).addMapItem(wand);
         map.getTile(new Coord(0,22)).setTerrain(new Mountain());
@@ -504,24 +541,7 @@ public class LevelFactory {
 
 
         /************ Zone 3 **********/
-        EffectCommandFactory effectCommandFactory = new EffectCommandFactory(map);
-        AreaEffect damageAE = new TakeDamageAE(1, effectCommandFactory);
-        AreaEffect levelUpAE = new LevelUpAE(effectCommandFactory);
-        AreaEffect healDamageAE = new HealDamageAE(1, effectCommandFactory);
-        map.getTile(new Coord(9,1)).addAreaEffect(damageAE);
-        map.getTile(new Coord(9,2)).addAreaEffect(damageAE);
-        map.getTile(new Coord(10,1)).addAreaEffect(damageAE);
-        map.getTile(new Coord(10,2)).addAreaEffect(damageAE);
 
-        map.getTile(new Coord(18,1)).addAreaEffect(healDamageAE);
-        map.getTile(new Coord(17,1)).addAreaEffect(healDamageAE);
-        map.getTile(new Coord(18,2)).addAreaEffect(healDamageAE);
-        map.getTile(new Coord(17,2)).addAreaEffect(healDamageAE);
-
-        map.getTile(new Coord(14,4)).addAreaEffect(levelUpAE);
-        map.getTile(new Coord(13,4)).addAreaEffect(levelUpAE);
-        map.getTile(new Coord(13,5)).addAreaEffect(levelUpAE);
-        map.getTile(new Coord(14,5)).addAreaEffect(levelUpAE);
 
 
 
