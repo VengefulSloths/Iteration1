@@ -43,8 +43,9 @@ public class ObstacleAndOneShotParser extends ObjectParser{
                 String varName = line[0];
                 String varValue = line[1];
                 if(varName.equals("Coord")){
-                    int x = Character.getNumericValue(varValue.charAt(1));
-                    int y = Character.getNumericValue(varValue.charAt(3));
+                    String[] split = varValue.split(",");
+                    int x = Integer.parseInt(split[0].substring(1));
+                    int y = Integer.parseInt(split[1].substring(0,split[1].length()-1));
                     c = new Coord(x,y);
                     owc.setCoord(c);
                 }

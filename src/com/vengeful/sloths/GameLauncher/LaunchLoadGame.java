@@ -33,10 +33,13 @@ public class LaunchLoadGame extends LaunchGameTemplate {
     protected void createMap(){
         //Create the level
         LevelFactory levelFactory = new LevelFactory();
-        levelFactory.initilize("TEST");
-        this.map = levelFactory.getMap();
-        map.setRespawnPoint(new Coord(2,2));
+        levelFactory.initilize("LOAD");
+
         this.cvm = levelFactory.getCVM();
+        this.map = levelFactory.getMap();
+        levelFactory.populateFromLoad(this.map, loader);
+        map.setRespawnPoint(new Coord(2,2));
+
     }
 
     @Override
@@ -55,9 +58,9 @@ public class LaunchLoadGame extends LaunchGameTemplate {
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(this.avatar.getEquipped());
-        System.out.println(this.avatar.getEquipped().getHat().toString());
-        System.out.println(this.avatar.getEquipped().getSword().toString());
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
     }
 
     @Override
