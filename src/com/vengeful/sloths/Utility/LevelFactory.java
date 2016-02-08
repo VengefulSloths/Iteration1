@@ -389,6 +389,21 @@ public class LevelFactory {
 
     private Map populateDemoMap(Map map) {
 
+        for (int i = 9; i < 15; i++) {
+            for (int j=17; j<20; j++) {
+                map.getTile(new Coord(i,j)).addMapItem(new OneShotTest());
+            }
+        }
+        TakeableItem key = new TakeableItem(new Hat("Key"));
+        map.getTile(new Coord(18,22)).addMapItem(key);
+
+        //TODO: system may have changed
+        EffectCommandFactory effectCMDFactory = new EffectCommandFactory(map);
+        Obstacle obstacle1 = new Obstacle();
+        map.getTile(new Coord(14,9)).addMapItem(obstacle1);
+        EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(14, 9)));
+        InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)key).getInvItemRep());
+        map.getTile(new Coord(14,11)).addMapItem(ii);
 
         return map;
     }
