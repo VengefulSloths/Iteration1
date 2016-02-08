@@ -176,6 +176,7 @@ public class Avatar extends Entity {
         entityStats.setCurrentHealth(entityStats.getLife());
         entityStats.setCurrentMana(entityStats.getMana());
         entityStats.alertObservers();
+        entityStats.setExperience(0);
 
         Iterator<EntityObserver> iter = entityObservers.iterator();
         while(iter.hasNext()) {
