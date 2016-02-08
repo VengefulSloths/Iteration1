@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Iteration1:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Iteration1_jar</output-path>
+    <root id="archive" name="Iteration1.jar">
+      <element id="module-output" name="Iteration1" />
+      <element id="dir-copy" path="$USER_HOME$/IdeaProjects/Iteration1/resources" />
+    </root>
+  </artifact>
+</component>

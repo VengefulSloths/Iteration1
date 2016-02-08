@@ -52,6 +52,7 @@ public class ObserverManager implements Alertable {
         } else return false;
     }
     public void execute() {
-        cleanUp();
+
+        //cleanUp();
     }
 }
