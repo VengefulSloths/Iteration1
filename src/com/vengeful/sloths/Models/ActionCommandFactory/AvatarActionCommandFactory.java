@@ -37,4 +37,10 @@ public class AvatarActionCommandFactory extends ActionCommandFactory {
         return pc;
     }
 
+    @Override
+    public DieCommand createDieCommand(Coord location, Entity entity){
+        DieCommand die = new AvatarDieCommand(map, location, entity);
+        return die;
+    }
+
 }

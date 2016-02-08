@@ -212,6 +212,11 @@ public class Avatar extends Entity {
         System.out.println("Entity is Dead D:");
 
         //Bring up game menu here??
+        commandFactory.createDieCommand(this.getLocation(),this);
+        Iterator<EntityObserver> iter = entityObservers.iterator();
+        while(iter.hasNext()) {
+            iter.next().alertDeath();
+        }
         entityStats.alertObservers();
     }
 
