@@ -4,8 +4,10 @@ package com.vengeful.sloths.Models.SaveLoad;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectParser;
 import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectParserFactory;
+import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectWithCoord;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -15,9 +17,10 @@ public class Loader {
     private File f;
     private Scanner sc;
     ObjectParserFactory ops;
+
     //containers that hold everything being loaded
     public Avatar avatar = null;
-
+    public ArrayList<ObjectWithCoord> listToInstantiate;
     public Loader()
     {
         f = new File("resources" + File.separator + "save" + File.separator + "save.txt");
@@ -38,7 +41,10 @@ public class Loader {
             String[] line = s.split(":");
             String className = line[0];
             ObjectParser op = ops.ObjectParserFactory(className);
-            op.Parse();
+            Object o = op.Parse();
+            if(o.getClass() != avatar.getClass()){
+                listToInstantiate.add((ObjectWithCoord) o);
+            }
         }
     }
 
