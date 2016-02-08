@@ -400,6 +400,8 @@ public class LevelFactory {
         zone1.addDecal(1,12, "Roses");
         zone1.addDecal(2,12, "Roses");
         zone1.addDecal(3,12, "Roses");
+        //zone1.addDecal(7,7, "RedX");
+
 
 
         ZoomedStaticCameraView zone2 = new ZoomedStaticCameraView(0,18,8,7);
@@ -412,7 +414,9 @@ public class LevelFactory {
 
         ZoomedStaticCameraView zone3 = new ZoomedStaticCameraView(8,0,12,9);
         zone3.setMapViewObjectFactory(new DesertMapViewObjectFactory(zone3));
+        zone3.addDecal(11,2, "RedX");
         cvm.addCameraView(zone3);
+        
 
         ZoomedDynamicCameraView zone4 = new ZoomedDynamicCameraView(8,9,15,16);
         zone4.addDecal(10,11,"Roses");
@@ -479,7 +483,11 @@ public class LevelFactory {
         map.getTile(new Coord(3,9)).addMapItem(new OneShotTest());
 
         /*****************************/
-        
+
+
+
+
+        /************* Zone 2 ***********/
 
         AreaEffect ae1 = new TakeDamageAE(1, effectCMDFactory);
         AreaEffect ae2 = new LevelUpAE(effectCMDFactory);
@@ -489,7 +497,38 @@ public class LevelFactory {
         map.getTile(new Coord(3,20)).addAreaEffect(ae4);
 
         map.getTile(new Coord(1,20)).addMapItem(wand);
+        map.getTile(new Coord(0,22)).setTerrain(new Mountain());
+        map.getTile(new Coord(7,22)).setTerrain(new Grass());
+        /*****************************/
 
+
+
+        /************ Zone 3 **********/
+        EffectCommandFactory effectCommandFactory = new EffectCommandFactory(map);
+        AreaEffect damageAE = new TakeDamageAE(1, effectCommandFactory);
+        AreaEffect levelUpAE = new LevelUpAE(effectCommandFactory);
+        AreaEffect healDamageAE = new HealDamageAE(1, effectCommandFactory);
+        map.getTile(new Coord(9,1)).addAreaEffect(damageAE);
+        map.getTile(new Coord(9,2)).addAreaEffect(damageAE);
+        map.getTile(new Coord(10,1)).addAreaEffect(damageAE);
+        map.getTile(new Coord(10,2)).addAreaEffect(damageAE);
+
+        map.getTile(new Coord(18,1)).addAreaEffect(healDamageAE);
+        map.getTile(new Coord(17,1)).addAreaEffect(healDamageAE);
+        map.getTile(new Coord(18,2)).addAreaEffect(healDamageAE);
+        map.getTile(new Coord(17,2)).addAreaEffect(healDamageAE);
+
+        map.getTile(new Coord(14,4)).addAreaEffect(levelUpAE);
+        map.getTile(new Coord(13,4)).addAreaEffect(levelUpAE);
+        map.getTile(new Coord(13,5)).addAreaEffect(levelUpAE);
+        map.getTile(new Coord(14,5)).addAreaEffect(levelUpAE);
+
+
+
+
+
+
+        /*****************************/
 
 
         return map;

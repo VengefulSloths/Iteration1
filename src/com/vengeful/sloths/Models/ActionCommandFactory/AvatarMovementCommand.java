@@ -25,6 +25,7 @@ public class AvatarMovementCommand extends MovementCommand {
     {
         ////System.out.Println(System.currentTimeMillis() + "executing movement command");
         Tile sourceTile = map.getTile(this.src);
+
         try {
             Tile destTile = map.getTile(this.dst);
             ////System.out.Println(" source BEFORE: " + sourceTile.getEntity());

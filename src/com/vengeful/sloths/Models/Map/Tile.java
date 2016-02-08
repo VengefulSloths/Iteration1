@@ -143,7 +143,9 @@ public class Tile{
                 }
             }
             for (MapItem td : toDestroy) {
+                try {
                     td.destroy();
+                }catch (Exception e){}
                     mapItems.remove(td);
 
             }
