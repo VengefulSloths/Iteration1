@@ -11,6 +11,7 @@ import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.Utility.ScreenSwitcher;
 import com.vengeful.sloths.View.Observers.EntityObserver;
 
 import java.util.Iterator;
@@ -206,16 +207,21 @@ public class Avatar extends Entity {
     }
 
     public void die() {
-        System.out.println("Entity is Dead D:");
-        this.entityStats.updateLivesLeft(-1);
-        this.entityStats.setCurrentHealth(entityStats.getLife());
-        //Bring up game menu here??
-        commandFactory.createDieCommand(this.getLocation(),this);
         Iterator<EntityObserver> iter = entityObservers.iterator();
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             iter.next().alertDeath();
         }
         entityStats.alertObservers();
+        System.out.println("Entity is Dead D:");
+        this.entityStats.updateLivesLeft(-1);
+        //this.entityStats.setCurrentHealth(entityStats.getLife());
+        //Bring up game menu here??
+        if (this.entityStats.getLivesLeft() < 0) {
+            ScreenSwitcher.getInstance().goToMenu();
+        } else{
+            commandFactory.createDieCommand(this.getLocation(), this);
+        }
+
     }
 
     // @TODO: Don't have Item object yet
