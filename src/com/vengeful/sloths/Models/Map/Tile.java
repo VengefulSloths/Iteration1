@@ -194,13 +194,13 @@ public class Tile{
         for(MapItem mi: mapItems) {
             s.add(mi);
         }
-        for(AreaEffect ae: areaEffect){
-            s.add(ae);
-        }
+//        for(AreaEffect ae: areaEffect){
+//            s.add(ae);
+//        }
 
-        for(Decal d: decals){
-            s.add(d);
-        }
+        //for(Decal d: decals){
+            //s.add(d);
+        //}
         return s;
     }
 

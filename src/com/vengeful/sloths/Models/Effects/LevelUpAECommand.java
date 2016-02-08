@@ -3,6 +3,7 @@ package com.vengeful.sloths.Models.Effects;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.TimeModel.TimeModel;
 import com.vengeful.sloths.Models.Map.*;
 
@@ -32,4 +33,9 @@ public class LevelUpAECommand extends EffectCommand {
 
         System.out.println("MY LEVEL AFTER: " + entity.getEntityStats().getLevel());
     }
+
+//    public void saveMe(SaveManager sm, int ws){
+//        sm.writeClassLine(ws, "LevelUpAECommand");
+//        super.saveMe(sm, ws);
+//    }
 }

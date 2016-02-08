@@ -20,6 +20,7 @@ import com.vengeful.sloths.Models.SaveLoad.Loader;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Utility.LevelFactory;
+import com.vengeful.sloths.Utility.ScreenSwitcher;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
 import com.vengeful.sloths.View.EquipmentView.EquipmentView;
@@ -38,33 +39,43 @@ public class Main {
     public static void main(String[] args) {
 
         //create engine objects
-        ViewEngine viewEngine = new ViewEngine();
-        ModelEngine modelEngine = new ModelEngine();
+        //ViewEngine viewEngine = new ViewEngine();
+        //ModelEngine modelEngine = new ModelEngine();
+        ScreenSwitcher screenSwitcher = ScreenSwitcher.getInstance();
+        ViewEngine viewEngine = screenSwitcher.getViewEngine();
+        ModelEngine modelEngine = screenSwitcher.getModelEngine();
+        MainController controller = screenSwitcher.getController();
 
 
-        MenuView mainMenuView = new MainMenuView();
 
-        //make controller
-        MainController controller = new MainController( viewEngine);
+        screenSwitcher.goToMenu();
+//        MenuView mainMenuView = new MainMenuView();
+//
+//        //make controller
+//        //MainController controller = new MainController( viewEngine);
+//
+//        MenuContainer menuContainer = new MenuContainer(viewEngine, modelEngine, controller);
+//        controller.getMenuState().setTarget(menuContainer);
+//
+//        modelEngine.setController(controller);
+//        controller.setMenuState();
+//        //set up engines
+//        viewEngine.setVisible(true);
+//        viewEngine.registerView(menuContainer);
 
-        MenuContainer menuContainer = new MenuContainer(viewEngine, modelEngine, controller);
-        controller.getMenuState().setTarget(menuContainer);
 
-        modelEngine.setController(controller);
-        controller.setMenuState();
-        //set up engines
-        viewEngine.setVisible(true);
-        viewEngine.registerView(menuContainer);
+
+
+
+
+
+
         //beginning test
 
-//        Loader l = new Loader();
-  //      Object o = l.avatar;
-    //    System.out.println(o.toString());
+        //Loader l = new Loader();
+        //Object o = l.avatar;
+        //System.out.println(o.toString());
 
-
-//        Loader l = new Loader();
-//        Object o = l.avatar;
-//        System.out.println(((Entity) o).getInventory().toString());
 
 
 

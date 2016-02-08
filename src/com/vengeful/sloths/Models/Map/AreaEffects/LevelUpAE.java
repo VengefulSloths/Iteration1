@@ -24,7 +24,7 @@ public class LevelUpAE extends AreaEffect{
     @Override
     public EffectCommand createEffectCommand(Entity affectedEntity) {
         if(affectedEntity instanceof Avatar) {
-            this.destory = true; //show be destroyed as soon as activated once
+            //this.destory = true; //show be destroyed as soon as activated once
             //return new LevelUpAECommand(affectedEntity, this);
             //EffectCommand levelUpCMD = this.commandFactory.createLevelUpAECommand(affectedEntity, this);
 
@@ -36,8 +36,8 @@ public class LevelUpAE extends AreaEffect{
             return null;
     }
 
-    public void saveMe(SaveManager sm, int ws) {
-        sm.writeClassLine(ws, "LevelUpAE");
-    }
+//    public void saveMe(SaveManager sm, int ws) {
+//        sm.writeClassLine(ws, "LevelUpAE");
+//    }
 
 }

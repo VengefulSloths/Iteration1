@@ -31,4 +31,8 @@ public class Smasher extends Occupation {
         super.saveMe(sm, ws);
         sm.writeVarValue("Smasher");
     }
+
+    public String toString() {
+        return "Smasher";
+    }
 }

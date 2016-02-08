@@ -2,6 +2,7 @@ package com.vengeful.sloths.Models.Effects;
 
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.TimeModel.TimeModel;
 import com.vengeful.sloths.Utility.Coord;
 
@@ -50,4 +51,10 @@ public class HealDamageAECommand extends EffectCommand{
             new HealDamageAECommand(this.entity, this.health, this.currentLoc, 30);
         }
     }
+
+//    public void saveMe(SaveManager sm, int ws){
+//        sm.writeClassLine(ws, "HealDamageAECommand");
+//        sm.writeVariableLine(ws, "health", ""+health, false);
+//        super.saveMe(sm, ws);
+//    }
 }

@@ -27,7 +27,7 @@ public class InstantDeathAE extends AreaEffect {
             return null;
     }
 
-    public void saveMe(SaveManager sm, int ws) {
-        sm.writeClassLine(ws, "InstantDeathAE");
-    }
+//    public void saveMe(SaveManager sm, int ws) {
+//        sm.writeClassLine(ws, "InstantDeathAE");
+//    }
 }

@@ -36,6 +36,20 @@ public class TakeableItem extends MapItem {
         return this.invItemRep;
     }
 
+    public void setInvItemRep(InventoryItem inv) {
+        this.invItemRep = inv;
+    }
+
+
+    //For testing purpose
+    /*
+    public String toString(){
+        String ret = "My takeable is: " + this.itemName + "\n";
+        if (this.invItemRep != null)
+            ret +="My corresponding inv item is: " + this.invItemRep.getItemName();
+        return ret;
+
+    }*/
 
     public void saveMe(SaveManager sm, int ws) {
         sm.writeClassLine(ws, "TakeableItem");

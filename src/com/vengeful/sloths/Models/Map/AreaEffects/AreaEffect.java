@@ -14,7 +14,7 @@ import com.vengeful.sloths.View.Observers.ModelObserver;
 /**
  * Created by John on 1/30/2016.
  */
-public abstract class AreaEffect implements ViewObservable, Saveable {
+public abstract class AreaEffect implements ViewObservable{
 
     //protected String name;
     EffectCommandFactory commandFactory;
@@ -52,6 +52,6 @@ public abstract class AreaEffect implements ViewObservable, Saveable {
         this.observer = null;
     }
 
-    public abstract void saveMe(SaveManager sm, int ws);
+//    public abstract void saveMe(SaveManager sm, int ws);
 
 }

@@ -21,8 +21,8 @@ public class CameraViewManager {
         for (CameraView cv: cameraViewList) {
             if (x >= cv.getX() &&
                 x< cv.getX() + cv.getWidth() &&
-                x >= cv.getX() &&
-                x< cv.getX() + cv.getWidth()) {
+                y >= cv.getY() &&
+                y< cv.getY() + cv.getHeight()) {
                 //set up proxy observer
                 //register the proxy with player
                 //add the proxy to manager

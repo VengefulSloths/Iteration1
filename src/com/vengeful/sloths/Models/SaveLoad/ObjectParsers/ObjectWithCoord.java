@@ -9,14 +9,24 @@ public class ObjectWithCoord {
     private Object objectToPlace;
     private Coord c;
 
-    ObjectWithCoord(Object objectToPlace, Coord c){
+    public ObjectWithCoord() {}
+
+    public ObjectWithCoord(Object objectToPlace, Coord c){
         this.objectToPlace = objectToPlace;
         this.c = c;
     }
 
-    ObjectWithCoord(Object objectToPlace){
+    public ObjectWithCoord(Object objectToPlace){
         this.objectToPlace = objectToPlace;
         c = null;
+    }
+
+    public void setCoord(Coord c) {
+        this.c = c;
+    }
+
+    public void setObjectToPlace(Object o) {
+        this.objectToPlace = o;
     }
 
     public Object getObjectToPlace() {
@@ -26,6 +36,7 @@ public class ObjectWithCoord {
     public Coord getC() {
         return c;
     }
+
 
 
 }

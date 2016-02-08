@@ -37,7 +37,7 @@ public class LevelFactory {
 
         for (int i=0; i<35; i++) {
             for (int j=0; j<20; j++) {
-                //map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+                map.getTile(new Coord(i,j)).setTerrain(new Grass());
             }
         }
         for (int i=15; i<35; i++) {
@@ -61,6 +61,12 @@ public class LevelFactory {
                 map.getTile(new Coord(i,j)).setTerrain(new Water());
             }
         }
+
+        //new
+        for (int i=3; i<13; i++) {
+            map.getTile(new Coord(2,i)).setTerrain(new Grass());
+        }
+
         map.getTile(new Coord(14,0)).setTerrain(new Mountain());
         map.getTile(new Coord(15,1)).setTerrain(new Grass());
         map.getTile(new Coord(14,4)).setTerrain(new Mountain());
@@ -78,6 +84,12 @@ public class LevelFactory {
             for(int j=5; j<7; j++) {
                 map.getTile(new Coord(i,j)).setTerrain(new Water());
             }
+        }
+
+
+        //new
+        for (int i=3; i<13; i++) {
+            map.getTile(new Coord(2,i)).setTerrain(new Grass());
         }
         map.getTile(new Coord(5,5)).addMapItem(new Obstacle());
         map.getTile(new Coord(12,3)).addMapItem(new Obstacle());
@@ -138,6 +150,10 @@ public class LevelFactory {
         start.addDecal(0,2, "Roses");
 
         cvm.addCameraView(start);
+
+        ZoomedStaticCameraView below = new ZoomedStaticCameraView(0,7,5,7);
+
+        cvm.addCameraView(below);
 
         StaticCameraView middle = new StaticCameraView(5,0,10,7);
         middle.addDecal(6,1,"Roses");

@@ -1,7 +1,13 @@
 package com.vengeful.sloths.View.HUDView;
 
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
 import com.sun.org.apache.xpath.internal.operations.And;
+import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.Occupation.Occupation;
+import com.vengeful.sloths.Models.Occupation.Smasher;
+import com.vengeful.sloths.Models.Occupation.Sneak;
+import com.vengeful.sloths.Models.Occupation.Summoner;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Stats.Stats;
 import com.vengeful.sloths.Utility.Config;
@@ -41,7 +47,10 @@ public class HUDView extends View implements StatsObserver {
     //public static final int centerSubPanelWidth = (int) (Config.instance().getHUDViewWidth() - (2*subPanelWidth));
 
     public static final String backgroundImageFileName = "resources/statsBackground.jpg";
-    public static final String characterImageFileName = "resources/hulk.jpg";
+    public static final String smasherImageFileName = "resources/hulk.jpg";
+    public static final String summonerImageFileName = "resources/catSummoner.png";
+    public static final String sneakImageFileName = "resources/sneakImage.png";
+
     public static final String livesImageFileName = "resources/lives.png";
     public static final String livesLostImageFileName = "resources/livesLost.png";
 
@@ -57,9 +66,12 @@ public class HUDView extends View implements StatsObserver {
     private JProgressBar mannaBar;
     private JProgressBar xpBar;
 
+    private int currentHUDLives = 0;
+    private Avatar avatar;
 
-    public HUDView() {
-        generateTitle(title);
+    public HUDView(Avatar avatar) {
+        this.avatar = avatar;
+        generateTitle(avatar.getName());
         this.setBackgroundImageFileName(backgroundImageFileName);
         initHUDPanel();
         System.out.println("THIS IS MY LEVEL!!!" + level);
@@ -107,12 +119,13 @@ public class HUDView extends View implements StatsObserver {
         this.leftPanel = new JPanel();
         this.leftPanel.setBackground(new Color(0f,0f,0f,0.5f));
         this.leftPanel.setPreferredSize(new Dimension(leftPanelWidth, subPanelHeight));
-
-        JLabel nameLabel = generateTitleLabel("Smasher");
+        JLabel nameLabel = generateTitleLabel(avatar.getOccupation().toString());
         this.leftPanel.add(nameLabel);
-
         levelLabel = new JLabel("Level: " + level);
-        this.leftPanel.add(generateCharacterImageLabel(characterImageFileName));
+        Font font = new Font(levelLabel.getFont().getName(), Font.BOLD, 14);
+        levelLabel.setForeground(Color.WHITE);
+        levelLabel.setFont(font);
+        this.leftPanel.add(generateCharacterImageLabel(generateOccupationFileName(avatar.getOccupation().toString())));
         this.leftPanel.add(levelLabel);
         this.leftPanel.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK, Color.BLACK));
     }
@@ -126,14 +139,18 @@ public class HUDView extends View implements StatsObserver {
         this.centerPanel.setLayout(new GridLayout(4,1,0,0));
 
         JPanel titlePanel = new JPanel();
-        titlePanel.add(generateTitleLabel("Character status"));
+        //titlePanel.add(generateTitleLabel("Character status"));
+        titlePanel.add(generateTitleLabel(avatar.getName()));
         titlePanel.setBackground(new Color(0f,0f,0f,0f));
         //titlePanel.setPreferredSize(new Dimension(centerSubPanelWidth, (int)(0.05*subPanelHeight)));
         this.centerPanel.add(titlePanel);
 
         JPanel healthPanel = new JPanel();
-        JLabel healthLabel = new JLabel("     Health: ");
         healthPanel.setBackground(new Color(0f,0f,0f,0f));
+        JLabel healthLabel = new JLabel("     Health: ");
+        Font font = new Font(healthLabel.getFont().getName(), Font.BOLD, 12);
+        healthLabel.setForeground(Color.WHITE);
+        healthLabel.setFont(font);
         //healthPanel.setPreferredSize(new Dimension((int) (centerSubPanelWidth), (int) (0.15*subPanelHeight)));
         healthBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
         //healthBar.setValue(100);
@@ -147,6 +164,9 @@ public class HUDView extends View implements StatsObserver {
 
         JPanel mannaPanel = new JPanel();
         JLabel mannaLabel = new JLabel("     Manna: ");
+        mannaLabel.setForeground(Color.WHITE);
+        mannaLabel.setFont(font);
+
         mannaPanel.setBackground(new Color(0f,0f,0f,0f));
 
         mannaBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
@@ -161,6 +181,8 @@ public class HUDView extends View implements StatsObserver {
 
         JPanel xpPanel = new JPanel();
         JLabel xpLabel = new JLabel("XP Points:");
+        xpLabel.setForeground(Color.WHITE);
+        xpLabel.setFont(font);
         xpPanel.setBackground(new Color(0f,0f,0f,0f));
         xpBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
         //xpBar.setValue(0);
@@ -212,7 +234,7 @@ public class HUDView extends View implements StatsObserver {
     public JLabel generateCharacterImageLabel(String imageFileName) {
         ImageIcon characterImageIcon = new ImageIcon(imageFileName);
         Image characterImage = characterImageIcon.getImage();
-        characterImage=characterImage.getScaledInstance(leftPanelWidth-(int)(0.20*leftPanelWidth),(int)(subPanelHeight-(.35*subPanelHeight)), Image. SCALE_SMOOTH);
+        characterImage=characterImage.getScaledInstance(leftPanelWidth-(int)(0.20*leftPanelWidth),(int)(subPanelHeight-(.40*subPanelHeight)), Image. SCALE_SMOOTH);
         JLabel picLabel = new JLabel(new ImageIcon(characterImage));
         picLabel.setBorder(new LineBorder(Color.BLACK,3));
         return picLabel;
@@ -238,45 +260,51 @@ public class HUDView extends View implements StatsObserver {
 
     public void setBars(){
 
-       this.level = ((EntityStats) stats).getLevel();
+        this.level = ((EntityStats) stats).getLevel();
         System.out.println("This is my LEVEL: " + this.level);
         levelLabel.setText("Level: " + level);
 
         livesRemaining = ((EntityStats)stats).getLivesLeft();
         System.out.println("This is my LIVES REMAINING: " + this.livesRemaining);
-
+        System.out.println("This is my ucrrent HUD lives: " + currentHUDLives);
         maxLives = ((EntityStats)stats).getMaxLives();
 
-        System.out.println("This is MY MAX LIVES:" + maxLives);
-        if ((livesRemaining<maxLives)) {
-            //this.rightPanel.remove(livesPanel);
-            for (int i = 0; i < maxLives-livesRemaining; i++) {
-                if (livesAbleToRemove>0) {
+        if (called) {
+            for (int i = 0; i < livesRemaining; i++) {
+                livesPanel.add(generateLivesImageLabel(livesImageFileName));
 
-                    this.livesPanel.remove(maxLives-(i+1));
-                    //this.livesPanel.remove(maxLives-(i));
-                    this.livesPanel.add(generateLivesImageLabel(livesLostImageFileName), maxLives-(i+1));
-
-                    livesRemovedCount = i+1;
-                    livesAbleToRemove--;
-
-                } else {
-                    System.out.println("ALREADY OUT OF LIVES");
-                }
+                ++currentHUDLives;
+                //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
+                called=false;
             }
         }
 
-        else {
-            if (called) {
-                for (int i = 0; i < livesRemaining; i++) {
-                    livesPanel.add(generateLivesImageLabel(livesImageFileName));
-                    //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
-                    called=false;
-                }
-            }
-
-            this.rightPanel.add(livesPanel);
+        if (currentHUDLives > 0 && currentHUDLives > livesRemaining) {
+            this.livesPanel.remove(--currentHUDLives);
+            //this.livesPanel.add(generateLivesImageLabel(livesLostImageFileName));
+            //this.livesPanel.repaint();
         }
+
+//        System.out.println("This is MY MAX LIVES:" + maxLives);
+//        if ((livesRemaining<maxLives)) {
+//            //this.rightPanel.remove(livesPanel);
+//            for (int i = 0; i < maxLives-livesRemaining; i++) {
+//                if (livesAbleToRemove>0) {
+//
+//                    this.livesPanel.remove(maxLives-(i+1));
+//                    //this.livesPanel.remove(maxLives-(i));
+//                    this.livesPanel.add(generateLivesImageLabel(livesLostImageFileName), maxLives-(i+1));
+//
+//                    livesRemovedCount = i+1;
+//                    livesAbleToRemove--;
+//
+//                } else {
+//                    System.out.println("ALREADY OUT OF LIVES");
+//                }
+//            }
+//        }
+
+
 
 
 
@@ -295,5 +323,20 @@ public class HUDView extends View implements StatsObserver {
 
 
     }
+
+
+    public String generateOccupationFileName(String occupationString) {
+        switch (occupationString) {
+            case "Smasher":
+                return smasherImageFileName;
+            case "Sneak":
+                return sneakImageFileName;
+            case "Summoner":
+                return summonerImageFileName;
+            default:
+                return smasherImageFileName;
+        }
+    }
+
 
     }
