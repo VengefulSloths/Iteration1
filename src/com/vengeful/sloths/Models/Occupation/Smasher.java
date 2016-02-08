@@ -28,7 +28,7 @@ public class Smasher extends Occupation {
     }
 
     public void saveMe(SaveManager sm, int ws) {
-        sm.writeClassLine(ws, "Smasher");
-        sm.writeCloseBracket(ws);
+        super.saveMe(sm, ws);
+        sm.writeVarValue("Smasher");
     }
 }

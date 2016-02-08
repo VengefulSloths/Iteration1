@@ -30,6 +30,8 @@ public class ObjectParserFactory {
             return new EquippableItemParser(className, sc, l, this);
         }else if(className.equals("BaseStats")){
             return new BaseStatsParser(className, sc, l, this);
+        }else if(className.equals("Equipped")){
+            return new EquippedParser(className, sc, l, this);
         }
         return null;
     }

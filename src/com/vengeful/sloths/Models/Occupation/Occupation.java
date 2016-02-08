@@ -1,5 +1,6 @@
 package com.vengeful.sloths.Models.Occupation;
 
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.SaveLoad.Saveable;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 
@@ -18,8 +19,9 @@ public abstract class Occupation implements Saveable {
         eStats.levelUp();
     }
 
-    public void Saveme(){
-        return;
+    public void saveMe(SaveManager sm, int ws)
+    {
+        sm.writeVarName("Occupation");
     }
 
 }
