@@ -163,7 +163,7 @@ public class HUDView extends View implements StatsObserver {
         this.centerPanel.add(healthPanel);
 
         JPanel mannaPanel = new JPanel();
-        JLabel mannaLabel = new JLabel("     Manna: ");
+        JLabel mannaLabel = new JLabel("      Mana: ");
         mannaLabel.setForeground(Color.WHITE);
         mannaLabel.setFont(font);
 
@@ -303,9 +303,6 @@ public class HUDView extends View implements StatsObserver {
 //                }
 //            }
 //        }
-
-
-
 
 
 

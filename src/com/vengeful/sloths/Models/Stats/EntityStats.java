@@ -35,7 +35,7 @@ public class EntityStats extends Stats {
 
         this.maxLives=3;
         // Set defaults
-        this.experience = 1;
+        this.experience = 0;
         this.level = 1;
         this.livesLeft = maxLives;
         this.life = 11;
@@ -124,6 +124,10 @@ public class EntityStats extends Stats {
         }
         else
             this.currentHealth += health;
+    }
+
+    public void setCurrentHealthFromLoad(int currentHealth) {
+        this.currentHealth = currentHealth;
     }
 
     public int getCurrentHealth(){

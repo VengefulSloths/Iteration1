@@ -15,6 +15,7 @@ import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.Observers.ModelObserver;
+import com.vengeful.sloths.View.Observers.ProxyEntityObserver;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -103,7 +104,12 @@ public abstract class Entity implements ViewObservable, Saveable{
     }
 
     public void registerObserver(ModelObserver modelObserver) {
+        System.out.println(modelObserver);
         this.entityObservers.add((EntityObserver) modelObserver);
+    }
+
+    public void initEntityObserversList() {
+        this.entityObservers = new ArrayList<EntityObserver>();
     }
 
     public void deregisterObserver(ModelObserver modelObserver) { this.entityObservers.remove(modelObserver);}

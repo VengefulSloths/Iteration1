@@ -198,6 +198,12 @@ public class Tile{
 //            s.add(ae);
 //        }
 
+        /*
+        for(Decal d: decals){
+            s.add(d);
+        }
+        */
+
         //for(Decal d: decals){
             //s.add(d);
         //}

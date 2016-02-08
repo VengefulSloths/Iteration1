@@ -38,6 +38,10 @@ public class Avatar extends Entity {
         this.commandFactory = commandFactory;
     }
 
+    public void setCommandFactory(ActionCommandFactory acf) {
+        this.commandFactory = acf;
+    }
+
     public Equipped getEquipped() {
         return equipped;
     }
@@ -176,6 +180,7 @@ public class Avatar extends Entity {
         entityStats.setCurrentHealth(entityStats.getLife());
         entityStats.setCurrentMana(entityStats.getMana());
         entityStats.alertObservers();
+        entityStats.setExperience(0);
 
         Iterator<EntityObserver> iter = entityObservers.iterator();
         while(iter.hasNext()) {

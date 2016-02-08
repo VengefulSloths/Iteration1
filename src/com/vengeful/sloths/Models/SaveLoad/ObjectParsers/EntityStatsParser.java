@@ -37,7 +37,13 @@ public class EntityStatsParser extends ObjectParser {
                 String methodName = "set"+varName;
 
                 try {
-                    Method method = entityStats.getClass().getMethod(methodName, int.class);
+                    Method method = null;
+                    if (methodName.equals("setCurrentHealth")) {
+                        method = entityStats.getClass().getMethod("setCurrentHealthFromLoad", int.class);
+                    } else {
+                        method = entityStats.getClass().getMethod(methodName, int.class);
+                    }
+
                     method.invoke(entityStats, Integer.parseInt(varValue));
                 }catch (Exception e){
                     System.out.println("Error with creating setter entitystats method");

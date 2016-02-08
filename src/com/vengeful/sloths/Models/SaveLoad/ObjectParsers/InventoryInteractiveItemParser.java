@@ -47,8 +47,9 @@ public class InventoryInteractiveItemParser extends ObjectParser {
                         System.out.println("Error setting takeableItem's inventory item rep");
                     }
                 } else if(varName.equals("Coord")){
-                    int x = Character.getNumericValue(varValue.charAt(1));
-                    int y = Character.getNumericValue(varValue.charAt(3));
+                    String[] split = varValue.split(",");
+                    int x = Integer.parseInt(split[0].substring(1));
+                    int y = Integer.parseInt(split[1].substring(0,split[1].length()-1));
                     Coord c = new Coord(x,y);
                     owc.setCoord(c);
                 } else {
