@@ -42,7 +42,7 @@ public class InventoryInteractiveItemParser extends ObjectParser {
                     ObjectParser op = ops.ObjectParserFactory(varName);
                     Object o = op.Parse();
                     try {
-                        iti.setRequiredItem((InventoryItem) o);
+                        iti.setRequiredItem(((InventoryItem) o).getItemName());
                     } catch (Exception e) {
                         //System.out.Println("Error setting takeableItem's inventory item rep");
                     }

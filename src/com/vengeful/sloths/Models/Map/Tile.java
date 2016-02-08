@@ -128,6 +128,7 @@ public class Tile{
     public Iterator<MapItem> getMapItemIterator() {
         return mapItems.iterator();
     }
+
     public Iterator<AreaEffect> getAreaEffectIterator() {
         return areaEffect.iterator();
     }
@@ -187,6 +188,17 @@ public class Tile{
     public void accept(TileVisitor v)
     {
         v.doVisit(this);
+    }
+
+    public InteractiveItem getInteractiveItem(){
+
+        for (Iterator<MapItem> iter = mapItems.iterator(); iter.hasNext();) {
+            MapItem item = iter.next();
+            if(item instanceof InteractiveItem)
+                return (InteractiveItem) item;
+        }
+        System.out.println("shit got fucked up you aint supposed to call ths here!!!");
+        return null;
     }
 
     public ArrayList<Saveable> getSaveables()
