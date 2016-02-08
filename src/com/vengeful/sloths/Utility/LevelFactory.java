@@ -171,6 +171,123 @@ public class LevelFactory {
         return cvm;
     }
 
+
+
+    private Map generateDemoMap() {
+        Map map = new Map(new Coord(23,25));
+
+
+        /*
+        for (int i=0; i<23; i++) {
+            for (int j=0; j<25; j++) {
+                map.getTile(new Coord(i,j)).setTerrain(new Grass());
+            }
+        }*/
+
+
+        //zone 1
+        for(int i = 0; i < 8; i++){
+            for(int j = 6; j < 18; j++){
+
+                if(i == 0 || j == 6 || i == 7)
+                    map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+                else
+                    map.getTile(new Coord(i,j)).setTerrain(new Grass());
+            }
+        }
+        map.getTile(new Coord(7,7)).setTerrain(new Grass());
+        //map.getTile(new Coord(7,8)).setTerrain(new Grass());
+        map.getTile(new Coord(7,14)).setTerrain(new Grass());
+        map.getTile(new Coord(7,15)).setTerrain(new Grass());
+
+
+
+        //zone 2
+        for(int i = 0; i < 8; i++){
+            for(int j = 18; j < 25; j++){
+                if(i == 0 || i == 7 || j == 24)
+                    map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+                else
+                     map.getTile(new Coord(i,j)).setTerrain(new Grass());
+            }
+        }
+        map.getTile(new Coord(7,20)).setTerrain(new Grass());
+        map.getTile(new Coord(7,21)).setTerrain(new Grass());
+
+
+
+
+        //zone 3
+        for(int i = 8; i < 20; i++){
+            for(int j = 0; j < 9; j++){
+                if(i == 8 || i == 19 || j == 0 || j == 8)
+                    map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+                else
+                    map.getTile(new Coord(i,j)).setTerrain(new Grass());
+            }
+        }
+        map.getTile(new Coord(8,7)).setTerrain(new Grass());
+        map.getTile(new Coord(14,8)).setTerrain(new Grass());
+
+
+
+        //zone 4
+        for(int i = 8; i < 23; i++){
+            for(int j = 9; j < 25; j++){
+                if(i == 8 || i == 22 || j == 9 || j == 24)
+                    map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+                else
+                    map.getTile(new Coord(i,j)).setTerrain(new Grass());
+            }
+        }
+        map.getTile(new Coord(8,14)).setTerrain(new Grass());
+        map.getTile(new Coord(8,15)).setTerrain(new Grass());
+        map.getTile(new Coord(14,9)).setTerrain(new Grass());
+        map.getTile(new Coord(8,20)).setTerrain(new Grass());
+        map.getTile(new Coord(8,21)).setTerrain(new Grass());
+
+
+
+        return map;
+    }
+
+
+    private CameraViewManager generateDemoCV() {
+
+        CameraViewManager cvm = new CameraViewManager(activeMap);
+        //ZoomedStaticCameraView test = new ZoomedStaticCameraView(0,0,8,5);
+        //cvm.addCameraView(test);
+
+        ZoomedDynamicCameraView zone1 = new ZoomedDynamicCameraView(0,6,8,12);
+        cvm.addCameraView(zone1);
+
+        ZoomedStaticCameraView zone2 = new ZoomedStaticCameraView(0,18,8,7);
+        cvm.addCameraView(zone2);
+
+        ZoomedStaticCameraView zone3 = new ZoomedStaticCameraView(8,0,12,9);
+        cvm.addCameraView(zone3);
+
+        ZoomedDynamicCameraView zone4 = new ZoomedDynamicCameraView(8,9,15,16);
+        cvm.addCameraView(zone4);
+
+
+        return cvm;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public Map getMap() {
         return activeMap;
     }
@@ -186,6 +303,11 @@ public class LevelFactory {
                 activeMap = generateTestMap();
                 activeCVM = generateTestCV();
                 startingCoordinates = new Coord(2,2);
+                return true;
+            case "DEMO":
+                activeMap = generateDemoMap();
+                activeCVM = generateDemoCV();
+                startingCoordinates = new Coord(2,8);
                 return true;
             default:
                 System.out.println("Level: " + levelname + " not found");

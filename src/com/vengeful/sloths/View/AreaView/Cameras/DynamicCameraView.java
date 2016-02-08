@@ -7,6 +7,7 @@ import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
 import com.vengeful.sloths.View.AreaView.*;
 import com.vengeful.sloths.View.AreaView.CoordinateStrategies.Dynamic32PixelCoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.DynamicPixelCoordinateStrategy;
 import com.vengeful.sloths.View.Observers.EntityObserver;
 import com.vengeful.sloths.View.AreaView.ViewModels.EntityMapViewObject;
 import com.vengeful.sloths.View.AreaView.MapViewObjectFactory;
@@ -43,7 +44,7 @@ public class DynamicCameraView extends CameraView
                 Tile tile = map.getTile(new Coord(i, j));
                 if (tile.hasEntity()) {
                     EntityMapViewObject playerView = mvoFactory.createEntityMapViewObject(tile.getEntity());
-                    ((Dynamic32PixelCoordinateStrategy)mvoFactory.getCoordinateStrategy()).setPlayer(playerView);
+                    ((DynamicPixelCoordinateStrategy)mvoFactory.getCoordinateStrategy()).setPlayer(playerView);
                     mapViewObjectManager.addMapViewObject(playerView);
                 }
             }

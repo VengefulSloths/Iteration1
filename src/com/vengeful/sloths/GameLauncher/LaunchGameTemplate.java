@@ -69,9 +69,11 @@ public abstract class LaunchGameTemplate {
     protected void createMap(){
         //Create the level
         LevelFactory levelFactory = new LevelFactory();
-        levelFactory.initilize("TEST");
+        //levelFactory.initilize("TEST");
+        levelFactory.initilize("DEMO");
         this.map = levelFactory.getMap();
-        map.setRespawnPoint(new Coord(2,2));
+        //map.setRespawnPoint(new Coord(2,2));
+        map.setRespawnPoint(new Coord(2,8));
         this.cvm = levelFactory.getCVM();
     }
 

@@ -65,7 +65,7 @@ public abstract class Entity implements ViewObservable, Saveable{
         this.facingDirection = Direction.S;
 
         // @TODO: NOT ALL ENTITIES SHOULD TO SPAWN AT 2,2!
-        this.location = new Coord(2,2);
+        this.location = new Coord(2,8);
 
         switch (occupationString) {
             case "Smasher":
