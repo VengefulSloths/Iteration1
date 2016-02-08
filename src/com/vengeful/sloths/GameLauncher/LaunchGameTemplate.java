@@ -87,6 +87,7 @@ public abstract class LaunchGameTemplate {
         StatsView sv = new StatsView(avatar.getEntityStats());
         sv.setHUDView(hv);
         this.vm = new DefaultViewManager(av, iv, ev, sv, hv);
+        viewEngine.killOldView();
         viewEngine.setVisible(true);
         viewEngine.registerView(vm);
         avatar.getEntityStats().alertObservers();

@@ -46,10 +46,10 @@ public class Config {
     public final int INVENTORY_IMAGE_WIDTH = 20; //original was 18x18
 
 
-    public int getWindowWidth() {
+    public static int getWindowWidth() {
         return WINDOW_WIDTH;
     }
-    public int getWindowHeight() {
+    public static int getWindowHeight() {
         return WINDOW_HEIGHT;
     }
     public static int getMainPanelWidth() {
