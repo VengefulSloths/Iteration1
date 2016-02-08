@@ -17,10 +17,10 @@ public abstract class EffectCommand implements Alertable {
 
     public abstract void execute();
 
-    public void saveMe(SaveManager sm, int ws){
-        sm.writeVariableLine(ws,"entity", "null", false);
-        sm.writeVariableLine(ws,"Coord","(" +  currentLoc.getX() + "," + currentLoc.getY()+ ")", true);
-    }
+//    public void saveMe(SaveManager sm, int ws){
+//        sm.writeVariableLine(ws,"entity", "null", false);
+//        sm.writeVariableLine(ws,"Coord","(" +  currentLoc.getX() + "," + currentLoc.getY()+ ")", true);
+//    }
 
 
 }

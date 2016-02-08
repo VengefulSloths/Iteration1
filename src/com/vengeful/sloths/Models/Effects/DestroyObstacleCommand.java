@@ -46,9 +46,9 @@ public class DestroyObstacleCommand extends EffectCommand{
 
     }
 
-    public void saveMe(SaveManager sm, int ws){
-        sm.writeClassLine(ws, "DestroyObstacleCommand");
-        obstacle.saveMe(sm, ws);
-        super.saveMe(sm, ws);
-    }
+//    public void saveMe(SaveManager sm, int ws){
+//        sm.writeClassLine(ws, "DestroyObstacleCommand");
+//        obstacle.saveMe(sm, ws);
+//        super.saveMe(sm, ws);
+//    }
 }
