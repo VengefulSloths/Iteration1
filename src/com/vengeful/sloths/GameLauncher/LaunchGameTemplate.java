@@ -15,6 +15,7 @@ import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.ModelEngine;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.TimeModel.TimeModel;
+import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.LevelFactory;
 import com.vengeful.sloths.View.AreaView.AreaView;
 import com.vengeful.sloths.View.AreaView.Cameras.CameraViewManager;
@@ -70,6 +71,7 @@ public abstract class LaunchGameTemplate {
         LevelFactory levelFactory = new LevelFactory();
         levelFactory.initilize("TEST");
         this.map = levelFactory.getMap();
+        map.setRespawnPoint(new Coord(2,2));
         this.cvm = levelFactory.getCVM();
     }
 

@@ -1,6 +1,7 @@
 package com.vengeful.sloths.Models.Effects;
 
 import com.vengeful.sloths.Models.Map.AreaEffects.AreaEffect;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import javafx.scene.effect.Effect;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Map;
@@ -28,4 +29,9 @@ public class AECreationCommand extends EffectCommand{
 
         //TODO: to add AreaEffect to the view, need to alert view
     }
+
+//    public void saveMe(SaveManager sm, int ws){
+//        sm.writeClassLine(ws, "AECreationCommand");
+//        super.saveMe(sm, ws);
+//    }
 }

@@ -2,6 +2,7 @@ package com.vengeful.sloths.Models.Effects;
 
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Models.TimeModel.TimeModel;
 
 /**
@@ -26,4 +27,9 @@ public class InstantDeathAECommand extends EffectCommand{
         }
 
     }
+
+//    public void saveMe(SaveManager sm, int ws){
+//        sm.writeClassLine(ws, "InstantDeathAECommand");
+//        super.saveMe(sm, ws);
+//    }
 }

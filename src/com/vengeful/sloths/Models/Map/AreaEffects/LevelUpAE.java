@@ -36,8 +36,8 @@ public class LevelUpAE extends AreaEffect{
             return null;
     }
 
-    public void saveMe(SaveManager sm, int ws) {
-        sm.writeClassLine(ws, "LevelUpAE");
-    }
+//    public void saveMe(SaveManager sm, int ws) {
+//        sm.writeClassLine(ws, "LevelUpAE");
+//    }
 
 }
