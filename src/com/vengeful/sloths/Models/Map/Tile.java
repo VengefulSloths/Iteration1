@@ -203,6 +203,10 @@ public class Tile{
             s.add(d);
         }
         */
+
+        //for(Decal d: decals){
+            //s.add(d);
+        //}
         return s;
     }
 

@@ -74,6 +74,8 @@ public class AvatarMovementCommand extends MovementCommand {
         // Move calling entity onto the tile
         map.getTile(this.entity.getLocation()).interact(entity);
 
+        System.out.println("Avatar is at: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
+
     }
 
     @Override

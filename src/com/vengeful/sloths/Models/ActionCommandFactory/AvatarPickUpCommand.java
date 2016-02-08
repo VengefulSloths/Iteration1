@@ -22,6 +22,7 @@ public class AvatarPickUpCommand extends PickUpCommand {
     public AvatarPickUpCommand(Map map, Coord dropLoc, Entity entity){
         super(map, dropLoc, entity);
         tile = map.getTile(dropLoc);
+        //System.out.println("DROP LOC:" + dropLoc.getX() + " " + dropLoc.getY());
     }
 
 
@@ -31,11 +32,12 @@ public class AvatarPickUpCommand extends PickUpCommand {
     public void execute() {
 
         Iterator<MapItem> iter = this.tile.getMapItemIterator();
+
         ArrayList<MapItem> toBeRemoved = new ArrayList<MapItem>();
+
 
         while(iter.hasNext()){
             MapItem item = iter.next();
-
             if(item instanceof TakeableItem){
                 //TODO: need to check Inventory full
 
@@ -51,6 +53,7 @@ public class AvatarPickUpCommand extends PickUpCommand {
             //System.out.println("I am removing: " + toBeRemoved.get(i).getItemName());
             tile.removeMapItem(toBeRemoved.get(i));
         }
+
 
         //System.out.println("Picking UP! ");
     }
