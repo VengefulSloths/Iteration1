@@ -1,6 +1,10 @@
 package com.vengeful.sloths.Models.SaveLoad.ObjectParsers;
 
 import com.vengeful.sloths.Models.Entity.Avatar;
+import com.vengeful.sloths.Models.Occupation.Occupation;
+import com.vengeful.sloths.Models.Occupation.Smasher;
+import com.vengeful.sloths.Models.Occupation.Sneak;
+import com.vengeful.sloths.Models.Occupation.Summoner;
 import com.vengeful.sloths.Models.SaveLoad.Loader;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
@@ -43,6 +47,7 @@ public class AvatarParser extends ObjectParser{
                     varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
 
                     String methodName = "set"+varName;
+
                     try{
                         Method method = avatar.getClass().getMethod(methodName, o.getClass());
                         method.invoke(avatar, o);
@@ -50,6 +55,23 @@ public class AvatarParser extends ObjectParser{
                         System.out.println("Error with creating setter avatar method");
                     }
                 }
+
+                if (varName.equals("Occupation")) {
+                    Occupation occupation = null;
+                    switch (varValue) {
+                        case "Sneak":
+                            occupation = new Sneak();
+                            break;
+                        case "Smasher":
+                            occupation = new Smasher();
+                            break;
+                        case "Summoner":
+                            occupation = new Summoner();
+                            break;
+                    }
+                    avatar.setOccupation(occupation);
+                }
+
                 if(varName.equals("name"))
                 {
                     avatar.setName(varValue);

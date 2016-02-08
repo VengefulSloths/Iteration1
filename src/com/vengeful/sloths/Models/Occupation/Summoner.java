@@ -25,7 +25,7 @@ public class Summoner extends Occupation {
         eStats.updateStats(new BaseStats(1, 1, 2, 1, 0));
     }
     public void saveMe(SaveManager sm, int ws) {
-        sm.writeClassLine(ws, "Summoner");
-        sm.writeCloseBracket(ws);
+        super.saveMe(sm, ws);
+        sm.writeVarValue("Summoner");
     }
 }

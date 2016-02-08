@@ -180,4 +180,42 @@ public class SaveManager {
             }
         }
     }
+    //only call from occupation! handles weird edge case
+    public void writeVarName(String name){
+        BufferedWriter bw = null;
+        try{
+            bw= new BufferedWriter(new FileWriter(f,true));
+            int i = 0;
+            bw.write(name + ":");
+            //bw.newLine();
+            bw.flush();
+        }catch (IOException e){
+            //not doin nothin
+        } finally {
+            if(bw != null)try{
+                bw.close();
+            }catch (IOException e){
+                //not doin nothin
+            }
+        }
+    }
+    //only call from occupation subcalss, handles weird edge case
+    public void writeVarValue(String value){
+        BufferedWriter bw = null;
+        try{
+            bw= new BufferedWriter(new FileWriter(f,true));
+            int i = 0;
+            bw.write(value);
+            bw.newLine();
+            bw.flush();
+        }catch (IOException e){
+            //not doin nothin
+        } finally {
+            if(bw != null)try{
+                bw.close();
+            }catch (IOException e){
+                //not doin nothin
+            }
+        }
+    }
 }

@@ -25,7 +25,7 @@ public class Sneak extends Occupation {
         eStats.updateStats(new BaseStats(1, 2, 1, 1, 0));
     }
     public void saveMe(SaveManager sm, int ws) {
-        sm.writeClassLine(ws, "Sneak");
-        sm.writeCloseBracket(ws);
+        super.saveMe(sm, ws);
+        sm.writeVarValue("Sneak");
     }
 }
