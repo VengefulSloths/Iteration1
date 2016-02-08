@@ -32,7 +32,7 @@ public class InventoryInteractiveItem extends InteractiveItem{
     }
 
     public void saveMe(SaveManager sm, int ws){
-        sm.writeClassLine(ws, "ActionInteractiveItem");
+        sm.writeClassLine(ws, "InventoryInteractiveItem");
         requiredItem.saveMeFromTakeable(sm ,ws);
         super.saveMe(sm ,ws);
     }

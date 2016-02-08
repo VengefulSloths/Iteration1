@@ -17,6 +17,8 @@ public class ActionInteractiveItem extends InteractiveItem{
         this.quest = quest;
     }
 
+    public ActionInteractiveItem(){}
+
 
     @Override
     public void interact(Entity entity) {

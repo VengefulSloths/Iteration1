@@ -44,8 +44,11 @@ public class Map {
         return tile;
     }
 
-    public void respawnAvatar(){
-
+    public void setRespawnPoint(Coord coord){
+        this.respawnPoint = coord;
+    }
+    public Coord getRespawnPoint(){
+        return this.respawnPoint;
     }
 
     public Tile[][] getTiles()

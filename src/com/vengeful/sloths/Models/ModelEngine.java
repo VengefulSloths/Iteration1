@@ -18,6 +18,7 @@ public class ModelEngine implements Runnable {
     public void run() {
         while(true) {
             //System.out.println("Model Tick");
+
             controller.continuousFunction();
             timeController.tick();
 

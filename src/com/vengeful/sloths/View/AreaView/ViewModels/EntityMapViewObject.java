@@ -49,6 +49,7 @@ public class EntityMapViewObject extends ViewObject
 
 	private SoundEffect walkingSound;
 	private SoundEffect levelUpSound;
+	private SoundEffect deathSound;
 
 	private AnimatedImage currentAnimation;
 	private AnimatedImage currentWeaponAnimation;
@@ -227,6 +228,7 @@ public class EntityMapViewObject extends ViewObject
 
 		this.walkingSound = new SoundEffect(walkingSoundPath);
 		this.levelUpSound = new SoundEffect("resources/Audio/levelup.wav");
+		this.deathSound = new SoundEffect("resources/Audio/death_sound.wav");
 
 		//setup all animations
 		AnimatedImageFactory aif = AnimatedImageFactory.instance();
@@ -431,6 +433,7 @@ public class EntityMapViewObject extends ViewObject
 
 	@Override
 	public void alertDeath() {
-
+		System.out.println("dfdsfsdfsdafsdafsdfasdfasdfdsfd");
+		this.deathSound.play();
 	}
 }
