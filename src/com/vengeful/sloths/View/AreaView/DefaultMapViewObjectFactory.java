@@ -79,13 +79,21 @@ public class DefaultMapViewObjectFactory extends MapViewObjectFactory {
                         terrain.addTerrainImage( resources + "Terrain/BeachSouth.png");
                     }
                     if (i+1 < xMin+width && map.getTile(new Coord(i+1,j)).getTerrain().getClass() == Water.class) {
-                        terrain.addTerrainImage( resources + "Terrain/BeachEast.png");
+                        if (j+1 < yMin+height &&  i-1 >= xMin && map.getTile(new Coord(i-1,j+1)).getTerrain().getClass() == Water.class) {
+                            terrain.addTerrainImage( resources + "Terrain/BeachEastCorner.png");
+                        } else {
+                            terrain.addTerrainImage( resources + "Terrain/BeachEast.png");
+                        }
                     }
                     if (j-1 >= yMin && map.getTile(new Coord(i,j-1)).getTerrain().getClass() == Water.class) {
                         terrain.addTerrainImage( resources + "Terrain/BeachNorth.png");
                     }
                     if (i-1 >= xMin && map.getTile(new Coord(i-1,j)).getTerrain().getClass() == Water.class) {
-                        terrain.addTerrainImage( resources + "Terrain/BeachWest.png");
+                        if (j+1 < yMin+height &&  i+1 < xMin+width && map.getTile(new Coord(i+1,j+1)).getTerrain().getClass() == Water.class) {
+                            terrain.addTerrainImage( resources + "Terrain/BeachWestCorner.png");
+                        } else {
+                            terrain.addTerrainImage( resources + "Terrain/BeachWest.png");
+                        }
                     }
                 }
                 terrainArray.add(terrain);
