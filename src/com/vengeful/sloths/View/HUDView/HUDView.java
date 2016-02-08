@@ -57,6 +57,8 @@ public class HUDView extends View implements StatsObserver {
     private JProgressBar mannaBar;
     private JProgressBar xpBar;
 
+    private int currentHUDLives = 0;
+
 
     public HUDView() {
         generateTitle(title);
@@ -238,45 +240,51 @@ public class HUDView extends View implements StatsObserver {
 
     public void setBars(){
 
-       this.level = ((EntityStats) stats).getLevel();
+        this.level = ((EntityStats) stats).getLevel();
         System.out.println("This is my LEVEL: " + this.level);
         levelLabel.setText("Level: " + level);
 
         livesRemaining = ((EntityStats)stats).getLivesLeft();
         System.out.println("This is my LIVES REMAINING: " + this.livesRemaining);
-
+        System.out.println("This is my ucrrent HUD lives: " + currentHUDLives);
         maxLives = ((EntityStats)stats).getMaxLives();
 
-        System.out.println("This is MY MAX LIVES:" + maxLives);
-        if ((livesRemaining<maxLives)) {
-            //this.rightPanel.remove(livesPanel);
-            for (int i = 0; i < maxLives-livesRemaining; i++) {
-                if (livesAbleToRemove>0) {
+        if (called) {
+            for (int i = 0; i < livesRemaining; i++) {
+                livesPanel.add(generateLivesImageLabel(livesImageFileName));
 
-                    this.livesPanel.remove(maxLives-(i+1));
-                    //this.livesPanel.remove(maxLives-(i));
-                    this.livesPanel.add(generateLivesImageLabel(livesLostImageFileName), maxLives-(i+1));
-
-                    livesRemovedCount = i+1;
-                    livesAbleToRemove--;
-
-                } else {
-                    System.out.println("ALREADY OUT OF LIVES");
-                }
+                ++currentHUDLives;
+                //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
+                called=false;
             }
         }
 
-        else {
-            if (called) {
-                for (int i = 0; i < livesRemaining; i++) {
-                    livesPanel.add(generateLivesImageLabel(livesImageFileName));
-                    //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
-                    called=false;
-                }
-            }
-
-            this.rightPanel.add(livesPanel);
+        if (currentHUDLives > 0 && currentHUDLives > livesRemaining) {
+            this.livesPanel.remove(--currentHUDLives);
+            //this.livesPanel.add(generateLivesImageLabel(livesLostImageFileName));
+            //this.livesPanel.repaint();
         }
+
+//        System.out.println("This is MY MAX LIVES:" + maxLives);
+//        if ((livesRemaining<maxLives)) {
+//            //this.rightPanel.remove(livesPanel);
+//            for (int i = 0; i < maxLives-livesRemaining; i++) {
+//                if (livesAbleToRemove>0) {
+//
+//                    this.livesPanel.remove(maxLives-(i+1));
+//                    //this.livesPanel.remove(maxLives-(i));
+//                    this.livesPanel.add(generateLivesImageLabel(livesLostImageFileName), maxLives-(i+1));
+//
+//                    livesRemovedCount = i+1;
+//                    livesAbleToRemove--;
+//
+//                } else {
+//                    System.out.println("ALREADY OUT OF LIVES");
+//                }
+//            }
+//        }
+
+
 
 
 

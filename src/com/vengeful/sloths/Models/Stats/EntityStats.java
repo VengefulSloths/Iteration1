@@ -115,7 +115,7 @@ public class EntityStats extends Stats {
     }
 
     public int getRequiredLevelXP(){
-        return requiredLevelXP[this.level];
+        return (int)(10.1 * Math.pow(1.1, (double)this.level));
     }
 
     public void setCurrentHealth(int health){

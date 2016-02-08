@@ -20,8 +20,8 @@ public class InstantDeathAECommand extends EffectCommand{
         //For now, make this AE only for Avatar
 
         if(this.entity instanceof Avatar){
-            this.entity.getEntityStats().setCurrentHealth(-this.entity.getEntityStats().getCurrentHealth());
-            this.entity.getEntityStats().updateLivesLeft(-this.entity.getEntityStats().getLivesLeft());
+//            this.entity.getEntityStats().setCurrentHealth(-this.entity.getEntityStats().getCurrentHealth());
+//            this.entity.getEntityStats().updateLivesLeft(-this.entity.getEntityStats().getLivesLeft());
             ((Avatar)this.entity).die();
         }
 
