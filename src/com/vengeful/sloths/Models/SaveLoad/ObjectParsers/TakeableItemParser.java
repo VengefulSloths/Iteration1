@@ -63,14 +63,13 @@ public class TakeableItemParser extends ObjectParser {
                     System.out.println("varValue: " + varValue);
 
                     String methodName = "set" + varName;
-                    System.out.println("methodName: " + methodName);
+                    System.out.println("methodNamE: " + methodName);
 
                     try {
                         Method method = takeableItem.getClass().getMethod(methodName, String.class);
 
                         method.invoke(takeableItem, varValue);
                     } catch (Exception e) {
-                        System.out.println(e);
                         System.out.println("Error with creating setter TakeableItem method");
                     }
                 }
