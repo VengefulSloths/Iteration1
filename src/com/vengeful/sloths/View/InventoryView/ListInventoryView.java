@@ -49,7 +49,7 @@ public class ListInventoryView extends InventoryView {
 
         //this.setPreferredSize(new Dimension(viewWidth, viewHeight));
         manager = new ListInventoryViewObjectManager();
-//        manager.initWithInventory(inventory);
+        manager.initWithInventory(inventory);
 
         selectFirst();
         /* edit the next two lines/maybe delete them */

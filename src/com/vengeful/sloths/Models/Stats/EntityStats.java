@@ -126,6 +126,10 @@ public class EntityStats extends Stats {
             this.currentHealth += health;
     }
 
+    public void setCurrentHealthFromLoad(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
     public int getCurrentHealth(){
         return this.currentHealth;
     }

@@ -33,6 +33,13 @@ public class Inventory implements ViewObservable, Saveable {
 
     }
 
+    public void listInventoryItems() {
+        for (InventoryItem i: inventory) {
+            System.out.println("hddhadhjkcskhjdskhjdsh");
+            System.out.println(i);
+        }
+    }
+
     public InventoryItem getItem(int index){
         if(index < 0 || index >= inventory.size())
             return null;
@@ -45,6 +52,20 @@ public class Inventory implements ViewObservable, Saveable {
     }
 
 
+    public void initInventoryObserversList() {
+        this.inventoryObservers = new ArrayList<>();
+    }
+
+    public void alertObserversFromLoad() {
+        Iterator<InventoryObserver> iter = this.inventoryObservers.iterator();
+        while (iter.hasNext()) {
+
+
+            InventoryObserver io = iter.next();
+            for (InventoryItem i : inventory)
+            io.alertItemAdded(i);
+        }
+    }
 
     public int getSize() {
         return this.currentSize;
