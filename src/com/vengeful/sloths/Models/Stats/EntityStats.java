@@ -87,7 +87,7 @@ public class EntityStats extends Stats {
 
     private int calculateArmorRating() {
         double factor = hardiness / 5.0;
-        System.out.println("this is hardiness" + hardiness);
+        //System.out.Println("this is hardiness" + hardiness);
         double levelFactor = level / 5.0;
         // FACTOR IN EQUIPPED ARMOR!
         return 1 + ((int)(1 * factor)) + ((int)(1 * levelFactor));

@@ -24,14 +24,14 @@ public class LevelUpAECommand extends EffectCommand {
     @Override
     public void execute() {
 
-        System.out.println("MY LEVEL BEFORE: " + entity.getEntityStats().getLevel());
+        //System.out.Println("MY LEVEL BEFORE: " + entity.getEntityStats().getLevel());
 
         if(entity instanceof Avatar){
             ((Avatar)entity).levelUp();
-            System.out.println("LEVELING UP!!");
+            //System.out.Println("LEVELING UP!!");
         }
 
-        System.out.println("MY LEVEL AFTER: " + entity.getEntityStats().getLevel());
+        //System.out.Println("MY LEVEL AFTER: " + entity.getEntityStats().getLevel());
     }
 
 //    public void saveMe(SaveManager sm, int ws){

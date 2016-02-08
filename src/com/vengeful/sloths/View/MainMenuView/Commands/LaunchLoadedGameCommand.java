@@ -45,7 +45,7 @@ public class LaunchLoadedGameCommand extends MenuCommand {
             @Override
             public void run() {
 
-                System.out.println("launching");
+                //System.out.Println("launching");
                 ve.killOldView();
                 ve.registerView(getLoadPanel());
                 LaunchGameTemplate launcher = new LaunchLoadGame(ve, me, cont);

@@ -25,6 +25,6 @@ public class AvatarDieCommand extends DieCommand {
         entity.getEntityStats().setCurrentHealth(entity.getEntityStats().getLife());
         entity.getEntityStats().setCurrentMana(entity.getEntityStats().getMana());
         entity.getEntityStats().alertObservers();
-        System.out.println("should be moved n shit");
+        //System.out.Println("should be moved n shit");
     }
 }

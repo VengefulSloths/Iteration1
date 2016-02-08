@@ -17,7 +17,7 @@ public class TimedAnimation extends AnimatedImage {
         this.duration = duration;
         images = new ArrayList<>();
         for (int i=1; i<frameCount+1; i++) {
-            System.out.println(filePrefix + "_" +  i);
+            //System.out.Println(filePrefix + "_" +  i);
             ImageIcon ii = new ImageIcon(filePrefix + "_" +  i + ".png");
             images.add(ii.getImage());
         }

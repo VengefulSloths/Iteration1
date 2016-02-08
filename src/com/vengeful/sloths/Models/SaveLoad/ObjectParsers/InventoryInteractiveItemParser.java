@@ -44,7 +44,7 @@ public class InventoryInteractiveItemParser extends ObjectParser {
                     try {
                         iti.setRequiredItem((InventoryItem) o);
                     } catch (Exception e) {
-                        System.out.println("Error setting takeableItem's inventory item rep");
+                        //System.out.Println("Error setting takeableItem's inventory item rep");
                     }
                 } else if(varName.equals("Coord")){
                     String[] split = varValue.split(",");
@@ -54,19 +54,19 @@ public class InventoryInteractiveItemParser extends ObjectParser {
                     owc.setCoord(c);
                 } else {
                     varName = varName.substring(0, 1).toUpperCase() + varName.substring(1);
-                    System.out.println("varName: " + varName);
-                    System.out.println("varValue: " + varValue);
+                    //System.out.Println("varName: " + varName);
+                    //System.out.Println("varValue: " + varValue);
 
                     String methodName = "set" + varName;
-                    System.out.println("methodName: " + methodName);
+                    //System.out.Println("methodName: " + methodName);
 
                     try {
                         Method method = iti.getClass().getMethod(methodName, String.class);
 
                         method.invoke(iti, ""+varValue);
                     } catch (Exception e) {
-                        System.out.println(e);
-                        System.out.println("Error with creating setter TakeableItem method");
+                        //System.out.Println(e);
+                        //System.out.Println("Error with creating setter TakeableItem method");
                     }
                 }
             }

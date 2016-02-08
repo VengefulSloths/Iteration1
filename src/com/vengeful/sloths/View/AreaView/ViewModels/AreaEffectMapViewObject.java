@@ -25,13 +25,13 @@ public class AreaEffectMapViewObject extends ViewObject implements AreaEffectObs
         this.converter = converter;
 
         String resourceName = resourceLocation.substring(resourceLocation.lastIndexOf('/')+1);
-        System.out.println("RESOURCE: " + resourceName);
+        //System.out.Println("RESOURCE: " + resourceName);
         String itemImagePath = resourceLocation + "/" + resourceName;
-        System.out.println("PATH: " + itemImagePath);
+        //System.out.Println("PATH: " + itemImagePath);
         itemImage = AnimatedImageFactory.instance().createSingleFrameAnimatedImage(itemImagePath);
-        System.out.println("itemImage should of been loaded");
+        //System.out.Println("itemImage should of been loaded");
         destructionAnimation = AnimatedImageFactory.instance().createTimedAnimatedImage(resourceLocation + "/Destroyed/" + resourceName + "_Broken");
-        System.out.println("broken item image should of been loaded");
+        //System.out.Println("broken item image should of been loaded");
     }
 
 
@@ -40,7 +40,7 @@ public class AreaEffectMapViewObject extends ViewObject implements AreaEffectObs
         this.startTime = ViewTime.getInstance().getCurrentTimeMilli();
         this.isDestroyed = true;
         //destroyedSound.play();
-        System.out.println("I am alerted! (AreaEffect)");
+        //System.out.Println("I am alerted! (AreaEffect)");
     }
 
     @Override

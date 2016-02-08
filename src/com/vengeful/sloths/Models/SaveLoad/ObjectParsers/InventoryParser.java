@@ -48,14 +48,14 @@ public class InventoryParser extends ObjectParser {
                             Method method = inv.getClass().getMethod(methodName, InventoryItem.class);
                             method.invoke(inv, o);
                         }catch (Exception e){
-                            System.out.println("Error with creating setter avatar method");
+                            //System.out.Println("Error with creating setter avatar method");
                         }
                     }
                     try{
                         Method method = inv.getClass().getMethod(methodName, o.getClass());
                         method.invoke(inv, o);
                     }catch (Exception e){
-                        System.out.println("Error with creating setter avatar method");
+                        //System.out.Println("Error with creating setter avatar method");
                     }
                 }
                 else{
@@ -67,7 +67,7 @@ public class InventoryParser extends ObjectParser {
 //                        Method method = inv.getClass().getMethod(methodName, int.class);
 //                        method.invoke(inv, param);
 //                    }catch (Exception e){
-//                        System.out.println("Error with creating setter avatar method");
+//                        //System.out.Println("Error with creating setter avatar method");
 //                    }
                 }
             }

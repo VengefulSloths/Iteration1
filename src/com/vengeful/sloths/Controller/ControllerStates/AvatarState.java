@@ -40,14 +40,14 @@ public class AvatarState extends MainControllerState{
 
     @Override
     public boolean handleIKey() {
-        System.out.println("changing to inventory state");
+        //System.out.Println("changing to inventory state");
         mainController.setInventoryState();
         return true;
     }
 
     @Override
     public boolean handleEKey() {
-        System.out.println("changing to equip");
+        //System.out.Println("changing to equip");
         mainController.setEquipmentState();
         return true;
     }
@@ -61,7 +61,7 @@ public class AvatarState extends MainControllerState{
     @Override
     public boolean handle1Key() {
         //move SW
-        System.out.println("move SW");
+        //System.out.Println("move SW");
        // mainController.getAvatar().move(Direction.SW);
         setDirectionState(Direction.SW);
         setMovingState(true);
@@ -129,9 +129,9 @@ public class AvatarState extends MainControllerState{
         SaveManager sm = new SaveManager();
         SaveVisitor sv = new SaveVisitor(mainController.getMap(), sm);
         sm.setSaveVisitor(sv);
-        System.out.println("SAVING");
-        System.out.println(sm);
-        System.out.println(sv);
+        //System.out.Println("SAVING");
+        //System.out.Println(sm);
+        //System.out.Println(sv);
         sm.save();
         return true;
 

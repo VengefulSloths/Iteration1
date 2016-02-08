@@ -5,6 +5,6 @@ package com.vengeful.sloths.View.MainMenuView.Commands;
  */
 public class DummyCommand extends MenuCommand {
     public void execute() {
-        System.out.println("You just tried to execute a DUMMY command");
+        //System.out.Println("You just tried to execute a DUMMY command");
     }
 }

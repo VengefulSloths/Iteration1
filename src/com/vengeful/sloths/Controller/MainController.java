@@ -49,7 +49,7 @@ public class MainController {
     //Setting the menu view through the constructor is probably not final
     public MainController( JFrame jframe){
 
-        System.out.println("in the maincontroller");
+        //System.out.Println("in the maincontroller");
 
         //avatarState = new AvatarState(this);
         //inventoryState = new InventoryState(this);
@@ -64,7 +64,7 @@ public class MainController {
     public MainController(Avatar player, JFrame jframe, ViewManager vm){
 
         this.player = player;
-        System.out.println("in the maincontroller");
+        //System.out.Println("in the maincontroller");
 
         this.inventory = player.getInventory();
         this.viewManager = vm;
@@ -90,7 +90,7 @@ public class MainController {
     public void continuousFunction(){state.continuousFunction();}
 
     public boolean dispatchKey(int key){
-        //System.out.println(state.getClass());
+        ////System.out.Println(state.getClass());
         switch(key){
             case KeyEvent.VK_I :
                 state.handleIKey();
@@ -162,7 +162,7 @@ public class MainController {
             case KeyEvent.VK_NUMPAD9 :
                 state.handle9Key();
                 break;
-            default: //System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
+            default: ////System.out.Println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
         }
 
         return true;
@@ -211,7 +211,7 @@ public class MainController {
             case KeyEvent.VK_NUMPAD9:
                 state.handleRelease9Key();
                 break;
-            default: //System.out.println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
+            default: ////System.out.Println("key not supported (WTF ARE U EVEN DOIN U SCRUB???)");
         }
 
     }

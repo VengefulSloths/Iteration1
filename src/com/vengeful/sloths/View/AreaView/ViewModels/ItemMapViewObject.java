@@ -43,14 +43,14 @@ public class ItemMapViewObject extends ViewObject
         this.startTime = ViewTime.getInstance().getCurrentTimeMilli();
         this.isDestroyed = true;
         destroyedSound.play();
-        System.out.println("I am alerted! (MapItem)");
+        //System.out.Println("I am alerted! (MapItem)");
     }
 
     @Override
     public void alertActivated() {
         this.isActivated = true;
         (new SoundEffect("resources/Audio/click.wav")).play();
-        System.out.println("I AM ACTIVATED!");
+        //System.out.Println("I AM ACTIVATED!");
     }
 
     @Override

@@ -73,7 +73,7 @@ public abstract class Entity implements ViewObservable, Saveable{
                 this.occupation = new Smasher();
                 break;
             case "Sneak":
-                System.out.println("sneak selected");
+                //System.out.Println("sneak selected");
                 this.occupation = new Sneak();
                 break;
             case "Summoner":
@@ -104,7 +104,7 @@ public abstract class Entity implements ViewObservable, Saveable{
     }
 
     public void registerObserver(ModelObserver modelObserver) {
-        System.out.println(modelObserver);
+        //System.out.Println(modelObserver);
         this.entityObservers.add((EntityObserver) modelObserver);
     }
 
@@ -145,7 +145,7 @@ public abstract class Entity implements ViewObservable, Saveable{
     }
 
     public void saveMe(SaveManager sv, int ws){
-        //System.out.println("Saving:" + this.toString());
+        ////System.out.Println("Saving:" + this.toString());
     }
 
 }

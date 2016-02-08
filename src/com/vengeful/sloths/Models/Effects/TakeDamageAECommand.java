@@ -41,9 +41,9 @@ public class TakeDamageAECommand extends EffectCommand{
 
             /* Need to add functions in Entity to takeDamage is this later can be applied to Entity as well*/
             //this.entity.getEntityStats().setCurrentHealth(-this.damage);
-            System.out.println("MY LIFE WAS: " + this.entity.getEntityStats().getCurrentHealth());
-            System.out.println("DAMAGE TAKEN!!");
-            System.out.println("MY LIFE IS NOW: " + this.entity.getEntityStats().getCurrentHealth());
+            //System.out.Println("MY LIFE WAS: " + this.entity.getEntityStats().getCurrentHealth());
+            //System.out.Println("DAMAGE TAKEN!!");
+            //System.out.Println("MY LIFE IS NOW: " + this.entity.getEntityStats().getCurrentHealth());
 
             //create new takeDamage command
             new TakeDamageAECommand(this.entity, this.damage, this.currentLoc, 30);

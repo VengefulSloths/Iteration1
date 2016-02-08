@@ -130,7 +130,7 @@ public class EntityMapViewObject extends ViewObject
 	public void equipWeapon(String resourcePath) {
 		AnimatedImageFactory aif = AnimatedImageFactory.instance();
 		String resourceName = resourcePath.substring(resourcePath.lastIndexOf('/')+1);
-		System.out.println("EQUIPPING: " + resourcePath + "/north/" + resourceName + "_North");
+		//System.out.Println("EQUIPPING: " + resourcePath + "/north/" + resourceName + "_North");
 		this.weaponN = aif.createTimedAnimatedImage(resourcePath + "/north/" + resourceName + "_North");
 		this.weaponNE = aif.createTimedAnimatedImage(resourcePath + "/northeast/" + resourceName + "_NorthEast");
 		this.weaponE = aif.createTimedAnimatedImage(resourcePath + "/east/" + resourceName + "_East");
@@ -320,7 +320,7 @@ public class EntityMapViewObject extends ViewObject
 	}
 
 	public void alertDirectionChange(Direction d) {
-		//System.out.println("New direction " + d);
+		////System.out.Println("New direction " + d);
 		this.facingDirection = d;
 		switch (d) {
 			case N:
@@ -405,7 +405,7 @@ public class EntityMapViewObject extends ViewObject
 
 	@Override
 	public void alertEquipWeapon(String name) {
-		System.out.println("View Equipping " + name );
+		//System.out.Println("View Equipping " + name );
 		if (converter.getResolution() == 64) {
 			this.equipWeapon("resources/64/Equipment/" + name);
 		} else {
@@ -416,7 +416,7 @@ public class EntityMapViewObject extends ViewObject
 
 	@Override
 	public void alertEquipHat(String name) {
-		System.out.println("View Equipping " + name );
+		//System.out.Println("View Equipping " + name );
 		if (converter.getResolution() == 64) {
 			this.equipHat("resources/64/Equipment/" + name + "/" + name);
 		} else {
@@ -433,7 +433,7 @@ public class EntityMapViewObject extends ViewObject
 
 	@Override
 	public void alertDeath() {
-		System.out.println("dfdsfsdfsdafsdafsdfasdfasdfdsfd");
+		//System.out.Println("dfdsfsdfsdafsdafsdfasdfasdfdsfd");
 		this.deathSound.play();
 	}
 }

@@ -23,12 +23,12 @@ public class AvatarMovementCommand extends MovementCommand {
 
     public void doMove()
     {
-        //System.out.println(System.currentTimeMillis() + "executing movement command");
+        ////System.out.Println(System.currentTimeMillis() + "executing movement command");
         Tile sourceTile = map.getTile(this.src);
         try {
             Tile destTile = map.getTile(this.dst);
-            //System.out.println(" source BEFORE: " + sourceTile.getEntity());
-            //System.out.println(destTile.getEntity());
+            ////System.out.Println(" source BEFORE: " + sourceTile.getEntity());
+            ////System.out.Println(destTile.getEntity());
             if (destTile.canMove()) {
                 sourceTile.removeEntity();
                 destTile.addEntity(entity);
@@ -41,20 +41,20 @@ public class AvatarMovementCommand extends MovementCommand {
                 }
 
 
-                //System.out.println("My location: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
+                ////System.out.Println("My location: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
 
 
                 /*
                 //if there is takeable item on the tile, let entity pick it up
                 if(destTile.getMapItemIterator().hasNext()){
-                    System.out.println("Calling pick up!!!!");
+                    //System.out.Println("Calling pick up!!!!");
                     ((Avatar)entity).pickup();
                 }*/
 
                 /*
                 //Check if there is there is area of effect on map
                 if(destTile.getAreaEffectIterator().hasNext()){
-                    System.out.println("Calling creating effect!!!!");
+                    //System.out.Println("Calling creating effect!!!!");
                     destTile.createAEs();
                 }*/
 
@@ -74,7 +74,7 @@ public class AvatarMovementCommand extends MovementCommand {
         // Move calling entity onto the tile
         map.getTile(this.entity.getLocation()).interact(entity);
 
-        System.out.println("Avatar is at: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
+        //System.out.Println("Avatar is at: " + entity.getLocation().getX() + ", " + entity.getLocation().getY());
 
     }
 

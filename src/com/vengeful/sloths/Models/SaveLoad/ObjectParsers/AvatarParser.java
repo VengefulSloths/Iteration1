@@ -52,7 +52,7 @@ public class AvatarParser extends ObjectParser{
                         Method method = avatar.getClass().getMethod(methodName, o.getClass());
                         method.invoke(avatar, o);
                     }catch (Exception e){
-                        System.out.println("Error with creating setter avatar method");
+                        //System.out.Println("Error with creating setter avatar method");
                     }
                 }
 

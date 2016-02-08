@@ -15,7 +15,7 @@ public class CharacterCreationCommand extends MenuCommand{
 
     @Override
     public void execute() {
-        System.out.println("should swap to cc");
+        //System.out.Println("should swap to cc");
         menuContainer.goToCharacterCreation();
     }
 }

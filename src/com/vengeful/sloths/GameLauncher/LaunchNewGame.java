@@ -28,9 +28,9 @@ public class LaunchNewGame extends LaunchGameTemplate {
     protected void createCharacter(){
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
         this.avatar = new Avatar(avatarName, avatarOccupation, new EntityStats(), avatarActionCommandFactory);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(this.avatar.getName());
-        System.out.println(avatarOccupation);
+        //System.out.Println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        //System.out.Println(this.avatar.getName());
+        //System.out.Println(avatarOccupation);
     }
 
 

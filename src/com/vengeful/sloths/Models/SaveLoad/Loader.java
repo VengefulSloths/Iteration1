@@ -29,7 +29,7 @@ public class Loader {
         try{
             sc = new Scanner(f);
         }catch(Exception e){
-            System.out.println("issue creating scanner for loading from save file");
+            //System.out.Println("issue creating scanner for loading from save file");
         }
         ops = new ObjectParserFactory(sc, this);
         loadIntoContainers();
@@ -44,8 +44,8 @@ public class Loader {
             String className = line[0];
             ObjectParser op = ops.ObjectParserFactory(className);
 
-            System.out.println("Trying to parse");
-            System.out.println(className);
+            //System.out.Println("Trying to parse");
+            //System.out.Println(className);
             Object o = op.Parse();
 
             if(o.getClass() != Avatar.class){

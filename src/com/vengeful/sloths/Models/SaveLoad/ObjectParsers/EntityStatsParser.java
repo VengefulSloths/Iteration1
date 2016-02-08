@@ -21,10 +21,10 @@ public class EntityStatsParser extends ObjectParser {
         EntityStats entityStats = new EntityStats();
         while(sc.hasNext()){
             String check = sc.nextLine();
-            System.out.println("howyd"+check);
+            //System.out.Println("howyd"+check);
 
             if(check.contains("}")){
-                System.out.println("at end of entitystats");
+                //System.out.Println("at end of entitystats");
                 return entityStats;
             }
             else{
@@ -46,13 +46,13 @@ public class EntityStatsParser extends ObjectParser {
 
                     method.invoke(entityStats, Integer.parseInt(varValue));
                 }catch (Exception e){
-                    System.out.println("Error with creating setter entitystats method");
+                    //System.out.Println("Error with creating setter entitystats method");
                 }
 
 
             }
         }
-        System.out.println("hey");
+        //System.out.Println("hey");
         return entityStats;
     }
 }

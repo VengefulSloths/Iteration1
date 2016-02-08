@@ -57,7 +57,7 @@ public class ObstacleAndOneShotParser extends ObjectParser{
                         Method method = o.getClass().getMethod(methodName, String.class);
                         method.invoke(o, varValue);
                     }catch (Exception e){
-                        System.out.println("Error with creating setter avatar method");
+                        //System.out.Println("Error with creating setter avatar method");
                     }
                 }
             }

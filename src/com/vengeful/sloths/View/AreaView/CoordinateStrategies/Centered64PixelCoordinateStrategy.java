@@ -13,7 +13,7 @@ public class Centered64PixelCoordinateStrategy extends CoordinateStrategy {
         this.cv = cv;
         yOffset = Config.instance().getAreaViewHeight()/2 - cv.getHeight()*64/2;
         xOffset = Config.instance().getAreaViewWidth()/2 - cv.getWidth()*64/2;
-        System.out.println(xOffset + " " + yOffset);
+        //System.out.Println(xOffset + " " + yOffset);
     }
     @Override
     public int convertX(int x) {

@@ -10,7 +10,7 @@ public class Centered32PixelCoordinateStrategy extends CoordinateStrategy {
 		this.cv = cv;
 		yOffset = Config.instance().getAreaViewHeight()/2 - cv.getHeight()*32/2;
 		xOffset = Config.instance().getAreaViewWidth()/2 - cv.getWidth()*32/2;
-		System.out.println(xOffset + " " + yOffset);
+		//System.out.Println(xOffset + " " + yOffset);
 	}
 	@Override
 	public int convertX(int x) {

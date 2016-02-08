@@ -34,7 +34,7 @@ public class DesertMapViewObjectFactory extends MapViewObjectFactory {
             return new TerrainMapViewObject(x,y, resources + "Terrain/DesertWater.png", coordinateStrategy);
         }
         else {
-            System.out.println("Could not create appropriate terrain class");
+            //System.out.Println("Could not create appropriate terrain class");
             return null;
         }
     }

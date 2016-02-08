@@ -21,8 +21,8 @@ public class AvatarDropCommand extends DropCommand{
     @Override
     public void execute() {
 
-        System.out.println(" I am the execute() of AvatarDropCommand");
-        System.out.println("I am dropping item: " + itemToDrop.getItemName());
+        //System.out.Println(" I am the execute() of AvatarDropCommand");
+        //System.out.Println("I am dropping item: " + itemToDrop.getItemName());
         Tile tile = map.getTile(dropLocation);
         tile.addMapItem(itemToDrop.getMapItemRep());
         entity.getInventory().removeItem(itemToDrop);

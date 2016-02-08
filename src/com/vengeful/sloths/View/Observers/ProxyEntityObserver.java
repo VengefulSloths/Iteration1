@@ -44,7 +44,7 @@ public class ProxyEntityObserver extends ProxyObserver
 
     @Override
     public void alertDrop(int x, int y, MapItem itemToDrop) {
-        System.out.println("WHO IS MY TARGET?: " + target);
+        //System.out.Println("WHO IS MY TARGET?: " + target);
 
         if (!deleteFlag) {
             target.alertDrop(x,y,itemToDrop);

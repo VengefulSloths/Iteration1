@@ -44,7 +44,7 @@ public class ActionInteractiveItemParser extends ObjectParser {
                         Method method = aii.getClass().getMethod(methodName, String.class);
                         method.invoke(aii, varValue);
                     } catch (Exception e) {
-                        System.out.println("Error with creating setter ActionInteractiveItem method");
+                        //System.out.Println("Error with creating setter ActionInteractiveItem method");
                     }
                 }
             }

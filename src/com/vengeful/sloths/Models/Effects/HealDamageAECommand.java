@@ -43,9 +43,9 @@ public class HealDamageAECommand extends EffectCommand{
             //this.entity.getEntityStats().setCurrentHealth(this.healLife);
 
 
-            System.out.println("MY LIFE WAS: " + this.entity.getEntityStats().getCurrentHealth());
-            System.out.println("HEALED!!");
-            System.out.println("MY LIFE IS NOW: " + this.entity.getEntityStats().getCurrentHealth());
+            //System.out.Println("MY LIFE WAS: " + this.entity.getEntityStats().getCurrentHealth());
+            //System.out.Println("HEALED!!");
+            //System.out.Println("MY LIFE IS NOW: " + this.entity.getEntityStats().getCurrentHealth());
 
             //create new takeDamage command
             new HealDamageAECommand(this.entity, this.health, this.currentLoc, 30);

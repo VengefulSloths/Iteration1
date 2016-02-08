@@ -14,7 +14,7 @@ public class NameCommand extends MenuCommand {
 
     @Override
     public void execute() {
-        System.out.println("should swap to name view");
+        //System.out.Println("should swap to name view");
         menuContainer.goToNameView();
     }
 }
