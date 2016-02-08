@@ -291,6 +291,8 @@ public class LevelFactory {
                     map.getTile(new Coord(i,j)).setTerrain(new Grass());
             }
         }
+        
+
         map.getTile(new Coord(8,14)).setTerrain(new Grass());
         map.getTile(new Coord(8,15)).setTerrain(new Grass());
         map.getTile(new Coord(14,9)).setTerrain(new Grass());
