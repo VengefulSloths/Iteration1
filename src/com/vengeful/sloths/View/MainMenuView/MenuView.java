@@ -2,8 +2,11 @@ package com.vengeful.sloths.View.MainMenuView;
 
 import com.vengeful.sloths.Utility.Config;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +23,11 @@ public abstract class MenuView extends JPanel implements MenuControllable{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        BufferedImage bg =  null;
+        try {
+            bg = ImageIO.read(new File("resources/Menu/grey_wallpaper.png"));
+        }catch (Exception e){}
+        g.drawImage(bg,0,0,Config.getWindowWidth()+50,Config.getWindowHeight()+50,null);
         for (MenuComponent menuComponent:
                 children) {
             menuComponent.paintComponent(g);

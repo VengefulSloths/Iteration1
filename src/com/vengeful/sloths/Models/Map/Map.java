@@ -34,6 +34,7 @@ public class Map {
     }
 
     public Tile getTile(Coord coord) throws IndexOutOfBoundsException{
+        System.out.println(coord);
         if (coord.getX() < 0 ||
                 coord.getY() < 0 ||
                 coord.getX() >= maxX ||

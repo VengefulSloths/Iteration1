@@ -39,4 +39,10 @@ public class MenuCommandFactory {
         return new LaunchGameCommand(ve, me, cont, view, MENU);
 
     }
+    public MenuCommand createLaunchLoadedGameCommand(){
+
+        return new LaunchLoadedGameCommand();
+
+    }
+
 }

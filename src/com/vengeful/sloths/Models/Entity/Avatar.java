@@ -38,6 +38,10 @@ public class Avatar extends Entity {
         this.commandFactory = commandFactory;
     }
 
+    public void setCommandFactory(ActionCommandFactory acf) {
+        this.commandFactory = acf;
+    }
+
     public Equipped getEquipped() {
         return equipped;
     }
