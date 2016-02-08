@@ -5,6 +5,8 @@ import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.Centered32PixelCoordinateStrategy;
+import com.vengeful.sloths.View.AreaView.CoordinateStrategies.Dynamic32PixelCoordinateStrategy;
 import com.vengeful.sloths.View.AreaView.DefaultMapViewObjectFactory;
 import com.vengeful.sloths.View.AreaView.MapViewObjectFactory;
 import com.vengeful.sloths.View.AreaView.MapViewObjectManager;
@@ -50,6 +52,12 @@ public class StaticCameraView extends CameraView {
 		while (iter.hasNext()) {
 			mvop.addMapViewObject(iter.next());
 		}
+	}
+
+	@Override
+	public void setMapViewObjectFactory(MapViewObjectFactory mvoFactory) {
+		this.mvoFactory = mvoFactory;
+		this.mvoFactory.setCoordinateStrategy(new Centered32PixelCoordinateStrategy(this));
 	}
 
 }
