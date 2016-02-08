@@ -40,7 +40,9 @@ public class ListEquipmentViewObjectManager extends ViewObjectManager {
 
         if(equipped.getHat() != null){
             this.addEquipmentViewObject(new EquipmentViewObject(equipped.getHat()));
-        }else if(equipped.getSword() != null){
+        }
+
+        if(equipped.getSword() != null){
             this.addEquipmentViewObject(new EquipmentViewObject(equipped.getSword()));
         }
     }

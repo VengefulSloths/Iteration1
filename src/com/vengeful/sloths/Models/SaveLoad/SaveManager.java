@@ -51,6 +51,8 @@ public class SaveManager {
         sv.visitTiles();
        // insertChar('{'); not real json so these are taken out
         for(MapSaveable s: objectsToSave){
+            System.out.println("SS: ");
+            System.out.println(s);
             s.saveMe(this,1);
         }
        // insertChar('}');
