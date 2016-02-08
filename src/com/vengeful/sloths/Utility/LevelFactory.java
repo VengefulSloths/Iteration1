@@ -2,6 +2,7 @@ package com.vengeful.sloths.Utility;
 
 import com.vengeful.sloths.Models.Effects.EffectCommand;
 import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
+import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.Map.AreaEffects.*;
@@ -178,7 +179,8 @@ public class LevelFactory {
         EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(14, 9)));
         InteractiveItem ii = new InventoryInteractiveItem(cmd, "Key");
         map.getTile(new Coord(14,11)).addMapItem(ii);
-
+//        Avatar a = loader.avatar;
+//        map.getTile(a.getLocation()).getAreaEffectIterator();
         return map;
     }
 

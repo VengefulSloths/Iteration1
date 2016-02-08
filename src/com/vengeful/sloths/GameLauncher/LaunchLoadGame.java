@@ -38,7 +38,7 @@ public class LaunchLoadGame extends LaunchGameTemplate {
         this.cvm = levelFactory.getCVM();
 
 
-        map.setRespawnPoint(new Coord(2,2));
+        map.setRespawnPoint(new Coord(2,8));
 
     }
 
