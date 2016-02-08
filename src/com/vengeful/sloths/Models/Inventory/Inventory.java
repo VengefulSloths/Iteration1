@@ -115,4 +115,12 @@ public class Inventory implements ViewObservable, Saveable {
         sv.writeVariableLine(ws,"currentSize", cs, true);
     }
 
+    public boolean hasItem(String itemName){
+        for (InventoryItem i: inventory) {
+            if(i.getItemName().equals(itemName))
+                return true;
+        }
+        return false;
+    }
+
 }

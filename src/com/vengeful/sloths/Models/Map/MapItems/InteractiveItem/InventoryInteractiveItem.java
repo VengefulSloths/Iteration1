@@ -10,11 +10,11 @@ import com.vengeful.sloths.Models.SaveLoad.SaveManager;
  */
 public class InventoryInteractiveItem extends InteractiveItem{
 
-    private InventoryItem requiredItem;
+    private String requiredItemName;
 
-    public InventoryInteractiveItem(EffectCommand command, InventoryItem requiredItem){
+    public InventoryInteractiveItem(EffectCommand command, String requiredItemName){
         super(command);
-        this.requiredItem = requiredItem;
+        this.requiredItemName = requiredItemName;
     }
 
     public InventoryInteractiveItem(){}
@@ -25,7 +25,7 @@ public class InventoryInteractiveItem extends InteractiveItem{
 
         this.observer.alertActivated();
         try{
-        if(entity.getInventory().hasItem(requiredItem) || entity.getEquipped().getSword().equals(requiredItem) || entity.getEquipped().getHat().equals(requiredItem)) {
+        if(entity.getInventory().hasItem(requiredItemName) || entity.getEquipped().getSword().getItemName().equals(requiredItemName) || entity.getEquipped().getHat().getItemName().equals(requiredItemName)) {
             command.execute();
         }
         }catch (NullPointerException e){
@@ -35,11 +35,12 @@ public class InventoryInteractiveItem extends InteractiveItem{
 
     public void saveMe(SaveManager sm, int ws){
         sm.writeClassLine(ws, "InventoryInteractiveItem");
-        requiredItem.saveMeFromTakeable(sm ,ws);
+        //requiredItem.saveMeFromTakeable(sm ,ws);
+        sm.writeVariableLine(ws,"requiredItemName", requiredItemName, false);
         super.saveMe(sm ,ws);
     }
 
-    public void setRequiredItem(InventoryItem requiredItem) {
-        this.requiredItem = requiredItem;
+    public void setRequiredItem(String requiredItem) {
+        this.requiredItemName = requiredItem;
     }
 }

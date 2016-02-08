@@ -27,6 +27,8 @@ import com.vengeful.sloths.View.AreaView.DesertMapViewObjectFactory;
 import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.Quest.*;
 import com.vengeful.sloths.View.AreaView.ViewModels.DecalViewObject;
 
+import java.util.Iterator;
+
 /**
  * Created by alexs on 1/31/2016.
  */
@@ -53,11 +55,6 @@ public class LevelFactory {
         for (int i=16; i<34; i++) {
             for (int j = 1; j < 19; j++) {
                 map.getTile(new Coord(i,j)).setTerrain(new Grass());
-            }
-        }
-        for (int i=19; i<25; i++) {
-            for (int j=3; j<8; j++) {
-                map.getTile(new Coord(i,j)).addMapItem(new OneShotTest());
             }
         }
 
@@ -105,6 +102,7 @@ public class LevelFactory {
         EffectCommandFactory effectCMDFactory = new EffectCommandFactory(map);
         MapItem obstacle2 = new Obstacle();
         map.getTile(new Coord(27, 8)).addMapItem(obstacle2);
+
         AreaEffect ae1 = new TakeDamageAE(1, effectCMDFactory);
         AreaEffect ae2 = new LevelUpAE(effectCMDFactory);
         AreaEffect ae3 = new HealDamageAE(1, effectCMDFactory);
@@ -116,33 +114,65 @@ public class LevelFactory {
         map.getTile(new Coord(10,0)).addAreaEffect(ae2);
 
 //        /** Test Interactive Item***/
-//        EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(1, 2)));
-//        InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)testWeapon).getInvItemRep());
-//        map.getTile(new Coord(3,3)).addMapItem(ii);
+        MapItem obstacle1 = null;
+        Iterator<MapItem> iter = map.getTile(new Coord(1, 2)).getMapItemIterator();
+        while (iter.hasNext()) {
+            MapItem mapItem = iter.next();
+            if (mapItem instanceof Obstacle) {
+                obstacle1 = mapItem;
+            }
+        }
+        if(obstacle1 != null){
+            map.getTile(new Coord(1,2)).addMapItem(obstacle1);
+        }
+
+        EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(1, 2)));
+        InteractiveItem ii = new InventoryInteractiveItem(cmd, "Dagger");
+        map.getTile(new Coord(3,3)).addMapItem(ii);
+
         //MapItem testOneShot = new OneShotTest();
         //map.getTile(new Coord(4,3)).addMapItem(testOneShot);
 
 
+        MapItem obstacle4 = null;
+        Iterator<MapItem> iter2 = map.getTile(new Coord(27, 8)).getMapItemIterator();
+        while (iter2.hasNext()) {
+            MapItem mapItem = iter2.next();
+            if (mapItem instanceof Obstacle) {
+                obstacle4 = mapItem;
+            }
+        }
+
         Quest q = new BreakBoxQuest(map.getTile(new Coord(19, 3)), map.getTile(new Coord(19, 4)), map.getTile(new Coord(19, 5)));
-        EffectCommand cmd2 = effectCMDFactory.createDestroyObstacleCommand(obstacle2, map.getTile(new Coord(27, 8)));
-        InteractiveItem ii2 = new ActionInteractiveItem(cmd2, q);
-        map.getTile(new Coord(24, 9)).addMapItem(ii2);
+        EffectCommand cmd2 = effectCMDFactory.createDestroyObstacleCommand(obstacle4, map.getTile(new Coord(27, 8)));
+
+        if (obstacle4 != null) {
+            map.getTile(new Coord(24, 9)).getInteractiveItem().setCommand(cmd2);
+            ((ActionInteractiveItem) map.getTile(new Coord(24, 9)).getInteractiveItem()).setQuest(q);
+        }
+
+        //InteractiveItem ii2 = new ActionInteractiveItem(cmd2, q);
+        //map.getTile(new Coord(24, 9)).addMapItem(ii2);
 
         return map;
     }
 
-    public Map populateFromLoad(Map map, Loader loader) {
-
+    private Map populateDemoMapFromLoad(Map map, Loader loader) {
         for (ObjectWithCoord owc : loader.listToInstantiate) {
             //System.out.Println(owc.getC().getX()+ " " + owc.getC().getY());
             map.getTile(owc.getC()).addMapItem((MapItem)owc.getObjectToPlace());
         }
 
-
         return map;
     }
 
     private Map populateTestMap(Map map) {
+
+        for (int i=19; i<25; i++) {
+            for (int j=3; j<8; j++) {
+                map.getTile(new Coord(i,j)).addMapItem(new OneShotTest());
+            }
+        }
 
         map.getTile(new Coord(5,5)).addMapItem(new Obstacle());
         map.getTile(new Coord(12,3)).addMapItem(new Obstacle());
@@ -182,7 +212,7 @@ public class LevelFactory {
 
         /** Test Interactive Item***/
         EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(1, 2)));
-        InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)testWeapon).getInvItemRep());
+        InteractiveItem ii = new InventoryInteractiveItem(cmd, "Dagger");
         map.getTile(new Coord(3,3)).addMapItem(ii);
         //MapItem testOneShot = new OneShotTest();
         //map.getTile(new Coord(4,3)).addMapItem(testOneShot);
@@ -463,13 +493,14 @@ public class LevelFactory {
     public Coord getStartingCoordinates() {
         return startingCoordinates;
     }
-    public boolean initilize(String levelname) {
+    public boolean initilize(String levelname, Loader loader) {
         switch(levelname) {
             case "TEST":
                 activeMap = generateMapBase();
                 activeMap = populateTestMap(activeMap);
                 activeCVM = generateTestCV();
                 startingCoordinates = new Coord(2,2);
+
                 return true;
             case "DEMO":
                 activeMap = generateDemoMap();
@@ -477,12 +508,13 @@ public class LevelFactory {
                 activeCVM = generateDemoCV();
                 startingCoordinates = new Coord(2,8);
                 return true;
-            case "LOAD":
-                activeMap = generateMapBase();
-                activeMap = loadPopulate(activeMap);
-                activeCVM = generateTestCV();
 
+            case "LOAD":
+                activeMap = generateDemoMap();
+                activeMap = populateDemoMapFromLoad(activeMap, loader);
+                activeCVM = generateDemoCV();
                 startingCoordinates = new Coord(2,2);
+
                 return true;
             default:
                 //System.out.Println("Level: " + levelname + " not found");
