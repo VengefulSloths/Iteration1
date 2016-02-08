@@ -8,7 +8,7 @@ import com.vengeful.sloths.Models.SaveLoad.SaveManager;
  */
 public class OneShotTest extends OneShotItem {
     public void interact(Entity entity){
-        System.out.println("you've activated me");
+        //System.out.Println("you've activated me");
         this.destroy = true;
     }
 

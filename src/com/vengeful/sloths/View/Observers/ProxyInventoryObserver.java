@@ -26,15 +26,15 @@ public class ProxyInventoryObserver extends ProxyObserver
     @Override
     public void alertItemAdded(InventoryItem item) {
 
-        //System.out.println("PROXY OBSERVER");
-        //System.out.println("Item: " + item.getItemName() + " Added!");
+        ////System.out.Println("PROXY OBSERVER");
+        ////System.out.Println("Item: " + item.getItemName() + " Added!");
         target.alertItemAdded(item);
     }
 
     @Override
     public void alertItemDropped(InventoryItem item) {
-        //System.out.println("PROXY OBSERVER");
-        //System.out.println("Item: " + item.getItemName() + " DROPPED!");
+        ////System.out.Println("PROXY OBSERVER");
+        ////System.out.Println("Item: " + item.getItemName() + " DROPPED!");
         target.alertItemDropped(item);
     }
 }

@@ -22,7 +22,7 @@ public class AvatarPickUpCommand extends PickUpCommand {
     public AvatarPickUpCommand(Map map, Coord dropLoc, Entity entity){
         super(map, dropLoc, entity);
         tile = map.getTile(dropLoc);
-        //System.out.println("DROP LOC:" + dropLoc.getX() + " " + dropLoc.getY());
+        ////System.out.Println("DROP LOC:" + dropLoc.getX() + " " + dropLoc.getY());
     }
 
 
@@ -50,12 +50,12 @@ public class AvatarPickUpCommand extends PickUpCommand {
 
         //Remove at the end
         for(int i = 0; i < toBeRemoved.size(); i++){
-            //System.out.println("I am removing: " + toBeRemoved.get(i).getItemName());
+            ////System.out.Println("I am removing: " + toBeRemoved.get(i).getItemName());
             tile.removeMapItem(toBeRemoved.get(i));
         }
 
 
-        //System.out.println("Picking UP! ");
+        ////System.out.Println("Picking UP! ");
     }
 
 

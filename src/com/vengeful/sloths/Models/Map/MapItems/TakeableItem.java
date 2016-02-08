@@ -26,7 +26,7 @@ public class TakeableItem extends MapItem {
     public void interact(Entity entity){
         //maybe alert user he cannot move here
         if(entity instanceof Avatar){
-            System.out.println("Calling pick up!!!!");
+            //System.out.Println("Calling pick up!!!!");
             this.destroy = false;
             ((Avatar)entity).pickup();
         }

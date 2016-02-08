@@ -64,7 +64,7 @@ public class MenuContainer extends JPanel implements MenuControllable{
         this.currentMenuView = nameView;
     }
     public void goToLoading(){
-        System.out.println("going to loading");
+        //System.out.Println("going to loading");
         ((CardLayout) this.getLayout()).show(this, "Loading");
         this.currentMenuView = loadingView;
     }

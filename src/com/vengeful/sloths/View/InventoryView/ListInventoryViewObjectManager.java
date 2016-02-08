@@ -53,7 +53,7 @@ public class ListInventoryViewObjectManager extends ViewObjectManager { //this j
 
 
 //            inventory.listInventoryItems();
-//            System.out.println("TestFJOSDhbfasdbfiyasdfvlyasdbcladbv;" + inventory.getItem(i).toString());
+//            //System.out.Println("TestFJOSDhbfasdbfiyasdfvlyasdbcladbv;" + inventory.getItem(i).toString());
 
 
             if (item instanceof Hat) {

@@ -190,7 +190,7 @@ public class InventoryState extends MainControllerState {
 
         if(i != null) {
 
-            System.out.println("DROPPING " + i.getItemName());
+            //System.out.Println("DROPPING " + i.getItemName());
             mainController.getAvatar().drop(i);
 
 
@@ -205,7 +205,7 @@ public class InventoryState extends MainControllerState {
 
             }
         }
-        //System.out.println("should be changing selected to: " + (((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem().getItemName()));
+        ////System.out.Println("should be changing selected to: " + (((ListInventoryView)this.inventoryView).manager.getFromItemList(this.inventoryIndex).getInventoryItem().getItemName()));
         }
         return true;
     }

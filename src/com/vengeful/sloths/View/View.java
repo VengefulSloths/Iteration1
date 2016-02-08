@@ -48,7 +48,7 @@ public abstract class View extends JPanel {
     }
     public void setViewHeight(int viewHeight) {
         this.viewHeight = viewHeight;
-        //System.out.println("SET THE VIEW HEIGHT. IT IS: " + viewHeight);
+        ////System.out.Println("SET THE VIEW HEIGHT. IT IS: " + viewHeight);
     }
 
     public View(){

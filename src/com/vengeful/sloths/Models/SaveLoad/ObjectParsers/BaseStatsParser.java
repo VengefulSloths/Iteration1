@@ -33,18 +33,18 @@ public class BaseStatsParser extends ObjectParser {
                 String varValue = line[1];
                 // Convert first char in var name to uppercase to find the correct setter
                 varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
-                System.out.println("varName: "  + varName);
-                System.out.println("varValue: "  + varValue);
+                //System.out.Println("varName: "  + varName);
+                //System.out.Println("varValue: "  + varValue);
 
                 String methodName = "set" + varName;
-                System.out.println("methodNamE: " + methodName);
+                //System.out.Println("methodNamE: " + methodName);
 
                 try {
                     int val = Integer.parseInt(varValue);
                     Method method = baseStats.getClass().getMethod(methodName, int.class);
                     method.invoke(baseStats, val);
                 }catch (Exception e){
-                    System.out.println("Error with creating setter BaseSets method");
+                    //System.out.Println("Error with creating setter BaseSets method");
                 }
 
 

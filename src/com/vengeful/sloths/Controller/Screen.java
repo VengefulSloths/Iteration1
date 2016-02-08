@@ -57,7 +57,7 @@ public class Screen extends JFrame implements Runnable{
                 }
 
             }
-            System.out.println(count++);
+            //System.out.Println(count++);
         }
     }
     public void start() {

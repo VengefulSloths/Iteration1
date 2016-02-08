@@ -125,7 +125,7 @@ public class CharacterCreationView extends MenuView {
 //and setting that text to your TextArea
                     nameArea.setText(s);
                     avatarName = s;
-                    System.out.println(avatarName);
+                    //System.out.Println(avatarName);
                     borderHack.setSelected(false);
                 }
             }
@@ -151,10 +151,10 @@ public class CharacterCreationView extends MenuView {
     public void cursorLeft() {
         if (selectedIndex == 1) {
             ((MenuOption)children.get(1)).left();
-            System.out.println("#####################################################################");
-            System.out.println(((MenuOption)children.get(1)).getCurrent());
+            //System.out.Println("#####################################################################");
+            //System.out.Println(((MenuOption)children.get(1)).getCurrent());
             avatarOccupation = ((MenuOption)children.get(1)).getCurrent();
-            System.out.println(this.avatarOccupation);
+            //System.out.Println(this.avatarOccupation);
             this.occupationImage = (new ImageIcon(DECAL_PREFIX + ((MenuOption)children.get(1)).getCurrent() + "Decal.png")).getImage();
 
         }

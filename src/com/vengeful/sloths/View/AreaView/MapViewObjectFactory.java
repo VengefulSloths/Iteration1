@@ -87,7 +87,7 @@ public abstract class MapViewObjectFactory {
         ObserverManager.instance().addProxyObserver(pmio);
 
 
-        //System.out.println("MAP VIEW OBJECT CREATED: " + mapItem.getClass().getSimpleName());
+        ////System.out.Println("MAP VIEW OBJECT CREATED: " + mapItem.getClass().getSimpleName());
 
 
         return itemViewObject;

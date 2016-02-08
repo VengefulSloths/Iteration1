@@ -18,15 +18,17 @@ public abstract class MenuView extends JPanel implements MenuControllable{
     protected int verticalOffset;
     protected int verticleSpacing;
     protected int menuCounter = 0;
+    protected BufferedImage bg =  null;
 
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        BufferedImage bg =  null;
+    public MenuView(){
         try {
             bg = ImageIO.read(new File("resources/Menu/grey_wallpaper.png"));
         }catch (Exception e){}
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
         g.drawImage(bg,0,0,Config.getWindowWidth()+50,Config.getWindowHeight()+50,null);
         for (MenuComponent menuComponent:
                 children) {

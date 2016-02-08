@@ -74,8 +74,8 @@ public class HUDView extends View implements StatsObserver {
         generateTitle(avatar.getName());
         this.setBackgroundImageFileName(backgroundImageFileName);
         initHUDPanel();
-        System.out.println("THIS IS MY LEVEL!!!" + level);
-        System.out.println("THIS IS MY Lives Remaining!!!" + livesRemaining);
+        //System.out.Println("THIS IS MY LEVEL!!!" + level);
+        //System.out.Println("THIS IS MY Lives Remaining!!!" + livesRemaining);
 
     }
 
@@ -261,12 +261,12 @@ public class HUDView extends View implements StatsObserver {
     public void setBars(){
 
         this.level = ((EntityStats) stats).getLevel();
-        System.out.println("This is my LEVEL: " + this.level);
+        //System.out.Println("This is my LEVEL: " + this.level);
         levelLabel.setText("Level: " + level);
 
         livesRemaining = ((EntityStats)stats).getLivesLeft();
-        System.out.println("This is my LIVES REMAINING: " + this.livesRemaining);
-        System.out.println("This is my ucrrent HUD lives: " + currentHUDLives);
+        //System.out.Println("This is my LIVES REMAINING: " + this.livesRemaining);
+        //System.out.Println("This is my ucrrent HUD lives: " + currentHUDLives);
         maxLives = ((EntityStats)stats).getMaxLives();
 
         if (called) {
@@ -285,7 +285,7 @@ public class HUDView extends View implements StatsObserver {
             //this.livesPanel.repaint();
         }
 
-//        System.out.println("This is MY MAX LIVES:" + maxLives);
+//        //System.out.Println("This is MY MAX LIVES:" + maxLives);
 //        if ((livesRemaining<maxLives)) {
 //            //this.rightPanel.remove(livesPanel);
 //            for (int i = 0; i < maxLives-livesRemaining; i++) {
@@ -299,7 +299,7 @@ public class HUDView extends View implements StatsObserver {
 //                    livesAbleToRemove--;
 //
 //                } else {
-//                    System.out.println("ALREADY OUT OF LIVES");
+//                    //System.out.Println("ALREADY OUT OF LIVES");
 //                }
 //            }
 //        }
@@ -307,15 +307,15 @@ public class HUDView extends View implements StatsObserver {
 
 
         double health = ((double)((EntityStats) stats).getCurrentHealth()) / ((double)((EntityStats)stats).getLife());
-        System.out.println(health);
+        //System.out.Println(health);
         healthBar.setValue((int)(health*100));
 
         double manna = ((double)((EntityStats) stats).getCurrentMana()) / ((double)((EntityStats)stats).getMana());
-        System.out.println("This is manna:" + manna);
+        //System.out.Println("This is manna:" + manna);
         mannaBar.setValue((int)(manna*100));
 
         double xp = ((double)((EntityStats) stats).getXP()) / ((double)((EntityStats)stats).getRequiredLevelXP());
-        System.out.println("This is xp:" + xp);
+        //System.out.Println("This is xp:" + xp);
         xpBar.setValue((int)(xp*100));
 
 

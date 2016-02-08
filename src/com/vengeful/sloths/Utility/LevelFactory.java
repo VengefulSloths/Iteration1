@@ -132,7 +132,7 @@ public class LevelFactory {
     public Map populateFromLoad(Map map, Loader loader) {
 
         for (ObjectWithCoord owc : loader.listToInstantiate) {
-            System.out.println(owc.getC().getX()+ " " + owc.getC().getY());
+            //System.out.Println(owc.getC().getX()+ " " + owc.getC().getY());
             map.getTile(owc.getC()).addMapItem((MapItem)owc.getObjectToPlace());
         }
 
@@ -360,7 +360,7 @@ public class LevelFactory {
                 startingCoordinates = new Coord(2,2);
                 return true;
             default:
-                System.out.println("Level: " + levelname + " not found");
+                //System.out.Println("Level: " + levelname + " not found");
                 return false;
         }
     }

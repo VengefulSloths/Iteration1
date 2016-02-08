@@ -35,7 +35,7 @@ public class CameraViewManager {
                 return cv;
             }
         }
-        System.out.println("COULD NOT FIND CAMERA VIEW FOR: " + x + ", " + y);
+        //System.out.Println("COULD NOT FIND CAMERA VIEW FOR: " + x + ", " + y);
         return null;
     };
     public boolean addCameraView(CameraView cv) {
