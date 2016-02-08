@@ -3,6 +3,7 @@ package com.vengeful.sloths.Models.ActionCommandFactory;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.InventoryItems.InventoryItem;
 import com.vengeful.sloths.Models.Map.Map;
+import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Utility.Coord;
 import com.vengeful.sloths.Models.Map.Tile;
 import com.vengeful.sloths.View.Observers.EntityObserver;
@@ -32,6 +33,7 @@ public class AvatarDropCommand extends DropCommand{
             EntityObserver eo = iter.next();
             eo.alertDrop(dropLocation.getX(), dropLocation.getY(), itemToDrop.getMapItemRep());
         }
+
 
     }
 }

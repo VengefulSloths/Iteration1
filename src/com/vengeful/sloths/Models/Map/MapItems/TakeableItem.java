@@ -27,6 +27,7 @@ public class TakeableItem extends MapItem {
         //maybe alert user he cannot move here
         if(entity instanceof Avatar){
             System.out.println("Calling pick up!!!!");
+            this.destroy = false;
             ((Avatar)entity).pickup();
         }
     }
@@ -36,10 +37,6 @@ public class TakeableItem extends MapItem {
     }
 
 
-    //For testing purpose
-    public String toString(){
-        return "My takeable is: " + this.itemName + "\n" + "My corresponding inv item is: " + this.invItemRep.getItemName();
-    }
     public void saveMe(SaveManager sm, int ws) {
         sm.writeClassLine(ws, "TakeableItem");
         invItemRep.saveMeFromTakeable(sm, ws+1);

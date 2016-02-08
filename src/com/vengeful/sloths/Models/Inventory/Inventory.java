@@ -59,7 +59,7 @@ public class Inventory implements ViewObservable, Saveable {
             InventoryObserver io = iter.next();
             io.alertItemAdded(item);
         }
-
+        
         return inventory.add(item);
     }
 

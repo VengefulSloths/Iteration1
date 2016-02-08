@@ -24,9 +24,9 @@ public class DynamicCameraView extends CameraView
 
     public DynamicCameraView(int x, int y, int width, int height) {
         super(x,y,width,height);
-        this.converter = new Dynamic32PixelCoordinateStrategy(this);
+        //this.converter = new Dynamic32PixelCoordinateStrategy(this);
         mvoFactory = new DefaultMapViewObjectFactory(this);
-        mvoFactory.setCoordinateStrategy(converter);
+        //mvoFactory.setCoordinateStrategy(converter);
     }
     @Override
     public void setMapViewObjectFactory(MapViewObjectFactory mvoFactory) {

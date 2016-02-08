@@ -33,6 +33,8 @@ public class LevelFactory {
 
     private Map generateTestMap() {
         Map map = new Map(new Coord(35,20));
+
+
         for (int i=0; i<35; i++) {
             for (int j=0; j<20; j++) {
                 //map.getTile(new Coord(i,j)).setTerrain(new Mountain());
@@ -125,7 +127,6 @@ public class LevelFactory {
         EffectCommand cmd2 = effectCMDFactory.createDestroyObstacleCommand(obstacle2, map.getTile(new Coord(27, 8)));
         InteractiveItem ii2 = new ActionInteractiveItem(cmd2, q);
         map.getTile(new Coord(24, 9)).addMapItem(ii2);
-        
 
         return map;
     }
@@ -164,15 +165,15 @@ public class LevelFactory {
         return startingCoordinates;
     }
     public boolean initilize(String levelname) {
-         switch(levelname) {
-             case "TEST":
-                 activeMap = generateTestMap();
-                 activeCVM = generateTestCV();
-                 startingCoordinates = new Coord(2,2);
-                 return true;
-             default:
-                 System.out.println("Level: " + levelname + " not found");
-                 return false;
-         }
+        switch(levelname) {
+            case "TEST":
+                activeMap = generateTestMap();
+                activeCVM = generateTestCV();
+                startingCoordinates = new Coord(2,2);
+                return true;
+            default:
+                System.out.println("Level: " + levelname + " not found");
+                return false;
+        }
     }
 }
