@@ -28,4 +28,8 @@ public class Summoner extends Occupation {
         super.saveMe(sm, ws);
         sm.writeVarValue("Summoner");
     }
+
+    public String toString() {
+        return "Summoner";
+    }
 }
