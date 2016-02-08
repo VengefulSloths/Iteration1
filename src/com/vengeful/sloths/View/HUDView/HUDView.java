@@ -1,5 +1,7 @@
 package com.vengeful.sloths.View.HUDView;
 
+import com.sun.org.apache.xpath.internal.operations.And;
+import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Stats.EntityStats;
 import com.vengeful.sloths.Models.Stats.Stats;
 import com.vengeful.sloths.Utility.Config;
@@ -25,6 +27,12 @@ public class HUDView extends View implements StatsObserver {
     JPanel centerPanel;
     JPanel rightPanel;
 
+    JLabel levelLabel;
+    JPanel livesPanel;
+    JPanel titlePanel;
+
+    int livesRemovedCount;
+
     public static final int leftPanelWidth = (int) (0.20*Config.instance().getHUDViewWidth());
     public static final int rightPanelWidth = (int) (0.15*Config.instance().getHUDViewWidth());
     public static final int centerSubPanelWidth = Config.instance().getHUDViewWidth() - leftPanelWidth - rightPanelWidth;
@@ -34,12 +42,16 @@ public class HUDView extends View implements StatsObserver {
     public static final String backgroundImageFileName = "resources/statsBackground.jpg";
     public static final String characterImageFileName = "resources/hulk.jpg";
     public static final String livesImageFileName = "resources/lives.png";
+    public static final String livesLostImageFileName = "resources/livesLost.png";
+
 
     public static final String title = "Character Status";
 
     private Stats stats;
     private int level;
+    private int maxLives;
     private int livesRemaining;
+    private int livesAbleToRemove = 3;
     private JProgressBar healthBar;
     private JProgressBar mannaBar;
     private JProgressBar xpBar;
@@ -49,6 +61,9 @@ public class HUDView extends View implements StatsObserver {
         generateTitle(title);
         this.setBackgroundImageFileName(backgroundImageFileName);
         initHUDPanel();
+        System.out.println("THIS IS MY LEVEL!!!" + level);
+        System.out.println("THIS IS MY Lives Remaining!!!" + livesRemaining);
+
     }
 
     @Override
@@ -95,7 +110,7 @@ public class HUDView extends View implements StatsObserver {
         JLabel nameLabel = generateTitleLabel("Smasher");
         this.leftPanel.add(nameLabel);
 
-        JLabel levelLabel = new JLabel("Level: " + level);
+        levelLabel = new JLabel("Level: " + level);
         this.leftPanel.add(generateCharacterImageLabel(characterImageFileName));
         this.leftPanel.add(levelLabel);
         this.leftPanel.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK, Color.BLACK));
@@ -166,8 +181,8 @@ public class HUDView extends View implements StatsObserver {
         this.rightPanel.setBackground(new Color(0f,0f,0f,0.5f));
         //this.rightPanel.setLayout(new GridLayout(4,1,0,0));
         //this.rightPanel.add(generateTitleLabel("Lives remaining"));
-        JPanel livesPanel = new JPanel();
-        JPanel titlePanel = new JPanel();
+        livesPanel = new JPanel();
+        titlePanel = new JPanel();
         titlePanel.add(generateTitleLabel("Lives"));
         titlePanel.setBackground(new Color(0f,0f,0f,0f));
         titlePanel.setPreferredSize(new Dimension(rightPanelWidth,(int)(0.20*subPanelHeight))); //adjust the height if want to push the hearts down further
@@ -178,7 +193,8 @@ public class HUDView extends View implements StatsObserver {
         //livesPanel.setLayout(new GridLayout(3,1)); //
         //if (livesRemaining>0) {
             for (int i = 0; i < livesRemaining; i++) {
-                livesPanel.add(generateLivesImageLabel(livesImageFileName));
+                JLabel picLabel = generateLivesImageLabel(livesImageFileName);
+                livesPanel.add(picLabel);
                 //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
             }
         //}
@@ -187,6 +203,7 @@ public class HUDView extends View implements StatsObserver {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        //this.rightPanel.paint(g);
         //initHUDPanel();
 
     }
@@ -222,8 +239,40 @@ public class HUDView extends View implements StatsObserver {
 
        this.level = ((EntityStats) stats).getLevel();
         System.out.println("This is my LEVEL: " + this.level);
+        levelLabel.setText("Level: " + level);
+
         livesRemaining = ((EntityStats)stats).getLivesLeft();
         System.out.println("This is my LIVES REMAINING: " + this.livesRemaining);
+
+        maxLives = ((EntityStats)stats).getMaxLives();
+
+        System.out.println("This is MY MAX LIVES:" + maxLives);
+        if ((livesRemaining<maxLives)) {
+            //this.rightPanel.remove(livesPanel);
+            for (int i = 0; i < maxLives-livesRemaining; i++) {
+                if (livesAbleToRemove>0) {
+
+                    this.livesPanel.remove(maxLives-(i+1));
+                    //this.livesPanel.remove(maxLives-(i));
+                    livesRemovedCount = i+1;
+                    livesAbleToRemove--;
+
+                } else {
+                    System.out.println("ALREADY OUT OF LIVES");
+                }
+            }
+
+        }
+        else {
+            for (int i = 0; i < livesRemaining; i++) {
+                livesPanel.add(generateLivesImageLabel(livesImageFileName));
+                //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
+            }
+
+            this.rightPanel.add(livesPanel);
+        }
+
+
 
 
         double health = ((double)((EntityStats) stats).getCurrentHealth()) / ((double)((EntityStats)stats).getLife());
