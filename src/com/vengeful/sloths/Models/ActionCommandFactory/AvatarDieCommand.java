@@ -21,7 +21,7 @@ public class AvatarDieCommand extends DieCommand {
         Coord location = map.getRespawnPoint();
 //        map.getTile(coord).removeEntity();
 //        map.getTile(location).addEntity(entity);
-        cf.createMovementCommand(coord, location, Direction.S,entity,0);
+        cf.createMovementCommand(coord, location, Direction.N,entity,0);
         entity.getEntityStats().setCurrentHealth(entity.getEntityStats().getLife());
         entity.getEntityStats().setCurrentMana(entity.getEntityStats().getMana());
         entity.getEntityStats().alertObservers();

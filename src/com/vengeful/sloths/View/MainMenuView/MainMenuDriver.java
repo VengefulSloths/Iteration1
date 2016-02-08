@@ -26,84 +26,85 @@ import com.vengeful.sloths.View.ViewManager.DefaultViewManager;
  */
 public class MainMenuDriver {
     public static void main(String[] args) {
-        //create engine objects
-        ViewEngine viewEngine = new ViewEngine();
-        ModelEngine modelEngine = new ModelEngine();
+//        //create engine objects
+//        ViewEngine viewEngine = new ViewEngine();
+//        ModelEngine modelEngine = new ModelEngine();
+////
+////
+////
+////        //Create the level
+////        LevelFactory levelFactory = new LevelFactory();
+////        levelFactory.initilize("TEST");
+////        Map map = levelFactory.getMap();
+////        CameraViewManager cvm = levelFactory.getCVM();
+////
+////
+////
+////        //TODO: right now movement is not working via ticks!!!!!, we need to create alertables with a time of 0 for movement!
+////
+////        //make map factory and make a level to TimeModel with to create the map
+////
+////        ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
+////        Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
+////        map.getTile(avatar.getLocation()).addEntity(avatar);
+////
+////
+////
+////
+////        AreaView av = new AreaView(cvm, avatar);
+////
+////
+////        // Create inventory, add it to avatar and ListInventoryView
+////        Inventory inventory = new Inventory();
+////        avatar.setInventory(inventory);
+////        ListInventoryView iv = new ListInventoryView(inventory);
+////
+////        Equipped equipped = new Equipped();
+////        avatar.setEquipped(equipped);
+////        ListEquipmentView ev = new ListEquipmentView(equipped);
+////
+////
+////
+////        //EquipmentView ev = new EquipmentView();
+////        StatsView sv = new StatsView(new BaseStats(5,5,5,5,5));
+////
+////        HUDView hv = new HUDView();
+////
+////        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv, hv);
+////
 //
 //
 //
-//        //Create the level
-//        LevelFactory levelFactory = new LevelFactory();
-//        levelFactory.initilize("TEST");
-//        Map map = levelFactory.getMap();
-//        CameraViewManager cvm = levelFactory.getCVM();
+//        //make controller
+//        MainController controller = new MainController( viewEngine);
+//
+//        MenuContainer menuContainer = new MenuContainer(viewEngine, modelEngine, controller);
+//        controller.getMenuState().setTarget(menuContainer);
+//
+//        modelEngine.setController(controller);
+//        controller.setMenuState();
+//        //set up engines
+//        viewEngine.setVisible(true);
+//        viewEngine.registerView(menuContainer);
 //
 //
+//        //start both threads
+//        viewEngine.start();
+//        modelEngine.start();
 //
-//        //TODO: right now movement is not working via ticks!!!!!, we need to create alertables with a time of 0 for movement!
+//        new java.util.Timer().schedule(
+//                new java.util.TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        //menuContainer.goToCharacterCreation();
+//                        //avatar.addItem(new Sword("Excal"));
+//                        // your code here
+//                    }
+//                },
+//                2000
+//        );
 //
-//        //make map factory and make a level to TimeModel with to create the map
-//
-//        ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
-//        Avatar avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
-//        map.getTile(avatar.getLocation()).addEntity(avatar);
-//
-//
-//
-//
-//        AreaView av = new AreaView(cvm, avatar);
-//
-//
-//        // Create inventory, add it to avatar and ListInventoryView
-//        Inventory inventory = new Inventory();
-//        avatar.setInventory(inventory);
-//        ListInventoryView iv = new ListInventoryView(inventory);
-//
-//        Equipped equipped = new Equipped();
-//        avatar.setEquipped(equipped);
-//        ListEquipmentView ev = new ListEquipmentView(equipped);
-//
-//
-//
-//        //EquipmentView ev = new EquipmentView();
-//        StatsView sv = new StatsView(new BaseStats(5,5,5,5,5));
-//
-//        HUDView hv = new HUDView();
-//
-//        DefaultViewManager vm = new DefaultViewManager(av, iv, ev, sv, hv);
-//
-
-
-
-        //make controller
-        MainController controller = new MainController( viewEngine);
-
-        MenuContainer menuContainer = new MenuContainer(viewEngine, modelEngine, controller);
-        controller.getMenuState().setTarget(menuContainer);
-
-        modelEngine.setController(controller);
-        controller.setMenuState();
-        //set up engines
-        viewEngine.setVisible(true);
-        viewEngine.registerView(menuContainer);
-
-
-        //start both threads
-        viewEngine.start();
-        modelEngine.start();
-
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        //menuContainer.goToCharacterCreation();
-                        //avatar.addItem(new Sword("Excal"));
-                        // your code here
-                    }
-                },
-                2000
-        );
-
+//    }
     }
 
 }
