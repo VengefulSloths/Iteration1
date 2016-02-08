@@ -38,7 +38,7 @@ public class StatsView extends View implements StatsObserver {
 
     @Override
     public void alertStatChanged(Stats stats) {
-        manager.setStats(stats);
+        //manager.setStats(stats);
         hv.setStats(stats);
     }
 

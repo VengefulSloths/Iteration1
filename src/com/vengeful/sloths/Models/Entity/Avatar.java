@@ -172,6 +172,8 @@ public class Avatar extends Entity {
     public void levelUp() {
         // Let occupation know level is increased, then levelUp occ and base stats
         occupation.levelUp(entityStats);
+        entityStats.setCurrentHealth(entityStats.getLife());
+        entityStats.setCurrentMana(entityStats.getMana());
         entityStats.alertObservers();
 
         Iterator<EntityObserver> iter = entityObservers.iterator();
@@ -198,19 +200,15 @@ public class Avatar extends Entity {
         entityStats.setCurrentHealth(-damage);
 
         if(entityStats.getCurrentHealth() <= 0){
-            if(entityStats.getLivesLeft() == 0)
-                this.die();
-            else{
-                entityStats.updateLivesLeft(-1);
-                entityStats.setCurrentHealth(entityStats.getLife()); //set currentHP to maxHP
-            }
+            this.die();
         }
         entityStats.alertObservers();
     }
 
     public void die() {
         System.out.println("Entity is Dead D:");
-
+        this.entityStats.updateLivesLeft(-1);
+        this.entityStats.setCurrentHealth(entityStats.getLife());
         //Bring up game menu here??
         commandFactory.createDieCommand(this.getLocation(),this);
         Iterator<EntityObserver> iter = entityObservers.iterator();

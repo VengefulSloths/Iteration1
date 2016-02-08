@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectParser;
 import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectParserFactory;
 import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectWithCoord;
+import sun.security.x509.AVA;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Loader {
     public ArrayList<ObjectWithCoord> listToInstantiate;
     public Loader()
     {
+        listToInstantiate = new ArrayList<ObjectWithCoord>();
         f = new File("resources" + File.separator + "save" + File.separator + "save.txt");
         try{
             sc = new Scanner(f);
@@ -42,11 +44,9 @@ public class Loader {
             String className = line[0];
             ObjectParser op = ops.ObjectParserFactory(className);
 
-
             Object o = op.Parse();
 
-
-            if(o.getClass() != avatar.getClass()){
+            if(o.getClass() != Avatar.class){
                 listToInstantiate.add((ObjectWithCoord) o);
             }
         }
