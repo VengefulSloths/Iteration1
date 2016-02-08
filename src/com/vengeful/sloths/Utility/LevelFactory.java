@@ -302,9 +302,14 @@ public class LevelFactory {
                 map.getTile(new Coord(i,j)).setTerrain(new Mountain());
             }
         }
-        for(int i=17; i<20; i++) {
-            for (int j=13; j<14;j++){
-                map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+        for(int i=12; i<16; i++) {
+            for (int j=14; j<16;j++){
+                map.getTile(new Coord(i,j)).setTerrain(new Water());
+            }
+        }
+        for(int i=8; i<17; i++) {
+            for (int j=22; j<25;j++) {
+                map.getTile(new Coord(i,j)).setTerrain(new Water());
             }
         }
         for(int i=20; i<23; i++) {
@@ -354,6 +359,25 @@ public class LevelFactory {
         cvm.addCameraView(zone3);
 
         ZoomedDynamicCameraView zone4 = new ZoomedDynamicCameraView(8,9,15,16);
+        zone4.addDecal(10,11,"Roses");
+        zone4.addDecal(10,14,"Roses");
+        zone4.addDecal(11,11,"Roses");
+        zone4.addDecal(12,12,"Roses");
+        zone4.addDecal(12,10,"Roses");
+        zone4.addDecal(9,10,"Roses");
+        zone4.addDecal(21,10, "Hydrangeas");
+        zone4.addDecal(20,10, "Hydrangeas");
+        zone4.addDecal(21,11, "Hydrangeas");
+        zone4.addDecal(20,11, "Hydrangeas");
+        zone4.addDecal(19,12, "Hydrangeas");
+        zone4.addDecal(21,13, "Hydrangeas");
+        zone4.addDecal(21,14, "Hydrangeas");
+        zone4.addDecal(18,15, "Hydrangeas");
+        zone4.addDecal(17,11, "Hydrangeas");
+        zone4.addDecal(18,10, "Hydrangeas");
+        zone4.addDecal(15,19, "Hydrangeas");
+
+
         cvm.addCameraView(zone4);
 
 
