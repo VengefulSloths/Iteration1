@@ -3,6 +3,7 @@ package com.vengeful.sloths.Models.Effects;
 import com.vengeful.sloths.Models.Map.Map;
 import com.vengeful.sloths.Models.Map.MapItems.MapItem;
 import com.vengeful.sloths.Models.Map.Tile;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 
 import java.util.Iterator;
 
@@ -43,5 +44,11 @@ public class DestroyObstacleCommand extends EffectCommand{
         //flag destory?
         //or tile.remove? -> iterator issue?
 
+    }
+
+    public void saveMe(SaveManager sm, int ws){
+        sm.writeClassLine(ws, "DestroyObstacleCommand");
+        obstacle.saveMe(sm, ws);
+        super.saveMe(sm, ws);
     }
 }
