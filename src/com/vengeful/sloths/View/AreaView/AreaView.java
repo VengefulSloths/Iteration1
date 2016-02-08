@@ -89,7 +89,7 @@ public class AreaView extends View
 		}
 
 		
-        g2d.drawString("AreaVIEW: " + count++, 50, 50+count);
+        //g2d.drawString("AreaVIEW: " + count++, 50, 50+count);
         
         Toolkit.getDefaultToolkit().sync();
 	}
