@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.Map.AreaEffects.*;
+import com.vengeful.sloths.Models.Map.Decal;
 import com.vengeful.sloths.Models.Map.Map;
 
 import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.ActionInteractiveItem;
@@ -263,10 +264,8 @@ public class LevelFactory {
                      map.getTile(new Coord(i,j)).setTerrain(new Grass());
             }
         }
-        map.getTile(new Coord(7,20)).setTerrain(new Grass());
+        map.getTile(new  Coord(7,20)).setTerrain(new Grass());
         map.getTile(new Coord(7,21)).setTerrain(new Grass());
-
-
 
 
         //zone 3
@@ -338,6 +337,7 @@ public class LevelFactory {
 
 
 
+
         return map;
     }
 
@@ -350,8 +350,26 @@ public class LevelFactory {
 
         ZoomedDynamicCameraView zone1 = new ZoomedDynamicCameraView(0,6,8,12);
         cvm.addCameraView(zone1);
+        zone1.addDecal(1,15,"Hydrangeas");
+        zone1.addDecal(2,15,"Hydrangeas");
+        zone1.addDecal(3,15,"Hydrangeas");
+        zone1.addDecal(1,14,"Hydrangeas");
+        zone1.addDecal(2,14,"Hydrangeas");
+        zone1.addDecal(3,14,"Hydrangeas");
+        zone1.addDecal(1,13, "Roses");
+        zone1.addDecal(2,13, "Roses");
+        zone1.addDecal(3,13, "Roses");
+        zone1.addDecal(1,12, "Roses");
+        zone1.addDecal(2,12, "Roses");
+        zone1.addDecal(3,12, "Roses");
+
 
         ZoomedStaticCameraView zone2 = new ZoomedStaticCameraView(0,18,8,7);
+        zone2.addDecal(1,18,"Hydrangeas");
+        zone2.addDecal(5,18,"Hydrangeas");
+        zone2.addDecal(6,20,"Roses");
+
+        zone2.addDecal(3,20,"Skull");
         cvm.addCameraView(zone2);
 
         ZoomedStaticCameraView zone3 = new ZoomedStaticCameraView(8,0,12,9);
@@ -381,14 +399,14 @@ public class LevelFactory {
         cvm.addCameraView(zone4);
 
 
-
-
         return cvm;
     }
 
 
     private Map populateDemoMap(Map map) {
 
+
+        /********* Zone 4 ***************/
         for (int i = 9; i < 15; i++) {
             for (int j=17; j<20; j++) {
                 map.getTile(new Coord(i,j)).addMapItem(new OneShotTest());
@@ -404,6 +422,46 @@ public class LevelFactory {
         EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(14, 9)));
         InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)key).getInvItemRep());
         map.getTile(new Coord(14,11)).addMapItem(ii);
+
+        /********* Zone 1 ************/
+        MapItem dagger = new TakeableItem(new Sword("Dagger", new BaseStats(10,0,0,0,0)));
+        MapItem hat = new TakeableItem(new Hat("SpartanHat"));
+        //MapItem wand = new TakeableItem(new Sword("Wand", new BaseStats(0,0,10,0,0)));
+        map.getTile(new Coord(3,10)).addMapItem(dagger);
+        map.getTile(new Coord(6,13)).addMapItem(hat);
+        //map.getTile(new Coord(3,7)).addMapItem(wand);
+
+        map.getTile(new Coord(1,8)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(3,8)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(2,7)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(2,9)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(1,7)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(1,9)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(3,7)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(3,9)).addMapItem(new OneShotTest());
+
+        /*****************************/
+        
+
+        AreaEffect ae1 = new TakeDamageAE(1, effectCMDFactory);
+        AreaEffect ae2 = new LevelUpAE(effectCMDFactory);
+        AreaEffect ae3 = new HealDamageAE(1, effectCMDFactory);
+        AreaEffect ae4 = new InstantDeathAE(effectCMDFactory);
+        MapItem wand = new TakeableItem(new Sword("Wand", new BaseStats(0,0,10,0,0)));
+        map.getTile(new Coord(3,20)).addAreaEffect(ae4);
+
+
+        for(int i=0; i<7+1; i++) {
+            for (int j=23; j<24+1;j++) {
+                map.getTile(new Coord(i,j)).setTerrain(new Water());
+            }
+        }
+
+
+        map.getTile(new Coord(1,20)).addMapItem(wand);
+        map.getTile(new Coord(0,22)).setTerrain(new Mountain());
+        map.getTile(new Coord(7,22)).setTerrain(new Grass());
+
 
         return map;
     }
