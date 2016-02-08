@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Obstacle:{
 itemName:null
 graphicsFolder:null
@@ -18,6 +19,8 @@ itemName:Wand Takeable
 graphicsFolder:null
 Coord:(1,3)
 }
+=======
+>>>>>>> 840c11f63fd1a77c0d4edfdf5956649ebfef967b
 Avatar:{
 EntityStats:{
 livesLeft:1
@@ -25,23 +28,48 @@ experience:1
 level:1
 life:11
 mana:11
+<<<<<<< HEAD
 offensiveRating:4
 defensiveRating:2
 armorRating:2
 currentHealth:11
 strength:15
 agility:5
+=======
+offensiveRating:2
+defensiveRating:4
+armorRating:2
+currentHealth:11
+strength:5
+agility:15
+>>>>>>> 840c11f63fd1a77c0d4edfdf5956649ebfef967b
 intellect:5
 hardiness:5
 movement:24
 }
 Inventory:{
+<<<<<<< HEAD
 currentSize:0
 }
 Smasher:{
+=======
+Sword:{
+itemName:Wand
+TakeableItem:{
+itemName:Wand Takeable
+graphicsFolder:null
+}
+BaseStats:{
+strength:0
+agility:0
+intellect:10
+hardiness:0
+movement:0
+>>>>>>> 840c11f63fd1a77c0d4edfdf5956649ebfef967b
 }
 Equipped:{
 }
+<<<<<<< HEAD
 name:SlothMan
 Direction:S
 Coord:(2,2)
@@ -62,12 +90,20 @@ movement:0
 }
 itemName:Dagger
 }
+=======
+Sword:{
+itemName:Dagger
+TakeableItem:{
+>>>>>>> 840c11f63fd1a77c0d4edfdf5956649ebfef967b
 itemName:Dagger Takeable
 graphicsFolder:null
 Coord:(3,2)
 }
+<<<<<<< HEAD
 ActionInteractiveItem:{
 Sword:{
+=======
+>>>>>>> 840c11f63fd1a77c0d4edfdf5956649ebfef967b
 BaseStats:{
 strength:10
 agility:0
@@ -77,10 +113,42 @@ movement:0
 }
 itemName:Dagger
 }
+<<<<<<< HEAD
 name:null
 itemName:null
 graphicsFolder:null
 Coord:(3,3)
+=======
+currentSize:2
+}
+Sneak:{
+}
+Equipped:{
+}
+name:Avatar
+Direction:W
+Coord:(2,3)
+>>>>>>> 840c11f63fd1a77c0d4edfdf5956649ebfef967b
+}
+TakeableItem:{
+Hat:{
+BaseStats:{
+<<<<<<< HEAD
+strength:0
+agility:5
+=======
+strength:10
+agility:0
+>>>>>>> 840c11f63fd1a77c0d4edfdf5956649ebfef967b
+intellect:0
+hardiness:0
+movement:0
+}
+itemName:SpartanHat
+}
+itemName:SpartanHat Takeable
+graphicsFolder:null
+Coord:(3,4)
 }
 TakeableItem:{
 Hat:{

@@ -51,21 +51,21 @@ public abstract class LaunchGameTemplate {
         this.modelEngine = me;
     }
 
-    private void createCharacter(){
+    protected void createCharacter(){
         ActionCommandFactory avatarActionCommandFactory = new AvatarActionCommandFactory(map);
         this.avatar = new Avatar("SlothMan", "Smasher", new EntityStats(), avatarActionCommandFactory);
     }
 
-    private void createInventory(){
+    protected void createInventory(){
         Inventory inventory = new Inventory();
         avatar.setInventory(inventory);
     }
-    private void createEquipped(){
+    protected void createEquipped(){
         Equipped equipped = new Equipped();
         avatar.setEquipped(equipped);
     }
 
-    private void createMap(){
+    protected void createMap(){
         //Create the level
         LevelFactory levelFactory = new LevelFactory();
         levelFactory.initilize("TEST");
@@ -73,11 +73,11 @@ public abstract class LaunchGameTemplate {
         this.cvm = levelFactory.getCVM();
     }
 
-    private void setAvatarLocation(){
+    protected void setAvatarLocation(){
         map.getTile(avatar.getLocation()).addEntity(avatar);
     }
 
-    private void createViews(){
+    protected void createViews(){
         AreaView av = new AreaView(cvm, avatar);
         ListInventoryView iv = new ListInventoryView(avatar.getInventory());
         ListEquipmentView ev = new ListEquipmentView(avatar.getEquipped());
@@ -90,7 +90,7 @@ public abstract class LaunchGameTemplate {
         avatar.getEntityStats().alertObservers();
     }
 
-    private void setUpController(){
+    protected void setUpController(){
         //MainController controller = new MainController(avatar, viewEngine, vm);
         controller.setViewManager(vm);
         controller.setAvatar(avatar);

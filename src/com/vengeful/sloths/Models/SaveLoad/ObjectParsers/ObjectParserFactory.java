@@ -23,10 +23,13 @@ public class ObjectParserFactory {
             return new AvatarParser(className, sc, l, this);
         }else if(className.equals("Inventory")){
             return new InventoryParser(className, sc, l, this);
-        }
-        if(className.equals("EntityStats")){
+        }else if(className.equals("EntityStats")){
             System.out.println("Entity stats parser created");
             return new EntityStatsParser(className, sc, l, this);
+        }else if(className.equals("Sword")||className.equals("Hat")){
+            return new EquippableItemParser(className, sc, l, this);
+        }else if(className.equals("BaseStats")){
+            return new BaseStatsParser(className, sc, l, this);
         }
         return null;
     }
