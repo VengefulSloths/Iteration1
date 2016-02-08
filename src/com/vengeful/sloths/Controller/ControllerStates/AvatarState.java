@@ -1,7 +1,9 @@
 package com.vengeful.sloths.Controller.ControllerStates;
 
 import com.vengeful.sloths.Controller.MainController;
+import com.vengeful.sloths.Models.SaveLoad.SaveManager;
 import com.vengeful.sloths.Utility.Direction;
+import com.vengeful.sloths.Utility.TileVisitor.SaveVisitor;
 
 /**
  * Created by John on 1/30/2016.
@@ -52,9 +54,8 @@ public class AvatarState extends MainControllerState{
 
     @Override
     public boolean handleESCKey() {
-        System.out.println("switch to menu controller");
-        mainController.setMenuState();
-        return true;
+        //mainController.setMenuState();
+        return false;
     }
 
     @Override
@@ -125,8 +126,15 @@ public class AvatarState extends MainControllerState{
 
     @Override
     public boolean handle5Key() {
+        SaveManager sm = new SaveManager();
+        SaveVisitor sv = new SaveVisitor(mainController.getMap(), sm);
+        sm.setSaveVisitor(sv);
+        System.out.println("SAVING");
+        System.out.println(sm);
+        System.out.println(sv);
+        sm.save();
+        return true;
 
-        return false;
     }
 
     @Override

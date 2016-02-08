@@ -6,8 +6,7 @@ import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.Map.MapItems.TakeableItem;
 import com.vengeful.sloths.Models.SaveLoad.Loader;
 import com.vengeful.sloths.Models.Stats.BaseStats;
-import com.vengeful.sloths.Models.Stats.Stats;
-import org.apache.commons.lang3.math.NumberUtils;
+import com.vengeful.sloths.Utility.IsNumber;
 
 import java.lang.reflect.Method;
 import java.util.Scanner;
@@ -61,7 +60,9 @@ public class EquippableItemParser extends ObjectParser {
                         String methodName = "set"+varName;
                         try{
                             Method method = null;
-                            if(NumberUtils.isNumber(varValue)){
+
+                            if(IsNumber.isNumber(varValue)){
+                                System.out.println(varValue + " IS A NUMBER!!!");
                                 int val = Integer.parseInt(varValue);
                                 method = eitem.getClass().getMethod(methodName, int.class);
                                 method.invoke(eitem, val);
