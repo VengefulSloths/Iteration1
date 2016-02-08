@@ -85,7 +85,7 @@ public abstract class MapViewObjectFactory {
 
         ProxyMapItemObserver pmio = new ProxyMapItemObserver(itemViewObject, mapItem);
         ObserverManager.instance().addProxyObserver(pmio);
-        
+
         return itemViewObject;
     }
     public abstract Iterator<TerrainMapViewObject> createPrettyTerrain(Map map, int xMin, int yMin, int width, int height);
