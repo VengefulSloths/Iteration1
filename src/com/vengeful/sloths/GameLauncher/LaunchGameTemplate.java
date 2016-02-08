@@ -83,7 +83,7 @@ public abstract class LaunchGameTemplate {
         AreaView av = new AreaView(cvm, avatar);
         ListInventoryView iv = new ListInventoryView(avatar.getInventory());
         ListEquipmentView ev = new ListEquipmentView(avatar.getEquipped());
-        HUDView hv = new HUDView();
+        HUDView hv = new HUDView(avatar);
         StatsView sv = new StatsView(avatar.getEntityStats());
         sv.setHUDView(hv);
         this.vm = new DefaultViewManager(av, iv, ev, sv, hv);

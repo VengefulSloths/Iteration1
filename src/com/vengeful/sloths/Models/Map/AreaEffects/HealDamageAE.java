@@ -34,10 +34,10 @@ public class HealDamageAE extends AreaEffect{
             return null;
     }
 
-    @Override
-    public void saveMe(SaveManager sm, int ws) {
-        sm.writeClassLine(ws, "HealingDamageAE");
-        String h = "" + health;
-        sm.writeVariableLine(ws, "health", h, false);
-    }
+//    @Override
+//    public void saveMe(SaveManager sm, int ws) {
+//        sm.writeClassLine(ws, "HealingDamageAE");
+//        String h = "" + health;
+//        sm.writeVariableLine(ws, "health", h, false);
+//    }
 }

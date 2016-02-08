@@ -36,7 +36,6 @@ public class ObstacleAndOneShotParser extends ObjectParser{
             if(check.contains("}")){
                 //we have reached end of equippable item definition
                 //eitem inventory or equipped
-                owc.setCoord(c);
                 return owc;
             }
             else{
@@ -47,6 +46,7 @@ public class ObstacleAndOneShotParser extends ObjectParser{
                     int x = Character.getNumericValue(varValue.charAt(1));
                     int y = Character.getNumericValue(varValue.charAt(3));
                     c = new Coord(x,y);
+                    owc.setCoord(c);
                 }
                 else{
                     varName = varName.substring(0,1).toUpperCase() + varName.substring(1);

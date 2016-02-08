@@ -28,4 +28,9 @@ public class Sneak extends Occupation {
         super.saveMe(sm, ws);
         sm.writeVarValue("Sneak");
     }
+
+    public String toString() {
+        return "Sneak";
+    }
+
 }

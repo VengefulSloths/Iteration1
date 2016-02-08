@@ -44,6 +44,8 @@ public class Loader {
             String className = line[0];
             ObjectParser op = ops.ObjectParserFactory(className);
 
+            System.out.println("Trying to parse");
+            System.out.println(className);
             Object o = op.Parse();
 
             if(o.getClass() != Avatar.class){
