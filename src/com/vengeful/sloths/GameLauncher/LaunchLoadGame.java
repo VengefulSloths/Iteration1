@@ -33,11 +33,11 @@ public class LaunchLoadGame extends LaunchGameTemplate {
     protected void createMap(){
         //Create the level
         LevelFactory levelFactory = new LevelFactory();
-        levelFactory.initilize("LOAD");
-
-        this.cvm = levelFactory.getCVM();
+        levelFactory.initilize("LOAD", loader);
         this.map = levelFactory.getMap();
-        levelFactory.populateFromLoad(this.map, loader);
+        this.cvm = levelFactory.getCVM();
+
+
         map.setRespawnPoint(new Coord(2,2));
 
     }

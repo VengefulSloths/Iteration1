@@ -70,7 +70,7 @@ public abstract class LaunchGameTemplate {
         //Create the level
         LevelFactory levelFactory = new LevelFactory();
         //levelFactory.initilize("TEST");
-        levelFactory.initilize("DEMO");
+        levelFactory.initilize("DEMO", null);
         this.map = levelFactory.getMap();
 
         //map.setRespawnPoint(new Coord(2,2));
