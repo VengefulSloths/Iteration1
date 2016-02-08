@@ -291,7 +291,38 @@ public class LevelFactory {
                     map.getTile(new Coord(i,j)).setTerrain(new Grass());
             }
         }
-        
+        for(int i=9; i<17; i++) {
+            for (int j=16; j<17; j++) {
+                map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+            }
+        }
+        for(int i=16; i<17; i++) {
+            for (int j=13; j<16;j++){
+                map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+            }
+        }
+        for(int i=17; i<20; i++) {
+            for (int j=13; j<14;j++){
+                map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+            }
+        }
+        for(int i=20; i<23; i++) {
+            for (int j=16; j<25;j++) {
+                map.getTile(new Coord(i,j)).setTerrain(new Water());
+            }
+        }
+        for(int i=8; i<17; i++) {
+            for (int j=22; j<25;j++) {
+                map.getTile(new Coord(i,j)).setTerrain(new Water());
+            }
+        }
+
+        for (int i=17; i<23; i++) {
+            map.getTile(new Coord(i,24)).setTerrain(new Water());
+
+        }
+
+
 
         map.getTile(new Coord(8,14)).setTerrain(new Grass());
         map.getTile(new Coord(8,15)).setTerrain(new Grass());
