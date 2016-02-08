@@ -358,6 +358,19 @@ public class LevelFactory {
 
         ZoomedDynamicCameraView zone1 = new ZoomedDynamicCameraView(0,6,8,12);
         cvm.addCameraView(zone1);
+        zone1.addDecal(1,15,"Hydrangeas");
+        zone1.addDecal(2,15,"Hydrangeas");
+        zone1.addDecal(3,15,"Hydrangeas");
+        zone1.addDecal(1,14,"Hydrangeas");
+        zone1.addDecal(2,14,"Hydrangeas");
+        zone1.addDecal(3,14,"Hydrangeas");
+        zone1.addDecal(1,13, "Roses");
+        zone1.addDecal(2,13, "Roses");
+        zone1.addDecal(3,13, "Roses");
+        zone1.addDecal(1,12, "Roses");
+        zone1.addDecal(2,12, "Roses");
+        zone1.addDecal(3,12, "Roses");
+
 
         ZoomedStaticCameraView zone2 = new ZoomedStaticCameraView(0,18,8,7);
         zone2.addDecal(1,18,"Hydrangeas");
@@ -394,13 +407,34 @@ public class LevelFactory {
         cvm.addCameraView(zone4);
 
 
-
-
         return cvm;
     }
 
 
     private Map populateDemoMap(Map map) {
+
+        /********* Zone 1 ************/
+        MapItem dagger = new TakeableItem(new Sword("Dagger", new BaseStats(10,0,0,0,0)));
+        MapItem hat = new TakeableItem(new Hat("SpartanHat"));
+        //MapItem wand = new TakeableItem(new Sword("Wand", new BaseStats(0,0,10,0,0)));
+        map.getTile(new Coord(3,10)).addMapItem(dagger);
+        map.getTile(new Coord(6,13)).addMapItem(hat);
+        //map.getTile(new Coord(3,7)).addMapItem(wand);
+
+        map.getTile(new Coord(1,8)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(3,8)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(2,7)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(2,9)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(1,7)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(1,9)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(3,7)).addMapItem(new OneShotTest());
+        map.getTile(new Coord(3,9)).addMapItem(new OneShotTest());
+
+        /*****************************/
+
+
+
+
 
         EffectCommandFactory effectCMDFactory = new EffectCommandFactory(map);
 
