@@ -381,7 +381,16 @@ public class LevelFactory {
         cvm.addCameraView(zone4);
 
 
+
+
         return cvm;
+    }
+
+
+    private Map populateDemoMap(Map map) {
+
+
+        return map;
     }
 
 
@@ -405,6 +414,7 @@ public class LevelFactory {
                 return true;
             case "DEMO":
                 activeMap = generateDemoMap();
+                activeMap = populateDemoMap(activeMap);
                 activeCVM = generateDemoCV();
                 startingCoordinates = new Coord(2,8);
                 return true;
