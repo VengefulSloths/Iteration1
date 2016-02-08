@@ -12,6 +12,8 @@ public class TakeableItem extends MapItem {
 
     private InventoryItem invItemRep;
 
+    public TakeableItem() {}
+
     public TakeableItem(InventoryItem item){ //can be equippable item, consumable item ... etc
         this.itemName = item.getItemName() + " Takeable";
         this.invItemRep = item;
