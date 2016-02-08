@@ -32,7 +32,7 @@ public class EquippableItemParser extends ObjectParser {
         EquippableItems eitem = null;
         if(objectName.equals("Hat")){
             eitem = new Hat();
-        }else if( objectName.equals("Sword")) {
+        }else if(objectName.equals("Sword")) {
             eitem = new Sword();
         }
         while(sc.hasNext()){
@@ -51,7 +51,7 @@ public class EquippableItemParser extends ObjectParser {
                     //
                     if(varName.equals("TakeableItem")){
                         ObjectParser op = new TakeableItemParser("TakeableItem",sc, l, ops,eitem);
-                       Object o =  op.Parse();
+                        Object o =  ((TakeableItemParser) op).insideParse();
                         eitem.setTakeableItem((TakeableItem)o);
                     }else{
                         ObjectParser op = ops.ObjectParserFactory(varName);

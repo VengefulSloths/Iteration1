@@ -14,6 +14,11 @@ public class TakeableItemParser extends ObjectParser {
 
     InventoryItem inventoryItemRep;
 
+
+    public TakeableItemParser(String objectName, Scanner sc, Loader l, ObjectParserFactory ops){
+        super(objectName, sc, l, ops);
+    }
+
     public TakeableItemParser(String objectName, Scanner sc, Loader l, ObjectParserFactory ops, InventoryItem inventoryItemRep){
         super(objectName, sc, l, ops);
 
@@ -21,6 +26,60 @@ public class TakeableItemParser extends ObjectParser {
     }
 
     public TakeableItem Parse() {
+        TakeableItem takeableItem = new TakeableItem();
+        while(sc.hasNext()){
+            String check = sc.nextLine();
+
+            if(check.contains("}")){
+                return takeableItem;
+            }
+            else{
+                String[] line = check.split(":");
+                String varName = line[0];
+                String varValue = line[1];
+
+                if(varValue.equals("{")){
+                    //looking to create a new object parser based on the varName
+                    ObjectParser op = ops.ObjectParserFactory(varName);
+                    Object o = op.Parse();
+
+                    // Convert first char in var name to uppercase to find the correct setter
+                    varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
+
+                    String methodName = "set"+varName;
+
+                    try{
+//                        Method method = avatar.getClass().getMethod(methodName, o.getClass());
+//                        method.invoke(avatar, o);
+                    }catch (Exception e){
+                        System.out.println("Error with creating setter avatar method");
+                    }
+                }
+                // Convert first char in var name to uppercase to find the correct setter
+
+
+                varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
+                System.out.println("varName: "  + varName);
+                System.out.println("varValue: "  + varValue);
+
+                String methodName = "set"+varName;
+                System.out.println("methodNamE: " + methodName);
+
+                try {
+                    Method method = takeableItem.getClass().getMethod(methodName, String.class);
+                    method.invoke(takeableItem, varValue);
+                }catch (Exception e){
+                    System.out.println("Error with creating setter TakeableItem method");
+                }
+
+
+            }
+        }
+
+        return takeableItem;
+    }
+
+    public TakeableItem insideParse() {
         TakeableItem takeableItem = new TakeableItem(inventoryItemRep);
         while(sc.hasNext()){
             String check = sc.nextLine();
@@ -33,6 +92,8 @@ public class TakeableItemParser extends ObjectParser {
                 String varName = line[0];
                 String varValue = line[1];
                 // Convert first char in var name to uppercase to find the correct setter
+
+
                 varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
                 System.out.println("varName: "  + varName);
                 System.out.println("varValue: "  + varValue);

@@ -41,7 +41,11 @@ public class Loader {
             String[] line = s.split(":");
             String className = line[0];
             ObjectParser op = ops.ObjectParserFactory(className);
+
+
             Object o = op.Parse();
+
+
             if(o.getClass() != avatar.getClass()){
                 listToInstantiate.add((ObjectWithCoord) o);
             }
