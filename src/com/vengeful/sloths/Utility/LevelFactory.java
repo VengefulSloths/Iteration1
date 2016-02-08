@@ -5,6 +5,7 @@ import com.vengeful.sloths.Models.Effects.EffectCommandFactory;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Hat;
 import com.vengeful.sloths.Models.InventoryItems.EquippableItems.Sword;
 import com.vengeful.sloths.Models.Map.AreaEffects.*;
+import com.vengeful.sloths.Models.Map.Decal;
 import com.vengeful.sloths.Models.Map.Map;
 
 import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.ActionInteractiveItem;
@@ -263,7 +264,7 @@ public class LevelFactory {
                      map.getTile(new Coord(i,j)).setTerrain(new Grass());
             }
         }
-        map.getTile(new Coord(7,20)).setTerrain(new Grass());
+        map.getTile(new  Coord(7,20)).setTerrain(new Grass());
         map.getTile(new Coord(7,21)).setTerrain(new Grass());
 
 
@@ -300,9 +301,14 @@ public class LevelFactory {
                 map.getTile(new Coord(i,j)).setTerrain(new Mountain());
             }
         }
-        for(int i=17; i<20; i++) {
-            for (int j=13; j<14;j++){
-                map.getTile(new Coord(i,j)).setTerrain(new Mountain());
+        for(int i=12; i<16; i++) {
+            for (int j=14; j<16;j++){
+                map.getTile(new Coord(i,j)).setTerrain(new Water());
+            }
+        }
+        for(int i=8; i<17; i++) {
+            for (int j=22; j<25;j++) {
+                map.getTile(new Coord(i,j)).setTerrain(new Water());
             }
         }
         for(int i=20; i<23; i++) {
@@ -328,6 +334,7 @@ public class LevelFactory {
         map.getTile(new Coord(14,9)).setTerrain(new Grass());
         map.getTile(new Coord(8,20)).setTerrain(new Grass());
         map.getTile(new Coord(8,21)).setTerrain(new Grass());
+
 
 
 
@@ -358,6 +365,11 @@ public class LevelFactory {
 
 
         ZoomedStaticCameraView zone2 = new ZoomedStaticCameraView(0,18,8,7);
+        zone2.addDecal(1,18,"Hydrangeas");
+        zone2.addDecal(5,18,"Hydrangeas");
+        zone2.addDecal(6,20,"Roses");
+
+        zone2.addDecal(3,20,"Skull");
         cvm.addCameraView(zone2);
 
         ZoomedStaticCameraView zone3 = new ZoomedStaticCameraView(8,0,12,9);
@@ -365,6 +377,25 @@ public class LevelFactory {
         cvm.addCameraView(zone3);
 
         ZoomedDynamicCameraView zone4 = new ZoomedDynamicCameraView(8,9,15,16);
+        zone4.addDecal(10,11,"Roses");
+        zone4.addDecal(10,14,"Roses");
+        zone4.addDecal(11,11,"Roses");
+        zone4.addDecal(12,12,"Roses");
+        zone4.addDecal(12,10,"Roses");
+        zone4.addDecal(9,10,"Roses");
+        zone4.addDecal(21,10, "Hydrangeas");
+        zone4.addDecal(20,10, "Hydrangeas");
+        zone4.addDecal(21,11, "Hydrangeas");
+        zone4.addDecal(20,11, "Hydrangeas");
+        zone4.addDecal(19,12, "Hydrangeas");
+        zone4.addDecal(21,13, "Hydrangeas");
+        zone4.addDecal(21,14, "Hydrangeas");
+        zone4.addDecal(18,15, "Hydrangeas");
+        zone4.addDecal(17,11, "Hydrangeas");
+        zone4.addDecal(18,10, "Hydrangeas");
+        zone4.addDecal(15,19, "Hydrangeas");
+
+
         cvm.addCameraView(zone4);
 
 
@@ -397,7 +428,26 @@ public class LevelFactory {
 
 
 
+        EffectCommandFactory effectCMDFactory = new EffectCommandFactory(map);
 
+        AreaEffect ae1 = new TakeDamageAE(1, effectCMDFactory);
+        AreaEffect ae2 = new LevelUpAE(effectCMDFactory);
+        AreaEffect ae3 = new HealDamageAE(1, effectCMDFactory);
+        AreaEffect ae4 = new InstantDeathAE(effectCMDFactory);
+        MapItem wand = new TakeableItem(new Sword("Wand", new BaseStats(0,0,10,0,0)));
+        map.getTile(new Coord(3,20)).addAreaEffect(ae4);
+
+
+        for(int i=0; i<7+1; i++) {
+            for (int j=23; j<24+1;j++) {
+                map.getTile(new Coord(i,j)).setTerrain(new Water());
+            }
+        }
+
+
+        map.getTile(new Coord(1,20)).addMapItem(wand);
+        map.getTile(new Coord(0,22)).setTerrain(new Mountain());
+        map.getTile(new Coord(7,22)).setTerrain(new Grass());
 
 
         return map;
