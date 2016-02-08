@@ -41,14 +41,14 @@ public class EquippedParser extends ObjectParser {
                     varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
                     //String methodName = "set"+varName;
                     eq.addEquipped((EquippableItems) o);
-                    System.out.println("just added equpped item ");
-                    System.out.println(o);
+                    //System.out.Println("just added equpped item ");
+                    //System.out.Println(o);
 
 //                    try{
 //                        Method method = eq.getClass().getMethod(methodName, o.getClass());
 //                        method.invoke(eq, o);
 //                    }catch (Exception e){
-//                        System.out.println("Error with creating setter avatar method");
+//                        //System.out.Println("Error with creating setter avatar method");
 //                    }
                 }
                 else{
@@ -60,7 +60,7 @@ public class EquippedParser extends ObjectParser {
 //                        Method method = eq.getClass().getMethod(methodName, int.class);
 //                        method.invoke(eq, param);
 //                    }catch (Exception e){
-//                        System.out.println("Error with creating setter avatar method");
+//                        //System.out.Println("Error with creating setter avatar method");
 //                    }
                 }
             }

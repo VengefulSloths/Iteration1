@@ -32,7 +32,7 @@ public class ObserverManager implements Alertable {
             ProxyObserver p = entry.getValue();
             ModelObserver m = entry.getKey();
             if (p.getDeleteFlag()) {
-                System.out.println("removing a observer");
+                //System.out.Println("removing a observer");
                 p.deregister();
                 toDelete.add(m);
                 }

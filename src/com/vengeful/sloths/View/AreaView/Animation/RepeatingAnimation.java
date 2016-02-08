@@ -22,7 +22,7 @@ public class RepeatingAnimation extends TimedAnimation {
             }
 
         }
-        //System.out.println(index);
+        ////System.out.Println(index);
         return images.get(index);
     }
 }

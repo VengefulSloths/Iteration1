@@ -18,7 +18,7 @@ public abstract class DynamicPixelCoordinateStrategy extends CoordinateStrategy{
         this.cv = cv;
         yOffset = Config.instance().getAreaViewHeight()/2;
         xOffset = Config.instance().getAreaViewWidth()/2;
-        System.out.println(xOffset + " " + yOffset);
+        //System.out.Println(xOffset + " " + yOffset);
     }
     public void setPlayer(EntityMapViewObject player) {
         this.player = player;

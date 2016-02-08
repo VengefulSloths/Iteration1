@@ -83,7 +83,7 @@ public class Tile{
             AreaEffect ae = aeIter.next();
             EffectCommand effect = ae.createEffectCommand(this.entity);
             effect.execute();
-            System.out.println("AE: " + ae);
+            //System.out.Println("AE: " + ae);
         }
 
 

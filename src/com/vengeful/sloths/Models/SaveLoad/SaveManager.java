@@ -29,7 +29,7 @@ public class SaveManager {
     public SaveManager(){
         objectsToSave = new ArrayList<MapSaveable>();
         f = new File("resources" + File.separator + "save" + File.separator + "save.txt");
-        System.out.println(f.getAbsolutePath());
+        //System.out.Println(f.getAbsolutePath());
     }
 
     public void setSaveVisitor(SaveVisitor sv)
@@ -44,15 +44,15 @@ public class SaveManager {
             //writeClassLine(0, "HELLO");
             //writeVariableLine(1, "salutations", "hello", true);
         } catch(IOException e){
-            System.out.println("save failed: ");
+            //System.out.Println("save failed: ");
             System.out.print(e);
             return;
         }
         sv.visitTiles();
        // insertChar('{'); not real json so these are taken out
         for(MapSaveable s: objectsToSave){
-            System.out.println("SS: ");
-            System.out.println(s);
+            //System.out.Println("SS: ");
+            //System.out.Println(s);
             s.saveMe(this,1);
         }
        // insertChar('}');

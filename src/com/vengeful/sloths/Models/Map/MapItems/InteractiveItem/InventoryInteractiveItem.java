@@ -21,7 +21,7 @@ public class InventoryInteractiveItem extends InteractiveItem{
 
     @Override
     public void interact(Entity entity) {
-        System.out.println("INTERACTIVEITEM OBSERVER" + this.observer);
+        //System.out.Println("INTERACTIVEITEM OBSERVER" + this.observer);
 
         this.observer.alertActivated();
         try{

@@ -62,7 +62,7 @@ public class EquippableItemParser extends ObjectParser {
                             Method method = null;
 
                             if(IsNumber.isNumber(varValue)){
-                                System.out.println(varValue + " IS A NUMBER!!!");
+                                //System.out.Println(varValue + " IS A NUMBER!!!");
                                 int val = Integer.parseInt(varValue);
                                 method = eitem.getClass().getMethod(methodName, int.class);
                                 method.invoke(eitem, val);
@@ -71,14 +71,14 @@ public class EquippableItemParser extends ObjectParser {
                                 if(o.getClass() == String.class){
 //                                    method = eitem.getClass().getMethod(methodName, String.class);
 //                                    method.invoke(eitem, varValue);
-                                    System.out.println("Shouldnt be here in Equippable item parser Object o:" + o.toString());
+                                    //System.out.Println("Shouldnt be here in Equippable item parser Object o:" + o.toString());
                                 } else if(o.getClass() == BaseStats.class){
                                     method = eitem.getClass().getMethod(methodName, BaseStats.class);
                                     method.invoke(eitem, o);
                                 }
                             }
                         }catch (Exception e){
-                            System.out.println("Error with creating setter avatar method");
+                            //System.out.Println("Error with creating setter avatar method");
                         }
                         //eitem.setItemStats((BaseStats) o);
                     }
@@ -91,12 +91,12 @@ public class EquippableItemParser extends ObjectParser {
                         Method method = eitem.getClass().getMethod(methodName, String.class);
                         method.invoke(eitem, varValue);
                     }catch (Exception e){
-                        System.out.println("Error with creating setter avatar method");
+                        //System.out.Println("Error with creating setter avatar method");
                     }
                 }
             }
         }
-        System.out.println("error equippable item didnt get fully read");
+        //System.out.Println("error equippable item didnt get fully read");
         return eitem;
     }
 }

@@ -88,11 +88,11 @@ public class Avatar extends Entity {
                     //isMoving = false;
                     break;
             }
-            //System.out.println("Attempting to move to: " + dst
+            ////System.out.Println("Attempting to move to: " + dst
            this.commandFactory.createMovementCommand(this.getLocation(), dst, dir, this, entityStats.getMovement());
 
         }else{
-            //System.out.println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");
+            ////System.out.Println("<<<<<<<<<<<<<<<<<<movement rejected>>>>>>>>>>>>>>>>");
         }
     }
 
@@ -105,7 +105,7 @@ public class Avatar extends Entity {
         InventoryItem checkEquipped = this.equipped.alreadyEquipped((EquippableItems)item);
 
         if(checkEquipped != null){
-            System.out.println("Swapping equipped item");
+            //System.out.Println("Swapping equipped item");
             this.unequip(checkEquipped);
         }
 
@@ -116,11 +116,11 @@ public class Avatar extends Entity {
         Iterator<EntityObserver> iter = entityObservers.iterator();
         while (iter.hasNext()) {
             if (item instanceof  Hat) {
-                System.out.println("EQUIPING a HAT ~~~~~~~~~~~~~~~~");
+                //System.out.Println("EQUIPING a HAT ~~~~~~~~~~~~~~~~");
 
                 iter.next().alertEquipHat(item.getItemName());
             } else {
-                System.out.println("EQUIPING a WEAPON ~~~~~~~~~~~~~~~~");
+                //System.out.Println("EQUIPING a WEAPON ~~~~~~~~~~~~~~~~");
                 iter.next().alertEquipWeapon(item.getItemName());
 
             }
@@ -217,11 +217,11 @@ public class Avatar extends Entity {
             iter.next().alertDeath();
         }
         entityStats.alertObservers();
-        System.out.println("Entity is Dead D:");
+        //System.out.Println("Entity is Dead D:");
         this.entityStats.updateLivesLeft(-1);
         //this.entityStats.setCurrentHealth(entityStats.getLife());
         //Bring up game menu here??
-        if (this.entityStats.getLivesLeft() < 0) {
+        if (this.entityStats.getLivesLeft() <= 0) {
             ScreenSwitcher.getInstance().goToMenu();
         } else{
             commandFactory.createDieCommand(this.getLocation(), this);

@@ -35,8 +35,8 @@ public class Inventory implements ViewObservable, Saveable {
 
     public void listInventoryItems() {
         for (InventoryItem i: inventory) {
-            System.out.println("hddhadhjkcskhjdskhjdsh");
-            System.out.println(i);
+            //System.out.Println("hddhadhjkcskhjdskhjdsh");
+            //System.out.Println(i);
         }
     }
 

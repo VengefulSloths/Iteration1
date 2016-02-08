@@ -19,13 +19,13 @@ public class InputHandler implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //System.out.println("Input handled Mother Fucker");
-        //System.out.println(System.currentTimeMillis() + "keypressed");
+        ////System.out.Println("Input handled Mother Fucker");
+        ////System.out.Println(System.currentTimeMillis() + "keypressed");
 
         // Only spin a inputRunnable Thread on AvatarState
         /*if (mainController.getState().toString() == "AvatarState") {
             if (thread == null) {
-                System.out.println("blooop");
+                //System.out.Println("blooop");
                 thread = new Thread(new inputRunnable(e));
                 thread.start();
             }
@@ -36,7 +36,7 @@ public class InputHandler implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e){
        /*if(thread != null){
-            System.out.println("beeeeep");
+            //System.out.Println("beeeeep");
             thread.interrupt();
             thread = null;
         }*/
@@ -61,7 +61,7 @@ public class InputHandler implements KeyListener{
                     mainController.dispatchKey(e.getKeyCode());
                 }
             }catch(Exception e){
-                System.out.println(e);
+                //System.out.Println(e);
             }
         }
 

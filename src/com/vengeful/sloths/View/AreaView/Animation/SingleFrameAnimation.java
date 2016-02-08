@@ -9,7 +9,7 @@ import java.awt.*;
 public class SingleFrameAnimation extends AnimatedImage{
     private Image image;
     public SingleFrameAnimation(String filename) {
-        System.out.println(filename);
+        //System.out.Println(filename);
         ImageIcon ii = new ImageIcon(filename + ".png");
         this.image = ii.getImage();
     }

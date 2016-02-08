@@ -86,7 +86,7 @@ public class MenuOption extends MenuComponent implements ViewAlertable{
 
     @Override
     public void activate() {
-        System.out.println("ACTIVATED");
+        //System.out.Println("ACTIVATED");
         if (rightEndTime < ViewTime.getInstance().getCurrentTimeMilli()) {
             rightArrow.setSelected(false);
         }

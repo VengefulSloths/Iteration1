@@ -48,7 +48,7 @@ public abstract class MapItem implements ViewObservable, Saveable {
     public void destroy() {
         observer.alertDestroyed();
         this.destroy = true;
-        System.out.println("This is map object, my observer is: " + observer);
+        //System.out.Println("This is map object, my observer is: " + observer);
     }
 
     public MapItemObserver getObserver(){
@@ -59,7 +59,7 @@ public abstract class MapItem implements ViewObservable, Saveable {
     @Override
     public void registerObserver(ModelObserver modelObserver) {
         this.observer = (MapItemObserver) modelObserver;
-        //System.out.println("MAP ITEM OBSERVER REGISTERED: " + ((MapItemObserver)modelObserver).getClass().getSimpleName());
+        ////System.out.Println("MAP ITEM OBSERVER REGISTERED: " + ((MapItemObserver)modelObserver).getClass().getSimpleName());
     }
 
     @Override
