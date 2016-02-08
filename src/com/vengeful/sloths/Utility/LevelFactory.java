@@ -358,7 +358,7 @@ public class LevelFactory {
         zone2.addDecal(5,18,"Hydrangeas");
         zone2.addDecal(6,20,"Roses");
 
-        //zone2.addDecal(3,22,"Skull");
+        zone2.addDecal(3,20,"Skull");
         cvm.addCameraView(zone2);
 
         ZoomedStaticCameraView zone3 = new ZoomedStaticCameraView(8,0,12,9);
@@ -403,8 +403,7 @@ public class LevelFactory {
         AreaEffect ae3 = new HealDamageAE(1, effectCMDFactory);
         AreaEffect ae4 = new InstantDeathAE(effectCMDFactory);
         MapItem wand = new TakeableItem(new Sword("Wand", new BaseStats(0,0,10,0,0)));
-        map.getTile(new Coord(3,22)).addAreaEffect(ae4);
-
+        map.getTile(new Coord(3,20)).addAreaEffect(ae4);
 
 
         for(int i=0; i<7+1; i++) {
