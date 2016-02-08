@@ -16,6 +16,8 @@ import com.vengeful.sloths.Models.Map.Terrains.Grass;
 import com.vengeful.sloths.Models.Map.MapItems.Obstacle;
 import com.vengeful.sloths.Models.Map.Terrains.Mountain;
 import com.vengeful.sloths.Models.Map.Terrains.Water;
+import com.vengeful.sloths.Models.SaveLoad.Loader;
+import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectWithCoord;
 import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.View.AreaView.Cameras.*;
 import com.vengeful.sloths.Models.Map.MapItems.*;
@@ -31,7 +33,8 @@ public class LevelFactory {
     private CameraViewManager activeCVM;
     private Coord startingCoordinates;
 
-    private Map generateTestMap() {
+
+    private Map generateMapBase() {
         Map map = new Map(new Coord(35,20));
 
 
@@ -91,6 +94,54 @@ public class LevelFactory {
         for (int i=3; i<13; i++) {
             map.getTile(new Coord(2,i)).setTerrain(new Grass());
         }
+
+        return map;
+    }
+
+
+    private Map loadPopulate(Map map) {
+        EffectCommandFactory effectCMDFactory = new EffectCommandFactory(map);
+        MapItem obstacle2 = new Obstacle();
+        map.getTile(new Coord(27, 8)).addMapItem(obstacle2);
+        AreaEffect ae1 = new TakeDamageAE(1, effectCMDFactory);
+        AreaEffect ae2 = new LevelUpAE(effectCMDFactory);
+        AreaEffect ae3 = new HealDamageAE(1, effectCMDFactory);
+        AreaEffect ae4 = new InstantDeathAE(effectCMDFactory);
+        map.getTile(new Coord(7, 0)).addAreaEffect(ae1);
+        //map.getTile(new Coord(3, 0)).addAreaEffect(ae2);
+        map.getTile(new Coord(8, 0)).addAreaEffect(ae3);
+        map.getTile(new Coord(9, 0)).addAreaEffect(ae4);
+        map.getTile(new Coord(10,0)).addAreaEffect(ae2);
+
+//        /** Test Interactive Item***/
+//        EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(1, 2)));
+//        InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)testWeapon).getInvItemRep());
+//        map.getTile(new Coord(3,3)).addMapItem(ii);
+        //MapItem testOneShot = new OneShotTest();
+        //map.getTile(new Coord(4,3)).addMapItem(testOneShot);
+
+
+        Quest q = new BreakBoxQuest(map.getTile(new Coord(19, 3)), map.getTile(new Coord(19, 4)), map.getTile(new Coord(19, 5)));
+        EffectCommand cmd2 = effectCMDFactory.createDestroyObstacleCommand(obstacle2, map.getTile(new Coord(27, 8)));
+        InteractiveItem ii2 = new ActionInteractiveItem(cmd2, q);
+        map.getTile(new Coord(24, 9)).addMapItem(ii2);
+
+        return map;
+    }
+
+    public Map populateFromLoad(Map map, Loader loader) {
+
+        for (ObjectWithCoord owc : loader.listToInstantiate) {
+            System.out.println(owc.getC().getX()+ " " + owc.getC().getY());
+            map.getTile(owc.getC()).addMapItem((MapItem)owc.getObjectToPlace());
+        }
+
+
+        return map;
+    }
+
+    private Map populateTestMap(Map map) {
+
         map.getTile(new Coord(5,5)).addMapItem(new Obstacle());
         map.getTile(new Coord(12,3)).addMapItem(new Obstacle());
         map.getTile(new Coord(2,3)).addMapItem(new OneShotTest());
@@ -183,8 +234,18 @@ public class LevelFactory {
     public boolean initilize(String levelname) {
         switch(levelname) {
             case "TEST":
-                activeMap = generateTestMap();
+                activeMap = generateMapBase();
+                activeMap = populateTestMap(activeMap);
                 activeCVM = generateTestCV();
+                startingCoordinates = new Coord(2,2);
+                return true;
+
+
+            case "LOAD":
+                activeMap = generateMapBase();
+                activeMap = loadPopulate(activeMap);
+                activeCVM = generateTestCV();
+
                 startingCoordinates = new Coord(2,2);
                 return true;
             default:

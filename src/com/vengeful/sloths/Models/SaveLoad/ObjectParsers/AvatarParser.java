@@ -96,14 +96,11 @@ public class AvatarParser extends ObjectParser{
                     }
                 }
                 else if(varName.equals("Coord")){
-
-
                     String[] split = varValue.split(",");
                     int x = Integer.parseInt(split[0].substring(1));
                     int y = Integer.parseInt(split[1].substring(0,split[1].length()-1));
                     Coord c = new Coord(x,y);
                     avatar.setLocation(c);
-
                 }
             }
         }
