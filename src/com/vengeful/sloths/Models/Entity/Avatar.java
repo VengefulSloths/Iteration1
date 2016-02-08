@@ -221,7 +221,7 @@ public class Avatar extends Entity {
         this.entityStats.updateLivesLeft(-1);
         //this.entityStats.setCurrentHealth(entityStats.getLife());
         //Bring up game menu here??
-        if (this.entityStats.getLivesLeft() < 0) {
+        if (this.entityStats.getLivesLeft() <= 0) {
             ScreenSwitcher.getInstance().goToMenu();
         } else{
             commandFactory.createDieCommand(this.getLocation(), this);
