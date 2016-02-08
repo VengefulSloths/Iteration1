@@ -77,9 +77,9 @@ public class Main {
     //    System.out.println(o.toString());
 
 
-//        Loader l = new Loader();
-//        Object o = l.avatar;
-//        System.out.println(((Entity) o).getInventory().toString());
+        Loader l = new Loader();
+        Object o = l.avatar;
+        System.out.println(((Entity) o).getInventory().toString());
 
 
 

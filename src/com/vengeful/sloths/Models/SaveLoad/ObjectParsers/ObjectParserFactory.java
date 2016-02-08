@@ -36,7 +36,8 @@ public class ObjectParserFactory {
         }else if(className.equals("Obstacle")||className.equals("OneShotTest"))
         {
             return new ObstacleAndOneShotParser(className,sc,l,this);
-        }
+        }else if(className.equals("InventoryInteractiveItem"))
+            return new InventoryInteractiveItemParser(className, sc, l, this);
         return null;
     }
 }

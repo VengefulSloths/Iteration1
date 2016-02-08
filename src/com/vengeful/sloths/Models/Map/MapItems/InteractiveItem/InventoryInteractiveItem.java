@@ -17,6 +17,8 @@ public class InventoryInteractiveItem extends InteractiveItem{
         this.requiredItem = requiredItem;
     }
 
+    public InventoryInteractiveItem(){}
+
     @Override
     public void interact(Entity entity) {
         System.out.println("INTERACTIVEITEM OBSERVER" + this.observer);
@@ -35,5 +37,9 @@ public class InventoryInteractiveItem extends InteractiveItem{
         sm.writeClassLine(ws, "InventoryInteractiveItem");
         requiredItem.saveMeFromTakeable(sm ,ws);
         super.saveMe(sm ,ws);
+    }
+
+    public void setRequiredItem(InventoryItem requiredItem) {
+        this.requiredItem = requiredItem;
     }
 }
