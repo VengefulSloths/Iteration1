@@ -32,6 +32,11 @@ public class ActionInteractiveItem extends InteractiveItem{
 
     }
 
+
+    public void setQuest(Quest d) {
+        this.quest = d;
+    }
+
     public void saveMe(SaveManager sm, int ws){
         sm.writeClassLine(ws, "ActionInteractiveItem");
         super.saveMe(sm ,ws);

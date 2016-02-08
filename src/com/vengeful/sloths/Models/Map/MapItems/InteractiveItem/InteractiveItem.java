@@ -23,6 +23,10 @@ public abstract class InteractiveItem extends MapItem {
         this.command = command;
     }
 
+    public void setCommand(EffectCommand cmd){
+        this.command = cmd;
+    }
+
 
     public void setName(String name) {
         this.name = name;
