@@ -24,7 +24,7 @@ public class Loader {
     public Loader()
     {
         listToInstantiate = new ArrayList<ObjectWithCoord>();
-//        f = new File("resources" + File.separator + "save" + File.separator + "save.txt");
+//      f = new File("resources" + File.separator + "save" + File.separator + "save.txt");
         f = new File("saveGame.txt");
         try{
             sc = new Scanner(f);

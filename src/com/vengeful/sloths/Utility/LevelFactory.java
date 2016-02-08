@@ -165,22 +165,21 @@ public class LevelFactory {
             map.getTile(owc.getC()).addMapItem((MapItem)owc.getObjectToPlace());
         }
 
-        MapItem obstacle1 = null;
-        Iterator<MapItem> iter = map.getTile(new Coord(14, 9)).getMapItemIterator();
-        while (iter.hasNext()) {
-            MapItem mapItem = iter.next();
-            if (mapItem instanceof Obstacle) {
-                obstacle1 = mapItem;
-            }
-        }
-//        if(obstacle1 != null){
-//            //map.getTile(new Coord(14, 9)).addMapItem(obstacle1);
+//        MapItem obstacle1 = null;
+//        Iterator<MapItem> iter = map.getTile(new Coord(14, 9)).getMapItemIterator();
+//        while (iter.hasNext()) {
+//            MapItem mapItem = iter.next();
+//            if (mapItem instanceof Obstacle) {
+//                obstacle1 = mapItem;
+//            }
 //        }
-        EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(14, 9)));
-        InteractiveItem ii = new InventoryInteractiveItem(cmd, "Key");
-        map.getTile(new Coord(14,11)).addMapItem(ii);
-//        Avatar a = loader.avatar;
-//        map.getTile(a.getLocation()).getAreaEffectIterator();
+////        if(obstacle1 != null){
+////            //map.getTile(new Coord(14, 9)).addMapItem(obstacle1);
+////        }
+//        EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(14, 9)));
+//        InteractiveItem ii = new InventoryInteractiveItem(cmd, "Key");
+//        map.getTile(new Coord(14,11)).addMapItem(ii);
+
         return map;
     }
 
@@ -450,7 +449,7 @@ public class LevelFactory {
         zone2.addDecal(1,18,"Hydrangeas");
         zone2.addDecal(5,18,"Hydrangeas");
         zone2.addDecal(6,20,"Roses");
-
+        zone2.addDecal(0,24,"Star");
         zone2.addDecal(3,20,"Skull");
         cvm.addCameraView(zone2);
 
