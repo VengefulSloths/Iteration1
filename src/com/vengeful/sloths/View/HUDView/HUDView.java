@@ -1,7 +1,5 @@
 package com.vengeful.sloths.View.HUDView;
 
-import com.sun.org.apache.bcel.internal.generic.SWITCH;
-import com.sun.org.apache.xpath.internal.operations.And;
 import com.vengeful.sloths.Models.Entity.Avatar;
 import com.vengeful.sloths.Models.Entity.Entity;
 import com.vengeful.sloths.Models.Occupation.Occupation;
