@@ -21,6 +21,7 @@ import com.vengeful.sloths.Models.SaveLoad.ObjectParsers.ObjectWithCoord;
 import com.vengeful.sloths.Models.Stats.BaseStats;
 import com.vengeful.sloths.View.AreaView.Cameras.*;
 import com.vengeful.sloths.Models.Map.MapItems.*;
+import com.vengeful.sloths.View.AreaView.DefaultMapViewObjectFactory;
 import com.vengeful.sloths.View.AreaView.DesertMapViewObjectFactory;
 import com.vengeful.sloths.Models.Map.MapItems.InteractiveItem.Quest.*;
 import com.vengeful.sloths.View.AreaView.ViewModels.DecalViewObject;
@@ -349,7 +350,7 @@ public class LevelFactory {
         cvm.addCameraView(zone2);
 
         ZoomedStaticCameraView zone3 = new ZoomedStaticCameraView(8,0,12,9);
-        //zone3.setMapViewObjectFactory(new DesertMapViewObjectFactory(zone3));
+        zone3.setMapViewObjectFactory(new DesertMapViewObjectFactory(zone3));
         cvm.addCameraView(zone3);
 
         ZoomedDynamicCameraView zone4 = new ZoomedDynamicCameraView(8,9,15,16);
