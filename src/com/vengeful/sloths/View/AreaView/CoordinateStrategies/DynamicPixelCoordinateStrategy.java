@@ -49,5 +49,10 @@ public abstract class DynamicPixelCoordinateStrategy extends CoordinateStrategy{
         return doOffset(y, this.player.getFloatY(), cv.getY(), yOffset);
     }
 
+    @Override
+    public int getResolution() {
+        return 32;
+    }
+
 
 }

@@ -14,4 +14,9 @@ public class Dynamic64PixelCoordinateStrategy extends DynamicPixelCoordinateStra
         this.pixel = 64;
     }
 
+    @Override
+    public int getResolution() {
+        return 64;
+    }
+
 }
