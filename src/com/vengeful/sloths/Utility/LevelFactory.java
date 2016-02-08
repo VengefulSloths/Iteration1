@@ -458,7 +458,7 @@ public class LevelFactory {
         Obstacle obstacle1 = new Obstacle();
         map.getTile(new Coord(14,9)).addMapItem(obstacle1);
         EffectCommand cmd = effectCMDFactory.createDestroyObstacleCommand(obstacle1, map.getTile(new Coord(14, 9)));
-        InteractiveItem ii = new InventoryInteractiveItem(cmd, ((TakeableItem)key).getInvItemRep());
+        InteractiveItem ii = new InventoryInteractiveItem(cmd, "Key");
         map.getTile(new Coord(14,11)).addMapItem(ii);
 
         /********* Zone 1 ************/
