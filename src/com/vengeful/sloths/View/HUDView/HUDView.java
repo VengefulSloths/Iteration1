@@ -32,6 +32,7 @@ public class HUDView extends View implements StatsObserver {
     JPanel titlePanel;
 
     int livesRemovedCount;
+    boolean called=true;
 
     public static final int leftPanelWidth = (int) (0.20*Config.instance().getHUDViewWidth());
     public static final int rightPanelWidth = (int) (0.15*Config.instance().getHUDViewWidth());
@@ -254,6 +255,8 @@ public class HUDView extends View implements StatsObserver {
 
                     this.livesPanel.remove(maxLives-(i+1));
                     //this.livesPanel.remove(maxLives-(i));
+                    this.livesPanel.add(generateLivesImageLabel(livesLostImageFileName), maxLives-(i+1));
+
                     livesRemovedCount = i+1;
                     livesAbleToRemove--;
 
@@ -261,12 +264,15 @@ public class HUDView extends View implements StatsObserver {
                     System.out.println("ALREADY OUT OF LIVES");
                 }
             }
-
         }
+
         else {
-            for (int i = 0; i < livesRemaining; i++) {
-                livesPanel.add(generateLivesImageLabel(livesImageFileName));
-                //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
+            if (called) {
+                for (int i = 0; i < livesRemaining; i++) {
+                    livesPanel.add(generateLivesImageLabel(livesImageFileName));
+                    //this.rightPanel.add(generateLivesImageLabel(livesImageFileName)); //used if want hearts aligned horizontally
+                    called=false;
+                }
             }
 
             this.rightPanel.add(livesPanel);
