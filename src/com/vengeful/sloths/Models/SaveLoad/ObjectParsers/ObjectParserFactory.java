@@ -33,6 +33,9 @@ public class ObjectParserFactory {
             return new EquippedParser(className, sc, l, this);
         } else if (className.equals("TakeableItem")) {
             return new TakeableItemParser(className, sc, l, this);
+        }else if(className.equals("Obstacle")||className.equals("OneShotTest"))
+        {
+            return new ObstacleAndOneShotParser(className,sc,l,this);
         }
         return null;
     }

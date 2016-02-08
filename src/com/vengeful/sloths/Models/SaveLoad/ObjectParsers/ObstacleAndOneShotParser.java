@@ -6,6 +6,7 @@ import com.vengeful.sloths.Models.Map.MapItems.OneShotTest;
 import com.vengeful.sloths.Models.SaveLoad.Loader;
 import com.vengeful.sloths.Utility.Coord;
 
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 /**
@@ -35,9 +36,31 @@ public class ObstacleAndOneShotParser extends ObjectParser{
             if(check.contains("}")){
                 //we have reached end of equippable item definition
                 //eitem inventory or equipped
-                owc.
+                owc.setCoord(c);
                 return owc;
             }
+            else{
+                String[] line = check.split(":");
+                String varName = line[0];
+                String varValue = line[1];
+                if(varName.equals("Coord")){
+                    int x = Character.getNumericValue(varValue.charAt(1));
+                    int y = Character.getNumericValue(varValue.charAt(3));
+                    c = new Coord(x,y);
+                }
+                else{
+                    varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
+
+                    String methodName = "set"+varName;
+                    try{
+                        Method method = o.getClass().getMethod(methodName, String.class);
+                        method.invoke(o, varValue);
+                    }catch (Exception e){
+                        System.out.println("Error with creating setter avatar method");
+                    }
+                }
+            }
         }
+        return owc;
     }
 }
