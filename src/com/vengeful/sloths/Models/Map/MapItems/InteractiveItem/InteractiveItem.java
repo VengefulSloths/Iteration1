@@ -24,6 +24,11 @@ public abstract class InteractiveItem extends MapItem {
     }
 
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
     public abstract void interact(Entity entity);
 
     public void saveMe(SaveManager sm, int ws){

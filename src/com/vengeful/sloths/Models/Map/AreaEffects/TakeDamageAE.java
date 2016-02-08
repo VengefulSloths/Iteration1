@@ -34,9 +34,9 @@ public class TakeDamageAE extends AreaEffect{
             return null;
     }
 
-    public void saveMe(SaveManager sm, int ws) {
-        sm.writeClassLine(ws, "TakeDamageAE");
-        String d = "" + damage;
-        sm.writeVariableLine(ws, "damage", d, false);
-    }
+//    public void saveMe(SaveManager sm, int ws) {
+//        sm.writeClassLine(ws, "TakeDamageAE");
+//        String d = "" + damage;
+//        sm.writeVariableLine(ws, "damage", d, false);
+//    }
 }

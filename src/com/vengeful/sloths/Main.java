@@ -72,14 +72,10 @@ public class Main {
 
         //beginning test
 
-//        Loader l = new Loader();
-  //      Object o = l.avatar;
-    //    System.out.println(o.toString());
-
-
         Loader l = new Loader();
         Object o = l.avatar;
-        System.out.println(((Entity) o).getInventory().toString());
+        System.out.println(o.toString());
+
 
 
 
