@@ -35,6 +35,10 @@ public class TakeableItem extends MapItem {
         return this.invItemRep;
     }
 
+    public void setInvItemRep(InventoryItem inv) {
+        this.invItemRep = inv;
+    }
+
 
     //For testing purpose
     public String toString(){
