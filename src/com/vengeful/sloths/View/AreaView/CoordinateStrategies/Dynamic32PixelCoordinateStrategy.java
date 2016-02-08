@@ -12,4 +12,9 @@ public class Dynamic32PixelCoordinateStrategy extends DynamicPixelCoordinateStra
         super(cv);
         this.pixel = 32;
     }
+
+    @Override
+    public int getResolution() {
+        return 32;
+    }
 }
