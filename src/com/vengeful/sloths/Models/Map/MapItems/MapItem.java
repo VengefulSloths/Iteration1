@@ -69,10 +69,8 @@ public abstract class MapItem implements ViewObservable, Saveable {
     }
 
     public void saveMe(SaveManager sm, int ws) {
-
         sm.writeVariableLine(ws, "itemName", itemName, false);
-        sm.writeVariableLine(ws,"graphicsFolder", graphicFolder, false);
-
+        sm.writeVariableLine(ws,"graphicFolder", graphicFolder, false);
     }
 
 

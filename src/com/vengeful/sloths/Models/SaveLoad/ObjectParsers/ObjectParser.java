@@ -20,7 +20,7 @@ public abstract class ObjectParser {
     public ObjectParser(String objectName, Scanner sc, Loader l,ObjectParserFactory ops){
         this.objectName = objectName;
         this.sc = sc;
-        this.l  = l;
+        this.l = l;
         this.ops = ops;
     }
 
