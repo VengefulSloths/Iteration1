@@ -50,6 +50,8 @@ public class ListInventoryViewObjectManager extends ViewObjectManager { //this j
         for (int i = 0; i < inventory.getSize(); i++) {
             InventoryItem item = inventory.getItem(i);
 
+
+
             System.out.println("Testing initWithInventory" + inventory.getItem(i).getItemName());
 
 

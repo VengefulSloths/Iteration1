@@ -42,6 +42,7 @@ public class Equipped implements ViewObservable, Saveable{
             return false;
         }
 
+
         Iterator<EquipmentObserver> iter = this.equipmentObserver.iterator();
         while (iter.hasNext()) {
             EquipmentObserver io = iter.next();

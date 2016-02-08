@@ -26,13 +26,13 @@ public class MainMenuView extends MenuView{
 
         this.addMenuComponent("resources/Menu/NewGame");
         this.addMenuComponent("resources/Menu/LoadGame");
-        this.addMenuComponent("resources/Menu/LoadGame");
-        this.addMenuComponent("resources/Menu/LoadGame");
+
 
         MenuCommandFactory menuCommandFactory = new MenuCommandFactory();
 
         children.get(0).setAction(menuCommandFactory.createCharacterCreationCommand());
         children.get(0).setSelected(true);
+        children.get(1).setAction(menuCommandFactory.createLaunchLoadedGameCommand());
 
     }
 

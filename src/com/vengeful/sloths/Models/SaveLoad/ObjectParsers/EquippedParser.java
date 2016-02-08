@@ -41,6 +41,9 @@ public class EquippedParser extends ObjectParser {
                     varName = varName.substring(0,1).toUpperCase() + varName.substring(1);
                     //String methodName = "set"+varName;
                     eq.addEquipped((EquippableItems) o);
+                    System.out.println("just added equpped item ");
+                    System.out.println(o);
+
 //                    try{
 //                        Method method = eq.getClass().getMethod(methodName, o.getClass());
 //                        method.invoke(eq, o);
