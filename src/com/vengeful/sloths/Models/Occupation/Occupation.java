@@ -9,9 +9,7 @@ import com.vengeful.sloths.Models.Stats.EntityStats;
  */
 public abstract class Occupation implements Saveable {
 
-    public Occupation() {
-
-    }
+    public Occupation() {}
 
     public abstract void init(EntityStats entityStats);
 

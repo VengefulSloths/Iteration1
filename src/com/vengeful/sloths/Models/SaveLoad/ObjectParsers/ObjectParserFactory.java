@@ -19,21 +19,19 @@ public class ObjectParserFactory {
 
     public ObjectParser ObjectParserFactory(String className)
     {
-        if(className.equals("Avatar")){
+        if(className.equals("Avatar")) {
             return new AvatarParser(className, sc, l, this);
-        }else if(className.equals("Inventory")){
+        } else if(className.equals("Inventory")) {
             return new InventoryParser(className, sc, l, this);
-        }else if(className.equals("EntityStats")){
-            System.out.println("Entity stats parser created");
+        } else if(className.equals("EntityStats")) {
             return new EntityStatsParser(className, sc, l, this);
-        }else if(className.equals("Sword")||className.equals("Hat")){
+        } else if(className.equals("Sword")||className.equals("Hat")) {
             return new EquippableItemParser(className, sc, l, this);
-        }else if(className.equals("BaseStats")){
+        } else if(className.equals("BaseStats")) {
             return new BaseStatsParser(className, sc, l, this);
         }else if(className.equals("Equipped")){
             return new EquippedParser(className, sc, l, this);
         }
         return null;
     }
-
 }

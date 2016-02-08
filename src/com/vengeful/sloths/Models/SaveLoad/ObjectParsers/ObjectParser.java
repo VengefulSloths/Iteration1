@@ -24,7 +24,9 @@ public abstract class ObjectParser {
         this.ops = ops;
     }
 
-    public ObjectParser(){};
+    public ObjectParser(){
+
+    };
 
     public abstract Object Parse();
 
